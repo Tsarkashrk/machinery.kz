@@ -1,0 +1,27 @@
+@import './typography';
+
+// Font
+
+$font-roboto: var(--font-roboto);
+$font-inter: var(--font-inter);
+$font-geist-sans: var(--font-geist-sans);
+$font-geist-mono: var(--font-geist-mono);
+
+$font-gilroy-medium: 'GilroyMedium';
+
+$font-xxs: 1.2rem;
+$font-xs: 1.4rem;
+$font-sm: 1.6rem;
+$font-md: 1.8rem;
+$font-xm: 2rem;
+$font-xxm: 2.2rem;
+$font-lg: 2.4rem;
+$font-xl: 2.6rem;
+
+// Color
+
+$dark-color: black;
+$light-dark-color: #8e91a0;
+$light-color: white;
+
+$font-xxl: 2.8rem;

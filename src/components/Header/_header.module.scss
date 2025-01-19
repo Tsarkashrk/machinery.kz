@@ -1,0 +1,20 @@
+@import '@/scss/variables.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 4rem;
+  background-color: $dark-color;
+  font-family: $font-geist-mono;
+  
+  &__logo {
+    margin-right: 5rem;
+    font-family: $font-geist-mono;
+    font-weight: 600;
+    font-size: $font-sm;
+    color: $light-color;
+  }
+
+
+}

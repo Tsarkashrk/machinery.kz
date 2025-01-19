@@ -1,0 +1,26 @@
+@import './variables';
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: $dark-color;
+  font-family: $font-geist-mono;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  border-radius: 2.5rem 2.5rem 0 0;
+  background-color: $light-color;
+  padding: 2rem 4rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style-type: none;
+  box-sizing: border-box;
+}
