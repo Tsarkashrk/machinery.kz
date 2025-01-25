@@ -5,15 +5,17 @@ html {
 }
 
 body {
-  background-color: $dark-color;
-  font-family: $font-geist-mono;
+  // background-color: $base-dark-color;
+  font-family: $font-geist-sans;
+  font-weight: 300;
+  font-size: $font-sm;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 main {
-  border-radius: 2.5rem 2.5rem 0 0;
-  background-color: $light-color;
+  // border-radius: 2.5rem 2.5rem 0 0;
+  background-color: $base-color;
   padding: 2rem 4rem;
 }
 

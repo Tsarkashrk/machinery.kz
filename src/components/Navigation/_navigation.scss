@@ -1,0 +1,19 @@
+.navigation {
+  color: $base-color;
+  font-family: $font-geist-sans;
+  font-weight: 400;
+  font-size: $font-sm;
+
+  &__list {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__item {
+    background-color: $base-dark-color;
+  }
+
+  &__link {
+    color: $base-color;
+  }
+}

@@ -1,0 +1,61 @@
+.button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 3.6rem !important;
+  padding: 0.8rem 1.3rem;
+  border: none;
+  border-radius: $border-radius;
+  font-family: $font-geist-sans;
+  font-size: $font-xs;
+  font-weight: $font-medium;
+  color: $base-color;
+  transition: $transition;
+  cursor: pointer;
+
+  &--default {
+    color: $light-dark-color;
+    background-color: $base-dark-color;
+
+    &:hover {
+      color: $base-color;
+    }
+
+    &--active {
+      background-color: $base-color;
+      color: $base-dark-color;
+
+      &:hover {
+        color: $base-dark-color;
+      }
+    }
+  }
+
+  &--light {
+    background-color: $zinc-50;
+    color: $base-dark-color;
+
+    &:hover {
+      background-color: $zinc-200;
+    }
+  }
+
+  &--outlined {
+    padding: 0.4rem 1.3rem;
+    background-color: transparent;
+    border: 2px solid $base-color;
+
+    &:hover {
+      background-color: $base-color;
+      color: $base-dark-color;
+    }
+  }
+
+  &--green {
+    background-color: green;
+  }
+
+  &--underlined {
+    border-bottom: 1px solid;
+  }
+}

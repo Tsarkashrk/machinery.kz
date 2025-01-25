@@ -1,11 +1,11 @@
-import SubHeader from '@/components/SubHeader/SubHeader'
+import Subheader from '@/components/Subheader/Subheader'
 
-const page = () => {
+const CatalogPage = () => {
   return (
     <main>
-      <SubHeader text="Our new collection" />
+      <Subheader text="Beautifully designed components" />
     </main>
   )
 }
 
-export default page
+export default CatalogPage

@@ -1,5 +1,7 @@
 @import './base';
-@import './typography';
 @import './variables';
-
-@import '../components/SubHeader/sub-header.module';
+@import '../components/Button/button';
+@import '../components/Dropdown/dropdown';
+@import '../components/Navigation/navigation';
+@import '../components/Subheader/subheader';
+@import '../components/Header/header';

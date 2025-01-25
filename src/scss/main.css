@@ -1,72 +1,16 @@
-@font-face {
-  font-family: "GilroyRegular";
-  font-weight: 400;
-  font-style: normal;
-  src: url("/public/fonts/gilroy/Gilroy-RegularItalic.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroyRegularItalic";
-  font-weight: 400;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-RegularItalic.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroyMedium";
-  font-weight: 500;
-  font-style: normal;
-  src: url("/public/fonts/gilroy/Gilroy-Medium.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroyMediumItalic";
-  font-weight: 500;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-MediumItalic.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroySemiBold";
-  font-weight: 600;
-  font-style: normal;
-  src: url("/public/fonts/gilroy/Gilroy-SemiBold.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroySemiBoldItalic";
-  font-weight: 600;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-SemiBoldItalic.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroyBold";
-  font-weight: 700;
-  font-style: normal;
-  src: url(/public/fonts/gilroy/Gilroy-Bold.woff2) format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroyBoldItalic";
-  font-weight: 700;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-BoldItalic.woff2") format("woff2");
-  font-display: swap;
-}
 html {
   font-size: 62.5%;
 }
 
 body {
-  background-color: black;
-  font-family: var(--font-geist-mono);
+  font-family: var(--font-geist-sans);
+  font-weight: 300;
+  font-size: 1.6rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 main {
-  border-radius: 2.5rem 2.5rem 0 0;
   background-color: white;
   padding: 2rem 4rem;
 }
@@ -79,119 +23,98 @@ main {
   box-sizing: border-box;
 }
 
-@font-face {
-  font-family: "GilroyRegular";
-  font-weight: 400;
-  font-style: normal;
-  src: url("/public/fonts/gilroy/Gilroy-RegularItalic.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroyRegularItalic";
-  font-weight: 400;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-RegularItalic.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroyMedium";
+.button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 3.6rem !important;
+  padding: 0.8rem 1.3rem;
+  border: none;
+  border-radius: 1rem;
+  font-family: var(--font-geist-sans);
+  font-size: 1.4rem;
   font-weight: 500;
-  font-style: normal;
-  src: url("/public/fonts/gilroy/Gilroy-Medium.woff2") format("woff2");
-  font-display: swap;
+  color: white;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
 }
-@font-face {
-  font-family: "GilroyMediumItalic";
-  font-weight: 500;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-MediumItalic.woff2") format("woff2");
-  font-display: swap;
+.button--default {
+  color: #8e91a0;
+  background-color: #030612;
 }
-@font-face {
-  font-family: "GilroySemiBold";
-  font-weight: 600;
-  font-style: normal;
-  src: url("/public/fonts/gilroy/Gilroy-SemiBold.woff2") format("woff2");
-  font-display: swap;
+.button--default:hover {
+  color: white;
 }
-@font-face {
-  font-family: "GilroySemiBoldItalic";
-  font-weight: 600;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-SemiBoldItalic.woff2") format("woff2");
-  font-display: swap;
+.button--default--active {
+  background-color: white;
+  color: #030612;
 }
-@font-face {
-  font-family: "GilroyBold";
-  font-weight: 700;
-  font-style: normal;
-  src: url(/public/fonts/gilroy/Gilroy-Bold.woff2) format("woff2");
-  font-display: swap;
+.button--default--active:hover {
+  color: #030612;
 }
-@font-face {
-  font-family: "GilroyBoldItalic";
-  font-weight: 700;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-BoldItalic.woff2") format("woff2");
-  font-display: swap;
+.button--light {
+  background-color: #fafafa;
+  color: #030612;
 }
-@font-face {
-  font-family: "GilroyRegular";
+.button--light:hover {
+  background-color: #e4e4e7;
+}
+.button--outlined {
+  padding: 0.4rem 1.3rem;
+  background-color: transparent;
+  border: 2px solid white;
+}
+.button--outlined:hover {
+  background-color: white;
+  color: #030612;
+}
+.button--green {
+  background-color: green;
+}
+.button--underlined {
+  border-bottom: 1px solid;
+}
+
+.navigation {
+  color: white;
+  font-family: var(--font-geist-sans);
   font-weight: 400;
-  font-style: normal;
-  src: url("/public/fonts/gilroy/Gilroy-RegularItalic.woff2") format("woff2");
-  font-display: swap;
+  font-size: 1.6rem;
 }
-@font-face {
-  font-family: "GilroyRegularItalic";
-  font-weight: 400;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-RegularItalic.woff2") format("woff2");
-  font-display: swap;
+.navigation__list {
+  display: flex;
+  gap: 0.5rem;
 }
-@font-face {
-  font-family: "GilroyMedium";
-  font-weight: 500;
-  font-style: normal;
-  src: url("/public/fonts/gilroy/Gilroy-Medium.woff2") format("woff2");
-  font-display: swap;
+.navigation__item {
+  background-color: #030612;
 }
-@font-face {
-  font-family: "GilroyMediumItalic";
-  font-weight: 500;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-MediumItalic.woff2") format("woff2");
-  font-display: swap;
+.navigation__link {
+  color: white;
 }
-@font-face {
-  font-family: "GilroySemiBold";
+
+.subheader {
+  font-family: var(--font-geist-sans);
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 4rem;
+  background-color: #030612;
+  font-family: var(--font-geist-mono);
+}
+.header__logo {
+  margin-right: 5rem;
   font-weight: 600;
-  font-style: normal;
-  src: url("/public/fonts/gilroy/Gilroy-SemiBold.woff2") format("woff2");
-  font-display: swap;
+  font-size: 1.6rem;
+  color: white;
 }
-@font-face {
-  font-family: "GilroySemiBoldItalic";
-  font-weight: 600;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-SemiBoldItalic.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroyBold";
-  font-weight: 700;
-  font-style: normal;
-  src: url(/public/fonts/gilroy/Gilroy-Bold.woff2) format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "GilroyBoldItalic";
-  font-weight: 700;
-  font-style: italic;
-  src: url("/public/fonts/gilroy/Gilroy-BoldItalic.woff2") format("woff2");
-  font-display: swap;
-}
-.sub-header {
-  font-family: "GilroyMedium";
-  font-size: 2.4rem;
+.header__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }/*# sourceMappingURL=main.css.map */

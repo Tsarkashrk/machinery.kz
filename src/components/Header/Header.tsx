@@ -1,19 +1,26 @@
+'use client'
+
 import Link from 'next/link'
 
-import { UserPen } from 'lucide-react'
+import { UserPen, Plus, Globe } from 'lucide-react'
 
 import Navigation from '../Navigation/Navigation'
-import styles from './_header.module.scss'
-import ButtonLink from '../Buttons/ButtonLink/ButtonLink'
+import Button from '../Button/Button'
 
 const Header = () => {
+  const isAuth = false
+
   return (
-    <header className={styles.header}>
-      <Link className={styles.header__logo} href="/">
-        machinery_kz
+    <header className="header">
+      <Link className="header__logo" href="/">
+        mchnry_kz
       </Link>
       <Navigation />
-      <ButtonLink img={<UserPen size={20} />} text=">" link={'/profile'} />
+      <div className="header__buttons">
+        <Button icon={<Plus size={18} />} link="/new" text="Create listing" variant="light" isLink />
+        <Button icon={<Globe size={18} />} text="EN" variant="default" />
+        {isAuth ? <Button isLink icon={<UserPen size={18} />} text=">" link={'/profile'} variant="default" /> : <Button isLink text="Login or Sign up" link={'/profile'} variant="outlined" />}
+      </div>
     </header>
   )
 }

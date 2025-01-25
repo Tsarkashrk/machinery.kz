@@ -1,5 +1,5 @@
-const SubHeader = ({ text }: { text: string }) => {
-  return <h1 className="sub-header">{text}</h1>
+const Subheader = ({ text }: { text: string }) => {
+  return <h1 className="subheader font-light">{text}</h1>
 }
 
-export default SubHeader
+export default Subheader
