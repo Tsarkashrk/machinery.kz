@@ -3,17 +3,27 @@ import Title from '../ui/Title/Title'
 import Label from '../ui/Label/Label'
 import Input from '../ui/Input/Input'
 import Button from '../ui/Button/Button'
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
 
-const AuthForm = () => {
+interface IAuthForm {
+  title: string
+  description: string
+  buttonText: string
+  linkText: string
+  linkUrl: string
+  additionalButtonText?: string
+  signText: string
+  onSubmit?: () => void
+}
+
+const AuthForm = ({ title, description, buttonText, linkText, linkUrl, additionalButtonText, signText, onSubmit }: IAuthForm) => {
   return (
     <div className="auth-form">
       <div className="auth-form__wrapper">
         <div className="auth-form__header">
-          <Title text="Login to your account" />
-          <TextMuted text="Enter your email below to login to your account" />
+          <Title text={title} />
+          <TextMuted text={description} />
         </div>
-        <div className="auth-form__body">
+        <form className="auth-form__body" onSubmit={onSubmit}>
           <div className="auth-form__credentials">
             <Label text="Email" forElement="email" />
             <Input type="text" id="email" placeholder="mchnry@ex.com" />
@@ -22,11 +32,15 @@ const AuthForm = () => {
             <Label text="Password" forElement="password" />
             <Input type="password" id="password" />
           </div>
-          <Button text="Login" variant="dark" />
-          <Button text="Login with Google" variant="outlined" />
-        </div>
+          <Button text={buttonText} variant="dark" />
+          {additionalButtonText && <Button text={additionalButtonText} variant="outlined" />}
+        </form>
         <p className="auth-form__footer">
-          Don't have an account? <Button isLink link={PLATFORM_PAGES.REGISTER} variant="underlined" text="Sign up" />
+          {linkText && (
+            <>
+              {linkText} <Button isLink link={linkUrl} variant="underlined" text={signText} />
+            </>
+          )}
         </p>
       </div>
     </div>
