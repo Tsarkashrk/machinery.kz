@@ -15,6 +15,7 @@ body {
 
 main {
   // border-radius: 2.5rem 2.5rem 0 0;
+  height: calc(100vh - 6rem);
   background-color: $base-color;
   padding: 2rem 4rem;
 }

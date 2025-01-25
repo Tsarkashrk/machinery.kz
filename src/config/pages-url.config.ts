@@ -2,11 +2,13 @@ class PLATFORM {
   private root = '/'
 
   HOME = this.root
-  TASKS = `${this.root}tasks`
-  HABITS = `${this.root}habits`
-  TIMER = `${this.root}timer`
-  TIME_BLOCKING = `${this.root}time-blocking`
-  SETTINGS = `${this.root}settings`
+  DEALERS = `${this.root}dealers`
+  PURCHASE = `${this.root}purchase`
+  RENT = `${this.root}rent`
+  LOGIN = `${this.root}login`
+  REGISTER = `${this.root}register`
+  NEW = `${this.root}new`
+  PROFILE = `${this.root}profile`
 }
 
 export const PLATFORM_PAGES = new PLATFORM()

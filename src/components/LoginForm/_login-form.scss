@@ -1,0 +1,14 @@
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+
+  &__wrapper {
+    max-width: 40rem;
+    width: 100%;
+    border-radius: $border-radius;
+    border: $border;
+  }
+}

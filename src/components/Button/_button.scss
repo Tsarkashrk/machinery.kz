@@ -36,7 +36,7 @@
     color: $base-dark-color;
 
     &:hover {
-      background-color: $zinc-200;
+      opacity: 90%;
     }
   }
 
@@ -52,7 +52,11 @@
   }
 
   &--green {
-    background-color: green;
+    background-color: $green-700;
+
+    &:hover {
+      opacity: 90%;
+    }
   }
 
   &--underlined {

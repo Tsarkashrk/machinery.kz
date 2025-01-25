@@ -1,11 +1,12 @@
-import { Handshake, House, ShoppingBag } from 'lucide-react'
+import { Handshake, Users, ShoppingBag } from 'lucide-react'
 
 import Button from '../Button/Button'
+import { PLATFORM_PAGES } from '@/config/pages-url.config'
 
 const navItems = [
-  // { link: '/catalog', title: 'Catalog', icon: <House size={20} /> },
-  { link: '/purchase', title: 'Purchase', icon: <ShoppingBag size={18} /> },
-  { link: '/rent', title: 'Rent', icon: <Handshake size={18} /> },
+  { link: `${PLATFORM_PAGES.PURCHASE}`, title: 'Purchase', icon: <ShoppingBag size={18} /> },
+  { link: `${PLATFORM_PAGES.RENT}`, title: 'Rent', icon: <Handshake size={18} /> },
+  { link: `${PLATFORM_PAGES.DEALERS}`, title: 'Dealers', icon: <Users size={18} /> },
 ]
 
 const Navigation = () => {

@@ -11,6 +11,7 @@ body {
 }
 
 main {
+  height: calc(100vh - 6rem);
   background-color: white;
   padding: 2rem 4rem;
 }
@@ -57,7 +58,7 @@ main {
   color: #030612;
 }
 .button--light:hover {
-  background-color: #e4e4e7;
+  opacity: 90%;
 }
 .button--outlined {
   padding: 0.4rem 1.3rem;
@@ -69,7 +70,10 @@ main {
   color: #030612;
 }
 .button--green {
-  background-color: green;
+  background-color: #15803d;
+}
+.button--green:hover {
+  opacity: 90%;
 }
 .button--underlined {
   border-bottom: 1px solid;
@@ -117,4 +121,18 @@ main {
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+.login-form__wrapper {
+  max-width: 40rem;
+  width: 100%;
+  border-radius: 1rem;
+  border: 2px solid #e5e7eb;
 }/*# sourceMappingURL=main.css.map */
