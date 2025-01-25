@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { UserPen, Plus, Globe } from 'lucide-react'
 
 import Navigation from '../Navigation/Navigation'
-import Button from '../Button/Button'
+import Button from '../ui/Button/Button'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 
 const Header = () => {
@@ -18,7 +18,7 @@ const Header = () => {
       </Link>
       <Navigation />
       <div className="header__buttons">
-        <Button icon={<Plus size={18} />} link={PLATFORM_PAGES.NEW} text="Create listing" variant="green" isLink />
+        <Button isLoading icon={<Plus size={18} />} link={PLATFORM_PAGES.NEW} text="Create listing" variant="green" isLink />
 
         <Button icon={<Globe size={18} />} text="EN" variant="default" />
 

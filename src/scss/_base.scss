@@ -27,3 +27,9 @@ main {
   list-style-type: none;
   box-sizing: border-box;
 }
+
+p {
+  font-weight: $font-regular;
+  font-size: $font-xs;
+  color: $base-dark-color;
+}

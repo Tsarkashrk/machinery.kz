@@ -1,3 +1,11 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 html {
   font-size: 62.5%;
 }
@@ -24,61 +32,20 @@ main {
   box-sizing: border-box;
 }
 
-.button {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  height: 3.6rem !important;
-  padding: 0.8rem 1.3rem;
-  border: none;
-  border-radius: 1rem;
-  font-family: var(--font-geist-sans);
+p {
+  font-weight: 400;
   font-size: 1.4rem;
-  font-weight: 500;
-  color: white;
-  transition: all 0.1s ease-in-out;
-  cursor: pointer;
-}
-.button--default {
-  color: #8e91a0;
-  background-color: #030612;
-}
-.button--default:hover {
-  color: white;
-}
-.button--default--active {
-  background-color: white;
   color: #030612;
-}
-.button--default--active:hover {
-  color: #030612;
-}
-.button--light {
-  background-color: #fafafa;
-  color: #030612;
-}
-.button--light:hover {
-  opacity: 90%;
-}
-.button--outlined {
-  padding: 0.4rem 1.3rem;
-  background-color: transparent;
-  border: 2px solid white;
-}
-.button--outlined:hover {
-  background-color: white;
-  color: #030612;
-}
-.button--green {
-  background-color: #15803d;
-}
-.button--green:hover {
-  opacity: 90%;
-}
-.button--underlined {
-  border-bottom: 1px solid;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .navigation {
   color: white;
   font-family: var(--font-geist-sans);
@@ -94,12 +61,6 @@ main {
 }
 .navigation__link {
   color: white;
-}
-
-.subheader {
-  font-family: var(--font-geist-sans);
-  font-size: 1.8rem;
-  font-weight: 300;
 }
 
 .header {
@@ -123,16 +84,151 @@ main {
   gap: 0.5rem;
 }
 
-.login-form {
+.auth-form {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   height: 100%;
 }
-.login-form__wrapper {
+.auth-form__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
   max-width: 40rem;
   width: 100%;
+  padding: 2.4rem;
+  border-radius: 1.6rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+.auth-form__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2.4rem;
+  text-align: start;
+}
+.auth-form__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  width: 100%;
+}
+.auth-form__credentials {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: start;
+}
+.auth-form__footer {
+  display: flex;
+  align-self: center;
+  gap: 0.5rem;
+  margin-top: 2.4rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 3.6rem !important;
+  padding: 0.8rem 1.3rem;
+  border: none;
   border-radius: 1rem;
-  border: 2px solid #e5e7eb;
+  font-family: var(--font-geist-sans);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: white;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+.button__icon {
+  display: flex;
+}
+.button--default {
+  color: #8e91a0;
+  background-color: #030612;
+}
+.button--default:hover {
+  color: white;
+}
+.button--default--active {
+  background-color: white;
+  color: #030612;
+}
+.button--default--active:hover {
+  color: #030612;
+}
+.button--dark {
+  color: white;
+  background-color: #030612;
+}
+.button--dark:hover {
+  opacity: 80%;
+}
+.button--light {
+  background-color: #fafafa;
+  color: #030612;
+}
+.button--light:hover {
+  opacity: 90%;
+}
+.button--outlined {
+  padding: 0.4rem 1.3rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  color: #030612;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.button--outlined:hover {
+  background-color: #e4e4e7;
+}
+.button--green {
+  background-color: #15803d;
+}
+.button--green:hover {
+  opacity: 90%;
+}
+.button--underlined {
+  all: unset;
+  height: auto !important;
+  text-underline-offset: 4px;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+
+.subheader {
+  font-family: var(--font-geist-sans);
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.text-muted {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #71717a;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.input {
+  padding: 0.4rem 1.2rem;
+  width: 100%;
+  height: 3.6rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  font-family: var(--font-geist-sans);
+  font-size: 1.4rem;
+  font-weight: 400;
 }/*# sourceMappingURL=main.css.map */

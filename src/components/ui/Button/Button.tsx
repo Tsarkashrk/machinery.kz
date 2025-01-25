@@ -6,14 +6,15 @@ import { usePathname } from 'next/navigation'
 
 interface IButton {
   isLink?: boolean
+  isLoading?: boolean
   link?: string
   text?: string
   icon?: ReactNode
-  variant?: 'light' | 'dark' | 'primary' | 'secondary' | 'profile' | 'default' | 'outlined' | 'green'
+  variant?: 'light' | 'dark' | 'primary' | 'secondary' | 'profile' | 'default' | 'outlined' | 'green' | 'underlined'
   onClick?: () => void
 }
 
-const Button = ({ isLink = false, link = '', text, icon, variant = 'default', onClick }: IButton) => {
+const Button = ({ isLoading, isLink = false, link = '', text, icon, variant = 'default', onClick }: IButton) => {
   const pathname = usePathname()
   const isActive = link && pathname.startsWith(link)
 
@@ -23,20 +24,20 @@ const Button = ({ isLink = false, link = '', text, icon, variant = 'default', on
 
   const className = `${baseClass} ${variantClass} ${activeClass}`.trim()
 
-  const Content = (
+  const ButtonContent = (
     <>
-      {icon}
-      {text}
+      {icon && <span className={`button__icon`}>{icon}</span>}
+      <div className="button__text">{text}</div>
     </>
   )
 
-  return isLink ? ( 
+  return isLink ? (
     <Link className={className} href={link}>
-      {Content}
+      {ButtonContent}
     </Link>
   ) : (
     <button className={className} onClick={onClick}>
-      {Content}
+      {ButtonContent}
     </button>
   )
 }

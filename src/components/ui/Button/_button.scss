@@ -1,17 +1,22 @@
 .button {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   height: 3.6rem !important;
   padding: 0.8rem 1.3rem;
   border: none;
-  border-radius: $border-radius;
+  border-radius: $border-radius-ui;
   font-family: $font-geist-sans;
   font-size: $font-xs;
   font-weight: $font-medium;
   color: $base-color;
   transition: $transition;
   cursor: pointer;
+
+  &__icon {
+    display: flex;
+  }
 
   &--default {
     color: $light-dark-color;
@@ -31,6 +36,15 @@
     }
   }
 
+  &--dark {
+    color: $base-color;
+    background-color: $base-dark-color;
+
+    &:hover {
+      opacity: 80%;
+    }
+  }
+
   &--light {
     background-color: $zinc-50;
     color: $base-dark-color;
@@ -42,12 +56,13 @@
 
   &--outlined {
     padding: 0.4rem 1.3rem;
-    background-color: transparent;
-    border: 2px solid $base-color;
+    background-color: $base-color;
+    border: $border;
+    color: $base-dark-color;
+    box-shadow: $ui-shadow;
 
     &:hover {
-      background-color: $base-color;
-      color: $base-dark-color;
+      background-color: $zinc-200;
     }
   }
 
@@ -60,6 +75,10 @@
   }
 
   &--underlined {
-    border-bottom: 1px solid;
+    all: unset;
+    height: auto !important;
+    text-underline-offset: 4px;
+    text-decoration-line: underline;
+    cursor: pointer;
   }
 }

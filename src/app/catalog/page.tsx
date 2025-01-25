@@ -1,4 +1,4 @@
-import Subheader from '@/components/Subheader/Subheader'
+import Subheader from '@/components/ui/Subheader/Subheader'
 
 const CatalogPage = () => {
   return (

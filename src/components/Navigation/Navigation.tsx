@@ -1,6 +1,6 @@
 import { Handshake, Users, ShoppingBag } from 'lucide-react'
 
-import Button from '../Button/Button'
+import Button from '../ui/Button/Button'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 
 const navItems = [

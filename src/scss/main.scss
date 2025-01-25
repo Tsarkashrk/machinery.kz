@@ -1,8 +1,20 @@
+// Scss
+
 @import './base';
 @import './variables';
-@import '../components/Button/button';
-@import '../components/Dropdown/dropdown';
+
+// Components
+
 @import '../components/Navigation/navigation';
-@import '../components/Subheader/subheader';
 @import '../components/Header/header';
-@import '../components/LoginForm/login-form';
+@import '../components/AuthForm/auth-form';
+
+// UI
+
+@import '../components/ui/Button/button';
+@import '../components/ui/Dropdown/dropdown';
+@import '../components/ui/Subheader/subheader';
+@import '../components/ui/Title/title';
+@import '../components/ui/TextMuted/text-muted';
+@import '../components/ui/Label/label';
+@import '../components/ui/Input/input';

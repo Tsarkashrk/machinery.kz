@@ -22,8 +22,9 @@ $font-bold: 700;
 
 // Border
 
-$border: 2px solid #e5e7eb;
-$border-radius: 1rem;
+$border: 1px solid #e5e7eb;
+$border-radius-card: 1.6rem;
+$border-radius-ui: 1rem;
 
 // Color
 
@@ -46,6 +47,24 @@ $zinc-950: #09090b;
 
 $green-700: #15803d;
 
+// Shadow
+
+$card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+$ui-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
 // Transition
 
 $transition: all 0.1s ease-in-out;
+
+// Animation
+
+$animate-spin: spin 1s linear infinite;
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
