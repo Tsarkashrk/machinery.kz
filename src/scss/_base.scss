@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  // background-color: $base-dark-color;
+  background-color: $base-dark-color;
   font-family: $font-geist-sans;
   font-weight: 300;
   font-size: $font-sm;
@@ -14,7 +14,7 @@ body {
 }
 
 main {
-  // border-radius: 2.5rem 2.5rem 0 0;
+  border-radius: 2.5rem 2.5rem 0 0;
   height: calc(100vh - 6rem);
   background-color: $base-color;
   padding: 2rem 4rem;

@@ -27,7 +27,7 @@ const Button = ({ isLoading, isLink = false, link = '', text, icon, variant = 'd
   const ButtonContent = (
     <>
       {icon && <span className={`button__icon`}>{icon}</span>}
-      <div className="button__text">{text}</div>
+      {text}
     </>
   )
 

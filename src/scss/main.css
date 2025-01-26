@@ -11,6 +11,7 @@ html {
 }
 
 body {
+  background-color: #030612;
   font-family: var(--font-geist-sans);
   font-weight: 300;
   font-size: 1.6rem;
@@ -19,6 +20,7 @@ body {
 }
 
 main {
+  border-radius: 2.5rem 2.5rem 0 0;
   height: calc(100vh - 6rem);
   background-color: white;
   padding: 2rem 4rem;
@@ -67,7 +69,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.2rem 4rem;
+  padding: 1.4rem 4rem;
   background-color: #030612;
   font-family: var(--font-geist-mono);
 }
@@ -94,7 +96,7 @@ p {
 .auth-form__wrapper {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: start;
   max-width: 40rem;
   width: 100%;
   padding: 2.4rem;
@@ -107,7 +109,7 @@ p {
   flex-direction: column;
   gap: 0.6rem;
   margin-bottom: 2.4rem;
-  text-align: flex-start;
+  text-align: start;
 }
 .auth-form__body {
   display: flex;
@@ -119,7 +121,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  text-align: flex-start;
+  text-align: start;
 }
 .auth-form__footer {
   display: flex;

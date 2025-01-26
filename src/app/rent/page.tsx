@@ -2,7 +2,7 @@ import React from 'react'
 
 const RentPage = () => {
   return (
-    <main>RentPage</main>
+    <main></main>
   )
 }
 
