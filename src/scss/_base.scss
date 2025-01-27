@@ -28,6 +28,11 @@ main {
   box-sizing: border-box;
 }
 
+h1 {
+  font-size: $font-lg;
+  font-weight: $font-semibold;
+}
+
 p {
   font-weight: $font-regular;
   font-size: $font-xs;

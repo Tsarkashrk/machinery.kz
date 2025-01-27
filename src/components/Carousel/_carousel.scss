@@ -1,0 +1,16 @@
+.carousel {
+}
+
+.swiper {
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

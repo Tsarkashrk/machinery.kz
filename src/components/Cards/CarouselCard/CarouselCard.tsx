@@ -10,8 +10,8 @@ interface ICarouselCard {
 
 const CarouselCard = ({ title, description, link, img }: ICarouselCard) => {
   return (
-    <Link href={link}>
-      <img src="https://whatispiping.com/wp-content/uploads/2021/02/Name-of-Construction-Equipment.png" alt="" />
+    <Link className='carousel-card' href={link}>
+      <img className='carousel-card__image' src="https://www.stoneequipmentco.com/images/Blog/heavy_equipment_company.jpg" alt="" />
     </Link>
   )
 }

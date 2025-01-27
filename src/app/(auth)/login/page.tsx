@@ -4,7 +4,7 @@ import { PLATFORM_PAGES } from '@/config/pages-url.config'
 const LoginPage = () => {
   return (
     <main>
-      <AuthForm title="Sign in to your account" description="Enter your credentials below to login to your account" buttonText="Sign in" additionalButtonText="Sign in with Google" linkText="Don't have an account?" linkUrl={PLATFORM_PAGES.REGISTER} signText="Sign up" />
+      <AuthForm title="Log in to your account" description="Enter your credentials below to log in to your account" buttonText="Log in" additionalButtonText="Log in with Google" linkText="Don't have an account?" linkUrl={PLATFORM_PAGES.REGISTER} signText="Sign up" />
     </main>
   )
 }

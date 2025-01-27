@@ -6,6 +6,7 @@ import Button from '../ui/Button/Button'
 
 interface IAuthForm {
   title: string
+  username?: boolean
   description: string
   buttonText: string
   linkText: string
@@ -15,7 +16,7 @@ interface IAuthForm {
   onSubmit?: () => void
 }
 
-const AuthForm = ({ title, description, buttonText, linkText, linkUrl, additionalButtonText, signText, onSubmit }: IAuthForm) => {
+const AuthForm = ({ title, username, description, buttonText, linkText, linkUrl, additionalButtonText, signText, onSubmit }: IAuthForm) => {
   return (
     <div className="auth-form">
       <div className="auth-form__wrapper">
@@ -24,9 +25,15 @@ const AuthForm = ({ title, description, buttonText, linkText, linkUrl, additiona
           <TextMuted text={description} />
         </div>
         <form className="auth-form__body" onSubmit={onSubmit}>
+          {username && (
+            <div className="auth-form__credentials">
+              <Label text="Username" forElement="username" />
+              <Input type="text" id="username" placeholder="Jame Smith" />
+            </div>
+          )}
           <div className="auth-form__credentials">
             <Label text="Email" forElement="email" />
-            <Input type="text" id="email" placeholder="mchnry@ex.com" />
+            <Input type="email" id="email" placeholder="mchnry@ex.com" />
           </div>
           <div className="auth-form__credentials">
             <Label text="Password" forElement="password" />

@@ -1,4 +1,4 @@
-import Carousel from '../ui/Carousel/Carousel'
+import Carousel from '../Carousel/Carousel'
 
 const Hero = () => {
   return (
