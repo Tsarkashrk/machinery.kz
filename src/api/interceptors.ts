@@ -3,8 +3,6 @@ import axios, { type CreateAxiosDefaults } from 'axios'
 import { errorCatch } from './error'
 import { getAccessToken, removeFromStorage } from '@/services/auth-token.service'
 
-import { authService } from '@/services/auth.service'
-
 const options: CreateAxiosDefaults = {
   baseURL: 'http://89.169.162.108:8084/api/v1',
   headers: {
@@ -33,7 +31,7 @@ axiosWithAuth.interceptors.response.use(
       originalRequest._isRetry = true
 
       try {
-        await authService.getNewTokens()
+        // await authService.getNewTokens()
         return axiosWithAuth.request(originalRequest)
       } catch (error) {
         if (errorCatch(error) === 'jwt expired') removeFromStorage()

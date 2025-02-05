@@ -1,4 +1,5 @@
 export interface IAuthForm {
+  username?: string
   email: string
   password: string
 }
@@ -10,7 +11,7 @@ export interface IUser {
 }
 
 export interface IAuthResponse {
-  accessToken: string
+  access: string
   user: IUser
 }
 

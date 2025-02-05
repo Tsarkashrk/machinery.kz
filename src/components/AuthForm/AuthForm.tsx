@@ -1,3 +1,5 @@
+'use client'
+
 import TextMuted from '../ui/TextMuted/TextMuted'
 import Title from '../ui/Title/Title'
 import Label from '../ui/Label/Label'
@@ -13,10 +15,11 @@ interface IAuthForm {
   linkUrl: string
   additionalButtonText?: string
   signText: string
-  onSubmit?: () => void
+  onSubmit?: (e: React.FormEvent) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const AuthForm = ({ title, username, description, buttonText, linkText, linkUrl, additionalButtonText, signText, onSubmit }: IAuthForm) => {
+const AuthForm = ({ title, username, description, buttonText, linkText, linkUrl, additionalButtonText, signText, onSubmit, onChange }: IAuthForm) => {
   return (
     <div className="auth-form">
       <div className="auth-form__wrapper">
@@ -24,7 +27,7 @@ const AuthForm = ({ title, username, description, buttonText, linkText, linkUrl,
           <Title text={title} />
           <TextMuted text={description} />
         </div>
-        <form className="auth-form__body" onSubmit={onSubmit}>
+        <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
           {username && (
             <div className="auth-form__credentials">
               <Label text="Username" forElement="username" />

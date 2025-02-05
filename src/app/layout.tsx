@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter } from 'next/font/google'
 import '../scss/main.css'
 import Header from '@/components/Header/Header'
 import { SITE_NAME } from '@/constants/seo.constant'
+import { Providers } from './providers'
+import { Toaster } from 'sonner'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,9 +37,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable}`}>
-        <Header />
-        {children}
-        {/* <Footer /> */}
+        <Providers>
+          <Header />
+          {children}
+          <Toaster theme="light" position="bottom-right" duration={5000} />
+          {/* <Footer /> */}
+        </Providers>
       </body>
     </html>
   )

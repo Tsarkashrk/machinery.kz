@@ -8,4 +8,8 @@
   font-family: $font-geist-sans;
   font-size: $font-xs;
   font-weight: $font-regular;
+
+  &:focus {
+    background-color: red;
+  }
 }
