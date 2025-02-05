@@ -24,12 +24,12 @@ const LoginPage = () => {
     mutationKey: ['login'],
     mutationFn: (data: IAuthForm) => authService.login(data),
     onSuccess() {
-      toast.success('Successfully login!')
+      toast.success('Successfully logged in!')
       reset()
       push(PLATFORM_PAGES.PROFILE)
     },
     onError() {
-      toast.error('Login error!')
+      toast.error('Invalid credentials', {description: 'Try again!'})
     },
   })
 

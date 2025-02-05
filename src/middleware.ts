@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   }
 
   if (!refreshToken) {
-    return NextResponse.redirect(new URL(PLATFORM_PAGES.LOGIN, request.url))
+    return NextResponse.redirect(new URL(PLATFORM_PAGES.LOGIN, url))
   }
 
   return NextResponse.next()

@@ -29,7 +29,7 @@ const RegisterPage = () => {
       push(PLATFORM_PAGES.LOGIN)
     },
     onError() {
-      toast.error('Registration error!')
+      toast.error('Registration error!', { description: 'Make sure your datas are valid' })
     },
   })
 
