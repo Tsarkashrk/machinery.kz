@@ -23,7 +23,7 @@ const Header = () => {
 
         <Button icon={<Globe size={18} />} text="EN" variant="default" />
 
-        {isLoading ? 'Loading...' : data ? <Button isLink icon={<UserPen size={18} />} text=">" link={PLATFORM_PAGES.PROFILE} variant="default" /> : <Button isLink text="Log in or Sign up" link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
+        {data ? <Button isLink icon={<UserPen size={18} />} text=">" link={PLATFORM_PAGES.PROFILE} variant="default" /> : <Button isLink text="Log in or Sign up" link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
       </div>
     </header>
   )
