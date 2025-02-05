@@ -5,13 +5,13 @@ import { axiosClassic } from '@/api/interceptors'
 import { removeFromStorage, saveTokenStorage } from './auth-token.service'
 
 export const authService = {
-  async main(type: 'login' | 'register/', data: IAuthForm) {
-    const response = await axiosClassic.post<IAuthResponse>(`/auth/${type}`, data)
+  // async main(type: 'login' | 'register/', data: IAuthForm) {
+  //   const response = await axiosClassic.post<IAuthResponse>(`/auth/${type}`, data)
 
-    if (response.data.access) saveTokenStorage(response.data.access)
+  //   if (response.data.access) saveTokenStorage(response.data.access)
 
-    return response
-  },
+  //   return response
+  // },
 
   async register(data: IAuthForm) {
     const response = await axiosClassic.post<IAuthResponse>(`/auth/register/`, data)
@@ -21,6 +21,10 @@ export const authService = {
 
   async login(data: IAuthForm) {
     const response = await axiosClassic.post<IAuthResponse>(`/auth/login/`, data)
+
+    console.log(response)
+
+    if (response.data.access && response.data.refresh) saveTokenStorage(response.data.access, response.data.refresh)
 
     return response
   },
