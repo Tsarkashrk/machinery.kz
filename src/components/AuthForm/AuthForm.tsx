@@ -27,7 +27,7 @@ const AuthForm = ({ title, username, description, buttonText, linkText, linkUrl,
           <Title text={title} />
           <TextMuted text={description} />
         </div>
-        <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
+        <form className="auth-form__body" >
           {username && (
             <div className="auth-form__credentials">
               <Label text="Username" forElement="username" />

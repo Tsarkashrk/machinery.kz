@@ -1,6 +1,5 @@
 'use client'
 
-import AuthForm from '@/components/AuthForm/AuthForm'
 import Button from '@/components/ui/Button/Button'
 import Input from '@/components/ui/Input/Input'
 import Label from '@/components/ui/Label/Label'
