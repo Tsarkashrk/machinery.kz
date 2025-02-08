@@ -227,6 +227,18 @@ p {
   font-weight: 300;
 }
 
+.avatar {
+  padding: 0.8rem 1.3rem;
+  background-color: #15803d;
+  border-radius: 1rem;
+}
+.avatar:hover {
+  opacity: 90%;
+}
+.avatar__letter {
+  color: white;
+}
+
 .title {
   font-size: 2.4rem;
   font-weight: 600;

@@ -1,0 +1,13 @@
+.avatar {
+  padding: $button-padding;
+  background-color: $green-700;
+  border-radius: $border-radius-ui;
+
+  &:hover {
+    opacity: 90%;
+  }
+
+  &__letter {
+    color: $base-color;
+  }
+}

@@ -1,17 +1,14 @@
-'use client'
+import { Metadata } from 'next'
+import ProfileView from './ProfileView'
 
-import Button from '@/components/ui/Button/Button'
-import { LogoutButton } from '@/components/ui/LogoutButton/LogoutButton'
-import { useProfile } from '@/hooks/useProfile'
-import { authService } from '@/services/auth.service'
+export const metadata: Metadata = {
+  title: 'Profile',
+}
 
 const ProfilePage = () => {
-  const { data, isLoading } = useProfile()
-
   return (
     <main>
-      {data?.username} {data?.email}
-      <LogoutButton />
+      <ProfileView />
     </main>
   )
 }

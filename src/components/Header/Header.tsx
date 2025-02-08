@@ -10,9 +10,10 @@ import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import { useProfile } from '@/hooks/useProfile'
 import { useEffect, useState } from 'react'
 import { IUser } from '@/types/user.type'
+import Avatar from '../ui/Avatar/Avatar'
 
 const Header = () => {
-  const { data, isLoading } = useProfile()
+  const { data } = useProfile()
 
   return (
     <header className="header">
@@ -21,11 +22,11 @@ const Header = () => {
       </Link>
       <Navigation />
       <div className="header__buttons">
-        <Button isLoading icon={<Plus size={18} />} link={PLATFORM_PAGES.NEW} text="Create listing" variant="green" isLink />
+        <Button isLoading icon={<Plus size={18} />} link={PLATFORM_PAGES.NEW} text="New listing" variant="green" isLink />
 
         <Button icon={<Globe size={18} />} text="EN" variant="default" />
 
-        {data ? <Button isLink icon={<UserPen size={18} />} text=">" link={PLATFORM_PAGES.PROFILE} variant="default" /> : <Button isLink text="Log in or Sign up" link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
+        {data ? <Avatar link={PLATFORM_PAGES.PROFILE} username={data.username} /> : <Button isLink text="Log in or Sign up" link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
       </div>
     </header>
   )
