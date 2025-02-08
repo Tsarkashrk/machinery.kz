@@ -15,9 +15,10 @@ export function LogoutButton() {
   const { mutate } = useMutation({
     mutationKey: ['logout'],
     mutationFn: () => authService.logout(),
-    onSuccess() {
-      router.push(PLATFORM_PAGES.LOGIN)
-      queryClient.invalidateQueries({ queryKey: ['profile'] })
+    onSuccess: () => {
+      queryClient.setQueryData(['profile'], null)
+      queryClient.removeQueries()
+      router.push(PLATFORM_PAGES.HOME)
     },
   })
 

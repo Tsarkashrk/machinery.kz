@@ -8,6 +8,8 @@ import Navigation from '../Navigation/Navigation'
 import Button from '../ui/Button/Button'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import { useProfile } from '@/hooks/useProfile'
+import { useEffect, useState } from 'react'
+import { IUser } from '@/types/user.type'
 
 const Header = () => {
   const { data, isLoading } = useProfile()
