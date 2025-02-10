@@ -11,9 +11,7 @@ html {
 }
 
 body {
-  max-width: 144rem;
   margin: 0 auto;
-  background-color: #030612;
   font-family: var(--font-geist-sans);
   font-weight: 300;
   font-size: 1.6rem;
@@ -22,9 +20,10 @@ body {
 }
 
 main {
+  max-width: 1440px;
   height: calc(100vh - 6rem);
+  margin: 0 auto;
   padding: 2rem 4rem;
-  border-radius: 2.5rem 2.5rem 0 0;
   background-color: white;
 }
 
@@ -73,11 +72,15 @@ p {
 }
 
 .header {
+  background-color: #030612;
+}
+.header__wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 1.4rem 4rem;
-  background-color: #030612;
   font-family: var(--font-geist-mono);
 }
 .header__logo {

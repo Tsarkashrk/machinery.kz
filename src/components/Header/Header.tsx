@@ -18,16 +18,18 @@ const Header = () => {
 
   return (
     <header className="header">
-      <Link className="header__logo" href={PLATFORM_PAGES.HOME}>
-        mchnry_kz
-      </Link>
-      <Navigation />
-      <div className="header__buttons">
-        <Button isLoading icon={<Plus size={18} />} link={PLATFORM_PAGES.NEW} variant="green" text='New listing' isLink />
+      <div className="header__wrapper">
+        <Link className="header__logo" href={PLATFORM_PAGES.HOME}>
+          mchnry_kz
+        </Link>
+        <Navigation />
+        <div className="header__buttons">
+          <Button isLoading icon={<Plus size={18} />} link={PLATFORM_PAGES.NEW} variant="green" text="New listing" isLink />
 
-        <Button icon={<Globe size={18} />} text="EN" variant="default" />
+          <Button icon={<Globe size={18} />} text="EN" variant="default" />
 
-        {data ? <Avatar username={data?.username} link={PLATFORM_PAGES.PROFILE} /> : <Button isLink text="Log in or Sign up" link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
+          {data ? <Avatar username={data?.username} link={PLATFORM_PAGES.PROFILE} /> : <Button isLink text="Log in or Sign up" link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
+        </div>
       </div>
     </header>
   )
