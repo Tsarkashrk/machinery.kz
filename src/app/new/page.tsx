@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import React from 'react'
 import NewView from './NewView'
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: 'New',
 }
 

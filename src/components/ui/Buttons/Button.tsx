@@ -10,7 +10,7 @@ interface IButton {
   link?: string
   text?: string
   icon?: ReactNode
-  variant?: 'light' | 'dark' | 'primary' | 'secondary' | 'profile' | 'default' | 'outlined' | 'green' | 'underlined'
+  variant?: 'light' | 'dark' | 'primary' | 'secondary' | 'profile' | 'default' | 'outlined' | 'green' | 'underlined' | 'rounded'
   onClick?: () => void
 }
 

@@ -81,4 +81,26 @@
     text-decoration-line: underline;
     cursor: pointer;
   }
+
+  &--rounded {
+    padding: 0.9rem;
+    background-color: $green-700;
+    border-radius: 100rem;
+
+    &:hover {
+      opacity: 90%;
+    }
+  }
+}
+
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__email {
+    font-family: $font-geist-sans;
+    font-weight: $font-medium;
+    color: $light-dark-color;
+  }
 }

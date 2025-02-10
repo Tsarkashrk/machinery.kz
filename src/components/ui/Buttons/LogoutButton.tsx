@@ -5,7 +5,7 @@ import { LogOut } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { authService } from '@/services/auth.service'
-import Button from '../Button/Button'
+import Button from './Button'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 
 export function LogoutButton() {

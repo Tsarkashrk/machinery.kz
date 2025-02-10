@@ -4,7 +4,7 @@ import TextMuted from '../ui/TextMuted/TextMuted'
 import Title from '../ui/Title/Title'
 import Label from '../ui/Label/Label'
 import Input from '../ui/Input/Input'
-import Button from '../ui/Button/Button'
+import Button from '../ui/Buttons/Button'
 
 interface IAuthForm {
   title: string
@@ -27,7 +27,7 @@ const AuthForm = ({ title, username, description, buttonText, linkText, linkUrl,
           <Title text={title} />
           <TextMuted text={description} />
         </div>
-        <form className="auth-form__body" >
+        <form className="auth-form__body">
           {username && (
             <div className="auth-form__credentials">
               <Label text="Username" forElement="username" />

@@ -40,7 +40,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
-          <Toaster theme="light" position="top-right" duration={5000} richColors />
+          <Toaster theme="light" position="top-right" duration={5000} richColors closeButton />
           {/* <Footer /> */}
         </Providers>
       </body>

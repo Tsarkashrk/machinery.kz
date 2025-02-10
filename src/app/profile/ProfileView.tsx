@@ -1,6 +1,6 @@
 'use client'
 
-import { LogoutButton } from '@/components/ui/LogoutButton/LogoutButton'
+import { LogoutButton } from '@/components/ui/Buttons/LogoutButton'
 import { useProfile } from '@/hooks/useProfile'
 import React from 'react'
 

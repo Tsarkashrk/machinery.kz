@@ -1,7 +1,11 @@
+'use client'
+
 import axios, { type CreateAxiosDefaults } from 'axios'
+import { useRouter } from 'next/navigation'
 
 import { errorCatch } from './error'
 import { getAccessToken, removeFromStorage } from '@/services/auth-token.service'
+import { PLATFORM_PAGES } from '@/config/pages-url.config'
 
 const options: CreateAxiosDefaults = {
   baseURL: 'http://89.169.162.108:8084/api/v1',
@@ -31,10 +35,14 @@ axiosWithAuth.interceptors.response.use(
       originalRequest._isRetry = true
 
       try {
-        // await authService.getNewTokens()
+        if (error?.response?.status === 401) {
+          removeFromStorage()
+        }
         return axiosWithAuth.request(originalRequest)
-      } catch (error) {
-        if (errorCatch(error) === 'jwt expired') removeFromStorage()
+      } catch (err) {
+        if (error?.response?.status === 401) {
+          removeFromStorage()
+        }
       }
     }
     throw error

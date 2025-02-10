@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/ui/Button/Button'
+import Button from '@/components/ui/Buttons/Button'
 import Input from '@/components/ui/Input/Input'
 import Label from '@/components/ui/Label/Label'
 import TextMuted from '@/components/ui/TextMuted/TextMuted'
@@ -78,6 +78,3 @@ const LoginView = () => {
 }
 
 export default LoginView
-function register(arg0: string, arg1: { required: string }): any {
-  throw new Error('Function not implemented.')
-}

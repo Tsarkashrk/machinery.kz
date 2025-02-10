@@ -5,6 +5,8 @@ html {
 }
 
 body {
+  max-width: 144rem;
+  margin: 0 auto;
   background-color: $base-dark-color;
   font-family: $font-geist-sans;
   font-weight: 300;
@@ -14,10 +16,10 @@ body {
 }
 
 main {
-  border-radius: 2.5rem 2.5rem 0 0;
   height: calc(100vh - 6rem);
-  background-color: $base-color;
   padding: 2rem 4rem;
+  border-radius: 2.5rem 2.5rem 0 0;
+  background-color: $base-color;
 }
 
 * {

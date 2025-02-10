@@ -1,14 +1,16 @@
 import Link from 'next/link'
 
-interface IData {
+interface AvatarProps {
   link: string
   username: string
 }
 
-const Avatar = (data: IData) => {
+const Avatar = (data: AvatarProps) => {
   return (
     <Link className="avatar" href={data?.link}>
-      <p className="avatar__letter">{data?.username?.charAt(0)}</p>
+      <div className="avatar__wrapper">
+        <p className="avatar__letter">{data?.username?.charAt(0)}</p>
+      </div>
     </Link>
   )
 }
