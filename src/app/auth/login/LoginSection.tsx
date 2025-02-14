@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-const LoginView = () => {
+const LoginSection = () => {
   const { register, handleSubmit, reset } = useForm<IAuthForm>({
     mode: 'onChange',
   })
@@ -77,4 +77,4 @@ const LoginView = () => {
   )
 }
 
-export default LoginView
+export default LoginSection

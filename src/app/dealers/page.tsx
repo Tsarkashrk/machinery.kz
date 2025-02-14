@@ -1,14 +1,12 @@
 import { Metadata } from 'next'
-import DealersView from './DealersSection'
+import DealersSection from './DealersSection'
 
 export const metadata: Metadata = {
   title: 'Dealers',
 }
 
 const DealersPage = () => {
-  return (
-      <DealersView />
-  )
+  return <DealersSection />
 }
 
 export default DealersPage

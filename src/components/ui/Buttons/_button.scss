@@ -19,11 +19,11 @@
   }
 
   &--default {
-    color: $light-dark-color;
+    color: $base-color;
     background-color: $base-dark-color;
 
     &:hover {
-      color: $base-color;
+      opacity: $opacity;
     }
 
     &--active {
@@ -75,7 +75,7 @@
     background-color: $green-700;
 
     &:hover {
-      opacity: 90%;
+      opacity: $opacity;
     }
   }
 
@@ -93,7 +93,7 @@
     border-radius: $border-rounded;
 
     &:hover {
-      opacity: 90%;
+      opacity: $opacity;
     }
   }
 

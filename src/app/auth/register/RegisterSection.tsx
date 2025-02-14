@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { toast } from 'sonner'
 
-const RegisterView = () => {
+const RegisterSection = () => {
   const { register, handleSubmit, reset } = useForm<IAuthForm>({
     mode: 'onChange',
   })
@@ -87,4 +87,4 @@ const RegisterView = () => {
   )
 }
 
-export default RegisterView
+export default RegisterSection

@@ -31,7 +31,7 @@ main {
   height: 100%;
   margin: 0 auto;
   max-width: 1440px;
-  padding: 2rem 4rem;
+  padding: 4rem;
 }
 
 * {
@@ -243,11 +243,11 @@ p {
   display: flex;
 }
 .button--default {
-  color: #8e91a0;
+  color: white;
   background-color: #030612;
 }
 .button--default:hover {
-  color: white;
+  opacity: 80%;
 }
 .button--default--active {
   background-color: white;
@@ -288,7 +288,7 @@ p {
   background-color: #15803d;
 }
 .button--green:hover {
-  opacity: 90%;
+  opacity: 80%;
 }
 .button--underlined {
   all: unset;
@@ -303,7 +303,7 @@ p {
   border-radius: 100rem;
 }
 .button--rounded:hover {
-  opacity: 90%;
+  opacity: 80%;
 }
 .button--start {
   justify-content: flex-start;
@@ -333,7 +333,7 @@ p {
   transition: all 0.1s ease-in-out;
 }
 .avatar:hover {
-  opacity: 90%;
+  opacity: 80%;
   transition: all 0.1s ease-in-out;
 }
 .avatar__letter {

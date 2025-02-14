@@ -1,14 +1,12 @@
 import { Metadata } from 'next'
-import RegisterView from './RegisterSection'
+import RegisterSection from './RegisterSection'
 
 export const metadata: Metadata = {
   title: 'Register',
 }
 
 const RegisterPage = () => {
-  return (
-      <RegisterView />
-  )
+  return <RegisterSection />
 }
 
 export default RegisterPage

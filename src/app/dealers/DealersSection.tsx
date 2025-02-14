@@ -1,7 +1,7 @@
 import React from 'react'
 
-const DealersView = () => {
-  return <section>DealersView</section>
+const DealersSection = () => {
+  return <section>DealersSection</section>
 }
 
-export default DealersView
+export default DealersSection

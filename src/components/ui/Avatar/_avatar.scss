@@ -5,7 +5,7 @@
   transition: $transition;
   
   &:hover {
-    opacity: 90%;
+    opacity: $opacity;
     transition: $transition;
   }
 

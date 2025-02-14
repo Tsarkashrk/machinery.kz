@@ -1,9 +1,9 @@
 import React from 'react'
 
-const NewView = () => {
+const NewSection = () => {
   return (
-    <section>NewView</section>
+    <section>NewSection</section>
   )
 }
 
-export default NewView
+export default NewSection
