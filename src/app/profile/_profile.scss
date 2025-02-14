@@ -1,7 +1,13 @@
 .profile {
   &__wrapper {
     display: grid;
-    grid-template-columns: 30rem 1fr;
+    grid-template-columns: 20rem 1fr;
     gap: 3rem;
+    max-width: calc($max-width - 400px);
+    margin: 0 auto;
+    padding: 2rem;
+    border: $border;
+    border-radius: $border-radius-card;
+    box-shadow: $card-shadow;
   }
 }

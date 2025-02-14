@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { LogOut } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
+import { ICON_SIZE } from '@/constants/constants'
 import { authService } from '@/services/auth.service'
 import Button from './Button'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
@@ -24,7 +25,7 @@ export function LogoutButton() {
 
   return (
     <div className="absolute top-1 right-1">
-      <Button icon={<LogOut size={20} />} onClick={() => mutate()} text="Logout" />
+      <Button icon={<LogOut size={ICON_SIZE} />} onClick={() => mutate()} text="Logout" />
     </div>
   )
 }

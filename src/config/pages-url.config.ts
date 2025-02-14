@@ -11,6 +11,7 @@ class PLATFORM {
   NEW = `${this.root}new`
   PROFILE = `${this.root}profile`
   MESSAGES  = `${this.root}messages`
+  FAVORITES = `${this.root}favorites`
 }
 
 export const PLATFORM_PAGES = new PLATFORM()
