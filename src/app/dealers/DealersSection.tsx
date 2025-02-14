@@ -1,7 +1,7 @@
 import React from 'react'
 
 const DealersView = () => {
-  return <div>DealersView</div>
+  return <section>DealersView</section>
 }
 
 export default DealersView

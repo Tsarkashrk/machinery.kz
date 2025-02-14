@@ -46,11 +46,16 @@
   }
 
   &--light {
-    background-color: $zinc-50;
-    color: $base-dark-color;
+    background-color: $base-color;
+    color: $zinc-500;
 
     &:hover {
-      opacity: 90%;
+      background-color: $zinc-100;
+    }
+
+    &:focus {
+      background-color: $zinc-200;
+      color: $zinc-950;
     }
   }
 
@@ -85,11 +90,15 @@
   &--rounded {
     padding: 0.9rem;
     background-color: $green-700;
-    border-radius: 100rem;
+    border-radius: $border-rounded;
 
     &:hover {
       opacity: 90%;
     }
+  }
+
+  &--start {
+    justify-content: flex-start;
   }
 }
 
@@ -100,7 +109,7 @@
 
   &__email {
     font-family: $font-geist-sans;
-    font-weight: $font-medium;
+    font-weight: $font-regular;
     color: $light-dark-color;
   }
 }

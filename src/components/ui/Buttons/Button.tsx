@@ -11,10 +11,11 @@ interface IButton {
   text?: string
   icon?: ReactNode
   variant?: 'light' | 'dark' | 'primary' | 'secondary' | 'profile' | 'default' | 'outlined' | 'green' | 'underlined' | 'rounded'
+  textStart?: 'start' | 'middle' | 'end'
   onClick?: () => void
 }
 
-const Button = ({ isLoading, isLink = false, link = '', text, icon, variant = 'default', onClick }: IButton) => {
+const Button = ({ isLoading, textStart = 'middle', link = '', text, icon, variant = 'default', onClick }: IButton) => {
   const pathname = usePathname()
   const isActive = link && pathname.startsWith(link)
 
@@ -31,12 +32,12 @@ const Button = ({ isLoading, isLink = false, link = '', text, icon, variant = 'd
     </>
   )
 
-  return isLink ? (
-    <Link className={className} href={link}>
+  return link ? (
+    <Link className={`${className} ${textStart && 'button--' + textStart}`} href={link}>
       {ButtonContent}
     </Link>
   ) : (
-    <button className={className} onClick={onClick}>
+    <button className={`${className} ${textStart && 'button--' + textStart}`} onClick={onClick}>
       {ButtonContent}
     </button>
   )

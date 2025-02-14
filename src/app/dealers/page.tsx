@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import DealersView from './DealersView'
+import DealersView from './DealersSection'
 
 export const metadata: Metadata = {
   title: 'Dealers',
@@ -7,9 +7,7 @@ export const metadata: Metadata = {
 
 const DealersPage = () => {
   return (
-    <main>
       <DealersView />
-    </main>
   )
 }
 

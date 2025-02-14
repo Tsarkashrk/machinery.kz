@@ -10,10 +10,10 @@ import { authService } from '@/services/auth.service'
 import { IAuthForm } from '@/types/auth.type'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { toast } from 'sonner'
 
-const LoginView = () => {
+const RegisterView = () => {
   const { register, handleSubmit, reset } = useForm<IAuthForm>({
     mode: 'onChange',
   })
@@ -21,15 +21,15 @@ const LoginView = () => {
   const { push } = useRouter()
 
   const { mutate } = useMutation({
-    mutationKey: ['login'],
-    mutationFn: (data: IAuthForm) => authService.login(data),
+    mutationKey: ['register'],
+    mutationFn: (data: IAuthForm) => authService.register(data),
     onSuccess() {
-      toast.success('Successfully logged in!')
+      toast.success('Successfully registered!')
       reset()
-      push(PLATFORM_PAGES.PROFILE)
+      push(PLATFORM_PAGES.LOGIN)
     },
     onError() {
-      toast.error('Invalid credentials', { description: 'Try again!' })
+      toast.error('Registration error!', { description: 'Make sure your credentials are valid' })
     },
   })
 
@@ -38,14 +38,24 @@ const LoginView = () => {
   }
 
   return (
-    <div className="auth-form">
+    <section className="auth-form">
       <div className="auth-form__wrapper">
         <div className="auth-form__header">
-          <Title text="Log in to your account" />
-          <TextMuted text="Enter your credentials below to log in to your account" />
+          <Title text="Create a new account" />
+          <TextMuted text="Fill in the fields below to register a new account" />
         </div>
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
-          <div className="auth-form__credentials"></div>
+          <div className="auth-form__credentials">
+            <Label text="Username" forElement="username" />
+            <Input
+              type="text"
+              id="username"
+              placeholder="Jame Smith"
+              {...register('username', {
+                required: 'Username is required!',
+              })}
+            />
+          </div>
           <div className="auth-form__credentials">
             <Label text="Email" forElement="email" />
             <Input
@@ -67,14 +77,14 @@ const LoginView = () => {
               })}
             />
           </div>
-          <Button text="Log in" variant="dark" />
+          <Button text="Sign up" variant="dark" />
         </form>
         <p className="auth-form__footer">
-          Don't have an account? <Button isLink link={PLATFORM_PAGES.REGISTER} variant="underlined" text="Sign up" />
+          Already have an account? <Button isLink link={PLATFORM_PAGES.LOGIN} variant="underlined" text="Log in" />
         </p>
       </div>
-    </div>
+    </section>
   )
 }
 
-export default LoginView
+export default RegisterView

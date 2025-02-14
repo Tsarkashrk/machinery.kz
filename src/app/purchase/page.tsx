@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import React from 'react'
-import PurchaseView from './PurchaseView'
+import PurchaseView from './PurchaseSection'
 
 const metadata: Metadata = {
   title: 'Purchase',
@@ -8,9 +8,7 @@ const metadata: Metadata = {
 
 const PurchasePage = () => {
   return (
-    <main>
       <PurchaseView />
-    </main>
   )
 }
 

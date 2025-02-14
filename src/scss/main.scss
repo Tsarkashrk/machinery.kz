@@ -3,6 +3,10 @@
 @import './base';
 @import './variables';
 
+// Pages
+
+@import '../app/profile/profile';
+
 // Components
 
 @import '../components/Navigation/navigation';
@@ -11,6 +15,7 @@
 @import '../components/Carousel/carousel';
 @import '../components/Cards/CarouselCard/carousel-card';
 @import '../components/Cards/Card/card';
+@import '../components/Sidebar/sidebar';
 
 // UI
 

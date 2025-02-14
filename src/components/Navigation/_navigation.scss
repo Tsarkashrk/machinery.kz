@@ -1,8 +1,8 @@
 .navigation {
   color: $base-color;
   font-family: $font-geist-sans;
-  font-weight: 400;
-  font-size: $font-sm;
+  font-weight: $font-medium;
+  font-size: $font-xs;
 
   &__list {
     display: flex;
@@ -15,5 +15,30 @@
 
   &__link {
     color: $base-color;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: $button-padding;
+    border-radius: $border-radius-ui;
+    background-color: transparent;
+    color: $light-dark-color;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+      color: $base-color;
+    }
+
+    &--active {
+      background-color: $base-color;
+      color: $base-dark-color;
+
+      &:hover {
+        color: $base-dark-color;
+      }
+    }
   }
 }

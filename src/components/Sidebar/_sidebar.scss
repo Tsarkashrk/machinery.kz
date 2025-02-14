@@ -1,0 +1,38 @@
+.sidebar {
+  &__wrapper {
+    padding: 3rem 2rem;
+    max-width: 30rem;
+    width: 100%;
+    border: $border;
+    border-radius: $border-radius-card;
+    box-shadow: $card-shadow;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: 10rem;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #d97706;
+    border-radius: $border-rounded;
+    font-size: $font-xxl;
+    color: $base-color;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}

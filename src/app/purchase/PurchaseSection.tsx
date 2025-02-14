@@ -2,7 +2,7 @@ import React from 'react'
 
 const PurchaseView = () => {
   return (
-    <div>PurchaseView</div>
+    <section>PurchaseView</section>
   )
 }
 

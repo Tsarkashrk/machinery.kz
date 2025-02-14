@@ -24,7 +24,7 @@ const Header = () => {
         </Link>
         <Navigation />
         <div className="header__buttons">
-          <Button isLoading icon={<Plus size={18} />} link={PLATFORM_PAGES.NEW} variant="green" text="New listing" isLink />
+          <Button icon={<Plus size={18} />} link={PLATFORM_PAGES.NEW} variant="green" text="New listing" isLink />
 
           <Button icon={<Globe size={18} />} text="EN" variant="default" />
 

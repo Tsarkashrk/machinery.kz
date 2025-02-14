@@ -39,7 +39,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable}`}>
         <Providers>
           <Header />
-          {children}
+          <main className="main">
+            <div className="main__wrapper">{children}</div>
+          </main>
           <Toaster theme="light" position="top-right" duration={5000} richColors closeButton />
           {/* <Footer /> */}
         </Providers>

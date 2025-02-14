@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import RegisterView from './RegisterView'
+import RegisterView from './RegisterSection'
 
 export const metadata: Metadata = {
   title: 'Register',
@@ -7,9 +7,7 @@ export const metadata: Metadata = {
 
 const RegisterPage = () => {
   return (
-    <main>
       <RegisterView />
-    </main>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const RentView = () => {
   return (
-    <div>RentView</div>
+    <section>RentView</section>
   )
 }
 

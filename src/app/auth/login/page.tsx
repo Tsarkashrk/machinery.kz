@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import LoginView from './LoginView'
+import LoginView from './LoginSection'
 
 export const metadata: Metadata = {
   title: 'Login',
@@ -7,9 +7,7 @@ export const metadata: Metadata = {
 
 const LoginPage = () => {
   return (
-    <main>
       <LoginView />
-    </main>
   )
 }
 

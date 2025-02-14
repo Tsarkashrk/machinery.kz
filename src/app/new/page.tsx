@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import React from 'react'
-import NewView from './NewView'
+import NewView from './NewSection'
 
 export const metadata: Metadata = {
   title: 'New',
@@ -8,9 +8,7 @@ export const metadata: Metadata = {
 
 const NewPage = () => {
   return (
-    <main>
       <NewView />
-    </main>
   )
 }
 

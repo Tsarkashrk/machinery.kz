@@ -5,22 +5,27 @@ html {
 }
 
 body {
-  margin: 0 auto;
-  // background-color: $base-dark-color;
+  background-color: $base-dark-color;
   font-family: $font-geist-sans;
-  font-weight: 300;
+  font-weight: $font-medium;
   font-size: $font-sm;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 main {
-  max-width: $max-width;
-  height: calc(100vh - 6rem);
+  border-radius: 2.5rem 2.5rem 0 0;
+  min-height: calc(100vh - 6.4rem);
   margin: 0 auto;
-  padding: 2rem 4rem;
-  // border-radius: 2.5rem 2.5rem 0 0;
   background-color: $base-color;
+}
+
+.main__wrapper {
+  min-height: calc(100vh - 6.4rem);
+  height: 100%;
+  margin: 0 auto;
+  max-width: $max-width;
+  padding: $padding-xl;
 }
 
 * {
