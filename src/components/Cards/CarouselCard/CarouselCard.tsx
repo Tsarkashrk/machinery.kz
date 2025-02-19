@@ -1,17 +1,27 @@
+import Button from '@/components/ui/Buttons/Button'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
-interface ICarouselCard {
+type CarouselItem = {
+  img: string
   title: string
   description: string
   link: string
-  img: ReactNode
 }
 
-const CarouselCard = ({ title, description, link, img }: ICarouselCard) => {
+interface ICardData {
+  cardData: CarouselItem
+  secondary?: boolean
+}
+
+const CarouselCard = ({ secondary, cardData }: ICardData) => {
   return (
-    <Link className='carousel-card' href={link}>
-      <img className='carousel-card__image' src="https://www.stoneequipmentco.com/images/Blog/heavy_equipment_company.jpg" alt="" />
+    <Link className={`carousel-card ${secondary && 'carousel-card--secondary'}`} href={cardData.link}>
+      <h1 className="carousel-card__title">{cardData.title}</h1>
+      <img className="carousel-card__image" src={`${cardData.img}`} alt="" />
+      {/* <div className="carousel-card__button">
+        <Button text="More equipment" />
+      </div> */}
     </Link>
   )
 }

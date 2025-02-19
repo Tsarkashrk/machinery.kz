@@ -4,7 +4,6 @@ import Button from '@/components/ui/Buttons/Button'
 import Input from '@/components/ui/Input/Input'
 import Label from '@/components/ui/Label/Label'
 import TextMuted from '@/components/ui/TextMuted/TextMuted'
-import Title from '@/components/ui/Title/Title'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import { authService } from '@/services/auth.service'
 import { IAuthForm } from '@/types/auth.type'
@@ -41,7 +40,7 @@ const LoginSection = () => {
     <section className="auth-form">
       <div className="auth-form__wrapper">
         <div className="auth-form__header">
-          <Title text="Log in to your account" />
+          <h1>Log in to your account"</h1>
           <TextMuted text="Enter your credentials below to log in to your account" />
         </div>
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>

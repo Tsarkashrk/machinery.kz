@@ -4,7 +4,6 @@ import Button from '@/components/ui/Buttons/Button'
 import Input from '@/components/ui/Input/Input'
 import Label from '@/components/ui/Label/Label'
 import TextMuted from '@/components/ui/TextMuted/TextMuted'
-import Title from '@/components/ui/Title/Title'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import { authService } from '@/services/auth.service'
 import { IAuthForm } from '@/types/auth.type'
@@ -41,7 +40,7 @@ const RegisterSection = () => {
     <section className="auth-form">
       <div className="auth-form__wrapper">
         <div className="auth-form__header">
-          <Title text="Create a new account" />
+          <h1>Create a new account</h1>
           <TextMuted text="Fill in the fields below to register a new account" />
         </div>
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>

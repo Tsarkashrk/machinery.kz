@@ -1,4 +1,4 @@
-.carousel-card {
+.banner-card {
   position: relative;
 
   &__title {
@@ -19,17 +19,5 @@
     z-index: 1000;
     border: $border;
     border-radius: $border-radius-ui;
-  }
-
-  &--secondary {
-    .carousel-card {
-      &__title {
-        display: unset;
-      }
-
-      &__image {
-        object-fit: unset;
-      }
-    }
   }
 }

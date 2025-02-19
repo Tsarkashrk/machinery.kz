@@ -1,16 +1,33 @@
 .carousel {
+  &__slide {
+    max-width: 950px !important;
+    width: 100% !important;
+    max-height: 400px !important;
+    height: auto;
+    border: $border;
+    border-radius: $border-radius-card;
+    box-shadow: $card-shadow;
+  }
 }
 
 .swiper {
-  &-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &-button {
+    &-prev,
+    &-next {
+      width: 5rem !important;
+      height: 7rem !important;
+      border-radius: $border-radius-ui;
+      background-color: rgba($color: #000000, $alpha: 0.3);
+      color: $base-color !important;
+      transform: scale(0.5);
+    }
   }
 
-  &-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  &-pagination {
+    &-bullet {
+      &-active {
+        background-color: gray !important;
+      }
+    }
   }
 }

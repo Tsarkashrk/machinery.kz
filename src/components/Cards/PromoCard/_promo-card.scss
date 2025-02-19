@@ -1,0 +1,14 @@
+.promo-card {
+  &__wrapper {
+    padding: 2rem;
+  }
+
+  &__title {
+    color: $base-dark-color;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+  }
+}

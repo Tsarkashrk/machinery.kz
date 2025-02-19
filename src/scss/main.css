@@ -45,6 +45,7 @@ main {
 h1 {
   font-size: 2.4rem;
   font-weight: 600;
+  color: #030612;
 }
 
 p {
@@ -180,19 +181,92 @@ p {
   margin-top: 2.4rem;
 }
 
-.swiper-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.hero__wrapper {
+  display: grid;
+  grid-template-columns: 95rem 1fr;
+  grid-template-rows: 44rem;
+  gap: 2rem;
 }
 
+.carousel__slide {
+  max-width: 950px !important;
+  width: 100% !important;
+  max-height: 400px !important;
+  height: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.6rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-prev, .swiper-button-next {
+  width: 5rem !important;
+  height: 7rem !important;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white !important;
+  transform: scale(0.5);
+}
+.swiper-pagination-bullet-active {
+  background-color: gray !important;
+}
+
+.carousel-card {
+  position: relative;
+}
+.carousel-card__title {
+  display: none;
+}
 .carousel-card__image {
-  max-height: 50rem;
+  border-radius: 1.6rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.carousel-card__button {
+  position: absolute;
+  bottom: 5rem;
+  left: 5rem;
+  z-index: 1000;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+}
+.carousel-card--secondary .carousel-card__title {
+  display: unset;
+}
+.carousel-card--secondary .carousel-card__image {
+  object-fit: unset;
+}
+
+.banner-card {
+  position: relative;
+}
+.banner-card__title {
+  display: none;
+}
+.banner-card__image {
+  border-radius: 1.6rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.banner-card__button {
+  position: absolute;
+  bottom: 5rem;
+  left: 5rem;
+  z-index: 1000;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+}
+
+.promo-card__wrapper {
+  padding: 2rem;
+}
+.promo-card__title {
+  color: #030612;
+}
+.promo-card__image {
+  width: 100%;
+  height: auto;
 }
 
 .sidebar__wrapper {
