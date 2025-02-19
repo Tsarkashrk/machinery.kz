@@ -3,49 +3,42 @@ import Carousel from '../Carousel/Carousel'
 
 const carouselItems = [
   {
-    img: '/assets/BITurbo_banner_900x380_v1.jpg',
-    title: 'Example',
+    img: '/assets/Dewalt1.webp',
+    title: 'Super price',
     description: 'example desc',
     link: `${PLATFORM_PAGES.CATALOG}/345`,
+    price: '34.000',
   },
   {
-    img: '/assets/BlackDecker-banner-1024x380.jpg',
-    title: 'Example',
-    description: 'example desc',
-    link: `${PLATFORM_PAGES.CATALOG}/344`,
-  },
-  {
-    img: '/assets/BITurbo_banner_900x380_v1.jpg',
-    title: 'Example',
+    img: '/assets/Bosch2.jpg',
+    title: 'Super price',
     description: 'example desc',
     link: `${PLATFORM_PAGES.CATALOG}/343`,
+    price: '34.000',
   },
   {
-    img: '/assets/BlackDecker-banner-1024x380.jpg',
-    title: 'Example',
+    img: '/assets/Stanley1.jpg',
+    title: 'Super price',
     description: 'example desc',
-    link: `${PLATFORM_PAGES.CATALOG}/342`,
-  },
-  {
-    img: '/assets/BITurbo_banner_900x380_v1.jpg',
-    title: 'Example',
-    description: 'example desc',
-    link: `${PLATFORM_PAGES.CATALOG}/341`,
+    link: `${PLATFORM_PAGES.CATALOG}/3412`,
+    price: '34.000',
   },
 ]
 
 const smallCarouselItems = [
   {
     img: '/assets/equipment1.webp',
-    title: 'Example',
-    description: 'example desc',
+    title: 'Super price',
+    description: 'Pneumatic wrench SUMAKE ST-C541K with a set of heads 1/2" 434Hm 10 pcs. 4118210',
     link: `${PLATFORM_PAGES.CATALOG}/340`,
+    price: '34.000',
   },
   {
     img: '/assets/equipment1.webp',
-    title: 'Example',
-    description: 'example desc',
+    title: 'Super price',
+    description: 'Pneumatic wrench SUMAKE ST-C541K with a set of heads 1/2" 434Hm 10 pcs. 4118210',
     link: `${PLATFORM_PAGES.CATALOG}/349`,
+    price: '34.000',
   },
 ]
 
@@ -54,7 +47,7 @@ const Hero = () => {
     <section className="hero">
       <div className="hero__wrapper">
         <Carousel carouselItems={carouselItems} variant="banner" />
-        <Carousel secondary carouselItems={smallCarouselItems} />
+        <Carousel carouselItems={smallCarouselItems} />
       </div>
     </section>
   )

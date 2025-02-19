@@ -21,18 +21,18 @@ type CarouselItem = {
   title: string
   description: string
   link: string
+  price: string
 }
 
 interface ICarousel {
-  secondary?: boolean
   carouselItems: CarouselItem[]
   variant?: 'banner' | 'promo' | 'default'
 }
 
-const Carousel = ({ secondary, carouselItems, variant = 'default' }: ICarousel) => {
+const Carousel = ({ carouselItems, variant = 'default' }: ICarousel) => {
   return (
     <Swiper
-      className={`carousel ${secondary && 'carousel--secondary'}`}
+      className="carousel"
       spaceBetween={1}
       slidesPerView={1}
       pagination
@@ -45,7 +45,7 @@ const Carousel = ({ secondary, carouselItems, variant = 'default' }: ICarousel) 
       modules={[Autoplay, Pagination, Navigation]}>
       {carouselItems.map((item) => (
         <SwiperSlide className="carousel__slide" key={item.link} style={{ width: '100%' }}>
-          {variant === 'banner' ? <BannerCard secondary={secondary} cardData={item} /> : variant === 'promo' ? <PromoCard secondary={secondary} cardData={item} /> : <PromoCard secondary={secondary} cardData={item} />}
+          {variant === 'banner' ? <BannerCard cardData={item} /> : variant === 'promo' ? <PromoCard cardData={item} /> : <PromoCard cardData={item} />}
         </SwiperSlide>
       ))}
     </Swiper>

@@ -1,14 +1,42 @@
 .promo-card {
   &__wrapper {
+    height: 100%;
     padding: 2rem;
+    border: $border;
+    border-radius: $border-radius-card;
+    box-shadow: $card-shadow;
   }
 
   &__title {
+    text-align: center;
     color: $base-dark-color;
   }
 
   &__image {
+    display: flex;
+    max-width: 25rem;
+    margin: 0 auto;
     width: 100%;
     height: auto;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    
+  }
+
+  &__description {
+  }
+
+  &__price {
+    font-weight: $font-bold;
+    color: $base-color;
+    background-color: red;
+    width: fit-content;
+    padding: 0.5rem;
+    border-radius: $border-radius-ui;
   }
 }

@@ -48,6 +48,12 @@ h1 {
   color: #030612;
 }
 
+h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #030612;
+}
+
 p {
   font-weight: 400;
   font-size: 1.4rem;
@@ -188,16 +194,12 @@ p {
   gap: 2rem;
 }
 
-.carousel__slide {
+.swiper {
   max-width: 950px !important;
   width: 100% !important;
   max-height: 400px !important;
   height: auto;
-  border: 1px solid #e5e7eb;
-  border-radius: 1.6rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
-
 .swiper-button-prev, .swiper-button-next {
   width: 5rem !important;
   height: 7rem !important;
@@ -259,14 +261,36 @@ p {
 }
 
 .promo-card__wrapper {
+  height: 100%;
   padding: 2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.6rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 .promo-card__title {
+  text-align: center;
   color: #030612;
 }
 .promo-card__image {
+  display: flex;
+  max-width: 25rem;
+  margin: 0 auto;
   width: 100%;
   height: auto;
+}
+.promo-card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.promo-card__price {
+  font-weight: 700;
+  color: white;
+  background-color: red;
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 1rem;
 }
 
 .sidebar__wrapper {
@@ -396,12 +420,6 @@ p {
   color: #8e91a0;
 }
 
-.subheader {
-  font-family: var(--font-geist-sans);
-  font-size: 1.8rem;
-  font-weight: 300;
-}
-
 .avatar {
   padding: 0.8rem 1.3rem;
   background-color: #d97706;
@@ -414,11 +432,6 @@ p {
 }
 .avatar__letter {
   color: white;
-}
-
-.title {
-  font-size: 2.4rem;
-  font-weight: 600;
 }
 
 .text-muted {

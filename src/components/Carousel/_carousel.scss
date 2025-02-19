@@ -1,16 +1,9 @@
-.carousel {
-  &__slide {
-    max-width: 950px !important;
-    width: 100% !important;
-    max-height: 400px !important;
-    height: auto;
-    border: $border;
-    border-radius: $border-radius-card;
-    box-shadow: $card-shadow;
-  }
-}
-
 .swiper {
+  max-width: 950px !important;
+  width: 100% !important;
+  max-height: 400px !important;
+  height: auto;
+
   &-button {
     &-prev,
     &-next {
