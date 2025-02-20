@@ -1,0 +1,17 @@
+.home-section {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  &__title {
+    margin-bottom: 3rem;
+  }
+
+  &__equipments {
+    display: flex;
+    
+    gap: 1rem;
+  }
+}

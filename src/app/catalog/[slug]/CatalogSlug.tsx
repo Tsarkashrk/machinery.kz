@@ -23,12 +23,14 @@ const CatalogSlug = () => {
             <h2 className="catalog-slug__filters-title">Brand</h2>
             <div className="catalog-slug__brands">
               {brands.map((item) => (
-                <p className="catalog-slug__brand">{item}</p>
+                <p key={item} className="catalog-slug__brand">
+                  {item}
+                </p>
               ))}
             </div>
             <div className="catalog-slug__buttons">
-              <Button text='Apply' />
-              <Button text='Reset' />
+              <Button text="Apply" />
+              <Button text="Reset" />
             </div>
           </div>
         </Card>

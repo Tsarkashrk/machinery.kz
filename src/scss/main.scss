@@ -9,6 +9,7 @@
 @import '../app/new/new';
 @import '../app/catalog/catalog';
 @import '../app/catalog/[slug]/catalog-slug';
+@import '../app/home';
 
 // Components
 
@@ -21,6 +22,7 @@
 @import '../components/Cards/Card/card';
 @import '../components/Cards/BannerCard/banner-card';
 @import '../components/Cards/PromoCard/promo-card';
+@import '../components/Cards/ProductCard/product-card';
 @import '../components/Sidebar/sidebar';
 
 // UI

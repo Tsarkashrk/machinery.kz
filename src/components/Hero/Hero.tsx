@@ -46,8 +46,11 @@ const Hero = () => {
   return (
     <section className="hero">
       <div className="hero__wrapper">
-        <Carousel carouselItems={carouselItems} variant="banner" />
-        <Carousel carouselItems={smallCarouselItems} />
+        <div className="hero__sliders">
+          <Carousel carouselItems={carouselItems} variant="banner" />
+          <Carousel carouselItems={smallCarouselItems} />
+        </div>
+        
       </div>
     </section>
   )

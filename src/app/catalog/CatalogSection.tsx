@@ -46,34 +46,58 @@ import React from 'react'
 
 const catalogItems = [
   {
+    id: 1,
     title: 'Power tools',
     img: 'assets/cat1-d.webp',
     link: 'power-tools',
   },
   {
+    id: 2,
     title: 'Generators',
     img: 'assets/cat2-d.webp',
     link: 'generators',
   },
   {
+    id: 3,
     title: 'Compressors',
     img: 'assets/cat3-d.webp',
     link: 'compressors',
   },
   {
-    title: 'Generators',
-    img: 'assets/cat2-d.webp',
-    link: 'generators2',
-  },
-  {
+    id: 4,
     title: 'Welding equipment',
     img: 'assets/cat4-d.webp',
-    link: 'welding-equipment2',
+    link: 'welding-equipment',
   },
   {
-    title: 'Compressors',
-    img: 'assets/cat3-d.webp',
-    link: 'compressors2',
+    id: 5,
+    title: 'Machines',
+    img: 'assets/cat6-d.webp',
+    link: 'machines',
+  },
+  {
+    id: 6,
+    title: 'Pumps and motor pumps',
+    img: 'assets/cat7-d.webp',
+    link: 'cleaning-equipment',
+  },
+  {
+    id: 7,
+    title: 'Gardening equipment and tools',
+    img: 'assets/cat8-d.webp',
+    link: 'gardening-equipment-and-tools',
+  },
+  {
+    id: 8,
+    title: 'Pumps and motor pumps',
+    img: 'assets/cat9-d.webp',
+    link: 'pumps-and-motor-pumps',
+  },
+  {
+    id: 9,
+    title: 'Сlimate equipment',
+    img: 'assets/cat10-d.webp',
+    link: 'climate-equipment',
   },
 ]
 

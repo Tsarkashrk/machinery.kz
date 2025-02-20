@@ -9,8 +9,81 @@ import TextMuted from '@/components/ui/TextMuted/TextMuted'
 import { ICON_SIZE } from '@/constants/constants'
 import { Plus } from 'lucide-react'
 import React from 'react'
+import DropDown from '@/components/ui/Dropdown/Dropdown'
+
+const catalogItems = [
+  {
+    id: 1,
+    title: 'Power tools',
+    img: 'assets/cat1-d.webp',
+    link: 'power-tools',
+  },
+  {
+    id: 2,
+    title: 'Generators',
+    img: 'assets/cat2-d.webp',
+    link: 'generators',
+  },
+  {
+    id: 3,
+    title: 'Compressors',
+    img: 'assets/cat3-d.webp',
+    link: 'compressors',
+  },
+  {
+    id: 4,
+    title: 'Welding equipment',
+    img: 'assets/cat4-d.webp',
+    link: 'welding-equipment',
+  },
+  {
+    id: 5,
+    title: 'Machines',
+    img: 'assets/cat6-d.webp',
+    link: 'machines',
+  },
+  {
+    id: 6,
+    title: 'Pumps and motor pumps',
+    img: 'assets/cat7-d.webp',
+    link: 'cleaning-equipment',
+  },
+  {
+    id: 7,
+    title: 'Gardening equipment and tools',
+    img: 'assets/cat8-d.webp',
+    link: 'gardening-equipment-and-tools',
+  },
+  {
+    id: 8,
+    title: 'Pumps and motor pumps',
+    img: 'assets/cat9-d.webp',
+    link: 'pumps-and-motor-pumps',
+  },
+  {
+    id: 9,
+    title: 'Сlimate equipment',
+    img: 'assets/cat10-d.webp',
+    link: 'climate-equipment',
+  },
+]
+
+const conditions = [
+  {
+    id: 1,
+    title: 'New',
+  },
+  {
+    id: 2,
+    title: 'Used',
+  },
+]
 
 const NewSection = () => {
+  const handleSelect = (item: { id: number; title: string }) => {
+    console.log('Выбранный элемент:', item)
+  }
+
   return (
     <section className="new-section">
       <div className="new-section__wrapper">
@@ -42,27 +115,27 @@ const NewSection = () => {
               <div className="new-section__info-blocks">
                 <div className="new-section__info-block">
                   <Label text="Brand" forElement="brand" />
-                  <Input id="brand" type="text" placeholder='Bosch'/>
+                  <Input id="brand" type="text" placeholder="Bosch" />
                 </div>
                 <div className="new-section__info-block">
                   <Label text="Model" forElement="model" />
-                  <Input id="model" type="text" placeholder='GSR 12V-30'/>
+                  <Input id="model" type="text" placeholder="GSR 12V-30" />
                 </div>
               </div>
               <div className="new-section__info-blocks">
                 <div className="new-section__info-block">
                   <Label text="Category" forElement="category" />
-                  <Input id="category" type="text" placeholder='Driller'/>
+                  <DropDown options={catalogItems} onSelect={handleSelect} />
                 </div>
                 <div className="new-section__info-block">
                   <Label text="Condition" forElement="condition" />
-                  <Input id="condition" type="text" placeholder='New'/>
+                  <DropDown options={conditions} onSelect={handleSelect} />
                 </div>
               </div>
               <div className="new-section__info-blocks">
                 <div className="new-section__info-block">
                   <Label text="Description" forElement="description" />
-                  <Input id="description" type="text" placeholder='Very powerfull machine'/>
+                  <Input id="description" type="text" placeholder="Very powerfull machine" />
                 </div>
               </div>
             </div>

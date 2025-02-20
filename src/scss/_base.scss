@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  background-color: $base-dark-color;
+  background-color: #f8fafc;
   font-family: $font-geist-sans;
   font-weight: $font-medium;
   font-size: $font-sm;
@@ -16,6 +16,7 @@ body {
 main {
   border-radius: 2.5rem 2.5rem 0 0;
   min-height: calc(100vh - 6.9rem);
+  height: 100%;
   margin: 0 auto;
   background-color: #f8fafc;
 }

@@ -1,8 +1,10 @@
 .hero {
   &__wrapper {
+  }
+
+  &__sliders {
     display: grid;
     grid-template-columns: 95rem 1fr;
-    grid-template-rows: 44rem;
     gap: 2rem;
   }
 }
