@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  height: 3.6rem !important;
   padding: $button-padding;
   border: none;
   border-radius: $border-radius-ui;
@@ -60,7 +59,7 @@
   }
 
   &--outlined {
-    padding: 0.4rem 1.3rem;
+    // padding: 0.4rem 1.3rem;
     background-color: $base-color;
     border: $border;
     color: $base-dark-color;
@@ -88,7 +87,7 @@
   }
 
   &--rounded {
-    padding: 0.9rem;
+    // padding: 0.9rem;
     background-color: $green-700;
     border-radius: $border-rounded;
 
@@ -99,6 +98,16 @@
 
   &--start {
     justify-content: flex-start;
+  }
+
+  &--new {
+    background-color: #ecedff;
+    color: #7e90e4;
+    font-weight: $font-semibold;
+
+    &:hover {
+      background-color: #dddefb;
+    }
   }
 }
 

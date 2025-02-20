@@ -3,6 +3,8 @@
   width: 100% !important;
   max-height: 400px !important;
   height: auto;
+  border-radius: $border-radius-card;
+  box-shadow: $card-shadow;
 
   &-button {
     &-prev,

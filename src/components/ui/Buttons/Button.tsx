@@ -7,15 +7,16 @@ import { usePathname } from 'next/navigation'
 interface IButton {
   isLink?: boolean
   isLoading?: boolean
+  width?: string
   link?: string
   text?: string
   icon?: ReactNode
-  variant?: 'light' | 'dark' | 'primary' | 'secondary' | 'profile' | 'default' | 'outlined' | 'green' | 'underlined' | 'rounded'
+  variant?: 'light' | 'dark' | 'primary' | 'secondary' | 'profile' | 'default' | 'outlined' | 'green' | 'underlined' | 'rounded' | 'new'
   textStart?: 'start' | 'middle' | 'end'
   onClick?: () => void
 }
 
-const Button = ({ isLoading, textStart = 'middle', link = '', text, icon, variant = 'default', onClick }: IButton) => {
+const Button = ({ isLoading, width, textStart = 'middle', link = '', text, icon, variant = 'default', onClick }: IButton) => {
   const pathname = usePathname()
   const isActive = link && pathname.startsWith(link)
 
@@ -33,11 +34,11 @@ const Button = ({ isLoading, textStart = 'middle', link = '', text, icon, varian
   )
 
   return link ? (
-    <Link className={`${className} ${textStart && 'button--' + textStart}`} href={link}>
+    <Link className={`${className} ${textStart && 'button--' + textStart}`} href={link} style={{ width: `${width}` }}>
       {ButtonContent}
     </Link>
   ) : (
-    <button className={`${className} ${textStart && 'button--' + textStart}`} onClick={onClick}>
+    <button className={`${className} ${textStart && 'button--' + textStart}`} onClick={onClick} style={{ width: `${width}` }}>
       {ButtonContent}
     </button>
   )

@@ -1,3 +1,8 @@
 .card {
-  
+  &__wrapper {
+    padding: 2rem 3rem;
+    border-radius: $border-radius-card;
+    background-color: $base-color;
+    box-shadow: $ui-shadow;
+  }
 }

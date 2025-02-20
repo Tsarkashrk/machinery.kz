@@ -17,7 +17,7 @@ main {
   border-radius: 2.5rem 2.5rem 0 0;
   min-height: calc(100vh - 6.4rem);
   margin: 0 auto;
-  background-color: $base-color;
+  background-color: #f9fbfc;
 }
 
 .main__wrapper {
@@ -37,19 +37,28 @@ main {
 }
 
 h1 {
+  margin-bottom: 0.75rem;
+  font-family: $font-gilroy;
   font-size: $font-lg;
-  font-weight: $font-semibold;
+  font-weight: $font-bold;
   color: $base-dark-color;
 }
 
 h2 {
+  font-family: $font-geist-sans;
   font-size: $font-md;
   font-weight: $font-semibold;
   color: $base-dark-color;
 }
 
 p {
+  font-family: $font-geist-sans;
   font-weight: $font-regular;
   font-size: $font-xs;
   color: $base-dark-color;
+}
+
+hr {
+  border: $border;
+  margin: 2rem 0;
 }

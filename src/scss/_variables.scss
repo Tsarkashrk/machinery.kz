@@ -5,10 +5,14 @@ $max-width: 1400px;
 // Padding
 
 $padding-xl: 4rem;
-$button-padding: 0.8rem 1.3rem;
+$button-padding: 1.15rem 2rem;
+$input-padding: 1.15rem 1.3rem;
 
 // Font
 
+$gilroy-regular: 'GilroyRegular';
+
+$font-gilroy: var(--font-gilroy);
 $font-inter: var(--font-inter);
 $font-geist-sans: var(--font-geist-sans);
 $font-geist-mono: var(--font-geist-mono);
@@ -37,6 +41,8 @@ $border-radius-card: 1.6rem;
 $border-radius-ui: 1rem;
 
 // Color
+
+$bg-color: #f9fbfc;
 
 $base-dark-color: #030612;
 $dark-light-color: #050b20;

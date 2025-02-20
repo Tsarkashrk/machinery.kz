@@ -1,7 +1,11 @@
 .avatar {
-  padding: $button-padding;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4.1rem;
+  width: 4.1rem;
   background-color: #d97706;
-  border-radius: $border-radius-ui;
+  border-radius: 100rem;
   transition: $transition;
   
   &:hover {

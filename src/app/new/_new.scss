@@ -1,0 +1,39 @@
+.new-section {
+  &__wrapper {
+    max-width: calc($max-width - 60rem);
+    margin: 0 auto;
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__image {
+    max-width: 20rem;
+    width: 100%;
+    height: auto;
+    border: $border;
+    border-radius: $border-radius-card;
+    margin-bottom: 2rem;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &-blocks {
+      display: flex;
+      gap: 2rem;
+    }
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+  }
+}

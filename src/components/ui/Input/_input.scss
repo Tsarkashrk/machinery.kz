@@ -1,7 +1,6 @@
 .input {
-  padding: 0.4rem 1.2rem;
+  padding: $input-padding;
   width: 100%;
-  height: 3.6rem;
   box-shadow: $ui-shadow;
   border: $border;
   border-radius: $border-radius-ui;
