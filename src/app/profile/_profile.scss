@@ -6,9 +6,8 @@
     max-width: calc($max-width - 400px);
     margin: 0 auto;
     padding: 2rem;
-    // border: $border;
     border-radius: $border-radius-card;
-    // box-shadow: $ui-shadow;
+    box-shadow: $card-shadow;
     background-color: $base-color;
   }
 }

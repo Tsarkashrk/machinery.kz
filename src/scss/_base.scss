@@ -15,13 +15,13 @@ body {
 
 main {
   border-radius: 2.5rem 2.5rem 0 0;
-  min-height: calc(100vh - 6.4rem);
+  min-height: calc(100vh - 6.9rem);
   margin: 0 auto;
-  background-color: #f9fbfc;
+  background-color: #f8fafc;
 }
 
 .main__wrapper {
-  min-height: calc(100vh - 6.4rem);
+  min-height: calc(100vh - 6.9rem);
   height: 100%;
   margin: 0 auto;
   max-width: $max-width;
@@ -45,9 +45,16 @@ h1 {
 }
 
 h2 {
-  font-family: $font-geist-sans;
+  font-family: $font-gilroy;
   font-size: $font-md;
   font-weight: $font-semibold;
+  color: $base-dark-color;
+}
+
+h3 {
+  font-family: $font-gilroy;
+  font-size: $font-sm;
+  font-weight: $font-medium;
   color: $base-dark-color;
 }
 

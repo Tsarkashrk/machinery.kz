@@ -1,0 +1,40 @@
+.catalog-section {
+  &__wrapper {
+  }
+
+  &__title {
+    margin-bottom: 3rem;
+  }
+
+  &__categories {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+
+  &__link {
+    transition: $transition;
+    border-radius: $border-radius-card;
+    &:hover {
+      transform: scale(1.025);
+      box-shadow: $card-shadow;
+      transition: $transition;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    // text-align: center;
+  }
+
+  &__title {
+  }
+
+  &__img {
+    max-width: 15rem;
+    width: 100%;
+    height: auto;
+  }
+}

@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  max-height: 4.1rem;
   padding: $button-padding;
   border: none;
   border-radius: $border-radius-ui;
@@ -19,20 +20,20 @@
 
   &--default {
     color: $base-color;
-    background-color: $base-dark-color;
+    background-color: #7e90e4;
 
     &:hover {
       opacity: $opacity;
     }
 
-    &--active {
-      background-color: $base-color;
-      color: $base-dark-color;
+    // &--active {
+      // background-color: $base-color;
+      // color: $base-dark-color;
 
-      &:hover {
-        color: $base-dark-color;
-      }
-    }
+    //   &:hover {
+    //     color: $base-dark-color;
+    //   }
+    // }
   }
 
   &--dark {
@@ -66,7 +67,7 @@
     box-shadow: $ui-shadow;
 
     &:hover {
-      background-color: $zinc-200;
+      background-color: $zinc-100;
     }
   }
 

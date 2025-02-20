@@ -4,6 +4,16 @@
     margin: 0 auto;
   }
 
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
   &__cards {
     display: flex;
     flex-direction: column;
@@ -14,6 +24,7 @@
     max-width: 20rem;
     width: 100%;
     height: auto;
+    padding: 1rem;
     border: $border;
     border-radius: $border-radius-card;
     margin-bottom: 2rem;

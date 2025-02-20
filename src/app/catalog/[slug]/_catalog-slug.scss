@@ -1,0 +1,24 @@
+.catalog-slug {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 30rem 1fr;
+    gap: 2rem;
+  }
+
+  &__filters {
+    &-title {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__brands {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__prices {
+    display: flex;
+    gap: 1rem;
+  }
+}
