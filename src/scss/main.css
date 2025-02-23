@@ -106,7 +106,6 @@ hr {
 .profile-section__credentials {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 .profile-section__body {
   display: flex;
@@ -157,7 +156,6 @@ hr {
 .new-section__info-block {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   width: 100%;
 }
 
@@ -322,13 +320,12 @@ hr {
 .auth-form__body {
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
+  gap: 2rem;
   width: 100%;
 }
 .auth-form__credentials {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
   text-align: start;
 }
 .auth-form__footer {
@@ -701,6 +698,7 @@ hr {
   font-family: var(--font-geist-sans);
   font-weight: 500;
   font-size: 1.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .input {
