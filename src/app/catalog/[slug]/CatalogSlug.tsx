@@ -10,7 +10,7 @@ const brands = ['Bosch', 'NeBosch']
 
 const CatalogSlug = () => {
   return (
-    <div className="catalog-slug">
+    <section className="catalog-slug">
       <div className="catalog-slug__wrapper">
         <Card>
           <div className="catalog-slug__filters">
@@ -36,7 +36,7 @@ const CatalogSlug = () => {
         </Card>
         <Card></Card>
       </div>
-    </div>
+    </section>
   )
 }
 

@@ -3,9 +3,12 @@
 import { IUser } from '@/types/user.type'
 import Button from '../ui/Buttons/Button'
 import { useProfile } from '@/hooks/useProfile'
+import { ReactNode } from 'react'
+import { LogoutButton } from '../ui/Buttons/LogoutButton'
 
 interface IData {
   text: string
+  icon: ReactNode
 }
 
 interface SidebarProps {
@@ -25,7 +28,7 @@ const Sidebar = ({ sidebarData }: SidebarProps) => {
         </div>
         <div className="sidebar__buttons">
           {sidebarData.map((item) => (
-            <Button textStart="start" key={item.text} text={item.text} variant="light" />
+            <Button textStart="start" icon={item.icon} key={item.text} text={item.text} variant="light" />
           ))}
         </div>
       </div>

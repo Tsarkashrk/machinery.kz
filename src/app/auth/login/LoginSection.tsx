@@ -44,7 +44,6 @@ const LoginSection = () => {
           <TextMuted text="Enter your credentials below to log in to your account" />
         </div>
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
-          <div className="auth-form__credentials"></div>
           <div className="auth-form__credentials">
             <Label text="Email" forElement="email" />
             <Input

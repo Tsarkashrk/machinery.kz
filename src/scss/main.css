@@ -89,16 +89,33 @@ hr {
   display: grid;
   grid-template-columns: 20rem 1fr;
   gap: 3rem;
-  max-width: 1000px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
   border-radius: 1.6rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   background-color: white;
 }
+.profile-section__title {
+  margin-bottom: 3rem;
+}
+.profile-section__header {
+  display: flex;
+  justify-content: space-between;
+}
+.profile-section__credentials {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.profile-section__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
 .new-section__wrapper {
-  max-width: calc(1400px - 60rem);
+  max-width: 800px;
   margin: 0 auto;
 }
 .new-section__header {
@@ -122,6 +139,11 @@ hr {
   border: 1px solid #e5e7eb;
   border-radius: 1.6rem;
   margin-bottom: 2rem;
+}
+.new-section__form {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 .new-section__info {
   display: flex;
@@ -219,7 +241,7 @@ hr {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.15rem 1.3rem;
+  padding: 1.05rem 1.3rem;
   border-radius: 1rem;
   background-color: transparent;
   color: #8e91a0;
@@ -260,6 +282,16 @@ hr {
   justify-content: center;
   align-items: center;
   gap: 2rem;
+}
+
+.footer {
+  background-color: #030612;
+  color: white;
+}
+.footer__wrapper {
+  max-width: 1400px;
+  padding: 1.4rem 3rem;
+  margin: 0 auto;
 }
 
 .auth-form {
@@ -476,7 +508,7 @@ hr {
   height: 10rem;
   margin: 0 auto;
   padding: 1rem;
-  background-color: #d97706;
+  background-color: #7e90e4;
   border-radius: 100rem;
   font-size: 2.8rem;
   color: white;
@@ -583,65 +615,60 @@ hr {
   color: #8e91a0;
 }
 
-.dropdown {
-  position: relative;
-  width: 100%;
-}
-.dropdown__toggle {
+.logout__button {
+  background-color: white;
+  border: none;
   font-family: var(--font-geist-sans);
   font-size: 1.4rem;
-  padding: 1.15rem 1.3rem;
-  width: 100%;
-  background-color: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 1rem;
+  color: red;
   cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  max-height: 4.1rem;
+  width: 100%;
+  font-family: var(--font-geist-sans);
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.dropdown__selected {
   display: flex;
+  height: 100%;
   justify-content: space-between;
   align-items: center;
-  transition: background 0.3s;
-}
-.dropdown__toggle:hover {
-  background: #e8e8e8;
-}
-.dropdown__arrow {
-  margin-left: 10px;
-}
-.dropdown__menu {
-  position: absolute;
-  width: 100%;
-  background-color: white;
+  padding: 1.05rem 1.3rem;
   border: 1px solid #e5e7eb;
   border-radius: 1rem;
-  list-style: none;
-  padding: 0;
-  margin-top: 5px;
-  z-index: 100;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.3s, transform 0.3s;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-.dropdown--open .dropdown__menu {
-  opacity: 1;
-  transform: translateY(0);
-}
-.dropdown__item {
-  padding: 10px;
-  display: flex;
-  align-items: center;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background: white;
   cursor: pointer;
-  transition: background 0.2s;
-  font-size: 14px;
 }
-.dropdown__item:hover {
-  background: #f0f0f0;
+.dropdown__selected--open {
+  border-width: 1px;
+  border-color: #030612;
 }
-.dropdown__icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-  object-fit: cover;
+.dropdown__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  list-style: none;
+  padding: 0.4rem;
+  margin: 5px 0;
+  z-index: 10;
+}
+.dropdown__option {
+  border-radius: 5px;
+  padding: 0.7rem 0.8rem;
+  cursor: pointer;
+}
+.dropdown__option:hover {
+  background-color: #f4f4f5;
 }
 
 .avatar {
@@ -650,7 +677,7 @@ hr {
   align-items: center;
   height: 4.1rem;
   width: 4.1rem;
-  background-color: #d97706;
+  background-color: white;
   border-radius: 100rem;
   transition: all 0.1s ease-in-out;
 }
@@ -659,7 +686,9 @@ hr {
   transition: all 0.1s ease-in-out;
 }
 .avatar__letter {
-  color: white;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #030612;
 }
 
 .text-muted {
@@ -675,7 +704,7 @@ hr {
 }
 
 .input {
-  padding: 1.15rem 1.3rem;
+  padding: 1.05rem 1.3rem;
   width: 100%;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   border: 1px solid #e5e7eb;
@@ -683,4 +712,7 @@ hr {
   font-family: var(--font-geist-sans);
   font-size: 1.4rem;
   font-weight: 400;
+}
+.input::placeholder {
+  color: #a1a1aa;
 }/*# sourceMappingURL=main.css.map */

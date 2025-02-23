@@ -27,8 +27,8 @@
     }
 
     // &--active {
-      // background-color: $base-color;
-      // color: $base-dark-color;
+    // background-color: $base-color;
+    // color: $base-dark-color;
 
     //   &:hover {
     //     color: $base-dark-color;
@@ -121,5 +121,16 @@
     font-family: $font-geist-sans;
     font-weight: $font-regular;
     color: $light-dark-color;
+  }
+}
+
+.logout {
+  &__button {
+    background-color: $base-color;
+    border: none;
+    font-family: $font-geist-sans;
+    font-size: $font-xs;
+    color: red;
+    cursor: pointer;
   }
 }

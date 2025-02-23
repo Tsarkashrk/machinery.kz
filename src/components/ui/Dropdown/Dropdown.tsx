@@ -1,58 +1,59 @@
-'use client'
+import { ICON_SIZE } from '@/constants/constants'
+import { ChevronDown, ChevronUp } from 'lucide-react'
+import React, { useState } from 'react'
+import { Controller } from 'react-hook-form'
 
-import React, { useState, useRef, useEffect } from 'react'
-
-interface CatalogItem {
+interface Option {
   id: number
   title: string
 }
 
-interface DropDownProps {
-  options: CatalogItem[]
+interface DropdownProps {
+  name: string
+  control: any
+  options: Option[]
   placeholder?: string
-  onSelect?: (item: CatalogItem) => void
+  rules?: any
 }
 
-const DropDown: React.FC<DropDownProps> = ({ options, placeholder = 'Select an option', onSelect }) => {
+const CustomDropdown: React.FC<DropdownProps> = ({ name, control, options, placeholder = 'Select an option', rules }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [selected, setSelected] = useState<CatalogItem | null>(null)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-
-  const handleSelect = (item: CatalogItem) => {
-    setSelected(item)
-    setIsOpen(false)
-    onSelect?.(item)
-  }
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
 
   return (
-    <div className={`dropdown ${isOpen ? 'dropdown--open' : ''}`} ref={dropdownRef}>
-      <button className="dropdown__toggle" onClick={() => setIsOpen(!isOpen)}>
-        {selected ? selected.title : placeholder}
-        <span className="dropdown__arrow">{isOpen ? '▲' : '▼'}</span>
-      </button>
-      {isOpen && (
-        <ul className="dropdown__menu">
-          {options.map((item) => (
-            <li key={item.id} className="dropdown__item" onClick={() => handleSelect(item)}>
-              {item.title}
-            </li>
-          ))}
-        </ul>
+    <Controller
+      name={name}
+      control={control}
+      rules={rules}
+      render={({ field, fieldState }) => (
+        <div className="dropdown">
+          {/* Выбранный элемент */}
+          <div className={`dropdown__selected ${isOpen ? 'dropdown__selected--open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
+            {field.value ? options.find((o) => o.id === field.value)?.title : placeholder}
+            {isOpen ? <ChevronUp size={ICON_SIZE} /> : <ChevronDown size={ICON_SIZE} />}
+          </div>
+
+          {/* Выпадающий список */}
+          {isOpen && (
+            <ul className="dropdown__list">
+              {options.map((option) => (
+                <li
+                  key={option.id}
+                  className="dropdown__option"
+                  onClick={() => {
+                    field.onChange(option.id)
+                    setIsOpen(false)
+                  }}>
+                  {option.title}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {fieldState.error && <span className="dropdown__error-text">{fieldState.error.message}</span>}
+        </div>
       )}
-    </div>
+    />
   )
 }
 
-export default DropDown
+export default CustomDropdown

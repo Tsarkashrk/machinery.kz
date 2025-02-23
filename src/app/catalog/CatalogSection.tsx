@@ -108,7 +108,7 @@ const CatalogSection = () => {
         <h1 className="catalog-section__title">Catalog</h1>
         <div className="catalog-section__categories">
           {catalogItems.map((item) => (
-            <Link key={item.link} href={`catalog/${item.link}`} className="catalog-section__link">
+            <Link key={item.link} href={`${PLATFORM_PAGES.CATALOG}/${item.link}`} className="catalog-section__link">
               <Card>
                 <div className="catalog-section__item">
                   <img className="catalog-section__img" src={item.img} alt="" />

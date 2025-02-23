@@ -1,6 +1,6 @@
 .new-section {
   &__wrapper {
-    max-width: calc($max-width - 60rem);
+    max-width: $max-width-secondary;
     margin: 0 auto;
   }
 
@@ -28,6 +28,12 @@
     border: $border;
     border-radius: $border-radius-card;
     margin-bottom: 2rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
   }
 
   &__info {

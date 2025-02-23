@@ -24,8 +24,11 @@ export function LogoutButton() {
   })
 
   return (
-    <div className="absolute top-1 right-1">
-      <Button icon={<LogOut size={ICON_SIZE} />} onClick={() => mutate()} text="Logout" />
+    <div className="logout">
+      {/* <button className="logout__button" onClick={() => mutate()}>
+        Logout
+      </button> */}
+      <Button variant="outlined" icon={<LogOut size={ICON_SIZE} />} onClick={() => mutate()} text="Logout" />
     </div>
   )
 }

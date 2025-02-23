@@ -6,6 +6,7 @@ import Header from '@/components/Header/Header'
 import { SITE_NAME } from '@/constants/seo.constant'
 import { Providers } from './providers'
 import { Toaster } from 'sonner'
+import Footer from '@/components/Footer/Footer'
 
 const gilroyFont = localFont({
   src: [
@@ -90,7 +91,7 @@ export default function RootLayout({
             <div className="main__wrapper">{children}</div>
           </main>
           <Toaster theme="light" position="top-right" duration={5000} richColors closeButton />
-          {/* <Footer /> */}
+          <Footer />
         </Providers>
       </body>
     </html>

@@ -30,7 +30,7 @@ const ProfileSection = () => {
     mutationFn: (data: TypeUserEdit) => userService.editProfile(data),
     onSuccess: (updatedData) => {
       queryClient.setQueryData(['profile'], updatedData)
-      queryClient.invalidateQueries({ queryKey: ['profile'] }) 
+      queryClient.invalidateQueries({ queryKey: ['profile'] })
       toast.success('Successfully edited!')
     },
     onError: () => {
@@ -50,7 +50,10 @@ const ProfileSection = () => {
 
   return (
     <section className="profile-section">
-      <h1>My Profile</h1>
+      <div className="profile-section__header">
+        <h1 className="profile-section__title">My Profile</h1>
+        <LogoutButton />
+      </div>
       <form className="profile-section__body" onSubmit={handleSubmit(onSubmit)}>
         <div className="profile-section__credentials">
           <Label text="Username" forElement="username" />
@@ -74,10 +77,8 @@ const ProfileSection = () => {
             })}
           />
         </div>
-        <div className="profile-section__credentials"></div>
         <Button text="Save changes" variant="dark" />
       </form>
-      <LogoutButton />
     </section>
   )
 }

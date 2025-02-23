@@ -4,10 +4,10 @@
   align-items: center;
   height: 4.1rem;
   width: 4.1rem;
-  background-color: #d97706;
+  background-color: $base-color;
   border-radius: 100rem;
   transition: $transition;
-  
+
   &:hover {
     opacity: $opacity;
     transition: $transition;
@@ -17,6 +17,8 @@
   }
 
   &__letter {
-    color: $base-color;
+    font-weight: $font-semibold;
+    font-size: 1.6rem;
+    color: $base-dark-color;
   }
 }

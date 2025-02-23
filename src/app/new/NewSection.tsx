@@ -10,6 +10,24 @@ import { ICON_SIZE } from '@/constants/constants'
 import { Plus } from 'lucide-react'
 import React from 'react'
 import DropDown from '@/components/ui/Dropdown/Dropdown'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
+import { useMutation } from '@tanstack/react-query'
+import { equipmentService } from '@/services/equipment.service'
+import { toast } from 'sonner'
+import { PLATFORM_PAGES } from '@/config/pages-url.config'
+import Dropdown from '@/components/ui/Dropdown/Dropdown'
+
+const listingTypes = [
+  {
+    id: 1,
+    title: 'To sell',
+  },
+  {
+    id: 2,
+    title: 'To rent out',
+  },
+]
 
 const catalogItems = [
   {
@@ -84,6 +102,30 @@ const NewSection = () => {
     console.log('Выбранный элемент:', item)
   }
 
+  const { register, handleSubmit, reset, control } = useForm({
+    mode: 'onChange',
+  })
+
+  const { push } = useRouter()
+
+  const { mutate } = useMutation({
+    mutationKey: ['equipment'],
+    mutationFn: (data: any) => equipmentService.createEquipment(data),
+    onSuccess() {
+      toast.success('Successfully logged in!')
+      reset()
+      // push(PLATFORM_PAGES.PROFILE)
+    },
+    onError() {
+      toast.error('Invalid credentials', { description: 'Try again!' })
+    },
+  })
+
+  const onSubmit: SubmitHandler<any> = (data: any) => {
+    console.log(data)
+    mutate({ owner: 1, ...data, purchase_price: 12000 })
+  }
+
   return (
     <section className="new-section">
       <div className="new-section__wrapper">
@@ -100,6 +142,7 @@ const NewSection = () => {
               </div>
             </div>
           </Card>
+
           <Card>
             <h1 className="new-section__title">Upload Images</h1>
             <hr />
@@ -108,38 +151,105 @@ const NewSection = () => {
             </div>
             <Button icon={<Plus size={ICON_SIZE} />} text="Add Pictures" variant="new" width="100%" />
           </Card>
-          <Card>
-            <h1 className="new-section__title">Equipment information</h1>
-            <hr />
-            <div className="new-section__info">
-              <div className="new-section__info-blocks">
-                <div className="new-section__info-block">
-                  <Label text="Brand" forElement="brand" />
-                  <Input id="brand" type="text" placeholder="Bosch" />
+          <form onSubmit={handleSubmit(onSubmit)} className="new-section__form">
+            <Card>
+              <h1 className="new-section__title">Equipment information</h1>
+              <hr />
+              <div className="new-section__info">
+                <div className="new-section__info-blocks">
+                  <div className="new-section__info-block">
+                    <Label text="Listing type" forElement="type" />
+                    <Dropdown name="type" control={control} options={listingTypes} rules={{ required: 'Listing type is required!' }} />
+                  </div>
+                  <div className="new-section__info-block">
+                    <Label text="Category" forElement="category" />
+
+                    <Dropdown name="category" control={control} options={catalogItems} rules={{ required: 'Category is required!' }} />
+                  </div>
                 </div>
-                <div className="new-section__info-block">
-                  <Label text="Model" forElement="model" />
-                  <Input id="model" type="text" placeholder="GSR 12V-30" />
+                <div className="new-section__info-blocks">
+                  <div className="new-section__info-block">
+                    <Label text="Name" forElement="name" />
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="Cordless Drill Bosch"
+                      {...register('name', {
+                        required: 'Name is required!',
+                      })}
+                    />
+                  </div>
+                  <div className="new-section__info-block">
+                    <Label text="Model" forElement="model" />
+                    <Input
+                      id="model"
+                      type="text"
+                      placeholder="GSR 12V-30"
+                      {...register('model', {
+                        required: 'Model is required!',
+                      })}
+                    />
+                  </div>
                 </div>
+                <div className="new-section__info-blocks">
+                  <div className="new-section__info-block">
+                    <Label text="Manufacturer" forElement="manufacturer" />
+                    <Input
+                      id="manufacturer"
+                      type="text"
+                      placeholder="Bosch"
+                      {...register('manufacturer', {
+                        required: 'Manufacturer is required!',
+                      })}
+                    />
+                  </div>
+                  <div className="new-section__info-block">
+                    <Label text="Year" forElement="year" />
+                    <Input
+                      id="year"
+                      type="text"
+                      placeholder="2012"
+                      {...register('year', {
+                        required: 'Year is required!',
+                      })}
+                    />
+                  </div>
+                </div>
+                <div className="new-section__info-blocks">
+                  <div className="new-section__info-block">
+                    <Label text="Condition" forElement="condition" />
+                    <Dropdown name="condition" control={control} options={conditions} rules={{ required: 'Condition is required!' }} />
+                  </div>
+                  <div className="new-section__info-block">
+                    <Label text="Daily rental price" forElement="price" />
+                    <Input
+                      id="price"
+                      type="number"
+                      placeholder="12000"
+                      {...register('daily_rental_rate', {
+                        required: 'Rental rate is required!',
+                      })}
+                    />
+                  </div>
+                </div>
+
+                <div className="new-section__info-blocks">
+                  <div className="new-section__info-block">
+                    <Label text="Description" forElement="description" />
+                    <Input
+                      id="description"
+                      type="text"
+                      placeholder="Very powerfull machine"
+                      {...register('description', {
+                        required: 'Description is required!',
+                      })}
+                    />
+                  </div>
+                </div>
+                <Button type="submit" icon={<Plus size={ICON_SIZE} />} text="Create listing" variant="new" width="100%" />
               </div>
-              <div className="new-section__info-blocks">
-                <div className="new-section__info-block">
-                  <Label text="Category" forElement="category" />
-                  <DropDown options={catalogItems} onSelect={handleSelect} />
-                </div>
-                <div className="new-section__info-block">
-                  <Label text="Condition" forElement="condition" />
-                  <DropDown options={conditions} onSelect={handleSelect} />
-                </div>
-              </div>
-              <div className="new-section__info-blocks">
-                <div className="new-section__info-block">
-                  <Label text="Description" forElement="description" />
-                  <Input id="description" type="text" placeholder="Very powerfull machine" />
-                </div>
-              </div>
-            </div>
-          </Card>
+            </Card>
+          </form>
         </div>
       </div>
     </section>

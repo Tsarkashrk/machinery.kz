@@ -4,6 +4,7 @@ import TextMuted from '@/components/ui/TextMuted/TextMuted'
 import Link from 'next/link'
 import React from 'react'
 import { ICON_SIZE } from '@/constants/constants'
+import { PLATFORM_PAGES } from '@/config/pages-url.config'
 
 interface ProductCardProps {
   title: string
@@ -14,7 +15,7 @@ interface ProductCardProps {
 
 const ProductCard = (data: ProductCardProps) => {
   return (
-    <Link href={data.link} className="product-card">
+    <Link href={`${PLATFORM_PAGES.PRODUCT}/${data.link}`} className="product-card">
       <div className="product-card__wrapper">
         <img src={data.image} className="product-card__image" />
         <span className="product-card__price">{data.price}</span>

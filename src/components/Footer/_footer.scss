@@ -1,0 +1,9 @@
+.footer {
+  background-color: $base-dark-color;
+  color: $base-color;
+  &__wrapper {
+    max-width: $max-width;
+    padding: 1.4rem 3rem;
+    margin: 0 auto;
+  }
+}

@@ -10,7 +10,8 @@ class PLATFORM {
   REGISTER = `${this.root}auth/register`
   NEW = `${this.root}new`
   PROFILE = `${this.root}profile`
-  MESSAGES  = `${this.root}messages`
+  MESSAGES = `${this.root}messages`
+  PRODUCT = `${this.root}product`
   FAVORITES = `${this.root}favorites`
 }
 
