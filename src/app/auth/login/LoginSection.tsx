@@ -65,7 +65,7 @@ const LoginSection = () => {
               })}
             />
           </div>
-          <Button text="Log in" variant="dark" />
+          <Button text="Log in" variant="default" />
         </form>
         <p className="auth-form__footer">
           Don't have an account? <Button isLink link={PLATFORM_PAGES.REGISTER} variant="underlined" text="Sign up" />

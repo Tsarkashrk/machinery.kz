@@ -76,7 +76,7 @@ const RegisterSection = () => {
               })}
             />
           </div>
-          <Button text="Sign up" variant="dark" />
+          <Button text="Sign up" variant="default" />
         </form>
         <p className="auth-form__footer">
           Already have an account? <Button isLink link={PLATFORM_PAGES.LOGIN} variant="underlined" text="Log in" />

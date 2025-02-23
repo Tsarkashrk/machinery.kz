@@ -5,6 +5,6 @@
   &__sliders {
     display: grid;
     grid-template-columns: 95rem 1fr;
-    gap: 2rem;
+    gap: $gap-bw-fields;;
   }
 }

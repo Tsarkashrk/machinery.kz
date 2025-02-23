@@ -28,7 +28,10 @@ const Sidebar = ({ sidebarData }: SidebarProps) => {
         </div>
         <div className="sidebar__buttons">
           {sidebarData.map((item) => (
-            <Button textStart="start" icon={item.icon} key={item.text} text={item.text} variant="light" />
+            // <Button textStart="start" icon={item.icon} key={item.text} text={item.text} variant="light" />
+            <button type="button" className="sidebar__button">
+              {item.icon} {item.text}
+            </button>
           ))}
         </div>
       </div>

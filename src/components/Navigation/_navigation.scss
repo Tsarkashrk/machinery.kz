@@ -6,7 +6,6 @@
 
   &__list {
     display: flex;
-    gap: 0.5rem;
   }
 
   &__item {
@@ -21,7 +20,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: $input-padding;
+    padding: $button-padding;
     border-radius: $border-radius-ui;
     background-color: transparent;
     color: $light-dark-color;

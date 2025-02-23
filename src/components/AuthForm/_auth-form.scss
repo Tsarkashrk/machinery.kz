@@ -29,7 +29,7 @@
   &__body {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: $gap-bw-fields;;
     width: 100%;
   }
 

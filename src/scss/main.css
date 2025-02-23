@@ -227,7 +227,6 @@ hr {
 }
 .navigation__list {
   display: flex;
-  gap: 0.5rem;
 }
 .navigation__item {
   background-color: #030612;
@@ -239,7 +238,7 @@ hr {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.05rem 1.3rem;
+  padding: 1.15rem 2rem;
   border-radius: 1rem;
   background-color: transparent;
   color: #8e91a0;
@@ -513,7 +512,26 @@ hr {
 .sidebar__buttons {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+}
+.sidebar__button {
+  display: flex;
+  gap: 1rem;
+  padding: 0.7rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  font-family: var(--font-geist-sans);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #71717a;
+  cursor: pointer;
+}
+.sidebar__button:hover {
+  background-color: #f4f4f5;
+}
+.sidebar__button:focus {
+  color: #030612;
+  font-weight: 500;
 }
 
 .button {
@@ -569,12 +587,6 @@ hr {
 .button--outlined:hover {
   background-color: #f4f4f5;
 }
-.button--green {
-  background-color: #15803d;
-}
-.button--green:hover {
-  opacity: 80%;
-}
 .button--underlined {
   all: unset;
   height: auto !important;
@@ -582,22 +594,15 @@ hr {
   text-decoration-line: underline;
   cursor: pointer;
 }
-.button--rounded {
-  background-color: #15803d;
-  border-radius: 100rem;
-}
-.button--rounded:hover {
-  opacity: 80%;
-}
 .button--start {
   justify-content: flex-start;
 }
-.button--new {
+.button--secondary {
   background-color: #ecedff;
   color: #7e90e4;
   font-weight: 600;
 }
-.button--new:hover {
+.button--secondary:hover {
   background-color: #dddefb;
 }
 

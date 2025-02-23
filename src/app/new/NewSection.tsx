@@ -136,10 +136,10 @@ const NewSection = () => {
                 <h1 className="new-section__title">Create New Listing</h1>
                 <TextMuted text="Please fill in all the details to get approval for listing creation." />
               </div>
-              <div className="new-section__header-buttons">
+              {/* <div className="new-section__header-buttons">
                 <Button text="Previous" variant="outlined" icon={<ChevronLeft size={ICON_SIZE} />} />
                 <Button text="Next" icon={<ChevronRight size={ICON_SIZE} />} />
-              </div>
+              </div> */}
             </div>
           </Card>
 
@@ -149,7 +149,7 @@ const NewSection = () => {
             <div className="new-section__images">
               <img className="new-section__image" src="assets/GSR12V-30.webp" alt="" />
             </div>
-            <Button icon={<Plus size={ICON_SIZE} />} text="Add Pictures" variant="new" width="100%" />
+            <Button icon={<Plus size={ICON_SIZE} />} text="Add Pictures" variant="secondary" width="100%" />
           </Card>
           <form onSubmit={handleSubmit(onSubmit)} className="new-section__form">
             <Card>
@@ -246,7 +246,7 @@ const NewSection = () => {
                     />
                   </div>
                 </div>
-                <Button type="submit" icon={<Plus size={ICON_SIZE} />} text="Create listing" variant="new" width="100%" />
+                <Button type="submit" text="Confirm & Submit" variant="default" width="100%" />
               </div>
             </Card>
           </form>

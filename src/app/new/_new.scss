@@ -39,11 +39,11 @@
   &__info {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: $gap-bw-fields;;
 
     &-blocks {
       display: flex;
-      gap: 2rem;
+      gap: $gap-bw-fields;;
     }
 
     &-block {

@@ -71,14 +71,6 @@
     }
   }
 
-  &--green {
-    background-color: $green-700;
-
-    &:hover {
-      opacity: $opacity;
-    }
-  }
-
   &--underlined {
     all: unset;
     height: auto !important;
@@ -87,21 +79,11 @@
     cursor: pointer;
   }
 
-  &--rounded {
-    // padding: 0.9rem;
-    background-color: $green-700;
-    border-radius: $border-rounded;
-
-    &:hover {
-      opacity: $opacity;
-    }
-  }
-
   &--start {
     justify-content: flex-start;
   }
 
-  &--new {
+  &--secondary {
     background-color: #ecedff;
     color: #7e90e4;
     font-weight: $font-semibold;
