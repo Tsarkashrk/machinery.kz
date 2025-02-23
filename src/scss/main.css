@@ -159,6 +159,11 @@ hr {
   width: 100%;
 }
 
+.catalog-section__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
 .catalog-section__title {
   margin-bottom: 3rem;
 }
@@ -512,6 +517,7 @@ hr {
 .sidebar__buttons {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 .sidebar__button {
   display: flex;
@@ -522,14 +528,16 @@ hr {
   background-color: white;
   font-family: var(--font-geist-sans);
   font-size: 1.4rem;
-  font-weight: 500;
-  color: #71717a;
+  font-weight: 400;
+  color: #3f3f46;
   cursor: pointer;
 }
 .sidebar__button:hover {
   background-color: #f4f4f5;
+  color: #030612;
 }
 .sidebar__button:focus {
+  background-color: #f4f4f5;
   color: #030612;
   font-weight: 500;
 }
@@ -626,9 +634,28 @@ hr {
   cursor: pointer;
 }
 
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes dropdownFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
 .dropdown {
   position: relative;
-  max-height: 4.1rem;
   width: 100%;
   font-family: var(--font-geist-sans);
   font-size: 1.4rem;
@@ -636,7 +663,6 @@ hr {
 }
 .dropdown__selected {
   display: flex;
-  height: 100%;
   justify-content: space-between;
   align-items: center;
   padding: 1.05rem 1.3rem;
@@ -645,6 +671,7 @@ hr {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   background: white;
   cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
 }
 .dropdown__selected--open {
   border-width: 1px;
@@ -658,16 +685,28 @@ hr {
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 1rem;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   list-style: none;
   padding: 0.4rem;
   margin: 5px 0;
   z-index: 10;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+.dropdown__list--open {
+  animation: dropdownFadeIn 0.15s ease-in-out forwards;
+  pointer-events: auto;
+}
+.dropdown__list--closed {
+  animation: dropdownFadeOut 0.15s ease-in-out forwards;
+  pointer-events: none;
 }
 .dropdown__option {
-  border-radius: 5px;
   padding: 0.7rem 0.8rem;
   cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  border-radius: 5px;
 }
 .dropdown__option:hover {
   background-color: #f4f4f5;
@@ -704,6 +743,15 @@ hr {
   font-weight: 500;
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
+}
+.label--center {
+  text-align: center;
+}
+.label--end {
+  text-align: end;
+}
+.label--gray {
+  color: #71717a;
 }
 
 .input {

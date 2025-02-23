@@ -5,6 +5,7 @@ import Button from '../ui/Buttons/Button'
 import { useProfile } from '@/hooks/useProfile'
 import { ReactNode } from 'react'
 import { LogoutButton } from '../ui/Buttons/LogoutButton'
+import Label from '../ui/Label/Label'
 
 interface IData {
   text: string
@@ -26,10 +27,11 @@ const Sidebar = ({ sidebarData }: SidebarProps) => {
           <h1 className="sidebar__name">{data?.username}</h1>
           <p className="sidebar__email">{data?.email}</p>
         </div>
+        <hr />
         <div className="sidebar__buttons">
+          {/* <Label text="General" position="start" color="gray" /> */}
           {sidebarData.map((item) => (
-            // <Button textStart="start" icon={item.icon} key={item.text} text={item.text} variant="light" />
-            <button type="button" className="sidebar__button">
+            <button key={item.text} type="button" className="sidebar__button">
               {item.icon} {item.text}
             </button>
           ))}

@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 const sidebarData = [
   {
     icon: <User size={ICON_SIZE} />,
-    text: 'My profile',
+    text: 'Edit profile',
   },
-  { text: 'My orders', icon: <ListChecks size={ICON_SIZE} /> },
-  { text: 'My cart', icon: <ShoppingBasket size={ICON_SIZE} /> },
+  { text: 'Orders', icon: <ListChecks size={ICON_SIZE} /> },
+  { text: 'Cart', icon: <ShoppingBasket size={ICON_SIZE} /> },
 ]
 
 const ProfilePage = () => {

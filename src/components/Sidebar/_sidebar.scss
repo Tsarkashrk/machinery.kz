@@ -33,6 +33,7 @@
   &__buttons {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
   }
 
   &__button {
@@ -44,15 +45,17 @@
     background-color: $base-color;
     font-family: $font-geist-sans;
     font-size: $font-xs;
-    font-weight: $font-medium;
-    color: $zinc-500;
+    font-weight: $font-regular;
+    color: #3f3f46;
     cursor: pointer;
 
     &:hover {
       background-color: $zinc-100;
+      color: $base-dark-color;
     }
 
     &:focus {
+      background-color: $zinc-100;
       color: $base-dark-color;
       font-weight: $font-medium;
     }

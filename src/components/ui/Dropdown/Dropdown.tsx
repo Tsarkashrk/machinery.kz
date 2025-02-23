@@ -32,22 +32,19 @@ const CustomDropdown: React.FC<DropdownProps> = ({ name, control, options, place
             {isOpen ? <ChevronUp size={ICON_SIZE} /> : <ChevronDown size={ICON_SIZE} />}
           </div>
 
-          {/* Выпадающий список */}
-          {isOpen && (
-            <ul className="dropdown__list">
-              {options.map((option) => (
-                <li
-                  key={option.id}
-                  className="dropdown__option"
-                  onClick={() => {
-                    field.onChange(option.id)
-                    setIsOpen(false)
-                  }}>
-                  {option.title}
-                </li>
-              ))}
-            </ul>
-          )}
+          <ul className={`dropdown__list dropdown__list--${isOpen ? 'open' : 'closed'}`}>
+            {options.map((option) => (
+              <li
+                key={option.id}
+                className="dropdown__option"
+                onClick={() => {
+                  field.onChange(option.id)
+                  setIsOpen(false)
+                }}>
+                {option.title}
+              </li>
+            ))}
+          </ul>
 
           {fieldState.error && <span className="dropdown__error-text">{fieldState.error.message}</span>}
         </div>

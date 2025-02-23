@@ -38,8 +38,10 @@
 
 import Card from '@/components/Cards/Card/Card'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
-import { categoriesService } from '@/services/categories'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { categoriesService, useEquipmentCategories } from '@/services/categories'
+import { equipmentService } from '@/services/equipment.service'
+import { userService } from '@/services/user.service'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -102,25 +104,57 @@ const catalogItems = [
 ]
 
 const CatalogSection = () => {
-  return (
-    <section className="catalog-section">
-      <div className="catalog-section__wrapper">
-        <h1 className="catalog-section__title">Catalog</h1>
-        <div className="catalog-section__categories">
-          {catalogItems.map((item) => (
-            <Link key={item.link} href={`${PLATFORM_PAGES.CATALOG}/${item.link}`} className="catalog-section__link">
-              <Card>
-                <div className="catalog-section__item">
-                  <img className="catalog-section__img" src={item.img} alt="" />
-                  <h3>{item.title}</h3>
-                </div>
-              </Card>
-            </Link>
-          ))}
+  const equipmentsData = useQuery({
+    queryKey: ['equipment'],
+    queryFn: () => equipmentService.getAllEquipments(),
+  })
+
+  const catalogsData = useEquipmentCategories()
+
+  console.log(catalogsData)
+
+  if (equipmentsData.isSuccess) {
+    return (
+      <section className="catalog-section">
+        <div className="catalog-section__wrapper">
+          <div className="catalog-section__block">
+            <h1 className="catalog-section__title">Categories</h1>
+            <div className="catalog-section__categories">
+              {catalogsData?.data &&
+                catalogsData.data.map((item: any, index: any) => (
+                  <Link key={item.id} href={`${PLATFORM_PAGES.CATALOG}/${item.id}`} className="catalog-section__link">
+                    <Card>
+                      <div className="catalog-section__item">
+                        <img className="catalog-section__img" src={catalogItems[index]?.img} alt="" />
+                        <h3>{item.name}</h3>
+                      </div>
+                    </Card>
+                  </Link>
+                ))}
+            </div>
+          </div>
+          <div className="catalog-section__block">
+            <h1 className="catalog-section__title">Equipment Catalog</h1>
+            <div className="catalog-section__categories">
+              {equipmentsData?.data &&
+                equipmentsData.data.map((item: any, index: any) => (
+                  <Link key={item.id} href={`${PLATFORM_PAGES.CATALOG}/${item.category_details.name}/${item.id}`} className="catalog-section__link">
+                    <Card>
+                      <div className="catalog-section__item">
+                        <img className="catalog-section__img" src={catalogItems[index]?.img} alt="" />
+                        <h3>{item.name}</h3>
+                      </div>
+                    </Card>
+                  </Link>
+                ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-  )
+      </section>
+    )
+  } else {
+    return <p>Loading...</p>
+  }
 }
 
 export default CatalogSection

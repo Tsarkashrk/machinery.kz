@@ -1,6 +1,27 @@
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropdownFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
 .dropdown {
   position: relative;
-  max-height: 4.1rem;
   width: 100%;
   font-family: $font-geist-sans;
   font-size: $font-xs;
@@ -8,7 +29,6 @@
 
   &__selected {
     display: flex;
-    height: 100%;
     justify-content: space-between;
     align-items: center;
     padding: $input-padding;
@@ -17,6 +37,7 @@
     box-shadow: $ui-shadow;
     background: white;
     cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
 
     &--open {
       border-width: 1px;
@@ -32,17 +53,31 @@
     background: $base-color;
     border: $border;
     border-radius: $border-radius-ui;
-    box-shadow: $ui-shadow;
+    box-shadow: $card-shadow;
     list-style: none;
     padding: 0.4rem;
     margin: 5px 0;
     z-index: 10;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+
+    &--open {
+      animation: dropdownFadeIn 0.15s ease-in-out forwards;
+      pointer-events: auto;
+    }
+
+    &--closed {
+      animation: dropdownFadeOut 0.15s ease-in-out forwards;
+      pointer-events: none;
+    }
   }
 
   &__option {
-    border-radius: 5px;
     padding: 0.7rem 0.8rem;
     cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    border-radius: 5px;
 
     &:hover {
       background-color: $zinc-100;

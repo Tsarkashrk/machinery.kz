@@ -3,4 +3,16 @@
   font-weight: $font-medium;
   font-size: $font-xs;
   margin-bottom: 0.5rem;
+
+  &--center {
+    text-align: center;
+  }
+
+  &--end {
+    text-align: end;
+  }
+
+  &--gray {
+    color: $zinc-500;
+  }
 }

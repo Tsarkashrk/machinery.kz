@@ -1,11 +1,11 @@
-import { axiosWithAuth } from '@/api/interceptors'
+import { axiosClassic, axiosWithAuth } from '@/api/interceptors'
 import { useQuery } from '@tanstack/react-query'
 
 const BASE_URL = '/equipment-categories/'
 
 export const categoriesService = {
   getCategories: async () => {
-    const { data } = await axiosWithAuth.get(BASE_URL)
+    const { data } = await axiosClassic.get(BASE_URL)
     return data
   },
 }
