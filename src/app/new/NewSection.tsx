@@ -18,72 +18,20 @@ import { toast } from 'sonner'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import Dropdown from '@/components/ui/Dropdown/Dropdown'
 import InputFile from '@/components/ui/Input/InputFile'
+import { imagesService } from '@/services/images.service'
+import { useEquipmentCategories } from '@/services/categories'
+import { useProfile } from '@/hooks/useProfile'
 
 const listingTypes = [
   {
     id: 1,
     title: 'To sell',
+    value: 'sell',
   },
   {
     id: 2,
     title: 'To rent out',
-  },
-]
-
-const catalogItems = [
-  {
-    id: 1,
-    title: 'Power tools',
-    img: 'assets/cat1-d.webp',
-    link: 'power-tools',
-  },
-  {
-    id: 2,
-    title: 'Generators',
-    img: 'assets/cat2-d.webp',
-    link: 'generators',
-  },
-  {
-    id: 3,
-    title: 'Compressors',
-    img: 'assets/cat3-d.webp',
-    link: 'compressors',
-  },
-  {
-    id: 4,
-    title: 'Welding equipment',
-    img: 'assets/cat4-d.webp',
-    link: 'welding-equipment',
-  },
-  {
-    id: 5,
-    title: 'Machines',
-    img: 'assets/cat6-d.webp',
-    link: 'machines',
-  },
-  {
-    id: 6,
-    title: 'Pumps and motor pumps',
-    img: 'assets/cat7-d.webp',
-    link: 'cleaning-equipment',
-  },
-  {
-    id: 7,
-    title: 'Gardening equipment and tools',
-    img: 'assets/cat8-d.webp',
-    link: 'gardening-equipment-and-tools',
-  },
-  {
-    id: 8,
-    title: 'Pumps and motor pumps',
-    img: 'assets/cat9-d.webp',
-    link: 'pumps-and-motor-pumps',
-  },
-  {
-    id: 9,
-    title: 'Сlimate equipment',
-    img: 'assets/cat10-d.webp',
-    link: 'climate-equipment',
+    value: 'rent',
   },
 ]
 
@@ -91,10 +39,12 @@ const conditions = [
   {
     id: 1,
     title: 'New',
+    value: 'new',
   },
   {
     id: 2,
     title: 'Used',
+    value: 'used',
   },
 ]
 
@@ -103,9 +53,15 @@ const NewSection = () => {
     console.log('Выбранный элемент:', item)
   }
 
-  const { register, handleSubmit, reset, control } = useForm({
+  const { register, handleSubmit, reset, control, watch } = useForm({
     mode: 'onChange',
   })
+
+  const listingType = watch('type')
+
+  const categories = useEquipmentCategories()
+
+  const user = useProfile()
 
   const { push } = useRouter()
 
@@ -113,7 +69,7 @@ const NewSection = () => {
     mutationKey: ['equipment'],
     mutationFn: (data: any) => equipmentService.createEquipment(data),
     onSuccess() {
-      toast.success('Successfully logged in!')
+      toast.success('Listing successfully created!')
       reset()
       // push(PLATFORM_PAGES.PROFILE)
     },
@@ -122,9 +78,50 @@ const NewSection = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<any> = (data: any) => {
-    console.log(data)
-    mutate({ owner: 1, ...data, purchase_price: 12000 })
+  // const onSubmit: SubmitHandler<any> = (data: any) => {
+  //   console.log(data)
+  //   mutate({ owner: 1, ...data, purchase_price: 12000 })
+  // }
+
+  console.log(user)
+
+  const onSubmit: SubmitHandler<any> = async (data: any) => {
+    console.log('Submitting:', data)
+
+    const listingType = listingTypes.find((type) => type.value === data.type)
+
+    const formattedData = {
+      owner: user?.data?.id,
+      ...data,
+      purchase_price: data.purchase_price | 0,
+      daily_rental_rate: data.daily_rental_rate | 0,
+      available_for_rent: data.type === 'rent',
+      available_for_sale: data.type === 'sell',
+    }
+
+    mutate(formattedData, {
+      onSuccess: async (createdEquipment: any) => {
+        // console.log('Equipment created:', createdEquipment)
+
+        // if (data.image && data.image[0]) {
+        //   const imagePayload = {
+        //     equipment: createdEquipment.data.id,
+        //     image_url: data.image[0],
+        //     image_type: 'webp',
+        //   }
+
+        //   try {
+        //     await imagesService.uploadImage(imagePayload)
+        //     toast.success('Image uploaded successfully!')
+        //   } catch (error) {
+        //     console.error('Image upload failed:', error)
+        //   }
+        // }
+
+        reset()
+        push(PLATFORM_PAGES.HOME)
+      },
+    })
   }
 
   return (
@@ -147,11 +144,7 @@ const NewSection = () => {
           <Card>
             <h1 className="new-section__title">Upload Images</h1>
             <hr />
-            {/* <div className="new-section__images">
-              <img className="new-section__image" src="assets/GSR12V-30.webp" alt="" />
-            </div> */}
-            <InputFile />
-            {/* <Button icon={<Plus size={ICON_SIZE} />} text="Add Pictures" variant="secondary" width="100%" /> */}
+            <InputFile {...register('image', { required: 'Image is required!' })} />
           </Card>
           <form onSubmit={handleSubmit(onSubmit)} className="new-section__form">
             <Card>
@@ -166,7 +159,7 @@ const NewSection = () => {
                   <div className="new-section__info-block">
                     <Label text="Category" forElement="category" />
 
-                    <Dropdown name="category" control={control} options={catalogItems} rules={{ required: 'Category is required!' }} />
+                    <Dropdown name="category" control={control} options={categories?.data?.map((cat: any) => ({ ...cat, title: cat.name, value: cat.id })) || []} rules={{ required: 'Category is required!' }} />
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
@@ -222,17 +215,19 @@ const NewSection = () => {
                     <Label text="Condition" forElement="condition" />
                     <Dropdown name="condition" control={control} options={conditions} rules={{ required: 'Condition is required!' }} />
                   </div>
-                  <div className="new-section__info-block">
-                    <Label text="Daily rental price" forElement="price" />
-                    <Input
-                      id="price"
-                      type="number"
-                      placeholder="12000"
-                      {...register('daily_rental_rate', {
-                        required: 'Rental rate is required!',
-                      })}
-                    />
-                  </div>
+                  {listingType === 'rent' && (
+                    <div className="new-section__info-block">
+                      <Label text="Daily rental price" forElement="daily_rental_rate" />
+                      <Input id="daily_rental_rate" type="number" placeholder="5000 KZT" {...register('daily_rental_rate', { required: 'Rental rate is required!' })} />
+                    </div>
+                  )}
+
+                  {listingType === 'sell' && (
+                    <div className="new-section__info-block">
+                      <Label text="Purchase price" forElement="purchase_price" />
+                      <Input id="purchase_price" type="number" placeholder="25000 KZT" {...register('purchase_price', { required: 'Purchase price is required!' })} />
+                    </div>
+                  )}
                 </div>
 
                 <div className="new-section__info-blocks">

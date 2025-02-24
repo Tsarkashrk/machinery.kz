@@ -1,7 +1,9 @@
-import { X } from 'lucide-react'
+import { Trash, X } from 'lucide-react'
 import { useState } from 'react'
 
-export default function InputFile() {
+interface InputFileProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+export default function InputFile({ onChange, ...props }: InputFileProps) {
   const [images, setImages] = useState<string[]>([])
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -9,6 +11,11 @@ export default function InputFile() {
     if (files) {
       const imageUrls = Array.from(files).map((file) => URL.createObjectURL(file))
       setImages(imageUrls)
+    }
+
+    // Если передан `onChange` (например, из `register()`), вызываем его
+    if (onChange) {
+      onChange(event)
     }
   }
 
@@ -28,13 +35,21 @@ export default function InputFile() {
             <div key={index} className="file-upload__image-container">
               <img src={src} alt={`Selected ${index}`} className="file-upload__image" />
               <button className="file-upload__delete" onClick={() => handleDeleteImage(index)}>
-                <X />
+                <Trash />
               </button>
             </div>
           ))}
         </div>
         <div className="file-upload__buttons">
-          <input className="file-upload__input" type="file" id="fileInput" multiple accept="image/*" onChange={handleFileChange} />
+          <input
+            className="file-upload__input"
+            type="file"
+            id="fileInput"
+            multiple
+            accept="image/*"
+            onChange={handleFileChange} // Объединяем `onChange`
+            {...props}
+          />
           <label className="file-upload__button" htmlFor="fileInput">
             + Add Pictures
           </label>

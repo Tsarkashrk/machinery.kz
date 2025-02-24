@@ -13,6 +13,6 @@ export const categoriesService = {
 export const useEquipmentCategories = () => {
   return useQuery({
     queryKey: ['equipmentCategories'],
-    queryFn: categoriesService.getCategories,
+    queryFn: () => categoriesService.getCategories(),
   })
 }

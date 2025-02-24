@@ -2,9 +2,10 @@
   height: 100%;
   &__wrapper {
     height: 100%;
-    padding: 2rem 3rem;
+    padding: 3rem;
+    // border: $border;
     border-radius: $border-radius-card;
     background-color: $base-color;
-    box-shadow: $ui-shadow;
+    box-shadow: $card-shadow;
   }
 }

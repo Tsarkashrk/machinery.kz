@@ -14,4 +14,10 @@ export const equipmentService = {
 
     return response
   },
+
+  async getEquipment(id: number) {
+    const response = await axiosClassic.get(`${BASE_URL}${id}/`)
+
+    return response.data
+  },
 }

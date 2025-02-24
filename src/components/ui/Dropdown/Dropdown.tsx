@@ -6,7 +6,9 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage'
 
 interface Option {
   id: number
-  title: string
+  title?: string
+  value?: string | number | undefined | null | boolean
+  name?: string
 }
 
 interface DropdownProps {
@@ -29,7 +31,7 @@ const CustomDropdown: React.FC<DropdownProps> = ({ name, control, options, place
         <div className="dropdown">
           {/* Выбранный элемент */}
           <div className={`dropdown__selected ${isOpen ? 'dropdown__selected--open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
-            {field.value ? options.find((o) => o.id === field.value)?.title : placeholder}
+            {field.value ? options.find((o) => o.value === field.value)?.title : placeholder}
             {isOpen ? <ChevronUp size={ICON_SIZE} /> : <ChevronDown size={ICON_SIZE} />}
           </div>
 
@@ -39,7 +41,8 @@ const CustomDropdown: React.FC<DropdownProps> = ({ name, control, options, place
                 key={option.id}
                 className="dropdown__option"
                 onClick={() => {
-                  field.onChange(option.id)
+                  field.onChange(option.value)
+                  console.log(option.value)
                   setIsOpen(false)
                 }}>
                 {option.title}

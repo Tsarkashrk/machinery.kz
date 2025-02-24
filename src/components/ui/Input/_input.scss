@@ -13,41 +13,24 @@
   }
 }
 
-.input-file {
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: $gap-bw-fields;
-  }
-
-  &__image {
-    max-width: 200px;
-    width: 100%;
-    border: $border;
-    border-radius: $border-radius-card;
-  }
-
-  &__input {
-    background-color: $base-color;
-    border: $border;
-  }
-}
-
 .file-upload {
   display: flex;
   flex-direction: column;
   gap: 10px;
 
   &__wrapper {
-    // display: flex;
-    // flex-direction: column;
-    // gap: $gap-bw-fields;
   }
 
   &__preview {
     display: flex;
     gap: 1rem;
     margin-bottom: $gap-bw-fields;
+  }
+
+  &__input {
+    &[type='file'] {
+      display: none;
+    }
   }
 
   &__delete {
@@ -64,6 +47,11 @@
     opacity: 90%;
     // transition: $transition;
     cursor: pointer;
+
+    &:hover {
+      background-color: $secondary-color;
+      color: $main-color;
+    }
   }
 
   &__image-container {
@@ -92,7 +80,7 @@
     gap: $gap-bw-fields;
   }
 
-  &__button {
+  &__clear {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,7 +105,7 @@
     }
   }
 
-  &__clear {
+  &__button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,8 +128,4 @@
       opacity: $opacity;
     }
   }
-}
-
-input[type='file'] {
-  display: none; /* Скрываем стандартный input */
 }

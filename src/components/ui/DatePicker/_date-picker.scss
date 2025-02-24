@@ -1,0 +1,86 @@
+.datepicker-container {
+  text-align: center;
+  padding: 1.2rem;
+  border: $border;
+  border-radius: $border-radius-ui;
+  background: #fff;
+  box-shadow: $ui-shadow;
+  font-family: $font-geist-sans !important;
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.selected-day {
+  color: $base-dark-color !important;
+  border-radius: 5px;
+}
+
+.selected-dates {
+  font-family: $font-geist-sans;
+  font-weight: $font-medium;
+  margin-top: 1rem;
+}
+
+.react-calendar {
+  width: 100%;
+  border-radius: 8px;
+  border: none !important;
+  overflow: hidden;
+  font-family: $font-geist-sans !important;
+
+  &__navigation {
+    &__label {
+      border-radius: $border-radius-ui !important;
+
+      &__labelText {
+        font-family: $font-geist-sans !important;
+        border-radius: $border-radius-ui !important;
+      }
+    }
+
+    &__arrow {
+      border-radius: $border-radius-ui;
+    }
+  }
+
+  &__month-view {
+    &__days {
+      border-radius: $border-radius-ui !important;
+      overflow: hidden !important;
+    }
+  }
+
+  &__tile {
+    color: $base-dark-color;
+    font-family: $font-geist-sans !important;
+
+    &:focus {
+      border-radius: $border-radius-ui !important;
+    }
+
+    &:hover {
+      border-radius: $border-radius-ui !important;
+    }
+
+    &--active {
+      background-color: $zinc-200 !important;
+      border-radius: $border-radius-ui !important;
+    }
+    &--rangeStart,
+    &--rangeEnd {
+      background-color: $main-color !important;
+      border-radius: $border-radius-ui !important;
+      color: $base-color !important;
+    }
+
+    &--now {
+      background-color: orange !important;
+      border-radius: $border-radius-ui;
+      color: $base-color !important;
+    }
+  }
+}
