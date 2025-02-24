@@ -1,5 +1,9 @@
+'use client'
+
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import Carousel from '../Carousel/Carousel'
+import { equipmentService } from '@/services/equipment.service'
+import { useQuery } from '@tanstack/react-query'
 
 const carouselItems = [
   {
@@ -30,19 +34,26 @@ const smallCarouselItems = [
     img: '/assets/equipment1.webp',
     title: 'Super price',
     description: 'Pneumatic wrench SUMAKE ST-C541K with a set of heads 1/2" 434Hm 10 pcs. 4118210',
-    link: `${PLATFORM_PAGES.CATALOG}/340`,
+    link: `${PLATFORM_PAGES.PRODUCT}/340`,
     price: '34.000',
   },
   {
     img: '/assets/equipment1.webp',
     title: 'Super price',
     description: 'Pneumatic wrench SUMAKE ST-C541K with a set of heads 1/2" 434Hm 10 pcs. 4118210',
-    link: `${PLATFORM_PAGES.CATALOG}/349`,
+    link: `${PLATFORM_PAGES.PRODUCT}/349`,
     price: '34.000',
   },
 ]
 
 const Hero = () => {
+  const equipmentsData = useQuery({
+    queryKey: ['equipment'],
+    queryFn: () => equipmentService.getAllEquipments(),
+  })
+
+  console.log(equipmentsData.data)
+
   return (
     <section className="hero">
       <div className="hero__wrapper">
@@ -50,7 +61,6 @@ const Hero = () => {
           <Carousel carouselItems={carouselItems} variant="banner" />
           <Carousel carouselItems={smallCarouselItems} />
         </div>
-        
       </div>
     </section>
   )

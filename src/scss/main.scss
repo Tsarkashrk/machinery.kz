@@ -9,6 +9,7 @@
 @import '../app/new/new';
 @import '../app/catalog/catalog';
 @import '../app/catalog/[slug]/catalog-slug';
+@import '../app/product/[id]/product-slug';
 @import '../app/home';
 
 // Components
@@ -29,6 +30,7 @@
 // UI
 
 @import '../components/ui/Buttons/button';
+@import '../components/ui/ErrorMessage/error-message';
 @import '../components/ui/Dropdown/dropdown';
 @import '../components/ui/Avatar/avatar';
 @import '../components/ui/TextMuted/text-muted';

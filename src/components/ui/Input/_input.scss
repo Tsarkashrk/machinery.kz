@@ -12,3 +12,136 @@
     color: $zinc-400;
   }
 }
+
+.input-file {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-bw-fields;
+  }
+
+  &__image {
+    max-width: 200px;
+    width: 100%;
+    border: $border;
+    border-radius: $border-radius-card;
+  }
+
+  &__input {
+    background-color: $base-color;
+    border: $border;
+  }
+}
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__wrapper {
+    // display: flex;
+    // flex-direction: column;
+    // gap: $gap-bw-fields;
+  }
+
+  &__preview {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: $gap-bw-fields;
+  }
+
+  &__delete {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    width: 5rem;
+    border: none;
+    border-radius: 100rem;
+    background-color: $main-color;
+    color: $base-color;
+    opacity: 90%;
+    // transition: $transition;
+    cursor: pointer;
+  }
+
+  &__image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      .file-upload__delete {
+        display: flex;
+      }
+    }
+  }
+
+  &__image {
+    max-width: 20rem;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    border: $border;
+    border-radius: $border-radius-card;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: $gap-bw-fields;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-height: 4.1rem;
+    padding: $button-padding;
+    border: none;
+    border-radius: $border-radius-ui;
+    font-family: $font-geist-sans;
+    font-size: $font-xs;
+    font-weight: $font-medium;
+    color: $base-color;
+    transition: $transition;
+    cursor: pointer;
+    background-color: #ecedff;
+    color: #7e90e4;
+    font-weight: $font-semibold;
+
+    &:hover {
+      background-color: #dddefb;
+    }
+  }
+
+  &__clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-height: 4.1rem;
+    padding: $button-padding;
+    border: none;
+    border-radius: $border-radius-ui;
+    font-family: $font-geist-sans;
+    font-size: $font-xs;
+    font-weight: $font-medium;
+    color: $base-color;
+    transition: $transition;
+    cursor: pointer;
+    color: $base-color;
+    background-color: #7e90e4;
+
+    &:hover {
+      opacity: $opacity;
+    }
+  }
+}
+
+input[type='file'] {
+  display: none; /* Скрываем стандартный input */
+}

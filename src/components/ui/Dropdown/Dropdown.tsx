@@ -2,6 +2,7 @@ import { ICON_SIZE } from '@/constants/constants'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import React, { useState } from 'react'
 import { Controller } from 'react-hook-form'
+import ErrorMessage from '../ErrorMessage/ErrorMessage'
 
 interface Option {
   id: number
@@ -46,7 +47,7 @@ const CustomDropdown: React.FC<DropdownProps> = ({ name, control, options, place
             ))}
           </ul>
 
-          {fieldState.error && <span className="dropdown__error-text">{fieldState.error.message}</span>}
+          {fieldState.error && <ErrorMessage>{fieldState.error.message}</ErrorMessage>}
         </div>
       )}
     />

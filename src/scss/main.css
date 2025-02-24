@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -209,6 +210,12 @@ hr {
 .catalog-slug__prices {
   display: flex;
   gap: 1rem;
+}
+
+.product-slug__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
 }
 
 .home-section__wrapper {
@@ -634,6 +641,10 @@ hr {
   cursor: pointer;
 }
 
+.error-message {
+  color: red;
+}
+
 @keyframes dropdownFadeIn {
   from {
     opacity: 0;
@@ -679,7 +690,7 @@ hr {
 }
 .dropdown__list {
   position: absolute;
-  top: 100%;
+  top: 4rem;
   left: 0;
   width: 100%;
   background: white;
@@ -766,4 +777,115 @@ hr {
 }
 .input::placeholder {
   color: #a1a1aa;
+}
+
+.input-file__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.input-file__image {
+  max-width: 200px;
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.6rem;
+}
+.input-file__input {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+}
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.file-upload__preview {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.file-upload__delete {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  width: 5rem;
+  border: none;
+  border-radius: 100rem;
+  background-color: #7e90e4;
+  color: white;
+  opacity: 90%;
+  cursor: pointer;
+}
+.file-upload__image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.file-upload__image-container:hover .file-upload__delete {
+  display: flex;
+}
+.file-upload__image {
+  max-width: 20rem;
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.6rem;
+}
+.file-upload__buttons {
+  display: flex;
+  gap: 2rem;
+}
+.file-upload__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-height: 4.1rem;
+  padding: 1.15rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  font-family: var(--font-geist-sans);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: white;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  background-color: #ecedff;
+  color: #7e90e4;
+  font-weight: 600;
+}
+.file-upload__button:hover {
+  background-color: #dddefb;
+}
+.file-upload__clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-height: 4.1rem;
+  padding: 1.15rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  font-family: var(--font-geist-sans);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: white;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  color: white;
+  background-color: #7e90e4;
+}
+.file-upload__clear:hover {
+  opacity: 80%;
+}
+
+input[type=file] {
+  display: none; /* Скрываем стандартный input */
 }/*# sourceMappingURL=main.css.map */

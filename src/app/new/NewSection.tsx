@@ -17,6 +17,7 @@ import { equipmentService } from '@/services/equipment.service'
 import { toast } from 'sonner'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import Dropdown from '@/components/ui/Dropdown/Dropdown'
+import InputFile from '@/components/ui/Input/InputFile'
 
 const listingTypes = [
   {
@@ -146,10 +147,11 @@ const NewSection = () => {
           <Card>
             <h1 className="new-section__title">Upload Images</h1>
             <hr />
-            <div className="new-section__images">
+            {/* <div className="new-section__images">
               <img className="new-section__image" src="assets/GSR12V-30.webp" alt="" />
-            </div>
-            <Button icon={<Plus size={ICON_SIZE} />} text="Add Pictures" variant="secondary" width="100%" />
+            </div> */}
+            <InputFile />
+            {/* <Button icon={<Plus size={ICON_SIZE} />} text="Add Pictures" variant="secondary" width="100%" /> */}
           </Card>
           <form onSubmit={handleSubmit(onSubmit)} className="new-section__form">
             <Card>
@@ -207,7 +209,7 @@ const NewSection = () => {
                     <Label text="Year" forElement="year" />
                     <Input
                       id="year"
-                      type="text"
+                      type="number"
                       placeholder="2012"
                       {...register('year', {
                         required: 'Year is required!',

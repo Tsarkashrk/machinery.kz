@@ -29,7 +29,7 @@ interface ICarousel {
   variant?: 'banner' | 'promo' | 'default'
 }
 
-const Carousel = ({ carouselItems, variant = 'default' }: ICarousel) => {
+const Carousel = ({ carouselItems, variant = 'default' }: any) => {
   return (
     <Swiper
       className="carousel"
@@ -43,7 +43,7 @@ const Carousel = ({ carouselItems, variant = 'default' }: ICarousel) => {
         disableOnInteraction: true,
       }}
       modules={[Autoplay, Pagination, Navigation]}>
-      {carouselItems.map((item) => (
+      {carouselItems.map((item: any) => (
         <SwiperSlide className="carousel__slide" key={item.link} style={{ width: '100%' }}>
           {variant === 'banner' ? <BannerCard cardData={item} /> : variant === 'promo' ? <PromoCard cardData={item} /> : <PromoCard cardData={item} />}
         </SwiperSlide>

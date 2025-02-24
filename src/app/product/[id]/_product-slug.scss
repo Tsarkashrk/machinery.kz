@@ -1,0 +1,7 @@
+.product-slug {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: $gap-bw-fields;
+  }
+}

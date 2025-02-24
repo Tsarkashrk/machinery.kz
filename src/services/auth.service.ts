@@ -7,13 +7,6 @@ import { removeFromStorage, saveTokenStorage } from './auth-token.service'
 const BASE_URL = '/auth'
 
 export const authService = {
-  // async main(type: 'login' | 'register/', data: IAuthForm) {
-  //   const response = await axiosClassic.post<IAuthResponse>(`/auth/${type}`, data)
-
-  //   if (response.data.access) saveTokenStorage(response.data.access)
-
-  //   return response
-  // },
 
   async register(data: IAuthForm) {
     const response = await axiosClassic.post<IAuthResponse>(`${BASE_URL}/register/`, data)

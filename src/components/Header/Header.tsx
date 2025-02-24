@@ -22,7 +22,7 @@ const Header = () => {
         </Link>
         <Navigation />
         <div className="header__buttons">
-          <Button icon={<Plus size={ICON_SIZE} />} link={PLATFORM_PAGES.NEW} variant="default" text="New listing" isLink />
+          <Button icon={<Plus size={ICON_SIZE} />} link={PLATFORM_PAGES.NEW} variant="default" text="New Listing" isLink />
 
           {/* <Button icon={<Globe size={ICON_SIZE} />} text="EN" variant="outlined" /> */}
 
