@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import '../scss/main.css'
-import Header from '@/components/Header/Header'
+import Header from '@/shared/components/Header/Header'
 import { SITE_NAME } from '@/constants/seo.constant'
 import { Providers } from './providers'
 import { Toaster } from 'sonner'
-import Footer from '@/components/Footer/Footer'
+import Footer from '@/shared/components/Footer/Footer'
 
 const gilroyFont = localFont({
   src: [
@@ -72,7 +72,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     default: SITE_NAME,
-    template: `%s | ${SITE_NAME}`,
+    template: `%s - ${SITE_NAME}`,
   },
   description: 'Best one for purchase and rent',
 }
