@@ -2,13 +2,33 @@
   background-color: $base-dark-color;
 
   &__wrapper {
+    font-family: $font-geist-mono;
+    color: $base-color;
+  }
+
+  &__top {
+    max-width: $max-width;
+    padding: 1rem 3rem 0;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: $font-xxs;
+  }
+
+  &__line {
+    height: 0.1rem;
+    margin: 1rem 0;
+    background-color: rgb(71, 71, 71);
+  }
+
+  &__bottom {
+    padding: 0 3rem 1rem;
+    max-width: $max-width;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: $max-width;
-    margin: 0 auto;
-    padding: 1.4rem 3rem;
-    font-family: $font-geist-mono;
   }
 
   &__logo {
@@ -22,6 +42,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: $gap-bw-fields;;
+    gap: 1rem;
   }
 }

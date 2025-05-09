@@ -312,7 +312,7 @@ hr {
   gap: 1rem;
 }
 .product-slug__tab {
-  padding: 1.15rem 2rem;
+  padding: 1.15rem 1.5rem;
   border: 1px solid #e5e7eb;
   border-radius: 1rem;
   background-color: white;
@@ -358,13 +358,11 @@ hr {
   background-color: #030612;
 }
 .navigation__link {
-  color: white;
-}
-.navigation__link {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.15rem 2rem;
+  max-height: 3.7rem;
+  padding: 1.15rem 1.5rem;
   border-radius: 1rem;
   background-color: transparent;
   color: #8e91a0;
@@ -386,13 +384,30 @@ hr {
   background-color: #030612;
 }
 .header__wrapper {
+  font-family: var(--font-geist-mono);
+  color: white;
+}
+.header__top {
+  max-width: 1400px;
+  padding: 1rem 3rem 0;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+}
+.header__line {
+  height: 0.1rem;
+  margin: 1rem 0;
+  background-color: rgb(71, 71, 71);
+}
+.header__bottom {
+  padding: 0 3rem 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1.4rem 3rem;
-  font-family: var(--font-geist-mono);
 }
 .header__logo {
   margin-right: 5rem;
@@ -404,7 +419,7 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .footer {
@@ -668,8 +683,8 @@ hr {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  max-height: 4.1rem;
-  padding: 1.15rem 2rem;
+  max-height: 3.7rem;
+  padding: 1.15rem 1.5rem;
   border: none;
   border-radius: 1rem;
   font-family: var(--font-geist-sans);
@@ -818,6 +833,8 @@ hr {
   opacity: 0;
   transform: translateY(-10px);
   pointer-events: none;
+  max-height: 20rem;
+  overflow-y: scroll;
 }
 .dropdown__list--open {
   animation: dropdownFadeIn 0.15s ease-in-out forwards;
@@ -914,8 +931,9 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 4.1rem;
-  width: 4.1rem;
+  text-transform: capitalize;
+  height: 3.7rem;
+  width: 3.7rem;
   background-color: white;
   border-radius: 100rem;
   transition: all 0.1s ease-in-out;
@@ -1025,7 +1043,7 @@ h3 {
   gap: 1rem;
   width: 100%;
   max-height: 4.1rem;
-  padding: 1.15rem 2rem;
+  padding: 1.15rem 1.5rem;
   border: none;
   border-radius: 1rem;
   font-family: var(--font-geist-sans);
@@ -1048,7 +1066,7 @@ h3 {
   gap: 1rem;
   width: 100%;
   max-height: 4.1rem;
-  padding: 1.15rem 2rem;
+  padding: 1.15rem 1.5rem;
   border: none;
   border-radius: 1rem;
   font-family: var(--font-geist-sans);

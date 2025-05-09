@@ -38,7 +38,7 @@ const TABS = [
   { id: 'rental_terms', label: 'Rental Terms' },
 ]
 
-const ProductSlug = () => {
+const ProductIdPage = () => {
   const [selectedTab, setSelectedTab] = useState('description')
   const [selectedDates, setSelectedDates] = useState<[Date | null, Date | null]>([null, null])
   const [selectedImage, setSelectedImage] = useState(product[0].img)
@@ -241,4 +241,4 @@ const ProductSlug = () => {
   )
 }
 
-export default ProductSlug
+export default ProductIdPage

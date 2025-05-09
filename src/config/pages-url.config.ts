@@ -13,6 +13,7 @@ class PLATFORM {
   MESSAGES = `${this.root}messages`
   PRODUCT = `${this.root}product`
   FAVORITES = `${this.root}favorites`
+  BRANDS = `${this.root}brands`
 }
 
 export const PLATFORM_PAGES = new PLATFORM()

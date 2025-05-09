@@ -1,11 +1,7 @@
 import FavoritesSection from './FavoritesSection'
 
 const FavoritesPage = () => {
-  return (
-    <div>
-      <FavoritesSection />
-    </div>
-  )
+  return <FavoritesSection />
 }
 
 export default FavoritesPage

@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 4.1rem;
-  width: 4.1rem;
+  text-transform: capitalize;
+  height: 3.7rem;
+  width: 3.7rem;
   background-color: $base-color;
   border-radius: 100rem;
   transition: $transition;
@@ -12,10 +13,7 @@
     opacity: $opacity;
     transition: $transition;
   }
-
-  &__wrapper {
-  }
-
+        
   &__letter {
     font-weight: $font-semibold;
     font-size: 1.6rem;

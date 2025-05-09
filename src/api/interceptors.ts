@@ -1,14 +1,12 @@
 'use client'
 
 import axios, { type CreateAxiosDefaults } from 'axios'
-import { useRouter } from 'next/navigation'
 
 import { errorCatch } from './error'
 import { getAccessToken, removeFromStorage } from '@/services/auth-token.service'
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
 
 const options: CreateAxiosDefaults = {
-  baseURL: 'http://89.169.162.108:8084/api/v1',
+  baseURL: 'http://194.110.54.189:8084/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },

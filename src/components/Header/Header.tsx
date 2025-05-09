@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-import { UserPen, Plus, Globe } from 'lucide-react'
+import { UserPen, Plus, Globe, MapPin } from 'lucide-react'
 
 import Navigation from '../Navigation/Navigation'
 import Button from '../ui/Buttons/Button'
@@ -17,16 +17,22 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header__wrapper">
-        <Link className="header__logo" href={PLATFORM_PAGES.HOME}>
-          mchnry_kz
-        </Link>
-        <Navigation />
-        <div className="header__buttons">
-          <Button icon={<Plus size={ICON_SIZE} />} link={PLATFORM_PAGES.NEW} variant="default" text="New Listing" isLink />
+        <div className="header__top">
+          <MapPin size={ICON_SIZE} /> Astana
+        </div>
+        <div className="header__line" />
+        <div className="header__bottom">
+          <Link className="header__logo" href={PLATFORM_PAGES.HOME}>
+            mchnry_kz
+          </Link>
+          <Navigation />
+          <div className="header__buttons">
+            <Button icon={<Plus size={ICON_SIZE} />} link={PLATFORM_PAGES.NEW} variant="default" text="New Listing" isLink />
 
-          {/* <Button icon={<Globe size={ICON_SIZE} />} text="EN" variant="outlined" /> */}
+            {/* <Button icon={<Globe size={ICON_SIZE} />} text="EN" variant="outlined" /> */}
 
-          {data ? <Avatar username={data?.username} link={PLATFORM_PAGES.PROFILE} /> : <Button isLink text="Log in or Sign up" link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
+            {data ? <Avatar username={data?.username} link={PLATFORM_PAGES.PROFILE} /> : <Button isLink text="Log in or Sign up" link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
+          </div>
         </div>
       </div>
     </header>

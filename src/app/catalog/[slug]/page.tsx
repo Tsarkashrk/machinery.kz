@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   title: 'Slug'
 }
 
-const page = () => {
+const CatalogSlugPage = () => {
   return <CatalogSlug />
 }
 
-export default page
+export default CatalogSlugPage

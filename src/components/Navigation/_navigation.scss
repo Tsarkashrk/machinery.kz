@@ -13,13 +13,10 @@
   }
 
   &__link {
-    color: $base-color;
-  }
-
-  &__link {
     display: flex;
     align-items: center;
     gap: 1rem;
+    max-height: 3.7rem;
     padding: $button-padding;
     border-radius: $border-radius-ui;
     background-color: transparent;
