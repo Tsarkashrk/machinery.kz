@@ -1,7 +1,7 @@
 import Card from '@/shared/components/Cards/Card/Card'
 import ProductCard from '@/shared/components/Cards/ProductCard/ProductCard'
 import Hero from '@/shared/components/Hero/Hero'
-import React from 'react'
+import { useTranslations } from 'next-intl'
 
 const popular = [
   {
@@ -18,13 +18,14 @@ const popular = [
   },
 ]
 
-const HomeSection = () => {
+export default function HomeSection() {
+  const t = useTranslations('HomePage')
   return (
     <div className="home-section">
       <div className="home-section__wrapper">
         <Hero />
         <div className="home-section__popular">
-          <h1 className="home-section__title">Popular equipment</h1>
+          <h1 className="home-section__title">{t('popular-equipment')}</h1>
           <div className="home-section__equipments">
             {popular.map((item) => (
               <ProductCard key={item.link} title={item.title} price={item.price} image={item.image} link={item.link} />
@@ -35,5 +36,3 @@ const HomeSection = () => {
     </div>
   )
 }
-
-export default HomeSection

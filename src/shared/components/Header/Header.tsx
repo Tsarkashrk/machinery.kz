@@ -37,7 +37,7 @@ const Header = () => {
             {/* <Button icon={<Globe size={ICON_SIZE} />} text="EN" variant="outlined" /> */}
             <div className="header__actions">
               {actionLinks.map((item) => (
-                <Link href={item.link} className={`header__link ${path === item.link && 'header__link--active'}`}>
+                <Link key={item.link} href={item.link} className={`header__link ${path === item.link && 'header__link--active'}`}>
                   {item.icon}
                 </Link>
               ))}

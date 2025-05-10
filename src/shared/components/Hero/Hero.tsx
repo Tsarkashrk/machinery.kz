@@ -52,8 +52,6 @@ const Hero = () => {
     queryFn: () => equipmentApi.getAllEquipment(),
   })
 
-  console.log(equipmentsData.data)
-
   return (
     <section className="hero">
       <div className="hero__wrapper">

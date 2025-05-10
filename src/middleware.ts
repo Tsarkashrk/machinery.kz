@@ -1,29 +1,35 @@
-import { NextResponse, NextRequest } from 'next/server'
-import { EnumTokens } from './shared/api'
-import { PLATFORM_PAGES } from './shared/config/pages-url.config'
+// middleware.ts
+import { NextRequest, NextResponse } from 'next/server'
+import createIntlMiddleware from 'next-intl/middleware'
+import { EnumTokens } from '@/shared/api'
+import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
+import { routing } from './i18n/routing'
 
-export async function middleware(request: NextRequest, response: NextResponse) {
-  const { url, cookies } = request
+// Создаём middleware от next-intl
+const intlMiddleware = createIntlMiddleware(routing)
 
-  const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value
+export async function middleware(request: NextRequest) {
+  const response = intlMiddleware(request)
 
-  const isAuthPage = url.includes('/auth')
+  const { pathname } = request.nextUrl
+  const refreshToken = request.cookies.get(EnumTokens.REFRESH_TOKEN)?.value
+
+  const isAuthPage = pathname.startsWith('/auth')
+  const protectedRoutes = ['/profile', '/new']
 
   if (isAuthPage && refreshToken) {
-    return NextResponse.redirect(new URL(PLATFORM_PAGES.HOME, url))
+    return NextResponse.redirect(new URL(PLATFORM_PAGES.HOME, request.url))
   }
 
-  if (isAuthPage) {
-    return NextResponse.next()
+  const isProtected = protectedRoutes.some((route) => pathname.includes(route))
+  if (isProtected && !refreshToken) {
+    return NextResponse.redirect(new URL(PLATFORM_PAGES.LOGIN, request.url))
   }
 
-  if (!refreshToken) {
-    return NextResponse.redirect(new URL(PLATFORM_PAGES.LOGIN, url))
-  }
-
-  return NextResponse.next()
+  // Возвращаем результат intlMiddleware, если нет редиректов
+  return response
 }
 
 export const config = {
-  matcher: ['/auth/:path*', '/new', '/profile'],
+  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
 }
