@@ -5,35 +5,35 @@
 
 // Pages
 
-@import '../app/profile/profile';
-@import '../app/new/new';
-@import '../app/catalog/catalog';
-@import '../app/catalog/[slug]/catalog-slug';
-@import '../app/product/[id]/product-slug';
-@import '../app/home';
+@import '../app/(pages)/profile/profile';
+@import '../app/(pages)/new/new';
+@import '../app/(pages)/catalog/catalog';
+@import '../app/(pages)/catalog/[slug]/catalog-slug';
+@import '../app/(pages)/product/[id]/product-slug';
+@import '../app/(pages)/home';
 
 // Components
 
-@import '../components/Navigation/navigation';
-@import '../components/Header/header';
-@import '../components/Footer/footer';
-@import '../components/AuthForm/auth-form';
-@import '../components/Hero/hero';
-@import '../components/Carousel/carousel';
-@import '../components/Cards/CarouselCard/carousel-card';
-@import '../components/Cards/Card/card';
-@import '../components/Cards/BannerCard/banner-card';
-@import '../components/Cards/PromoCard/promo-card';
-@import '../components/Cards/ProductCard/product-card';
-@import '../components/Sidebar/sidebar';
+@import '../shared/components/Navigation/navigation';
+@import '../shared/components/Header/header';
+@import '../shared/components/Footer/footer';
+@import '../shared/components/AuthForm/auth-form';
+@import '../shared/components/Hero/hero';
+@import '../shared/components/Carousel/carousel';
+@import '../shared/components/Cards/CarouselCard/carousel-card';
+@import '../shared/components/Cards/Card/card';
+@import '../shared/components/Cards/BannerCard/banner-card';
+@import '../shared/components/Cards/PromoCard/promo-card';
+@import '../shared/components/Cards/ProductCard/product-card';
+@import '../shared/components/Sidebar/sidebar';
 
 // UI
 
-@import '../components/ui/Buttons/button';
-@import '../components/ui/ErrorMessage/error-message';
-@import '../components/ui/Dropdown/dropdown';
-@import '../components/ui/DatePicker/date-picker';
-@import '../components/ui/Avatar/avatar';
-@import '../components/ui/TextMuted/text-muted';
-@import '../components/ui/Label/label';
-@import '../components/ui/Input/input';
+@import '../shared/ui/Buttons/button';
+@import '../shared/ui/ErrorMessage/error-message';
+@import '../shared/ui/Dropdown/dropdown';
+@import '../shared/ui/DatePicker/date-picker';
+@import '../shared/ui/Avatar/avatar';
+@import '../shared/ui/TextMuted/text-muted';
+@import '../shared/ui/Label/label';
+@import '../shared/ui/Input/input';

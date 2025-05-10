@@ -5,23 +5,23 @@ import Input from '@/shared/ui/Input/Input'
 import Label from '@/shared/ui/Label/Label'
 import TextMuted from '@/shared/ui/TextMuted/TextMuted'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
-import { authService } from '@/services/auth.service'
-import { IAuthForm } from '@/types/auth.type'
+import { authApi } from '@/shared/api'
+import { IAuthRegisterRequest } from '@/entities/auth'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { toast } from 'sonner'
 
 const RegisterSection = () => {
-  const { register, handleSubmit, reset } = useForm<IAuthForm>({
+  const { register, handleSubmit, reset } = useForm<IAuthRegisterRequest>({
     mode: 'onChange',
   })
 
   const { push } = useRouter()
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationKey: ['register'],
-    mutationFn: (data: IAuthForm) => authService.register(data),
+    mutationFn: (data: IAuthRegisterRequest) => authApi.register(data),
     onSuccess() {
       toast.success('Successfully registered!')
       reset()
@@ -32,7 +32,7 @@ const RegisterSection = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<IAuthForm> = (data) => {
+  const onSubmit: SubmitHandler<IAuthRegisterRequest> = (data) => {
     mutate(data)
   }
 
@@ -76,10 +76,10 @@ const RegisterSection = () => {
               })}
             />
           </div>
-          <Button text="Sign up" variant="default" />
+          <Button text="Sign up" variant="default" isLoading={isPending} />
         </form>
         <p className="auth-form__footer">
-          Already have an account? <Button isLink link={PLATFORM_PAGES.LOGIN} variant="underlined" text="Log in" />
+          Already have an account? <Button link={PLATFORM_PAGES.LOGIN} variant="underlined" text="Log in" />
         </p>
       </div>
     </section>

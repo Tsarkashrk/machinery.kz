@@ -1,4 +1,4 @@
-import { usersApi } from '@/shared/api/users.api'
+import { usersApi } from '@/shared/api'
 import { useQuery } from '@tanstack/react-query'
 
 export const useUsersList = () => {

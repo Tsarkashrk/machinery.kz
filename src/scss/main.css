@@ -31,7 +31,7 @@ main {
   min-height: calc(100vh - 6.9rem);
   height: 100%;
   margin: 0 auto;
-  max-width: 1400px;
+  max-width: 1620px;
   padding: 3rem;
 }
 
@@ -388,7 +388,7 @@ hr {
   color: white;
 }
 .header__top {
-  max-width: 1400px;
+  max-width: 1620px;
   padding: 1rem 3rem 0;
   margin: 0 auto;
   display: flex;
@@ -403,7 +403,7 @@ hr {
 }
 .header__bottom {
   padding: 0 3rem 1rem;
-  max-width: 1400px;
+  max-width: 1620px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -427,7 +427,7 @@ hr {
   color: white;
 }
 .footer__wrapper {
-  max-width: 1400px;
+  max-width: 1620px;
   padding: 1.4rem 3rem;
   margin: 0 auto;
 }

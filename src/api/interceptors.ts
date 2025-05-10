@@ -3,7 +3,7 @@
 import axios, { type CreateAxiosDefaults } from 'axios'
 
 import { errorCatch } from './error'
-import { getAccessToken, removeFromStorage } from '@/services/auth-token.service'
+import { getAccessToken, removeFromStorage } from '@/shared/api'
 
 const options: CreateAxiosDefaults = {
   baseURL: 'http://194.110.54.189:8084/api/v1',

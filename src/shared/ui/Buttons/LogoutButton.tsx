@@ -5,7 +5,7 @@ import { LogOut } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { ICON_SIZE } from '@/constants/constants'
-import { authService } from '@/services/auth.service'
+import { authApi } from '@/shared/api'
 import Button from './Button'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 
@@ -13,22 +13,22 @@ export function LogoutButton() {
   const router = useRouter()
   const queryClient = useQueryClient()
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation<void, Error>({
     mutationKey: ['logout'],
-    mutationFn: () => authService.logout(),
+    mutationFn: () => authApi.logout(),
     onSuccess: () => {
       queryClient.setQueryData(['profile'], null)
-      queryClient.removeQueries()
+      queryClient.removeQueries({ queryKey: ['profile'] })
       router.push(PLATFORM_PAGES.HOME)
+    },
+    onError: (error) => {
+      console.error('Logout failed:', error)
     },
   })
 
   return (
     <div className="logout">
-      {/* <button className="logout__button" onClick={() => mutate()}>
-        Logout
-      </button> */}
-      <Button variant="outlined" icon={<LogOut size={ICON_SIZE} />} onClick={() => mutate()} text="Logout" />
+      <Button variant="outlined" icon={<LogOut size={ICON_SIZE} />} onClick={() => mutate()} text={isPending ? 'Logging out...' : 'Logout'} isLoading={isPending} />
     </div>
   )
 }

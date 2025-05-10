@@ -1,21 +1,20 @@
-import { IAuthForm, IAuthResponse } from '@/types/auth.type'
+import { IAuth, IAuthLoginRequest, IAuthRegisterRequest } from '@/entities/auth'
 
 import { axiosClassic } from '@/api/interceptors'
 
-import { removeFromStorage, saveTokenStorage } from './auth-token.service'
+import { removeFromStorage, saveTokenStorage } from './auth-token.api'
 
 const BASE_URL = '/auth'
 
-export const authService = {
-
-  async register(data: IAuthForm) {
-    const response = await axiosClassic.post<IAuthResponse>(`${BASE_URL}/register/`, data)
+export const authApi = {
+  async register(data: IAuthRegisterRequest) {
+    const response = await axiosClassic.post<IAuth>(`${BASE_URL}/register/`, data)
 
     return response
   },
 
-  async login(data: IAuthForm) {
-    const response = await axiosClassic.post<IAuthResponse>(`${BASE_URL}/login/`, data)
+  async login(data: IAuthLoginRequest) {
+    const response = await axiosClassic.post<IAuth>(`${BASE_URL}/login/`, data)
 
     if (response.data.access && response.data.refresh) saveTokenStorage(response.data.access, response.data.refresh)
 

@@ -2,7 +2,7 @@
 
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import Carousel from '../Carousel/Carousel'
-import { equipmentService } from '@/services/equipment.service'
+import { equipmentApi } from '@/shared/api'
 import { useQuery } from '@tanstack/react-query'
 
 const carouselItems = [
@@ -49,7 +49,7 @@ const smallCarouselItems = [
 const Hero = () => {
   const equipmentsData = useQuery({
     queryKey: ['equipment'],
-    queryFn: () => equipmentService.getAllEquipments(),
+    queryFn: () => equipmentApi.getAllEquipment(),
   })
 
   console.log(equipmentsData.data)

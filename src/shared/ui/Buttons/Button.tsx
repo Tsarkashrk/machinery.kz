@@ -17,7 +17,7 @@ interface IButton {
   onClick?: () => void
 }
 
-const Button = ({ isLoading, width, textStart = 'middle', link = '', text, icon, variant = 'default', onClick, type }: IButton) => {
+const Button = ({ isLoading = false, width, textStart = 'middle', link = '', text, icon, variant = 'default', onClick, type }: IButton) => {
   const pathname = usePathname()
   const isActive = link && pathname.startsWith(link)
 
@@ -39,7 +39,7 @@ const Button = ({ isLoading, width, textStart = 'middle', link = '', text, icon,
       {ButtonContent}
     </Link>
   ) : (
-    <button type={type} className={`${className} ${textStart && 'button--' + textStart}`} onClick={onClick} style={{ width: `${width}` }}>
+    <button disabled={isLoading} type={type} className={`${className} ${textStart && 'button--' + textStart}`} onClick={onClick} style={{ width: `${width}` }}>
       {ButtonContent}
     </button>
   )

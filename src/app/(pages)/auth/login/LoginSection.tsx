@@ -5,23 +5,26 @@ import Input from '@/shared/ui/Input/Input'
 import Label from '@/shared/ui/Label/Label'
 import TextMuted from '@/shared/ui/TextMuted/TextMuted'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
-import { authService } from '@/services/auth.service'
-import { IAuthForm } from '@/types/auth.type'
+import { authApi } from '@/shared/api'
+import { IAuthLoginRequest } from '@/entities/auth'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 const LoginSection = () => {
-  const { register, handleSubmit, reset } = useForm<IAuthForm>({
-    mode: 'onChange',
-  })
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<IAuthLoginRequest>({ mode: 'onChange' })
 
   const { push } = useRouter()
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationKey: ['login'],
-    mutationFn: (data: IAuthForm) => authService.login(data),
+    mutationFn: (data: IAuthLoginRequest) => authApi.login(data),
     onSuccess() {
       toast.success('Successfully logged in!')
       reset()
@@ -32,7 +35,7 @@ const LoginSection = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<IAuthForm> = (data) => {
+  const onSubmit: SubmitHandler<IAuthLoginRequest> = (data) => {
     mutate(data)
   }
 
@@ -43,32 +46,23 @@ const LoginSection = () => {
           <h1>Log in to your account</h1>
           <TextMuted text="Enter your credentials below to log in to your account" />
         </div>
+
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
           <div className="auth-form__credentials">
             <Label text="Email" forElement="email" />
-            <Input
-              type="email"
-              id="email"
-              placeholder="mchnry@ex.com"
-              {...register('email', {
-                required: 'Email is required!',
-              })}
-            />
+            <Input type="email" id="email" placeholder="mchnry@ex.com" {...register('email', { required: 'Email is required!' })} />
           </div>
+
           <div className="auth-form__credentials">
             <Label text="Password" forElement="password" />
-            <Input
-              type="password"
-              id="password"
-              {...register('password', {
-                required: 'Password is required!',
-              })}
-            />
+            <Input type="password" id="password" {...register('password', { required: 'Password is required!' })} />
           </div>
-          <Button text="Log in" variant="default" />
+
+          <Button text="Log in" variant="default" type="submit" isLoading={isPending} />
         </form>
+
         <p className="auth-form__footer">
-          Don't have an account? <Button isLink link={PLATFORM_PAGES.REGISTER} variant="underlined" text="Sign up" />
+          Don't have an account? <Button link={PLATFORM_PAGES.REGISTER} variant="underlined" text="Sign up" />
         </p>
       </div>
     </section>

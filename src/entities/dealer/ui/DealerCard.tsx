@@ -1,8 +1,6 @@
 import { IUser } from '@/types/user.type'
 import React from 'react'
 
-const DealerCard = () => {
-  return <div>DealerCard</div>
+export const DealerCard = ({ dealer }: any) => {
+  return <div>Dealer number {dealer.id}</div>
 }
-
-export default DealerCard

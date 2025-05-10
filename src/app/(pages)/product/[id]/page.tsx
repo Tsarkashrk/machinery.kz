@@ -6,8 +6,7 @@ import DatePicker from '@/shared/ui/DatePicker/DatePicker'
 import TextMuted from '@/shared/ui/TextMuted/TextMuted'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import { useProfile } from '@/hooks/useProfile'
-import { equipmentService } from '@/services/equipment.service'
-import { rentService } from '@/services/rent.service'
+import { rentApi, equipmentApi } from '@/shared/api'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -49,7 +48,7 @@ const ProductIdPage = () => {
 
   const { data, isLoading } = useQuery<any>({
     queryKey: ['equipment'],
-    queryFn: () => equipmentService.getEquipment(Number(id)),
+    queryFn: () => equipmentApi.getEquipmentById(Number(id)),
   })
 
   const equipmentData = data
@@ -64,7 +63,7 @@ const ProductIdPage = () => {
 
   const { mutate } = useMutation({
     mutationKey: ['rent'],
-    mutationFn: (data: any) => rentService.rentEquipment(data),
+    mutationFn: (data: any) => rentApi.rentEquipment(data),
     onSuccess() {
       toast.success('The lease has started successfully!')
       reset()

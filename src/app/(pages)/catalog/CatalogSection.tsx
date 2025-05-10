@@ -2,9 +2,7 @@
 
 import Card from '@/shared/components/Cards/Card/Card'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
-import { categoriesService, useEquipmentCategories } from '@/services/categories'
-import { equipmentService } from '@/services/equipment.service'
-import { userService } from '@/services/user.service'
+import { categoriesApi, useEquipmentCategories, equipmentApi, usersApi } from '@/shared/api'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -82,7 +80,7 @@ const equipImages = [
 const CatalogSection = () => {
   const equipmentsData = useQuery({
     queryKey: ['equipment'],
-    queryFn: () => equipmentService.getAllEquipments(),
+    queryFn: () => equipmentApi.getAllEquipment(),
   })
 
   const catalogsData = useEquipmentCategories()

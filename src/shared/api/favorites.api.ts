@@ -2,7 +2,7 @@ import { axiosClassic, axiosWithAuth } from '@/api/interceptors'
 
 const BASE_URL = '/favorites'
 
-export const equipmentService = {
+export const favoritesApi = {
   async getFavorites() {
     const response = await axiosClassic.get(`${BASE_URL}/`)
 

@@ -2,24 +2,18 @@
 
 import Card from '@/shared/components/Cards/Card/Card'
 import Button from '@/shared/ui/Buttons/Button'
-import { ChevronRight, ChevronLeft } from 'lucide-react'
 import Input from '@/shared/ui/Input/Input'
 import Label from '@/shared/ui/Label/Label'
 import TextMuted from '@/shared/ui/TextMuted/TextMuted'
-import { ICON_SIZE } from '@/constants/constants'
-import { Plus } from 'lucide-react'
 import React from 'react'
-import DropDown from '@/shared/ui/Dropdown/Dropdown'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
-import { equipmentService } from '@/services/equipment.service'
 import { toast } from 'sonner'
 import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import Dropdown from '@/shared/ui/Dropdown/Dropdown'
 import InputFile from '@/shared/ui/Input/InputFile'
-import { imagesService } from '@/services/images.service'
-import { useEquipmentCategories } from '@/services/categories'
+import { equipmentApi, imagesApi, useEquipmentCategories } from '@/shared/api'
 import { useProfile } from '@/hooks/useProfile'
 
 const listingTypes = [
@@ -67,7 +61,7 @@ const NewSection = () => {
 
   const { mutate } = useMutation({
     mutationKey: ['equipment'],
-    mutationFn: (data: any) => equipmentService.createEquipment(data),
+    mutationFn: (data: any) => equipmentApi.createEquipment(data),
     onSuccess() {
       toast.success('Listing successfully created!')
       reset()
@@ -111,7 +105,7 @@ const NewSection = () => {
         //   }
 
         //   try {
-        //     await imagesService.uploadImage(imagePayload)
+        //     await imagesApi.uploadImage(imagePayload)
         //     toast.success('Image uploaded successfully!')
         //   } catch (error) {
         //     console.error('Image upload failed:', error)

@@ -1,15 +1,12 @@
 'use client'
 
-import Sidebar from '@/shared/components/Sidebar/Sidebar'
 import Button from '@/shared/ui/Buttons/Button'
 import { LogoutButton } from '@/shared/ui/Buttons/LogoutButton'
 import Input from '@/shared/ui/Input/Input'
 import Label from '@/shared/ui/Label/Label'
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
 import { useProfile } from '@/hooks/useProfile'
-import { authService } from '@/services/auth.service'
-import { userService } from '@/services/user.service'
-import { TypeUserEdit } from '@/types/user.type'
+import { profileApi, usersApi } from '@/shared/api'
+import { IUserRequest } from '@/entities/user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -17,7 +14,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 const ProfileSection = () => {
-  const { register, handleSubmit } = useForm<TypeUserEdit>({
+  const { register, handleSubmit } = useForm<IUserRequest>({
     mode: 'onChange',
   })
 
@@ -27,7 +24,7 @@ const ProfileSection = () => {
 
   const { mutate } = useMutation({
     mutationKey: ['edit profile'],
-    mutationFn: (data: TypeUserEdit) => userService.editProfile(data),
+    mutationFn: (data: IUserRequest) => profileApi.editProfile(data),
     onSuccess: (updatedData) => {
       queryClient.setQueryData(['profile'], updatedData)
       queryClient.invalidateQueries({ queryKey: ['profile'] })
@@ -38,7 +35,7 @@ const ProfileSection = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<TypeUserEdit> = (data) => {
+  const onSubmit: SubmitHandler<IUserRequest> = (data) => {
     mutate(data)
   }
 

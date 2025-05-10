@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 
 const BASE_URL = '/equipment-categories/'
 
-export const categoriesService = {
+export const categoriesApi = {
   getCategories: async () => {
     const { data } = await axiosClassic.get(BASE_URL)
     return data
@@ -13,6 +13,6 @@ export const categoriesService = {
 export const useEquipmentCategories = () => {
   return useQuery({
     queryKey: ['equipmentCategories'],
-    queryFn: () => categoriesService.getCategories(),
+    queryFn: () => categoriesApi.getCategories(),
   })
 }

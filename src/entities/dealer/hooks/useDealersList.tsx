@@ -1,4 +1,4 @@
-import { dealersApi } from '@/shared/api/dealers.api'
+import { dealersApi } from '@/shared/api'
 import { useQuery } from '@tanstack/react-query'
 
 export const useDealersList = () => {

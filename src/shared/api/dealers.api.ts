@@ -1,10 +1,10 @@
 import { axiosClassic } from '@/api/interceptors'
 
-export const BASE_URL = '/dealers/'
+export const BASE_URL = '/dealers'
 
 export const dealersApi = {
   async getDealers() {
-    const response = await axiosClassic.get(BASE_URL)
+    const response = await axiosClassic.get(`${BASE_URL}/`)
     return response.data
   },
 

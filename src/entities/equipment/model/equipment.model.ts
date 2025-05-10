@@ -1,4 +1,4 @@
-import { ICategory } from './category.type'
+import { ICategory } from '@/entities/category'
 
 interface IEquipmentBase {
   name: string
