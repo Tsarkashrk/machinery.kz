@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
 import ProfileSection from './ProfileSection'
 import Sidebar from '@/shared/components/Sidebar/Sidebar'
-import { useProfile } from '@/hooks/useProfile'
+import { useProfile } from '@/entities/user'
 import { ListChecks, ShoppingBasket, User } from 'lucide-react'
-import { ICON_SIZE } from '@/constants/constants'
+import { ICON_SIZE } from '@/shared/constants/constants'
 
 export const metadata: Metadata = {
   title: 'Profile',

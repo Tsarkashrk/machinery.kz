@@ -1,6 +1,6 @@
 import { IAuth, IAuthLoginRequest, IAuthRegisterRequest } from '@/entities/auth'
 
-import { axiosClassic } from '@/api/interceptors'
+import { axiosClassic } from './interceptors'
 
 import { removeFromStorage, saveTokenStorage } from './auth-token.api'
 

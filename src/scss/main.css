@@ -31,7 +31,7 @@ main {
   min-height: calc(100vh - 6.9rem);
   height: 100%;
   margin: 0 auto;
-  max-width: 1620px;
+  max-width: 1480px;
   padding: 3rem;
 }
 
@@ -346,49 +346,52 @@ hr {
 }
 
 .navigation {
-  color: white;
+  color: #030612;
   font-family: var(--font-geist-sans);
   font-weight: 500;
   font-size: 1.4rem;
+  height: 6.7rem;
 }
 .navigation__list {
   display: flex;
+  gap: 2.4rem;
+  height: 100%;
 }
 .navigation__item {
-  background-color: #030612;
+  background-color: white;
+  height: 100%;
 }
 .navigation__link {
   display: flex;
   align-items: center;
   gap: 1rem;
-  max-height: 3.7rem;
-  padding: 1.15rem 1.5rem;
-  border-radius: 1rem;
+  max-height: 100%;
+  height: 100%;
+  border-bottom: 2px solid white;
   background-color: transparent;
-  color: #8e91a0;
+  color: #030612;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 }
 .navigation__link:hover {
-  color: white;
+  color: #71717a;
+  border-bottom: 2px solid black;
 }
 .navigation__link--active {
-  background-color: white;
-  color: #030612;
-}
-.navigation__link--active:hover {
-  color: #030612;
+  border-bottom: 2px solid black;
 }
 
 .header {
-  background-color: #030612;
+  background-color: white;
+  border-bottom: 1px solid #eaecf5;
 }
 .header__wrapper {
   font-family: var(--font-geist-mono);
-  color: white;
+  font-size: 1.4rem;
+  color: #030612;
 }
 .header__top {
-  max-width: 1620px;
+  max-width: 1480px;
   padding: 1rem 3rem 0;
   margin: 0 auto;
   display: flex;
@@ -402,18 +405,12 @@ hr {
   background-color: rgb(71, 71, 71);
 }
 .header__bottom {
-  padding: 0 3rem 1rem;
-  max-width: 1620px;
+  padding: 0 3rem;
+  max-width: 1480px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.header__logo {
-  margin-right: 5rem;
-  font-weight: 600;
-  font-size: 1.6rem;
-  color: white;
 }
 .header__buttons {
   display: flex;
@@ -421,13 +418,16 @@ hr {
   align-items: center;
   gap: 1rem;
 }
+.header__actions {
+  display: flex;
+}
 
 .footer {
   background-color: #030612;
   color: white;
 }
 .footer__wrapper {
-  max-width: 1620px;
+  max-width: 1480px;
   padding: 1.4rem 3rem;
   margin: 0 auto;
 }
@@ -699,7 +699,7 @@ hr {
 }
 .button--default {
   color: white;
-  background-color: #7e90e4;
+  background-color: #00b4b3;
 }
 .button--default:hover {
   opacity: 80%;
@@ -1080,4 +1080,15 @@ h3 {
 }
 .file-upload__button:hover {
   opacity: 80%;
+}
+
+.logo {
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #00b4b3;
+}
+.logo__image {
+  height: 3rem;
+  width: 10rem;
 }/*# sourceMappingURL=main.css.map */

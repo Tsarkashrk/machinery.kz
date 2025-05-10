@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Inter } from 'next/font/google'
+import { Geist, Geist_Mono, Inter, Poppins } from 'next/font/google'
 import localFont from 'next/font/local'
 import '../scss/main.css'
 import Header from '@/shared/components/Header/Header'
-import { SITE_NAME } from '@/constants/seo.constant'
+import { SITE_NAME } from '@/shared/constants/seo.constant'
 import { Providers } from './providers'
 import { Toaster } from 'sonner'
 import Footer from '@/shared/components/Footer/Footer'
@@ -59,6 +59,12 @@ const geistSans = Geist({
   subsets: ['latin'],
 })
 
+const poppins = Poppins({
+  variable: '--font-poppins',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+})
+
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
@@ -84,7 +90,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${gilroyFont.className}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${gilroyFont.className} ${poppins.variable}`}>
         <Providers>
           <Header />
           <main className="main">

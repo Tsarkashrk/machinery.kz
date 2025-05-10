@@ -1,7 +1,7 @@
 'use client'
 
 import Card from '@/shared/components/Cards/Card/Card'
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
+import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import { categoriesApi, useEquipmentCategories, equipmentApi, usersApi } from '@/shared/api'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Link from 'next/link'

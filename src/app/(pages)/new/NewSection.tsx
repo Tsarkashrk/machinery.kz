@@ -10,11 +10,11 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'sonner'
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
+import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import Dropdown from '@/shared/ui/Dropdown/Dropdown'
 import InputFile from '@/shared/ui/Input/InputFile'
 import { equipmentApi, imagesApi, useEquipmentCategories } from '@/shared/api'
-import { useProfile } from '@/hooks/useProfile'
+import { useProfile } from '@/entities/user'
 
 const listingTypes = [
   {

@@ -1,9 +1,11 @@
 .header {
-  background-color: $base-dark-color;
+  background-color: $base-color;
+  border-bottom: 1px solid #eaecf5;
 
   &__wrapper {
     font-family: $font-geist-mono;
-    color: $base-color;
+    font-size: $font-xs;
+    color: $base-dark-color;
   }
 
   &__top {
@@ -23,7 +25,7 @@
   }
 
   &__bottom {
-    padding: 0 3rem 1rem;
+    padding: 0 3rem;
     max-width: $max-width;
     margin: 0 auto;
     display: flex;
@@ -31,17 +33,14 @@
     justify-content: space-between;
   }
 
-  &__logo {
-    margin-right: 5rem;
-    font-weight: 600;
-    font-size: $font-sm;
-    color: $base-color;
-  }
-
   &__buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+  }
+
+  &__actions {
+    display: flex;
   }
 }

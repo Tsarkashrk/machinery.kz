@@ -1,4 +1,4 @@
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
+import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import Link from 'next/link'
 import React from 'react'
 

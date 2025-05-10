@@ -1,4 +1,4 @@
-import { axiosClassic, axiosWithAuth } from '@/api/interceptors'
+import { axiosClassic, axiosWithAuth } from './interceptors'
 import { useQuery } from '@tanstack/react-query'
 
 const BASE_URL = '/equipment-categories/'

@@ -1,4 +1,4 @@
-import { axiosClassic, axiosWithAuth } from '@/api/interceptors'
+import { axiosClassic, axiosWithAuth } from './interceptors'
 import { IUserRequest, IUser } from '@/entities/user'
 
 const BASE_URL = '/users'

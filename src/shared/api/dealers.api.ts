@@ -1,4 +1,4 @@
-import { axiosClassic } from '@/api/interceptors'
+import { axiosClassic } from './interceptors'
 
 export const BASE_URL = '/dealers'
 

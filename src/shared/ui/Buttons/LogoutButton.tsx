@@ -4,10 +4,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { LogOut } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
-import { ICON_SIZE } from '@/constants/constants'
+import { ICON_SIZE } from '@/shared/constants/constants'
 import { authApi } from '@/shared/api'
 import Button from './Button'
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
+import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 
 export function LogoutButton() {
   const router = useRouter()

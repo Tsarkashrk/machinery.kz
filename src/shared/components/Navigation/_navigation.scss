@@ -1,40 +1,40 @@
 .navigation {
-  color: $base-color;
+  color: $base-dark-color;
   font-family: $font-geist-sans;
   font-weight: $font-medium;
   font-size: $font-xs;
+  height: 6.7rem;
 
   &__list {
     display: flex;
+    gap: 2.4rem;
+    height: 100%;
   }
 
   &__item {
-    background-color: $base-dark-color;
+    background-color: $base-color;
+    height: 100%;
   }
 
   &__link {
     display: flex;
     align-items: center;
     gap: 1rem;
-    max-height: 3.7rem;
-    padding: $button-padding;
-    border-radius: $border-radius-ui;
+    max-height: 100%;
+    height: 100%;
+    border-bottom: 2px solid white;
     background-color: transparent;
-    color: $light-dark-color;
+    color: $base-dark-color;
     cursor: pointer;
     transition: $transition;
 
     &:hover {
-      color: $base-color;
+      color: $zinc-500;
+      border-bottom: 2px solid black;
     }
 
     &--active {
-      background-color: $base-color;
-      color: $base-dark-color;
-
-      &:hover {
-        color: $base-dark-color;
-      }
+      border-bottom: 2px solid black;
     }
   }
 }

@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { profileApi } from '@/shared/api'
+import { IUser } from '../model/user.model'
 
 export function useProfile() {
-  const { data, isLoading, isSuccess } = useQuery({
+  const { data, isLoading, isSuccess } = useQuery<IUser>({
     queryKey: ['profile'],
     queryFn: () => profileApi.getProfile(),
   })
 
-  return { data, isLoading, isSuccess }
+  return { profile: data, isLoading, isSuccess }
 }

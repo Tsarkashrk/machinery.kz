@@ -9,7 +9,7 @@ import 'swiper/css/autoplay'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
+import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import CarouselCard from '../Cards/CarouselCard/CarouselCard'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { PropsWithChildren } from 'react'

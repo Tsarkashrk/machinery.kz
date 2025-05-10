@@ -3,8 +3,8 @@ import { Heart } from 'lucide-react'
 import TextMuted from '@/shared/ui/TextMuted/TextMuted'
 import Link from 'next/link'
 import React from 'react'
-import { ICON_SIZE } from '@/constants/constants'
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
+import { ICON_SIZE } from '@/shared/constants/constants'
+import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 
 interface ProductCardProps {
   title: string

@@ -1,6 +1,6 @@
 'use client'
 
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
+import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import Carousel from '../Carousel/Carousel'
 import { equipmentApi } from '@/shared/api'
 import { useQuery } from '@tanstack/react-query'

@@ -1,4 +1,4 @@
-import { ICON_SIZE } from '@/constants/constants'
+import { ICON_SIZE } from '@/shared/constants/constants'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import React, { useState } from 'react'
 import { Controller } from 'react-hook-form'

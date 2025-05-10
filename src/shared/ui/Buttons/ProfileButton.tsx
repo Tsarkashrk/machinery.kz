@@ -1,9 +1,9 @@
 'use client'
 
-import { PLATFORM_PAGES } from '@/config/pages-url.config'
+import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import Link from 'next/link'
 import Avatar from '../Avatar/Avatar'
-import { useProfile } from '@/hooks/useProfile'
+import { useProfile } from '@/entities/user'
 
 interface ProfileButtonProps {
   email: string
