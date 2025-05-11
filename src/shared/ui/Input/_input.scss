@@ -1,15 +1,28 @@
 .input {
-  padding: $input-padding;
+  position: relative;
+  display: flex;
+  align-items: center;
   width: 100%;
-  box-shadow: $ui-shadow;
-  border: $border;
-  border-radius: $border-radius-ui;
-  font-family: $font-geist-sans;
-  font-size: $font-xs;
-  font-weight: $font-regular;
 
-  &::placeholder {
+  &__field {
+    padding: $input-padding;
+    width: 100%;
+    box-shadow: $ui-shadow;
+    border: $border;
+    border-radius: $border-radius-ui;
+    font-family: $font-geist-sans;
+    font-size: $font-xs;
+    font-weight: $font-regular;
+
+    &::placeholder {
+      color: $zinc-400;
+    }
+  }
+
+  &__children {
+    position: absolute;
     color: $zinc-400;
+    right: 1rem;
   }
 }
 

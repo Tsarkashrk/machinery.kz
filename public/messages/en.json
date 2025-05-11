@@ -1,7 +1,22 @@
 {
+  "Navigation": {
+    "catalog-title": "Catalog",
+    "brands-title": "Brands",
+    "dealers-title": "Dealers",
+    "favorites-title": "Favorites",
+    "messages-title": "Messages"
+  },
   "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page",
+    "title": "Home",
     "popular-equipment": "Popular equipment"
+  },
+  "CatalogPage": {
+    "title": "Catalog",
+    "categories": "Categories",
+    "equipment-catalog": "Equipment catalog"
+  },
+  "Button": {
+    "button-new-listing": "New listing",
+    "button-login-or-signup": "Log in"
   }
 }

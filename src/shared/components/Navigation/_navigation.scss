@@ -1,9 +1,13 @@
 .navigation {
+  display: flex;
+  gap: 2.4rem;
+  height: 6.7rem;
+  max-width: 70rem;
+  width: 100%;
   color: $base-dark-color;
   font-family: $font-geist-sans;
   font-weight: $font-medium;
   font-size: $font-xs;
-  height: 6.7rem;
 
   &__list {
     display: flex;
@@ -36,5 +40,10 @@
     &--active {
       border-bottom: 2px solid black;
     }
+  }
+
+  &__search {
+    display: flex;
+    width: 100% !important;
   }
 }

@@ -16,9 +16,7 @@ interface IEquipmentBase {
 
 export interface IEquipment extends IEquipmentBase {
   id: number
-
   category_details: ICategory
-
   created_at: string
 }
 

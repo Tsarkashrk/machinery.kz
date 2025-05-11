@@ -15,7 +15,7 @@ export const equipmentApi = {
   },
 
   async createEquipment(data: IEquipment): Promise<IEquipment> {
-    const response = await axiosWithAuth.post(`${BASE_URL}/`)
+    const response = await axiosWithAuth.post(`${BASE_URL}/`, data)
     return response.data
   },
 }

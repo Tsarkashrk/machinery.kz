@@ -39,7 +39,7 @@ const ProfileSection = () => {
     mutate(data)
   }
 
-  const { data, isLoading } = useProfile()
+  const { profile, isLoading } = useProfile()
 
   if (isLoading) {
     return <>...Loading</>
@@ -57,7 +57,7 @@ const ProfileSection = () => {
           <Input
             type="text"
             id="username"
-            placeholder={data?.username}
+            placeholder={profile?.username}
             {...register('username', {
               required: 'Username is required!',
             })}
@@ -68,7 +68,7 @@ const ProfileSection = () => {
           <Input
             type="email"
             id="email"
-            placeholder={data?.email}
+            placeholder={profile?.email}
             {...register('email', {
               required: 'Email is required!',
             })}

@@ -12,15 +12,19 @@ import { ICON_SIZE } from '@/shared/constants/constants'
 import Avatar from '../../ui/Avatar/Avatar'
 import { usePathname } from 'next/navigation'
 import { Logo } from '@/shared/ui/Logo/Logo'
-
-const actionLinks = [
-  { link: `${PLATFORM_PAGES.MESSAGES}`, title: 'Messages', icon: <MessagesSquare size={ICON_SIZE} /> },
-  { link: `${PLATFORM_PAGES.FAVORITES}`, title: 'Favorites', icon: <Heart size={ICON_SIZE} /> },
-]
+import { useTranslations } from 'next-intl'
 
 const Header = () => {
   const { profile } = useProfile()
   const path = usePathname()
+
+  const tNav = useTranslations('Navigation')
+  const tButton = useTranslations('Button')
+
+  const actionLinks = [
+    { link: `${PLATFORM_PAGES.MESSAGES}`, title: tNav('messages-title'), icon: <MessagesSquare size={ICON_SIZE} /> },
+    { link: `${PLATFORM_PAGES.FAVORITES}`, title: tNav('favorites-title'), icon: <Heart size={ICON_SIZE} /> },
+  ]
 
   return (
     <header className="header">
@@ -32,7 +36,7 @@ const Header = () => {
           <Logo />
           <Navigation />
           <div className="header__buttons">
-            <Button icon={<Plus size={ICON_SIZE} />} link={PLATFORM_PAGES.NEW} variant="default" text="New Listing" isLink />
+            <Button icon={<Plus size={ICON_SIZE} />} link={PLATFORM_PAGES.NEW} variant="default" text={tButton('button-new-listing')} isLink />
 
             {/* <Button icon={<Globe size={ICON_SIZE} />} text="EN" variant="outlined" /> */}
             <div className="header__actions">
@@ -43,7 +47,7 @@ const Header = () => {
               ))}
             </div>
 
-            {profile ? <Avatar username={profile.username} link={PLATFORM_PAGES.PROFILE} /> : <Button isLink text="Log in or Sign up" link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
+            {profile ? <Avatar username={profile.username} link={PLATFORM_PAGES.PROFILE} /> : <Button isLink text={tButton('button-login-or-signup')} link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
           </div>
         </div>
       </div>

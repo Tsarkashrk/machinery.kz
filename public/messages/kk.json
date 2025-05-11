@@ -1,7 +1,22 @@
 {
+  "Navigation": {
+    "catalog-title": "Каталог",
+    "brands-title": "Брендтер",
+    "dealers-title": "Дилерлер",
+    "favorites-title": "Таңдаулылар",
+    "messages-title": "Хабарламалар"
+  },
   "HomePage": {
-    "title": "Салем Алем!",
-    "about": "Быз туралы бетыне оту",
-    "popular-equipment": "Популяр еквиптер"
+    "title": "Басты",
+    "popular-equipment": "Танымал жабдықтар"
+  },
+  "CatalogPage": {
+    "title": "Каталог",
+    "categories": "Санаттар",
+    "equipment-catalog": "Жабдықтар каталогы"
+  },
+  "Button": {
+    "button-new-listing": "Жаңа хабарландыру",
+    "button-login-or-signup": "Кіру"
   }
 }

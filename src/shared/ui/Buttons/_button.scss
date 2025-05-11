@@ -20,7 +20,7 @@
 
   &--default {
     color: $base-color;
-    background-color: #00b4b3;
+    background-color: $primary-color;
 
     &:hover {
       opacity: $opacity;

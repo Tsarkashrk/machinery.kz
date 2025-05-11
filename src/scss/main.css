@@ -346,11 +346,15 @@ hr {
 }
 
 .navigation {
+  display: flex;
+  gap: 2.4rem;
+  height: 6.7rem;
+  max-width: 70rem;
+  width: 100%;
   color: #030612;
   font-family: var(--font-geist-sans);
   font-weight: 500;
   font-size: 1.4rem;
-  height: 6.7rem;
 }
 .navigation__list {
   display: flex;
@@ -379,6 +383,10 @@ hr {
 }
 .navigation__link--active {
   border-bottom: 2px solid black;
+}
+.navigation__search {
+  display: flex;
+  width: 100% !important;
 }
 
 .header {
@@ -645,7 +653,7 @@ hr {
   height: 10rem;
   margin: 0 auto;
   padding: 1rem;
-  background-color: #7e90e4;
+  background-color: #00b4b3;
   border-radius: 100rem;
   font-size: 2.8rem;
   color: white;
@@ -934,7 +942,7 @@ h3 {
   text-transform: capitalize;
   height: 3.7rem;
   width: 3.7rem;
-  background-color: white;
+  background-color: #00b4b3;
   border-radius: 100rem;
   transition: all 0.1s ease-in-out;
 }
@@ -945,7 +953,7 @@ h3 {
 .avatar__letter {
   font-weight: 600;
   font-size: 1.6rem;
-  color: #030612;
+  color: white;
 }
 
 .text-muted {
@@ -971,6 +979,12 @@ h3 {
 }
 
 .input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.input__field {
   padding: 1.05rem 1.3rem;
   width: 100%;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -980,8 +994,13 @@ h3 {
   font-size: 1.4rem;
   font-weight: 400;
 }
-.input::placeholder {
+.input__field::placeholder {
   color: #a1a1aa;
+}
+.input__children {
+  position: absolute;
+  color: #a1a1aa;
+  right: 1rem;
 }
 
 .file-upload {

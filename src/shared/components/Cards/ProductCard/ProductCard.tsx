@@ -9,13 +9,16 @@ import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 interface ProductCardProps {
   title: string
   price: string
-  image: string
+  image?: string
   link: string
 }
 
 const ProductCard = (data: ProductCardProps) => {
   return (
-    <Link href={`${PLATFORM_PAGES.PRODUCT}/${data.link}`} className="product-card">
+    <Link
+      // href={`${PLATFORM_PAGES.PRODUCT}/${data.link}`}
+      href={''}
+      className="product-card">
       <div className="product-card__wrapper">
         <img src={data.image} className="product-card__image" />
         <span className="product-card__price">{data.price}</span>
@@ -25,7 +28,7 @@ const ProductCard = (data: ProductCardProps) => {
         </div>
         <div className="product-card__buttons">
           <Button icon={<Heart size={ICON_SIZE} />} />
-          <Button text="Details" />
+          <Link href={`${PLATFORM_PAGES.PRODUCT}/${data.link}`}>Details</Link>
         </div>
       </div>
     </Link>

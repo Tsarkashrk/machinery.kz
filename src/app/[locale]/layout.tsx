@@ -11,7 +11,6 @@ import { NextIntlClientProvider, hasLocale, useMessages } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
-import NotFoundPage from './not-found'
 
 const gilroyFont = localFont({
   src: [
@@ -88,16 +87,19 @@ export const metadata: Metadata = {
   description: 'Best one for purchase and rent',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode
   params: { locale: string }
 }>) {
-  const { locale } = params
-  console.log(locale)
-  const messages = getMessages()
+  const { locale } = await params
+  if (!hasLocale(routing.locales, locale)) {
+    notFound()
+  }
+  const messages = await getMessages()
+  console.log(messages)
 
   return (
     <html lang={locale}>

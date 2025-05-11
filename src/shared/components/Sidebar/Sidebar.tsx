@@ -17,15 +17,15 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ sidebarData }: SidebarProps) => {
-  const { data } = useProfile()
+  const { profile } = useProfile()
 
   return (
     <div className="sidebar">
       <div className="sidebar__wrapper">
         <div className="sidebar__header">
-          <div className="sidebar__logo">{data?.username?.charAt(0)}</div>
-          <h1 className="sidebar__name">{data?.username}</h1>
-          <p className="sidebar__email">{data?.email}</p>
+          <div className="sidebar__logo">{profile?.username?.charAt(0)}</div>
+          <h1 className="sidebar__name">{profile?.username}</h1>
+          <p className="sidebar__email">{profile?.email}</p>
         </div>
         <hr />
         <div className="sidebar__buttons">

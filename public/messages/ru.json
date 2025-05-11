@@ -1,7 +1,22 @@
 {
+  "Navigation": {
+    "catalog-title": "Каталог",
+    "brands-title": "Бренды",
+    "dealers-title": "Дилеры",
+    "favorites-title": "Избранные",
+    "messages-title": "Сообщения"
+  },
   "HomePage": {
-    "title": "Привет Мир!",
-    "about": "Перейти на страницу О нас",
+    "title": "Главная",
     "popular-equipment": "Популярные оборудования"
+  },
+  "CatalogPage": {
+    "title": "Каталог",
+    "categories": "Категории",
+    "equipment-catalog": "Каталог оборудований"
+  },
+  "Button": {
+    "button-new-listing": "Новое объявление",
+    "button-login-or-signup": "Войти"
   }
 }

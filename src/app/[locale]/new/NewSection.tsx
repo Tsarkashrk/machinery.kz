@@ -13,7 +13,7 @@ import { toast } from 'sonner'
 import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import Dropdown from '@/shared/ui/Dropdown/Dropdown'
 import InputFile from '@/shared/ui/Input/InputFile'
-import { equipmentApi, imagesApi, useEquipmentCategories } from '@/shared/api'
+import { equipmentApi, equipmentImagesApi, useEquipmentCategories } from '@/shared/api'
 import { useProfile } from '@/entities/user'
 
 const listingTypes = [
@@ -28,7 +28,6 @@ const listingTypes = [
     value: 'rent',
   },
 ]
-
 const conditions = [
   {
     id: 1,
@@ -55,7 +54,7 @@ const NewSection = () => {
 
   const categories = useEquipmentCategories()
 
-  const user = useProfile()
+  const { profile, isLoading, isSuccess } = useProfile()
 
   const { push } = useRouter()
 
@@ -77,15 +76,15 @@ const NewSection = () => {
   //   mutate({ owner: 1, ...data, purchase_price: 12000 })
   // }
 
-  console.log(user)
+  console.log(profile)
 
   const onSubmit: SubmitHandler<any> = async (data: any) => {
-    console.log('Submitting:', data)
+    // console.log('Submitting:', data)
 
     const listingType = listingTypes.find((type) => type.value === data.type)
 
     const formattedData = {
-      owner: user?.data?.id,
+      owner: profile?.id,
       ...data,
       purchase_price: data.purchase_price | 0,
       daily_rental_rate: data.daily_rental_rate | 0,
@@ -93,24 +92,26 @@ const NewSection = () => {
       available_for_sale: data.type === 'sell',
     }
 
+    console.log(formattedData)
+
     mutate(formattedData, {
       onSuccess: async (createdEquipment: any) => {
-        // console.log('Equipment created:', createdEquipment)
+        console.log('Equipment created:', createdEquipment)
 
-        // if (data.image && data.image[0]) {
-        //   const imagePayload = {
-        //     equipment: createdEquipment.data.id,
-        //     image_url: data.image[0],
-        //     image_type: 'webp',
-        //   }
+        if (data.image && data.image[0]) {
+          const imagePayload = {
+            equipment: createdEquipment.data.id,
+            image_url: data.image[0],
+            image_type: 'webp',
+          }
 
-        //   try {
-        //     await imagesApi.uploadImage(imagePayload)
-        //     toast.success('Image uploaded successfully!')
-        //   } catch (error) {
-        //     console.error('Image upload failed:', error)
-        //   }
-        // }
+          try {
+            await equipmentImagesApi.uploadImage(imagePayload)
+            toast.success('Image uploaded successfully!')
+          } catch (error) {
+            console.error('Image upload failed:', error)
+          }
+        }
 
         reset()
         push(PLATFORM_PAGES.HOME)

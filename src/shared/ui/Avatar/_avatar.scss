@@ -5,7 +5,7 @@
   text-transform: capitalize;
   height: 3.7rem;
   width: 3.7rem;
-  background-color: $base-color;
+  background-color: $primary-color;
   border-radius: 100rem;
   transition: $transition;
 
@@ -13,10 +13,10 @@
     opacity: $opacity;
     transition: $transition;
   }
-        
+
   &__letter {
     font-weight: $font-semibold;
     font-size: 1.6rem;
-    color: $base-dark-color;
+    color: $base-color;
   }
 }
