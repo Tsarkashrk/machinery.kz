@@ -23,3 +23,7 @@ export interface IEquipment extends IEquipmentBase {
 export interface IEquipmentRequest extends IEquipmentBase {
   category: number
 }
+
+export interface IEquipmentWithImage extends IEquipment {
+  image: string
+}

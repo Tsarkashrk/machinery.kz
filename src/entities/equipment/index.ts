@@ -1,4 +1,3 @@
-export { EquipmentCard } from './ui/EquipmentCard'
 export { useEquipmentList } from './hooks/useEquipmentList'
 export * from './hooks/useEquipmentList'
 export * from './hooks/useEquipmentImage'

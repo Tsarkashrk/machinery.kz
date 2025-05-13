@@ -1,16 +1,33 @@
-.product-card {
+.equipment-card {
   &__wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: $base-color;
     border-radius: $border-radius-ui;
-    box-shadow: $card-shadow;
+    border: $border-primary;
+    box-shadow: $ui-shadow;
+    transition: $transition;
+
+    &:hover {
+      box-shadow: $card-shadow;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+  }
+
+  &__badges {
+    display: flex;
+    gap: 0.5rem;
   }
 
   &__image {
     max-height: 22rem;
     height: 100%;
+    max-width: 22rem;
     width: 100%;
     margin-bottom: 2rem;
     border-radius: $border-radius-ui;

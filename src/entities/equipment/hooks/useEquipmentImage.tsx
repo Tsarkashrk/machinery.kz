@@ -1,5 +1,6 @@
 import { equipmentApi, equipmentImagesApi } from '@/shared/api'
 import { useQuery } from '@tanstack/react-query'
+import { IEquipment } from '../model/equipment.model'
 
 export const useEquipmentImage = (id: number) => {
   const { data, isLoading, isSuccess } = useQuery({

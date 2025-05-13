@@ -1,16 +1,26 @@
 'use client'
 
-import { EquipmentCard } from '@/entities/equipment'
-import { useEquipmentList } from '@/entities/equipment'
-import { IEquipment } from '@/entities/equipment/model/equipment.model'
+import { IEquipment, IEquipmentWithImage } from '@/entities/equipment/model/equipment.model'
+import { EquipmentCard } from '@/widgets/equipment-card'
 
-export const EquipmentList = () => {
-  const { equipmentList, isLoading, error } = useEquipmentList()
+type Props = {
+  equipmentList: IEquipmentWithImage[]
+  isLoading: boolean
+}
 
-  return (
-    <div>
-      {equipmentList?.map((equipment: IEquipment) => (
-        <EquipmentCard key={equipment.id} equipment={equipment} />
+export const EquipmentList = ({ equipmentList, isLoading }: Props) => {
+  return isLoading ? (
+    'loading'
+  ) : (
+    <div className="equipment-list">
+      {equipmentList?.map((equipment: IEquipmentWithImage) => (
+        <EquipmentCard 
+          key={equipment.id} 
+          id={equipment.id} 
+          name={equipment.name} 
+          available_for_rent={equipment.available_for_rent} 
+          daily_rental_rate={equipment.daily_rental_rate} 
+          purchase_price={equipment.purchase_price} />
       ))}
     </div>
   )

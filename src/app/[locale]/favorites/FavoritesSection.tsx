@@ -1,9 +1,15 @@
-import React from 'react'
+'use client'
+
+import { useFavorites } from '@/entities/favorite'
+import { EquipmentList } from '@/widgets/equipment-list'
+import { FavoritesList } from '@/widgets/favorites-list/FavoritesList'
 
 const FavoritesSection = () => {
+  const { favorites, isLoading, isSuccess } = useFavorites()
+
   return (
-    <section className='favorite'>
-      <h1>In process</h1>
+    <section className="favorite">
+      <FavoritesList favoritesList={favorites} />
     </section>
   )
 }

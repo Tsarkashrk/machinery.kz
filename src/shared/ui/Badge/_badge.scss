@@ -1,0 +1,30 @@
+.badge {
+  width: min-content;
+  padding: 0.5rem 1.5rem;
+  border-radius: $badge-radius;
+
+  &--dark {
+    background-color: $base-dark-color;
+  }
+
+  &--sell {
+    background-color: red;
+  }
+
+  &--light {
+    background-color: $base-color;
+
+    .badge__text {
+      color: $base-dark-color;
+    }
+  }
+
+  &--rent {
+    background-color: $main-color;
+  }
+
+  &__text {
+    font-size: 14px;
+    color: $base-color;
+  }
+}

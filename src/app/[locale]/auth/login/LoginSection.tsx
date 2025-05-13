@@ -58,11 +58,16 @@ const LoginSection = () => {
             <Input type="password" id="password" {...register('password', { required: 'Password is required!' })} />
           </div>
 
-          <Button text="Log in" variant="default" type="submit" isLoading={isPending} />
+          <Button variant="default" type="submit" isLoading={isPending}>
+            Log in
+          </Button>
         </form>
 
         <p className="auth-form__footer">
-          Don't have an account? <Button link={PLATFORM_PAGES.REGISTER} variant="underlined" text="Sign up" />
+          Don't have an account?{' '}
+          <Button link={PLATFORM_PAGES.REGISTER} variant="underlined">
+            Sign up
+          </Button>
         </p>
       </div>
     </section>

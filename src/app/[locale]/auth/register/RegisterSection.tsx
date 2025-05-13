@@ -76,10 +76,15 @@ const RegisterSection = () => {
               })}
             />
           </div>
-          <Button text="Sign up" variant="default" isLoading={isPending} />
+          <Button variant="default" isLoading={isPending}>
+            Sign up
+          </Button>
         </form>
         <p className="auth-form__footer">
-          Already have an account? <Button link={PLATFORM_PAGES.LOGIN} variant="underlined" text="Log in" />
+          Already have an account?{' '}
+          <Button link={PLATFORM_PAGES.LOGIN} variant="underlined">
+            Log in
+          </Button>
         </p>
       </div>
     </section>

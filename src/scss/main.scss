@@ -12,6 +12,11 @@
 @import '../app/[locale]/product/[id]/product-slug';
 @import '../app/[locale]/home';
 
+// Widgets
+
+@import '../widgets/equipment-card/ui/equipment-card';
+@import '../widgets/equipment-list/ui/equipment-list';
+
 // Components
 
 @import '../shared/components/Navigation/navigation';
@@ -24,7 +29,6 @@
 @import '../shared/components/Cards/Card/card';
 @import '../shared/components/Cards/BannerCard/banner-card';
 @import '../shared/components/Cards/PromoCard/promo-card';
-@import '../shared/components/Cards/ProductCard/product-card';
 @import '../shared/components/Sidebar/sidebar';
 
 // UI
@@ -38,3 +42,5 @@
 @import '../shared/ui/Label/label';
 @import '../shared/ui/Input/input';
 @import '../shared/ui/Logo/logo';
+@import '../shared/ui/Badge/badge';
+@import '../shared/ui/SectionWithContent/section-with-content';

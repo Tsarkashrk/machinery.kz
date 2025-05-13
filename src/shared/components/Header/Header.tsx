@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-import { UserPen, Plus, Globe, MapPin, MessagesSquare, Heart } from 'lucide-react'
+import { Plus, MessagesSquare, Heart } from 'lucide-react'
 
 import Navigation from '../Navigation/Navigation'
 import Button from '../../ui/Buttons/Button'
@@ -36,7 +36,10 @@ const Header = () => {
           <Logo />
           <Navigation />
           <div className="header__buttons">
-            <Button icon={<Plus size={ICON_SIZE} />} link={PLATFORM_PAGES.NEW} variant="default" text={tButton('button-new-listing')} isLink />
+            <Button link={PLATFORM_PAGES.NEW} variant="default" isLink>
+              <Plus size={ICON_SIZE} />
+              {tButton('button-new-listing')}
+            </Button>
 
             {/* <Button icon={<Globe size={ICON_SIZE} />} text="EN" variant="outlined" /> */}
             <div className="header__actions">
@@ -47,7 +50,13 @@ const Header = () => {
               ))}
             </div>
 
-            {profile ? <Avatar username={profile.username} link={PLATFORM_PAGES.PROFILE} /> : <Button isLink text={tButton('button-login-or-signup')} link={PLATFORM_PAGES.LOGIN} variant="outlined" />}
+            {profile ? (
+              <Avatar username={profile.username} link={PLATFORM_PAGES.PROFILE} />
+            ) : (
+              <Button isLink link={PLATFORM_PAGES.LOGIN} variant="outlined">
+                {tButton('button-login-or-signup')}
+              </Button>
+            )}
           </div>
         </div>
       </div>

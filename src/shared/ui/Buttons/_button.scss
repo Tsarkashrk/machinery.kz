@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
   max-height: 3.7rem;
   padding: $button-padding;
   border: none;
@@ -13,6 +13,10 @@
   color: $base-color;
   transition: $transition;
   cursor: pointer;
+
+  &__loading {
+    opacity: 0.5;
+  }
 
   &__icon {
     display: flex;

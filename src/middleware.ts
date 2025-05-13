@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
   const refreshToken = request.cookies.get(EnumTokens.REFRESH_TOKEN)?.value
 
   const isAuthPage = pathname.startsWith('/auth')
-  const protectedRoutes = ['/profile', '/new']
+  const protectedRoutes = ['/profile', '/new', '/messages', '/favorites']
 
   if (isAuthPage && refreshToken) {
     return NextResponse.redirect(new URL(PLATFORM_PAGES.HOME, request.url))
