@@ -8,6 +8,7 @@ import { Badge } from '@/shared/ui/Badge/Badge'
 import { IEquipmentWithImage } from '@/entities/equipment'
 import Image from 'next/image'
 import { ToggleFavoriteButton } from '@/features/toggle-favorite'
+import { useTranslations } from 'next-intl'
 
 type Props = {
   available_for_rent: boolean
@@ -19,6 +20,8 @@ type Props = {
 }
 
 export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_price, name, id, image }: Props) => {
+  const t = useTranslations('Button')
+
   const listingType = available_for_rent ? 'rent' : 'sell'
   const equipmentPrice = listingType === 'rent' ? daily_rental_rate : purchase_price
 
@@ -29,8 +32,8 @@ export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_
           <Badge type={listingType} text={listingType} />
         </div>
         <Image width={500} height={500} src="/assets/eq2.webp" className="equipment-card__image" alt={'equipment image'} />
-        <span className="equipment-card__price">{equipmentPrice}</span>
-        <p className="equipment-card__description">{name}</p>
+        <span className="equipment-card__price">{name}</span>
+        <p className="equipment-card__description">{equipmentPrice}</p>
         <div className="equipment-card__available">
           <TextMuted text="Available" />
         </div>
@@ -38,7 +41,7 @@ export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_
           <ToggleFavoriteButton productId={id} isFavorite={false}>
             <Heart size={ICON_SIZE} />
           </ToggleFavoriteButton>
-          <Button link={`${PLATFORM_PAGES.PRODUCT}/${name}`}>Details</Button>
+          <Button link={`${PLATFORM_PAGES.PRODUCT}/${name}`}>{t('details')}</Button>
         </div>
       </div>
     </div>

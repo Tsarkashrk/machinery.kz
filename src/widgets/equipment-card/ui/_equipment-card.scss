@@ -7,6 +7,7 @@
     background-color: $base-color;
     border-radius: $border-radius-ui;
     border: $border-primary;
+    font-family: $font-gilroy;
     box-shadow: $ui-shadow;
     transition: $transition;
 
@@ -35,7 +36,6 @@
 
   &__price {
     color: $base-dark-color;
-    font-family: $font-geist-sans;
     font-weight: $font-bold;
     font-size: $font-xm;
     margin-bottom: 1rem;

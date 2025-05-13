@@ -8,15 +8,20 @@
   },
   "HomePage": {
     "title": "Home",
-    "popular-equipment": "Popular equipment"
+    "popular-equipment": "Popular equipment",
+    "all-equipment": "All equipment"
   },
   "CatalogPage": {
     "title": "Catalog",
     "categories": "Categories",
     "equipment-catalog": "Equipment catalog"
   },
+  "FavoritesPage": {
+    "title": "Favorites"
+  },
   "Button": {
-    "button-new-listing": "New listing",
-    "button-login-or-signup": "Log in"
+    "new-listing": "New listing",
+    "login": "Log in",
+    "details": "Details"
   }
 }

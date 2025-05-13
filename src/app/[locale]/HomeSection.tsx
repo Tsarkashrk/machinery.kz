@@ -1,10 +1,16 @@
 'use client'
 
 import { IEquipment, useEquipmentWithImages } from '@/entities/equipment'
+
 import Hero from '@/shared/components/Hero/Hero'
+import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
+import { ICON_SIZE } from '@/shared/constants/constants'
+import Button from '@/shared/ui/Buttons/Button'
 import { SectionWithContent } from '@/shared/ui/SectionWithContent/SectionWithContent'
 import Title from '@/shared/ui/Title/Title'
+import { TitleMore } from '@/shared/ui/TitleMore/TitleMore'
 import { EquipmentList } from '@/widgets/equipment-list'
+import { ChevronRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 export default function HomeSection() {
@@ -17,7 +23,12 @@ export default function HomeSection() {
       <div className="home-section__wrapper">
         <Hero />
         <SectionWithContent>
-          <Title text={t('popular-equipment')} size="h1" />
+          <Title size="h1">
+            {t('popular-equipment')}
+            <TitleMore link={PLATFORM_PAGES.CATALOG}>
+              {t('all-equipment')} <ChevronRight size={ICON_SIZE} />
+            </TitleMore>
+          </Title>
           <EquipmentList equipmentList={equipmentList} isLoading={isLoading} />
         </SectionWithContent>
       </div>

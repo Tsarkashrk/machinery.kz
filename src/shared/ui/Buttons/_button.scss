@@ -77,6 +77,10 @@
 
   &--underlined {
     all: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
     height: auto !important;
     text-underline-offset: 4px;
     text-decoration-line: underline;

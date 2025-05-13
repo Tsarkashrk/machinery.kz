@@ -44,7 +44,6 @@ main {
 }
 
 h1 {
-  margin-bottom: 0.75rem;
   font-family: var(--font-gilroy);
   font-size: 2.4rem;
   font-weight: 700;
@@ -353,6 +352,7 @@ hr {
   background-color: white;
   border-radius: 1rem;
   border: 1px solid #eaecf5;
+  font-family: var(--font-gilroy);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.1s ease-in-out;
 }
@@ -376,7 +376,6 @@ hr {
 }
 .equipment-card__price {
   color: #030612;
-  font-family: var(--font-geist-sans);
   font-weight: 700;
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -779,6 +778,10 @@ hr {
 }
 .button--underlined {
   all: unset;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
   height: auto !important;
   text-underline-offset: 4px;
   text-decoration-line: underline;
@@ -1139,6 +1142,19 @@ h3 {
   opacity: 80%;
 }
 
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-more {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
 .logo {
   font-family: var(--font-poppins);
   font-weight: 700;
@@ -1178,6 +1194,6 @@ h3 {
 .section-with-content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
   margin-bottom: 3rem;
 }/*# sourceMappingURL=main.css.map */

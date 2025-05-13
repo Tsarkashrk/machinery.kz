@@ -8,15 +8,20 @@
   },
   "HomePage": {
     "title": "Басты",
-    "popular-equipment": "Танымал жабдықтар"
+    "popular-equipment": "Танымал жабдықтар",
+    "all-equipment": "Барлық жабдықтар"
   },
   "CatalogPage": {
     "title": "Каталог",
     "categories": "Санаттар",
     "equipment-catalog": "Жабдықтар каталогы"
   },
+  "FavoritesPage": {
+    "title": "Таңдаулылар"
+  },
   "Button": {
-    "button-new-listing": "Жаңа хабарландыру",
-    "button-login-or-signup": "Кіру"
+    "new-listing": "Жаңа хабарландыру",
+    "login": "Кіру",
+    "details": "Толығырақ"
   }
 }

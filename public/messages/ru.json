@@ -8,15 +8,20 @@
   },
   "HomePage": {
     "title": "Главная",
-    "popular-equipment": "Популярные оборудования"
+    "popular-equipment": "Популярные оборудования",
+    "all-equipment": "Все оборудования"
   },
   "CatalogPage": {
     "title": "Каталог",
     "categories": "Категории",
     "equipment-catalog": "Каталог оборудований"
   },
+  "FavoritesPage": {
+    "title": "Избранные"
+  },
   "Button": {
-    "button-new-listing": "Новое объявление",
-    "button-login-or-signup": "Войти"
+    "new-listing": "Новое объявление",
+    "login": "Войти",
+    "details": "Подробнее"
   }
 }

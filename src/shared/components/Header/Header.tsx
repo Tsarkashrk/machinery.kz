@@ -38,7 +38,7 @@ const Header = () => {
           <div className="header__buttons">
             <Button link={PLATFORM_PAGES.NEW} variant="default" isLink>
               <Plus size={ICON_SIZE} />
-              {tButton('button-new-listing')}
+              {tButton('new-listing')}
             </Button>
 
             {/* <Button icon={<Globe size={ICON_SIZE} />} text="EN" variant="outlined" /> */}
@@ -54,7 +54,7 @@ const Header = () => {
               <Avatar username={profile.username} link={PLATFORM_PAGES.PROFILE} />
             ) : (
               <Button isLink link={PLATFORM_PAGES.LOGIN} variant="outlined">
-                {tButton('button-login-or-signup')}
+                {tButton('login')}
               </Button>
             )}
           </div>
