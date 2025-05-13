@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { IFavorite } from '../model/favorite.model'
 
 export const useFavorites = () => {
-  const { data, isLoading, isSuccess } = useQuery<IFavorite>({
+  const { data, isLoading, isSuccess } = useQuery<IFavorite[]>({
     queryKey: ['favorites'],
     queryFn: () => favoritesApi.getFavorites(),
   })

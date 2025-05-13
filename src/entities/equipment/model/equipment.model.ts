@@ -1,3 +1,4 @@
+import { IBrand } from '@/entities/brand/model/brand.model'
 import { ICategory } from '@/entities/category'
 
 interface IEquipmentBase {
@@ -17,6 +18,7 @@ interface IEquipmentBase {
 export interface IEquipment extends IEquipmentBase {
   id: number
   category_details: ICategory
+  brand_details: IBrand
   created_at: string
 }
 

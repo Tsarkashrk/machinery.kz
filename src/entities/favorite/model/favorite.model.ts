@@ -1,6 +1,6 @@
 import { IEquipment } from '@/entities/equipment'
 
-export interface IFavoriteBase {
+interface IFavoriteBase {
   id: number
   created_at: string
 }

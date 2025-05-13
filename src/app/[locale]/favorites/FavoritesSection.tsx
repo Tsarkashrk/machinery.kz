@@ -9,7 +9,7 @@ const FavoritesSection = () => {
 
   return (
     <section className="favorite">
-      <FavoritesList favoritesList={favorites} />
+      <FavoritesList favoritesList={favorites} isLoading={isLoading} />
     </section>
   )
 }
