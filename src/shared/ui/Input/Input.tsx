@@ -1,6 +1,6 @@
-import { forwardRef, PropsWithChildren, useState } from 'react'
+import { forwardRef, InputHTMLAttributes, PropsWithChildren, useState } from 'react'
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   id?: string
   extra?: string
   state?: 'error' | 'success'

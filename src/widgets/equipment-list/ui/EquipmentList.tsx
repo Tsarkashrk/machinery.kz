@@ -14,13 +14,7 @@ export const EquipmentList = ({ equipmentList, isLoading }: Props) => {
   ) : (
     <div className="equipment-list">
       {equipmentList?.map((equipment: IEquipmentWithImage) => (
-        <EquipmentCard 
-          key={equipment.id} 
-          id={equipment.id} 
-          name={equipment.name} 
-          available_for_rent={equipment.available_for_rent} 
-          daily_rental_rate={equipment.daily_rental_rate} 
-          purchase_price={equipment.purchase_price} />
+        <EquipmentCard key={equipment.id} id={equipment.id} name={equipment.name} available_for_rent={equipment.available_for_rent} daily_rental_rate={equipment.daily_rental_rate} purchase_price={equipment.purchase_price} />
       ))}
     </div>
   )

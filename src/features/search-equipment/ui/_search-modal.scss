@@ -1,0 +1,41 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 100px;
+}
+
+.search-modal {
+  background: white;
+  border-radius: 8px;
+  width: 600px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  &__results {
+    margin-top: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        padding: 8px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+
+        &:hover {
+          background: #f9f9f9;
+        }
+      }
+    }
+  }
+}

@@ -2,9 +2,9 @@ import { Metadata } from 'next'
 import HomeSection from './HomeSection'
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'Главная',
 }
 
-export default async function HomePage() {
+export default function HomePage() {
   return <HomeSection />
 }

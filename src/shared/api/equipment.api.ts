@@ -18,4 +18,9 @@ export const equipmentApi = {
     const response = await axiosWithAuth.post(`${BASE_URL}/`, data)
     return response.data
   },
+
+  async searchEquipment(query: string) {
+    const response = await axiosWithAuth.get(`${BASE_URL}/search/?query=${query}`)
+    return response.data
+  },
 }
