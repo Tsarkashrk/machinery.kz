@@ -14,6 +14,7 @@ class PLATFORM {
   PRODUCT = `${this.root}product`
   FAVORITES = `${this.root}favorites`
   BRANDS = `${this.root}brands`
+  DASHBOARD = `${this.root}dashboard`
 }
 
 export const PLATFORM_PAGES = new PLATFORM()

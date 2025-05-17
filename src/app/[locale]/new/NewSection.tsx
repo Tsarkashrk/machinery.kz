@@ -2,7 +2,7 @@
 
 import Card from '@/shared/components/Cards/Card/Card'
 import Button from '@/shared/ui/Buttons/Button'
-import Input from '@/shared/ui/Input/Input'
+import { Input } from '@/shared/ui/Input/Input'
 import Label from '@/shared/ui/Label/Label'
 import TextMuted from '@/shared/ui/TextMuted/TextMuted'
 import React from 'react'
@@ -13,7 +13,8 @@ import { toast } from 'sonner'
 import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import Dropdown from '@/shared/ui/Dropdown/Dropdown'
 import InputFile from '@/shared/ui/Input/InputFile'
-import { equipmentApi, equipmentImagesApi, useEquipmentCategories } from '@/shared/api'
+import { equipmentApi, equipmentImagesApi } from '@/shared/api'
+import { useCategories } from '@/entities/category/hooks/useCategories'
 import { useProfile } from '@/entities/user'
 
 const listingTypes = [
@@ -52,7 +53,7 @@ const NewSection = () => {
 
   const listingType = watch('type')
 
-  const categories = useEquipmentCategories()
+  const { categories } = useCategories()
 
   const { profile, isLoading, isSuccess } = useProfile()
 
@@ -154,7 +155,7 @@ const NewSection = () => {
                   <div className="new-section__info-block">
                     <Label text="Category" forElement="category" />
 
-                    <Dropdown name="category" control={control} options={categories?.data?.map((cat: any) => ({ ...cat, title: cat.name, value: cat.id })) || []} rules={{ required: 'Category is required!' }} />
+                    <Dropdown name="category" control={control} options={categories?.map((cat: any) => ({ ...cat, title: cat.name, value: cat.id })) || []} rules={{ required: 'Category is required!' }} />
                   </div>
                 </div>
                 <div className="new-section__info-blocks">

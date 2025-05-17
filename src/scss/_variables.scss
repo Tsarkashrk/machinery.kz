@@ -41,7 +41,7 @@ $font-bold: 700;
 
 // Border
 
-$border-primary: 1px solid #eaecf5;
+$border-primary: 1px solid #2947a321;
 $border: 1px solid #e5e7eb;
 $border-rounded: 100rem;
 $border-radius-card: 1.6rem;
@@ -78,12 +78,15 @@ $primary-color: #00b4b3;
 
 // Shadow
 
-$card-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.1), 0 5px 8px -5px rgba(0, 0, 0, 0.1);
-$ui-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+// $card-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.1), 0 5px 8px -5px rgba(0, 0, 0, 0.1);
+$card-shadow: 0 4px 20px #3c46641f;
+// $ui-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$ui-shadow: 0 4px 20px #3c46641f;
 
 // Transition
 
 $transition: all 0.1s ease-in-out;
+$card-transition: all 0.3s ease;
 
 // Opacity
 

@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { profileApi } from '@/shared/api'
+import { categoriesApi } from '@/shared/api'
+import { ICategory } from '../model/category.model'
 
 export function useCategories() {
-  const { data, isLoading, isSuccess } = useQuery({
-    queryKey: ['profile'],
-    queryFn: () => profileApi.getProfile(),
+  const { data, isLoading, isSuccess } = useQuery<ICategory[]>({
+    queryKey: ['categories'],
+    queryFn: () => categoriesApi.getCategories(),
   })
 
-  return { data, isLoading, isSuccess }
+  return { categories: data, isLoading, isSuccess }
 }

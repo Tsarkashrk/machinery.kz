@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 1rem;
   max-height: 3.7rem;
   padding: $button-padding;
   border: none;
@@ -68,7 +68,7 @@
     background-color: $base-color;
     border: $border;
     color: $base-dark-color;
-    box-shadow: $ui-shadow;
+    // box-shadow: $ui-shadow;
 
     &:hover {
       background-color: $zinc-100;

@@ -17,7 +17,7 @@ export const useEquipmentWithImages = () => {
     queryFn: async () => {
       const equipments = await equipmentApi.getAllEquipment()
       const equipmentsWithImages = await Promise.all(
-        equipments.map(async (equipment: any) => {
+        equipments.map(async (equipment: IEquipment) => {
           const images = await equipmentImagesApi.getImageById(equipment.id)
           return {
             ...equipment,

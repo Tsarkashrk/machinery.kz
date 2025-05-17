@@ -4,7 +4,7 @@ import { IEquipment } from '../../../entities/equipment/model/equipment.model'
 
 export const useSearchEquipment = (query: string) => {
   const { data, isLoading, isSuccess } = useQuery<IEquipment[]>({
-    queryKey: ['equipment'],
+    queryKey: ['equipment', query],
     queryFn: () => equipmentApi.searchEquipment(query),
     enabled: !!query,
   })

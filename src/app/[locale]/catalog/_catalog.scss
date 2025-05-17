@@ -2,18 +2,10 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
   }
 
   &__title {
     margin-bottom: 3rem;
-  }
-
-  &__categories {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    column-gap: 1rem;
-    row-gap: $gap-bw-fields;
   }
 
   &__link {

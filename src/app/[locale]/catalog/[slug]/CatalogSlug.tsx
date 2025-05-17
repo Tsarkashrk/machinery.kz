@@ -2,7 +2,7 @@
 
 import Card from '@/shared/components/Cards/Card/Card'
 import Button from '@/shared/ui/Buttons/Button'
-import Input from '@/shared/ui/Input/Input'
+import {Input} from '@/shared/ui/Input/Input'
 import Label from '@/shared/ui/Label/Label'
 import React from 'react'
 

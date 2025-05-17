@@ -16,10 +16,13 @@
 
 @import '../widgets/equipment-card/ui/equipment-card';
 @import '../widgets/equipment-list/ui/equipment-list';
+@import '../widgets/search-modal/ui/search-modal';
 
 // Features
 
-@import '../features/search-equipment/ui/search-modal';
+// Entities
+
+@import '../entities/category/ui/category';
 
 // Components
 
@@ -38,6 +41,7 @@
 // UI
 
 @import '../shared/ui/Buttons/button';
+@import '../shared/ui/Loading/loading';
 @import '../shared/ui/ErrorMessage/error-message';
 @import '../shared/ui/Dropdown/dropdown';
 @import '../shared/ui/DatePicker/date-picker';

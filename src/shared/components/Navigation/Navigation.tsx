@@ -6,11 +6,11 @@ import { usePathname } from 'next/navigation'
 import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import { ICON_SIZE } from '@/shared/constants/constants'
 import { useTranslations } from 'next-intl'
-import Input from '@/shared/ui/Input/Input'
-import { useSearchEquipment } from '@/features/search-equipment/model/useSearchEquipment'
+import {Input} from '@/shared/ui/Input/Input'
+import { useSearchEquipment } from '@/entities/equipment/hooks/useSearchEquipment'
 import { useState } from 'react'
 import debounce from 'lodash.debounce'
-import { SearchModal } from '@/features/search-equipment'
+import { SearchModal } from '@/widgets/search-modal'
 import Button from '@/shared/ui/Buttons/Button'
 
 const Navigation = () => {
@@ -70,7 +70,7 @@ const Navigation = () => {
       </div> */}
 
       <div className="navigation__search">
-        <Button variant='outlined' onClick={() => setIsSearchOpen(true)}>
+        <Button variant="outlined" onClick={() => setIsSearchOpen(true)}>
           Search
           <Search size={ICON_SIZE} />
         </Button>

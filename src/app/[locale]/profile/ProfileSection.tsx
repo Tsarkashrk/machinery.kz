@@ -2,7 +2,7 @@
 
 import Button from '@/shared/ui/Buttons/Button'
 import { LogoutButton } from '@/shared/ui/Buttons/LogoutButton'
-import Input from '@/shared/ui/Input/Input'
+import { Input } from '@/shared/ui/Input/Input'
 import Label from '@/shared/ui/Label/Label'
 import { useProfile } from '@/entities/user'
 import { profileApi, usersApi } from '@/shared/api'
@@ -14,6 +14,8 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 const ProfileSection = () => {
+  const { profile, isLoading } = useProfile()
+
   const { register, handleSubmit } = useForm<IUserRequest>({
     mode: 'onChange',
   })
@@ -39,8 +41,6 @@ const ProfileSection = () => {
     mutate(data)
   }
 
-  const { profile, isLoading } = useProfile()
-
   if (isLoading) {
     return <>...Loading</>
   }
@@ -57,9 +57,9 @@ const ProfileSection = () => {
           <Input
             type="text"
             id="username"
-            placeholder={profile?.username}
             {...register('username', {
               required: 'Username is required!',
+              value: profile?.username,
             })}
           />
         </div>
@@ -68,9 +68,9 @@ const ProfileSection = () => {
           <Input
             type="email"
             id="email"
-            placeholder={profile?.email}
             {...register('email', {
               required: 'Email is required!',
+              value: profile?.email,
             })}
           />
         </div>

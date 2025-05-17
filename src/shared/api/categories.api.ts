@@ -5,14 +5,7 @@ const BASE_URL = '/equipment-categories/'
 
 export const categoriesApi = {
   getCategories: async () => {
-    const { data } = await axiosClassic.get(BASE_URL)
-    return data
+    const response = await axiosClassic.get(BASE_URL)
+    return response.data
   },
-}
-
-export const useEquipmentCategories = () => {
-  return useQuery({
-    queryKey: ['equipmentCategories'],
-    queryFn: () => categoriesApi.getCategories(),
-  })
 }

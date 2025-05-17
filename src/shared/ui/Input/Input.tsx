@@ -7,11 +7,12 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: string
   disabled?: boolean
   placeholder?: string
+  value?: string
   isNumber?: boolean
   children?: React.ReactNode
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(({ type, placeholder, id, extra, state, disabled, isNumber, children, ...rest }, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ type = 'text', placeholder, id, extra, state, disabled, isNumber, children, ...rest }, ref) => {
   return (
     <div className="input">
       <input
@@ -32,5 +33,3 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ type, placeholder, id,
     </div>
   )
 })
-
-export default Input

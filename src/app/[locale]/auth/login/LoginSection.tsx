@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@/shared/ui/Buttons/Button'
-import Input from '@/shared/ui/Input/Input'
+import {Input} from '@/shared/ui/Input/Input'
 import Label from '@/shared/ui/Label/Label'
 import TextMuted from '@/shared/ui/TextMuted/TextMuted'
 import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
