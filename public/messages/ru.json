@@ -1,6 +1,6 @@
 {
   "Navigation": {
-    "catalog-title": "Каталог",
+    "categories-title": "Каталог",
     "brands-title": "Бренды",
     "dealers-title": "Дилеры",
     "favorites-title": "Избранные",
@@ -11,10 +11,10 @@
     "popular-equipment": "Популярное оборудование",
     "all-equipment": "Всё оборудование"
   },
-  "CatalogPage": {
-    "title": "Каталог",
+  "CategoriesPage": {
+    "title": "Категории",
     "categories": "Категории",
-    "equipment-catalog": "Каталог оборудований"
+    "equipment-categories": "Каталог оборудований"
   },
   "FavoritesPage": {
     "title": "Избранные"

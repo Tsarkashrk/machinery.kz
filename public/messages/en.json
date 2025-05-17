@@ -1,6 +1,6 @@
 {
   "Navigation": {
-    "catalog-title": "Catalog",
+    "categories-title": "Categories",
     "brands-title": "Brands",
     "dealers-title": "Dealers",
     "favorites-title": "Favorites",
@@ -11,10 +11,10 @@
     "popular-equipment": "Popular equipment",
     "all-equipment": "All equipment"
   },
-  "CatalogPage": {
-    "title": "Catalog",
+  "CategoriesPage": {
+    "title": "Categories",
     "categories": "Categories",
-    "equipment-catalog": "Equipment catalog"
+    "equipment-categories": "Equipment categories"
   },
   "FavoritesPage": {
     "title": "Favorites"

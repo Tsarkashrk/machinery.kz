@@ -1,6 +1,6 @@
 {
   "Navigation": {
-    "catalog-title": "Каталог",
+    "categories-title": "Санаттар",
     "brands-title": "Брендтер",
     "dealers-title": "Дилерлер",
     "favorites-title": "Таңдаулылар",
@@ -11,10 +11,10 @@
     "popular-equipment": "Танымал жабдықтар",
     "all-equipment": "Барлық жабдықтар"
   },
-  "CatalogPage": {
-    "title": "Каталог",
+  "CategoriesPage": {
+    "title": "Санаттар",
     "categories": "Санаттар",
-    "equipment-catalog": "Жабдықтар каталогы"
+    "equipment-categories": "Жабдықтар каталогы"
   },
   "FavoritesPage": {
     "title": "Таңдаулылар"

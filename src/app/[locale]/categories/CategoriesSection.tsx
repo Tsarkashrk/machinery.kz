@@ -10,23 +10,23 @@ import { SectionWithContent } from '@/shared/ui/SectionWithContent/SectionWithCo
 import Title from '@/shared/ui/Title/Title'
 import { Loading } from '@/shared/ui/Loading/Loading'
 
-const CatalogSection = () => {
+const CategoriesSection = () => {
   // const { equipmentList, isLoading: isEquipmentListLoading } = useEquipmentList()
 
   const { categories, isLoading: isCategoriesLoading } = useCategories()
 
-  const t = useTranslations('CatalogPage')
+  const t = useTranslations('CategoriesPage')
 
   return (
-    <section className="catalog-section">
-      <div className="catalog-section__wrapper">
+    <section className="categories-section">
+      <div className="categories-section__wrapper">
         <SectionWithContent>
           <Title size="h1">{t('categories')}</Title>
-          <div className="catalog-section__categories">{isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories} />}</div>
+          <div className="categories-section__categories">{isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories} />}</div>
         </SectionWithContent>
-        {/* <div className="catalog-section__categories">{isEquipmentListLoading ? loadingContent : categories && <CategoryList categories={categories} />}</div> */}
-        {/* <div className="catalog-section__block">
-            <h1 className="catalog-section__title">{t('equipment-catalog')}</h1>
+        {/* <div className="categories-section__categories">{isEquipmentListLoading ? loadingContent : categories && <CategoryList categories={categories} />}</div> */}
+        {/* <div className="categories-section__block">
+            <h1 className="categories-section__title">{t('equipment-categories')}</h1>
             {isCategoriesLoading ? loadingContent : equipmentList && <EquipmentList equipmentList={equipmentList} />}
           </div> */}
       </div>
@@ -34,4 +34,4 @@ const CatalogSection = () => {
   )
 }
 
-export default CatalogSection
+export default CategoriesSection

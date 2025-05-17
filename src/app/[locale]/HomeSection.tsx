@@ -25,7 +25,7 @@ export default function HomeSection() {
         <SectionWithContent>
           <Title size="h1">
             {t('popular-equipment')}
-            <TitleMore link={PLATFORM_PAGES.CATALOG}>
+            <TitleMore link={PLATFORM_PAGES.CATEGORIES}>
               {t('all-equipment')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>

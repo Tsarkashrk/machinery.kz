@@ -5,7 +5,7 @@ class PLATFORM {
   DEALERS = `${this.root}dealers`
   // PURCHASE = `${this.root}purchase`
   // RENT = `${this.root}rent`
-  CATALOG = `${this.root}catalog`
+  CATEGORIES = `${this.root}categories`
   LOGIN = `${this.root}auth/login`
   REGISTER = `${this.root}auth/register`
   NEW = `${this.root}new`

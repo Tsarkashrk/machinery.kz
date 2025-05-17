@@ -3,7 +3,7 @@ import React from 'react'
 import BrandsSection from './BrandsSection'
 
 export const metadata: Metadata = {
-  title: 'Catalog',
+  title: 'Brands',
 }
 
 const BrandsPage = () => {

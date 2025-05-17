@@ -11,7 +11,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    border: $border-primary;
+    box-shadow: 0 6px 12px rgba(41, 51, 53, 0.11);
+    border: 2px solid #eaecf5;
+    // border: $border;
     border-radius: $border-radius-card;
     transition: $card-transition;
 

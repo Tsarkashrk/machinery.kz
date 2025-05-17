@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import { ICON_SIZE } from '@/shared/constants/constants'
 import { useTranslations } from 'next-intl'
-import {Input} from '@/shared/ui/Input/Input'
+import { Input } from '@/shared/ui/Input/Input'
 import { useSearchEquipment } from '@/entities/equipment/hooks/useSearchEquipment'
 import { useState } from 'react'
 import debounce from 'lodash.debounce'
@@ -33,7 +33,7 @@ const Navigation = () => {
   }
 
   const navItems = [
-    { link: PLATFORM_PAGES.CATALOG, title: t('catalog-title'), icon: <ShoppingBag size={ICON_SIZE} /> },
+    { link: PLATFORM_PAGES.CATEGORIES, title: t('categories-title'), icon: <ShoppingBag size={ICON_SIZE} /> },
     { link: PLATFORM_PAGES.BRANDS, title: t('brands-title'), icon: <BadgeCheck size={ICON_SIZE} /> },
     { link: PLATFORM_PAGES.DEALERS, title: t('dealers-title'), icon: <Users size={ICON_SIZE} /> },
   ]
