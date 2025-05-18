@@ -128,7 +128,7 @@ const NewSection = () => {
             <div className="new-section__header">
               <div className="new-section__header-text">
                 <h1 className="new-section__title">Create New Listing</h1>
-                <TextMuted text="Please fill in all the details to get approval for listing creation." />
+                <TextMuted>Please fill in all the details to get approval for listing creation.</TextMuted>
               </div>
               {/* <div className="new-section__header-buttons">
                 <Button text="Previous" variant="outlined" icon={<ChevronLeft size={ICON_SIZE} />} />

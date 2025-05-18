@@ -15,9 +15,9 @@ export const useEquipmentWithImages = () => {
   return useQuery<any>({
     queryKey: ['equipment-with-images'],
     queryFn: async () => {
-      const equipments = await equipmentApi.getAllEquipment()
+      const { results } = await equipmentApi.getAllEquipment()
       const equipmentsWithImages = await Promise.all(
-        equipments.map(async (equipment: IEquipment) => {
+        results.map(async (equipment: IEquipment) => {
           const images = await equipmentImagesApi.getImageById(equipment.id)
           return {
             ...equipment,

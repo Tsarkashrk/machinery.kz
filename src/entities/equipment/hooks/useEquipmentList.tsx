@@ -1,9 +1,9 @@
 import { equipmentApi } from '@/shared/api'
 import { useQuery } from '@tanstack/react-query'
-import { IEquipment } from '../model/equipment.model'
+import { IEquipmentResponse } from '../model/equipment.model'
 
 export const useEquipmentList = () => {
-  const { data, isLoading, isSuccess } = useQuery<IEquipment[]>({
+  const { data, isLoading, isSuccess } = useQuery<IEquipmentResponse[]>({
     queryKey: ['equipment'],
     queryFn: equipmentApi.getAllEquipment,
   })

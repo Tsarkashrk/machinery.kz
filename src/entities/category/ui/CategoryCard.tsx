@@ -11,10 +11,8 @@ type Props = {
 export const CategoryCard = ({ category }: Props) => {
   const locale = useLocale()
 
-  console.log(category.id)
-
   return (
-    <Link href={`${PLATFORM_PAGES.CATALOG}/${category.name}`} className="category-card">
+    <Link href={`${PLATFORM_PAGES.CATEGORIES}/${category.name}`} className={`category-card ${(category.id === 7 || category.id === 20) && 'category-card--doubled'}`}>
       <div className="category-card__info">
         <h3 className="category-card__name">{locale === 'ru' ? category.name : category.description}</h3>
       </div>

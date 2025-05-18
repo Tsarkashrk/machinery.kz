@@ -28,7 +28,9 @@ export function LogoutButton() {
 
   return (
     <div className="logout">
-      <Button variant="outlined" icon={<LogOut size={ICON_SIZE} />} onClick={() => mutate()} text={isPending ? 'Logging out...' : 'Logout'} isLoading={isPending} />
+      <Button variant="outlined" icon={<LogOut size={ICON_SIZE} />} onClick={() => mutate()} isLoading={isPending}>
+        {isPending ? 'Logging out...' : 'Logout'}
+      </Button>
     </div>
   )
 }

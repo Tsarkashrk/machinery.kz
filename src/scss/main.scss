@@ -11,6 +11,7 @@
 @import '../app/[locale]/categories/[slug]/categories-slug';
 @import '../app/[locale]/product/[id]/product-slug';
 @import '../app/[locale]/home';
+@import '../app/[locale]/brands/brands';
 
 // Widgets
 
@@ -23,6 +24,7 @@
 // Entities
 
 @import '../entities/category/ui/category';
+@import '../entities/brand/ui/brand';
 
 // Components
 

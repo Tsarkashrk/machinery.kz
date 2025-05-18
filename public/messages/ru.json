@@ -4,20 +4,35 @@
     "brands-title": "Бренды",
     "dealers-title": "Дилеры",
     "favorites-title": "Избранные",
-    "messages-title": "Сообщения"
+    "messages-title": "Сообщения",
+    "search-title": "Поиск"
   },
   "HomePage": {
     "title": "Главная",
     "popular-equipment": "Популярное оборудование",
-    "all-equipment": "Всё оборудование"
+    "all-equipment": "Всё оборудование",
+    "popular-equipment-categories": "Популярные категории оборудования",
+    "all-equipment-categories": "Все категории",
+    "popular-machinery-categories": "Популярные категории тяжелой техники",
+    "all-machinery-categories": "Все категории"
   },
   "CategoriesPage": {
     "title": "Категории",
     "categories": "Категории",
-    "equipment-categories": "Каталог оборудований"
+    "equipment-categories": "Оборудование",
+    "machinery-categories": "Техника"
+  },
+  "BrandsPage": {
+    "title": "Бренды",
+    "brands": "Бренды",
+    "brands-amount": "компаний",
+    "brands-all": "Всего"
   },
   "FavoritesPage": {
     "title": "Избранные"
+  },
+  "ProfilePage": {
+    "title": "Профиль"
   },
   "Button": {
     "new-listing": "Новое объявление",

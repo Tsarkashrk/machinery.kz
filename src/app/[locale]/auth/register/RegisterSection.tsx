@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@/shared/ui/Buttons/Button'
-import {Input} from '@/shared/ui/Input/Input'
+import { Input } from '@/shared/ui/Input/Input'
 import Label from '@/shared/ui/Label/Label'
 import TextMuted from '@/shared/ui/TextMuted/TextMuted'
 import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
@@ -41,7 +41,7 @@ const RegisterSection = () => {
       <div className="auth-form__wrapper">
         <div className="auth-form__header">
           <h1>Create a new account</h1>
-          <TextMuted text="Fill in the fields below to register a new account" />
+          <TextMuted>Fill in the fields below to register a new account</TextMuted>
         </div>
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
           <div className="auth-form__credentials">

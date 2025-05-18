@@ -135,27 +135,27 @@ const ProductIdPage = () => {
                 <h1 className="product-slug__h1">{data?.name}</h1>
                 <div className="product-slug__info-details">
                   <div className="product-slug__row">
-                    <TextMuted text="Equipment ID:" />
+                    <TextMuted>Equipment ID:</TextMuted>
                     <p>{data?.id}</p>
                   </div>
                   <div className="product-slug__row">
-                    <TextMuted text="Category:" />
+                    <TextMuted>Category:</TextMuted>
                     <p>{data?.category_details?.name}</p>
                   </div>
                   <div className="product-slug__row">
-                    <TextMuted text="Manufacturer:" />
+                    <TextMuted>Manufacturer:</TextMuted>
                     <p>{data?.manufacturer}</p>
                   </div>
                   <div className="product-slug__row">
-                    <TextMuted text="Model:" />
+                    <TextMuted>Model:</TextMuted>
                     <p>{data?.model}</p>
                   </div>
                   <div className="product-slug__row">
-                    <TextMuted text="Year:" />
+                    <TextMuted>Year:</TextMuted>
                     <p>{data?.year}</p>
                   </div>
                   <div className="product-slug__row">
-                    <TextMuted text="Condition:" />
+                    <TextMuted>Condition:</TextMuted>
                     <p>{data?.condition}</p>
                   </div>
                 </div>
@@ -213,7 +213,7 @@ const ProductIdPage = () => {
               {data?.available_for_rent ? (
                 <div className="product-slug__price-block">
                   <div className="product-slug__price-rate">{data?.daily_rental_rate} KZT</div>
-                  <TextMuted text="per day" />
+                  <TextMuted>per day</TextMuted>
                 </div>
               ) : (
                 <div className="product-slug__price-block">

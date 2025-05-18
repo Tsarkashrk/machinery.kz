@@ -15,6 +15,13 @@ interface IEquipmentBase {
   available_for_sale: boolean
 }
 
+export interface IEquipmentResponse {
+  count: number
+  next: string
+  previous: string
+  results: IEquipment[]
+}
+
 export interface IEquipment extends IEquipmentBase {
   id: number
   category_details: ICategory

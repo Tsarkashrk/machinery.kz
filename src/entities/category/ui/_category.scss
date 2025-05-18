@@ -23,8 +23,7 @@
       transition: $card-transition;
     }
 
-    &:nth-child(5),
-    &:nth-child(18) {
+    &--doubled {
       grid-column: span 2;
 
       .category-card__image-container {

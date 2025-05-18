@@ -1,5 +1,3 @@
-'use client'
-
 import { Users, ShoppingBag, BadgeCheck, Search } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -71,7 +69,7 @@ const Navigation = () => {
 
       <div className="navigation__search">
         <Button variant="outlined" onClick={() => setIsSearchOpen(true)}>
-          Search
+          {t('search-title')}
           <Search size={ICON_SIZE} />
         </Button>
       </div>

@@ -74,7 +74,7 @@ const ProfileSection = () => {
             })}
           />
         </div>
-        <Button text="Save changes" variant="dark" />
+        <Button variant="dark">Save changes</Button>
       </form>
     </section>
   )
