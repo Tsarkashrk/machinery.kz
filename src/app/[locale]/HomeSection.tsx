@@ -2,12 +2,11 @@
 
 import { CategoryList } from '@/entities/category'
 import { useCategories } from '@/entities/category/hooks/useCategories'
-import { IEquipment, useEquipmentWithImages } from '@/entities/equipment'
+import { useEquipmentWithImages } from '@/entities/equipment'
 
 import Hero from '@/shared/components/Hero/Hero'
 import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import { ICON_SIZE } from '@/shared/constants/constants'
-import Button from '@/shared/ui/Buttons/Button'
 import { Loading } from '@/shared/ui/Loading/Loading'
 import { SectionWithContent } from '@/shared/ui/SectionWithContent/SectionWithContent'
 import Title from '@/shared/ui/Title/Title'
@@ -21,6 +20,8 @@ export default function HomeSection() {
 
   const { data: equipmentListData, isLoading, isSuccess } = useEquipmentWithImages()
   const { categories, isLoading: isCategoriesLoading } = useCategories()
+
+  console.log(equipmentListData)
 
   return (
     <div className="home-section">

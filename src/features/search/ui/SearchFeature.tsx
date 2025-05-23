@@ -1,22 +1,24 @@
 'use client'
 
 import { FC, ChangeEvent } from 'react'
-import {Input} from '@/shared/ui/Input/Input'
+import { Input } from '@/shared/ui/Input/Input'
 import { Search } from 'lucide-react'
 import { IEquipment } from '@/entities/equipment/model/equipment.model'
 import { useSearch } from '../model/useSearch'
 import { EquipmentList } from '@/widgets/equipment-list'
 
-interface SearchFeatureProps {
+type Props = {
   placeholder?: string
 }
 
-export const SearchFeature: FC<SearchFeatureProps> = ({ placeholder = 'Search products' }) => {
+export const SearchFeature = ({ placeholder = 'Search products' }: Props) => {
   const [{ query, searchTerm, results, isLoading }, handleQueryChange] = useSearch()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     handleQueryChange(e.target.value)
   }
+
+  console.log(results)
 
   return (
     <div className="search-feature">

@@ -1,16 +1,14 @@
 'use client'
 
-import { DealerCard } from '@/entities/dealer'
-import { useDealersList } from '@/entities/dealer/hooks/useDealersList'
-import { IUser } from '@/types/user.type'
+import { DealerCard, useDealersList } from '@/entities/dealer'
 import { useUsersList } from '@/entities/user'
 
 export const DealersList = () => {
-  const { users, isLoading, error } = useUsersList()
+  const { dealers, isLoading, error } = useDealersList()
 
   return (
     <div>
-      {users?.map((dealer: any) => (
+      {dealers?.map((dealer: any) => (
         <DealerCard key={dealer.id} dealer={dealer} />
       ))}
     </div>

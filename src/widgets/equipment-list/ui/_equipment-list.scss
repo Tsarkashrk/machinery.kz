@@ -1,4 +1,9 @@
 .equipment-list {
   display: flex;
   gap: 1rem;
+
+  &--small {
+    display: flex;
+    flex-direction: column;
+  }
 }

@@ -22,6 +22,13 @@ export interface IEquipmentResponse {
   results: IEquipment[]
 }
 
+export interface IEquipmentData {
+  count: number
+  next: string
+  previous: string
+  results: IEquipment[]
+}
+
 export interface IEquipment extends IEquipmentBase {
   id: number
   category_details: ICategory

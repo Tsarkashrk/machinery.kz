@@ -3,12 +3,12 @@
 import { FC, useEffect } from 'react'
 import { SearchFeature } from '@/features/search/ui/SearchFeature'
 
-interface SearchModalProps {
+type Props = {
   isOpen: boolean
   onClose: () => void
 }
 
-export const SearchModal: FC<SearchModalProps> = ({ isOpen, onClose }) => {
+export const SearchModal = ({ isOpen, onClose }: Props) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()

@@ -33,7 +33,7 @@ export const useSearch = (): [SearchState, (value: string) => void] => {
     {
       query,
       searchTerm,
-      results: data || null,
+      results: data?.results || null,
       isLoading,
     },
     handleQueryChange,

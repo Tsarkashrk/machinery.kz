@@ -1,11 +1,9 @@
-import { useFavorites } from '@/entities/favorite'
 import { ICON_SIZE } from '@/shared/constants/constants'
 import TextMuted from '@/shared/ui/TextMuted/TextMuted'
 import Button from '@/shared/ui/Buttons/Button'
 import { Heart } from 'lucide-react'
 import { PLATFORM_PAGES } from '@/shared/config/pages-url.config'
 import { Badge } from '@/shared/ui/Badge/Badge'
-import { IEquipmentWithImage } from '@/entities/equipment'
 import Image from 'next/image'
 import { ToggleFavoriteButton } from '@/features/toggle-favorite'
 import { useTranslations } from 'next-intl'
@@ -41,7 +39,7 @@ export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_
           <ToggleFavoriteButton productId={id} isFavorite={false}>
             <Heart size={ICON_SIZE} />
           </ToggleFavoriteButton>
-          <Button link={`${PLATFORM_PAGES.PRODUCT}/${name}`}>{t('details')}</Button>
+          <Button link={`${PLATFORM_PAGES.PRODUCT}/${id}`}>{t('details')}</Button>
         </div>
       </div>
     </div>

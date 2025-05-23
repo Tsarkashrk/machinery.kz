@@ -1,0 +1,15 @@
+.equipment-card {
+  &--small {
+    display: flex;
+
+    .equipment-card {
+      &__image {
+        max-width: 7rem;
+        max-height: 7rem;
+        margin-bottom: 0;
+        border: $border-primary;
+        box-shadow: $card-shadow;
+      }
+    }
+  }
+}
