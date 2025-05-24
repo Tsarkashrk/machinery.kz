@@ -1,10 +1,10 @@
 'use client'
 
-import { BrandsList, useBrands } from '@/entities/brand'
+import { BrandsList, useBrands } from '@/5-entities/brand'
 import { useTranslations } from 'next-intl'
-import { SectionWithContent } from '@/shared/ui/SectionWithContent/SectionWithContent'
-import Title from '@/shared/ui/Title/Title'
-import { TitleDescription } from '@/shared/ui/TitleDescription/TitleDescription'
+import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
+import Title from '@/6-shared/ui/Title/Title'
+import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription'
 
 const BrandsSection = () => {
   const { brands, isLoading: isBrandsLoading } = useBrands()

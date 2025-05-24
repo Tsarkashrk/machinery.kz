@@ -1,4 +1,4 @@
-import { DealersList } from '@/widgets/dealers-list'
+import { DealersList } from '@/3-widgets/dealers-list'
 
 const DealersSection = () => {
   return (

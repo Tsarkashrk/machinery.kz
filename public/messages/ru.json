@@ -14,7 +14,9 @@
     "popular-equipment-categories": "Популярные категории оборудования",
     "all-equipment-categories": "Все категории",
     "popular-machinery-categories": "Популярные категории тяжелой техники",
-    "all-machinery-categories": "Все категории"
+    "all-machinery-categories": "Все категории",
+    "popular-brands": "Популярные бренды",
+    "all-brands": "Все бренды"
   },
   "CategoriesPage": {
     "title": "Категории",
@@ -27,6 +29,13 @@
     "brands": "Бренды",
     "brands-amount": "компаний",
     "brands-all": "Всего"
+  },
+  "BrandPage": {
+    "title": "Бренд",
+    "brands-equipment": "Оборудование",
+    "brands-all-equipment": "Все оборудование",
+    "brands-machinery": "Техника", 
+    "brands-all-machinery": "Вся техника"
   },
   "FavoritesPage": {
     "title": "Избранные"

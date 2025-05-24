@@ -1,8 +1,8 @@
 'use client'
 
 import { useFavorites } from '@/entities/favorite'
-import { SectionWithContent } from '@/shared/ui/SectionWithContent/SectionWithContent'
-import Title from '@/shared/ui/Title/Title'
+import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
+import Title from '@/6-shared/ui/Title/Title'
 import { FavoritesList } from '@/widgets/favorites-list/FavoritesList'
 import { useTranslations } from 'next-intl'
 

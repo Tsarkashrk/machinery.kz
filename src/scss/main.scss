@@ -15,45 +15,43 @@
 
 // Widgets
 
-@import '../widgets/equipment-card/ui/equipment-card';
-@import '../widgets/equipment-list/ui/equipment-list';
-@import '../widgets/search-modal/ui/search-modal';
+@import '../3-widgets/equipment-card/ui/equipment-card';
+@import '../3-widgets/equipment-list/ui/equipment-list';
+@import '../3-widgets/search-modal/ui/search-modal';
 
 // Features
 
 // Entities
 
-@import '../entities/category/ui/category';
-@import '../entities/brand/ui/brand';
-@import '../entities/equipment/ui/equipment-card-small';
-
-// Components
-
-@import '../shared/components/Navigation/navigation';
-@import '../shared/components/Header/header';
-@import '../shared/components/Footer/footer';
-@import '../shared/components/AuthForm/auth-form';
-@import '../shared/components/Hero/hero';
-@import '../shared/components/Carousel/carousel';
-@import '../shared/components/Cards/CarouselCard/carousel-card';
-@import '../shared/components/Cards/Card/card';
-@import '../shared/components/Cards/BannerCard/banner-card';
-@import '../shared/components/Cards/PromoCard/promo-card';
-@import '../shared/components/Sidebar/sidebar';
+@import '../5-entities/category/ui/category';
+@import '../5-entities/brand/ui/brand';
+@import '../5-entities/equipment/ui/equipment-card-small';
 
 // UI
 
-@import '../shared/ui/Buttons/button';
-@import '../shared/ui/Loading/loading';
-@import '../shared/ui/ErrorMessage/error-message';
-@import '../shared/ui/Dropdown/dropdown';
-@import '../shared/ui/DatePicker/date-picker';
-@import '../shared/ui/Avatar/avatar';
-@import '../shared/ui/TextMuted/text-muted';
-@import '../shared/ui/Label/label';
-@import '../shared/ui/Input/input';
-@import '../shared/ui/Title/title';
-@import '../shared/ui/TitleMore/title-more';
-@import '../shared/ui/Logo/logo';
-@import '../shared/ui/Badge/badge';
-@import '../shared/ui/SectionWithContent/section-with-content';
+@import '../6-shared/ui/Buttons/button';
+@import '../6-shared/ui/Loading/loading';
+@import '../6-shared/ui/ErrorMessage/error-message';
+@import '../6-shared/ui/Dropdown/dropdown';
+@import '../6-shared/ui/DatePicker/date-picker';
+@import '../6-shared/ui/Avatar/avatar';
+@import '../6-shared/ui/TextMuted/text-muted';
+@import '../6-shared/ui/Label/label';
+@import '../6-shared/ui/Input/input';
+@import '../6-shared/ui/Title/title';
+@import '../6-shared/ui/TitleMore/title-more';
+@import '../6-shared/ui/Logo/logo';
+@import '../6-shared/ui/Badge/badge';
+@import '../6-shared/ui/SectionWithContent/section-with-content';
+@import '../6-shared/ui/Navigation/navigation';
+@import '../6-shared/ui/Header/header';
+@import '../6-shared/ui/Footer/footer';
+@import '../6-shared/ui/AuthForm/auth-form';
+@import '../6-shared/ui/Hero/hero';
+@import '../6-shared/ui/Carousel/carousel';
+@import '../6-shared/ui/Cards/CarouselCard/carousel-card';
+@import '../6-shared/ui/Cards/Card/card';
+@import '../6-shared/ui/Cards/BannerCard/banner-card';
+@import '../6-shared/ui/Cards/PromoCard/promo-card';
+@import '../6-shared/ui/Sidebar/sidebar';
+@import '../6-shared/ui/Description/description';

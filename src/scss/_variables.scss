@@ -4,7 +4,7 @@ $gap-bw-fields: 2rem;
 
 // Width
 
-$max-width: 1480px;
+$max-width: 1380px;
 $max-width-secondary: 800px;
 
 // Padding
@@ -41,7 +41,7 @@ $font-bold: 700;
 
 // Border
 
-$border-primary: 1px solid #2947a321;
+$border-primary: 2px solid #2947a321;
 $border: 1px solid #e5e7eb;
 $border-rounded: 100rem;
 $border-radius-card: 1.6rem;
@@ -82,6 +82,7 @@ $primary-color: #00b4b3;
 $card-shadow: 0 4px 20px #3c46641f;
 // $ui-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 $ui-shadow: 0 4px 20px #3c46641f;
+$box-shadow-primary: 0 6px 12px rgba(41, 51, 53, 0.11);
 
 // Transition
 

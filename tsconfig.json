@@ -20,13 +20,12 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/app": ["./src/app/"],
-      "@/components": ["./src/shared/components/"],
-      "@/ui": ["./src/shared/ui/"],
-      "@/config": ["./src/shared/config/"],
+      "@/app": ["./src/app"],
+      "@/ui": ["./src/6-shared/ui"],
+      "@/config": ["./src/6-shared/config"],
       "@/widgets": ["./src/widgets/"],
-      "@/shared": ["./src/shared/"],
-      "@/features": ["./src/features/"],
+      "@/shared": ["./src/6-shared"],
+      "@/features": ["./src/4-features"],
       "@/entities": ["./src/entities/"],
       "@/scss": ["./src/scss/"]
     }

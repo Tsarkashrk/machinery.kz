@@ -14,7 +14,9 @@
     "popular-equipment-categories": "Жабдықтардың танымал санаттары",
     "all-equipment-categories": "Барлық санаттар",
     "popular-machinery-categories": "Ауыр техниканың танымал санаттары",
-    "all-machinery-categories": "Барлық санаттар"
+    "all-machinery-categories": "Барлық санаттар",
+    "popular-brands": "Танымал брендтер",
+    "all-brands": "Барлық брендтер"
   },
   "CategoriesPage": {
     "title": "Санаттар",
@@ -27,6 +29,13 @@
     "brands": "Брендтер",
     "brands-amount": "компания",
     "brands-all": "Барлығы"
+  },
+  "BrandPage": {
+    "title": "Бренд",
+    "brands-equipment": "Жабдықтар",
+    "brands-all-equipment": "Барлық жабдықтар",
+    "brands-machinery": "Техника",
+    "brands-all-machinery": "Барлық техника"
   },
   "FavoritesPage": {
     "title": "Таңдаулылар"
