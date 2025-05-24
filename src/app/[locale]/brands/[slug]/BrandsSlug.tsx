@@ -19,7 +19,7 @@ const BrandsSlug = () => {
   const slug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug
 
   const { brand, isLoading, isSuccess } = useBrandSearch(slug || '')
-  const { data: equipmentList } = useEquipmentWithImages()
+  const { data: equipmentList } = useEquipmentWithImages({ brand: brand?.id })
 
   const t = useTranslations('BrandPage')
 

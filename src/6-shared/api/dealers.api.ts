@@ -5,6 +5,8 @@ export const BASE_URL = '/dealers'
 export const dealersApi = {
   async getDealers() {
     const response = await axiosClassic.get(`${BASE_URL}/`)
+    console.log(response)
+
     return response.data
   },
 

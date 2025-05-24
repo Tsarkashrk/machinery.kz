@@ -14,8 +14,9 @@ import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
 import Dropdown from '@/6-shared/ui/Dropdown/Dropdown'
 import InputFile from '@/6-shared/ui/Input/InputFile'
 import { equipmentApi, equipmentImagesApi } from '@/6-shared/api'
-import { useCategories } from '@/entities/category/hooks/useCategories'
-import { useProfile } from '@/entities/user'
+import { useCategories } from '@/5-entities/category/hooks/useCategories'
+import { useProfile } from '@/5-entities/user'
+import { useBrands } from '@/5-entities/brand'
 
 const listingTypes = [
   {
@@ -43,6 +44,8 @@ const conditions = [
 ]
 
 const NewSection = () => {
+  const { brands } = useBrands()
+
   const handleSelect = (item: { id: number; title: string }) => {
     console.log('Выбранный элемент:', item)
   }
@@ -86,6 +89,7 @@ const NewSection = () => {
 
     const formattedData = {
       owner: profile?.id,
+      brand: data.manufacturer,
       ...data,
       purchase_price: data.purchase_price | 0,
       daily_rental_rate: data.daily_rental_rate | 0,
@@ -154,8 +158,7 @@ const NewSection = () => {
                   </div>
                   <div className="new-section__info-block">
                     <Label text="Category" forElement="category" />
-
-                    <Dropdown name="category" control={control} options={categories?.map((cat: any) => ({ ...cat, title: cat.name, value: cat.id })) || []} rules={{ required: 'Category is required!' }} />
+                    <Dropdown name="category" control={control} options={categories?.map((category) => ({ ...category, title: category.name, value: category.id })) || []} rules={{ required: 'Category is required!' }} />
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
@@ -185,14 +188,7 @@ const NewSection = () => {
                 <div className="new-section__info-blocks">
                   <div className="new-section__info-block">
                     <Label text="Manufacturer" forElement="manufacturer" />
-                    <Input
-                      id="manufacturer"
-                      type="text"
-                      placeholder="Bosch"
-                      {...register('manufacturer', {
-                        required: 'Manufacturer is required!',
-                      })}
-                    />
+                    <Dropdown name="manufacturer" control={control} options={brands?.map((brand) => ({ ...brand, title: brand.name, value: brand.id })) || []} rules={{ required: 'Manufacturer is required!' }} />
                   </div>
                   <div className="new-section__info-block">
                     <Label text="Year" forElement="year" />
@@ -239,7 +235,9 @@ const NewSection = () => {
                     />
                   </div>
                 </div>
-                <Button type="submit" text="Confirm & Submit" variant="default" width="100%" />
+                <Button type="submit" variant="default" width="100%">
+                  Confirm & Submit
+                </Button>
               </div>
             </Card>
           </form>

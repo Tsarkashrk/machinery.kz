@@ -7,6 +7,19 @@
     "messages-title": "Хабарламалар",
     "search-title": "Табу"
   },
+  "AuthPage": {
+    "login-title": "Есептік жазбаңызға кіріңіз",
+    "login-description": "Есептік жазбаға кіру үшін төмендегі деректерді енгізіңіз",
+    "login-email": "Пошта",
+    "login-password": "Құпия сөз",
+    "login-to-register": "Есептік жазбаңыз жоқ па?",
+    "register-title": "Жаңа есептік жазба жасаңыз",
+    "register-description": "Жаңа есептік жазбаны тіркеу үшін төмендегі деректерді енгізіңіз",
+    "register-username": "Пайдаланушы аты",
+    "register-email": "Пошта",
+    "register-password": "Құпия сөз",
+    "register-to-login": "Есептік жазбаңыз бар ма?"
+  },
   "HomePage": {
     "title": "Басты",
     "popular-equipment": "Танымал жабдықтар",
@@ -36,6 +49,11 @@
     "brands-all-equipment": "Барлық жабдықтар",
     "brands-machinery": "Техника",
     "brands-all-machinery": "Барлық техника"
+  },  
+  "DealersPage": {
+    "title": "Дилерлер",
+    "dealers-all": "Барлығы",
+    "dealers-amount": "дилер"
   },
   "FavoritesPage": {
     "title": "Таңдаулылар"
@@ -46,6 +64,7 @@
   "Button": {
     "new-listing": "Жаңа хабарландыру",
     "login": "Кіру",
+    "register": "Тіркелу",
     "details": "Толығырақ"
   }
 }

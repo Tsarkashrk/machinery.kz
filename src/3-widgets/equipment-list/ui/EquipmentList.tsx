@@ -6,7 +6,7 @@ import { Loading } from '@/6-shared/ui/Loading/Loading'
 import { EquipmentCard } from '@/3-widgets/equipment-card'
 
 type Props = {
-  equipmentList: IEquipmentWithImage[] | IEquipment[]
+  equipmentList: IEquipmentWithImage[] | IEquipment[] | undefined
   isLoading: boolean
   variant?: 'default' | 'small'
 }

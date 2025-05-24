@@ -6,13 +6,18 @@ import Label from '@/6-shared/ui/Label/Label'
 import TextMuted from '@/6-shared/ui/TextMuted/TextMuted'
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
 import { authApi } from '@/6-shared/api'
-import { IAuthRegisterRequest } from '@/entities/auth'
+import { IAuthRegisterRequest } from '@/5-entities/auth'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { toast } from 'sonner'
+import Title from '@/6-shared/ui/Title/Title'
+import { useTranslations } from 'next-intl'
 
 const RegisterSection = () => {
+  const t = useTranslations('AuthPage')
+  const tButton = useTranslations('Button')
+
   const { register, handleSubmit, reset } = useForm<IAuthRegisterRequest>({
     mode: 'onChange',
   })
@@ -40,12 +45,12 @@ const RegisterSection = () => {
     <section className="auth-form">
       <div className="auth-form__wrapper">
         <div className="auth-form__header">
-          <h1>Create a new account</h1>
-          <TextMuted>Fill in the fields below to register a new account</TextMuted>
+          <Title>{t('register-title')}</Title>
+          <TextMuted>{t('register-description')}</TextMuted>
         </div>
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
           <div className="auth-form__credentials">
-            <Label text="Username" forElement="username" />
+            <Label text={t('register-username')} forElement="username" />
             <Input
               type="text"
               id="username"
@@ -56,7 +61,7 @@ const RegisterSection = () => {
             />
           </div>
           <div className="auth-form__credentials">
-            <Label text="Email" forElement="email" />
+            <Label text={t('register-email')} forElement="email" />
             <Input
               type="email"
               id="email"
@@ -67,7 +72,7 @@ const RegisterSection = () => {
             />
           </div>
           <div className="auth-form__credentials">
-            <Label text="Password" forElement="password" />
+            <Label text={t('register-password')} forElement="password" />
             <Input
               type="password"
               id="password"
@@ -77,13 +82,13 @@ const RegisterSection = () => {
             />
           </div>
           <Button variant="default" isLoading={isPending}>
-            Sign up
+            {tButton('register')}
           </Button>
         </form>
         <p className="auth-form__footer">
-          Already have an account?{' '}
+          {t('register-to-login')}{' '}
           <Button link={PLATFORM_PAGES.LOGIN} variant="underlined">
-            Log in
+            {tButton('login')}
           </Button>
         </p>
       </div>

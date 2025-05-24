@@ -11,11 +11,29 @@ export const useEquipmentImage = (id: number) => {
   return { equipmentImage: data, isLoading, isSuccess }
 }
 
-export const useEquipmentWithImages = () => {
-  return useQuery<any>({
-    queryKey: ['equipment-with-images'],
+type Props = {
+  brand?: number
+  available_for_rent?: boolean
+  available_for_sale?: boolean
+  category?: number
+  max_price?: number
+  max_rental_rate?: number
+  max_year?: number
+  min_price?: number
+  min_rental_rate?: number
+  min_year?: number
+  ordering?: string
+  page?: number
+  page_size?: number
+  search?: string
+  year?: number
+}
+
+export const useEquipmentWithImages = (params?: Props) => {
+  return useQuery({
+    queryKey: ['equipment-with-images', params],
     queryFn: async () => {
-      const { results } = await equipmentApi.getAllEquipment()
+      const { results } = await equipmentApi.getAllEquipment(params)
       const equipmentsWithImages = await Promise.all(
         results.map(async (equipment: IEquipment) => {
           const images = await equipmentImagesApi.getImageById(equipment.id)

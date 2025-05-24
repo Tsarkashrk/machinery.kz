@@ -6,13 +6,18 @@ import Label from '@/6-shared/ui/Label/Label'
 import TextMuted from '@/6-shared/ui/TextMuted/TextMuted'
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
 import { authApi } from '@/6-shared/api'
-import { IAuthLoginRequest } from '@/entities/auth'
+import { IAuthLoginRequest } from '@/5-entities/auth'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import { useTranslations } from 'next-intl'
+import Title from '@/6-shared/ui/Title/Title'
 
 const LoginSection = () => {
+  const t = useTranslations('AuthPage')
+  const tButton = useTranslations('Button')
+
   const {
     register,
     handleSubmit,
@@ -43,30 +48,30 @@ const LoginSection = () => {
     <section className="auth-form">
       <div className="auth-form__wrapper">
         <div className="auth-form__header">
-          <h1>Log in to your account</h1>
-          <TextMuted>Enter your credentials below to log in to your account</TextMuted>
+          <Title>{t('login-title')}</Title>
+          <TextMuted>{t('login-description')}</TextMuted>
         </div>
 
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
           <div className="auth-form__credentials">
-            <Label text="Email" forElement="email" />
+            <Label text={t('login-email')} forElement="email" />
             <Input type="email" id="email" placeholder="mchnry@ex.com" {...register('email', { required: 'Email is required!' })} />
           </div>
 
           <div className="auth-form__credentials">
-            <Label text="Password" forElement="password" />
+            <Label text={t('login-password')} forElement="password" />
             <Input type="password" id="password" {...register('password', { required: 'Password is required!' })} />
           </div>
 
           <Button variant="default" type="submit" isLoading={isPending}>
-            Log in
+            {tButton('login')}
           </Button>
         </form>
 
         <p className="auth-form__footer">
-          Don't have an account?{' '}
+          {t('login-to-register')}{' '}
           <Button link={PLATFORM_PAGES.REGISTER} variant="underlined">
-            Sign up
+            {tButton('register')}
           </Button>
         </p>
       </div>

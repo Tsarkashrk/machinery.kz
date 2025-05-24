@@ -1,11 +1,29 @@
 import { axiosClassic, axiosWithAuth } from './interceptors'
-import { IEquipment } from '@/entities/equipment'
+import { IEquipment } from '@/5-entities/equipment'
 
 const BASE_URL = '/equipment'
 
+type Props = {
+  brand?: number
+  available_for_rent?: boolean
+  available_for_sale?: boolean
+  category?: number
+  max_price?: number
+  max_rental_rate?: number
+  max_year?: number
+  min_price?: number
+  min_rental_rate?: number
+  min_year?: number
+  ordering?: string
+  page?: number
+  page_size?: number
+  search?: string
+  year?: number
+}
+
 export const equipmentApi = {
-  async getAllEquipment() {
-    const response = await axiosClassic.get(`${BASE_URL}/`)
+  async getAllEquipment(params?: Props) {
+    const response = await axiosClassic.get(`${BASE_URL}/`, { params })
     return response.data
   },
 

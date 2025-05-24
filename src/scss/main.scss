@@ -12,12 +12,14 @@
 @import '../app/[locale]/product/[id]/product-slug';
 @import '../app/[locale]/home';
 @import '../app/[locale]/brands/brands';
+@import '../app/[locale]/dealers/dealers';
 
 // Widgets
 
 @import '../3-widgets/equipment-card/ui/equipment-card';
 @import '../3-widgets/equipment-list/ui/equipment-list';
 @import '../3-widgets/search-modal/ui/search-modal';
+@import '../3-widgets/dealers-list/ui/dealer-list';
 
 // Features
 
@@ -26,6 +28,7 @@
 @import '../5-entities/category/ui/category';
 @import '../5-entities/brand/ui/brand';
 @import '../5-entities/equipment/ui/equipment-card-small';
+@import '../5-entities/dealer/ui/dealer-card';
 
 // UI
 

@@ -3,9 +3,10 @@
   &__wrapper {
     height: 100%;
     padding: 3rem;
-    // border: $border;
+    border: $border-primary;
+    border-width: 1px;
     border-radius: $border-radius-card;
     background-color: $base-color;
-    box-shadow: $card-shadow;
+    box-shadow: $box-shadow-primary;
   }
 }

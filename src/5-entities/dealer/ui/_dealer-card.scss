@@ -1,0 +1,23 @@
+.dealer-card {
+  &__wrapper {
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+    border: $border-primary;
+    border-radius: $border-radius-card;
+    box-shadow: $box-shadow-primary;
+    transition: $card-transition;
+
+    &:hover {
+      box-shadow: $card-shadow;
+      transform: translateY(-2px);
+      transition: $card-transition;
+    }
+  }
+
+  &__image {
+    max-width: 10rem;
+    width: 100%;
+    height: auto;
+  }
+}

@@ -13,9 +13,8 @@
     width: 100%;
     padding: 2.4rem;
     border-radius: $border-radius-card;
-    // border: $border;
-    box-shadow: $card-shadow;
-    background-color: $base-color;
+    border: $border-primary;
+    box-shadow: $box-shadow-primary;
   }
 
   &__header {

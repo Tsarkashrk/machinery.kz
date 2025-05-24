@@ -1,8 +1,8 @@
 'use client'
 
-import { IUser } from '@/entities/user'
+import { IUser } from '@/5-entities/user'
 import Button from '../Buttons/Button'
-import { useProfile } from '@/entities/user'
+import { useProfile } from '@/5-entities/user'
 import { ReactNode } from 'react'
 import { LogoutButton } from '../Buttons/LogoutButton'
 import Label from '../Label/Label'

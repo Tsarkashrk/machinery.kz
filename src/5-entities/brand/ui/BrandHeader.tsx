@@ -1,5 +1,4 @@
-import { EquipmentList } from '@/3-widgets/equipment-list'
-import { useEquipmentWithImages } from '@/5-entities/equipment'
+import Card from '@/6-shared/ui/Cards/Card/Card'
 import { Description } from '@/6-shared/ui/Description/Description'
 import Title from '@/6-shared/ui/Title/Title'
 import Image from 'next/image'

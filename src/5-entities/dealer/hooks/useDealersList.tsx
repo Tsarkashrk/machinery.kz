@@ -8,7 +8,7 @@ export const useDealersList = () => {
   })
 
   return {
-    dealers: data || [],
+    data,
     isLoading,
     error,
   }

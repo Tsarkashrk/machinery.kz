@@ -7,6 +7,19 @@
     "messages-title": "Сообщения",
     "search-title": "Поиск"
   },
+  "AuthPage": {
+    "login-title": "Войдите в свою учетную запись",
+    "login-description": "Введите данные ниже, чтобы войти в учетную запись",
+    "login-email": "Электронная почта",
+    "login-password": "Пароль",
+    "login-to-register": "Нет учетной записи?",
+    "register-title": "Создайте новую учетную запись",
+    "register-description": "Введите данные ниже, чтобы зарегистрировать новую учетную запись",
+    "register-username": "Имя пользователя",
+    "register-email": "Электронная почта",
+    "register-password": "Пароль",
+    "register-to-login": "Уже есть учетная запись?"
+  },
   "HomePage": {
     "title": "Главная",
     "popular-equipment": "Популярное оборудование",
@@ -34,8 +47,13 @@
     "title": "Бренд",
     "brands-equipment": "Оборудование",
     "brands-all-equipment": "Все оборудование",
-    "brands-machinery": "Техника", 
+    "brands-machinery": "Техника",
     "brands-all-machinery": "Вся техника"
+  },
+  "DealersPage": {
+    "title": "Дилеры",
+    "dealers-all": "Всего",
+    "dealers-amount": "дилеров"
   },
   "FavoritesPage": {
     "title": "Избранные"
@@ -46,6 +64,7 @@
   "Button": {
     "new-listing": "Новое объявление",
     "login": "Войти",
+    "register": "Зарегистрироваться",
     "details": "Подробнее"
   }
 }
