@@ -37,6 +37,13 @@
       }
     }
 
+    &--machinery {
+      .category-card__image {
+        max-width: 21rem;
+        max-height: 14rem;
+      }
+    }
+
     &__image-container {
       display: flex;
       justify-content: end;

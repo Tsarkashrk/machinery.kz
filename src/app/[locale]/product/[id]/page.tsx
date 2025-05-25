@@ -32,9 +32,9 @@ const product = [
 ]
 
 const TABS = [
-  { id: 'description', label: 'Description' },
-  { id: 'specifications', label: 'Specifications' },
-  { id: 'rental_terms', label: 'Rental Terms' },
+  { id: 'description', label: 'Описание' },
+  { id: 'specifications', label: 'Спецификации' },
+  { id: 'rental_terms', label: 'Условия аренды' },
 ]
 
 const ProductIdPage = () => {
@@ -172,14 +172,14 @@ const ProductIdPage = () => {
             <div className="product-slug__tab-content">
               {selectedTab === 'description' && (
                 <div className="product-slug__description">
-                  <h1>Description</h1>
+                  <h1>Описание</h1>
                   <p className="product-slug__text">{data?.description || 'No description available.'} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed nesciunt nulla error, architecto hic ducimus consectetur? Facere nobis asperiores, nesciunt amet enim ducimus illum. Repudiandae alias aspernatur sapiente nemo voluptate!</p>
                 </div>
               )}
 
               {selectedTab === 'specifications' && (
                 <div className="product-slug__specifications">
-                  <h1>Specifications</h1>
+                  <h1>Спецификации</h1>
                   <ul>
                     <li>
                       <strong>Manufacturer:</strong> {data?.manufacturer}
@@ -202,7 +202,7 @@ const ProductIdPage = () => {
 
               {selectedTab === 'rental_terms' && (
                 <div className="product-slug__rental-terms">
-                  <h1>Rental Terms</h1>
+                  <h1>Условия аренды</h1>
                   <p className="product-slug__text">Standard rental terms apply. Equipment must be returned in the same condition.</p>
                 </div>
               )}
@@ -213,7 +213,7 @@ const ProductIdPage = () => {
               {data?.available_for_rent ? (
                 <div className="product-slug__price-block">
                   <div className="product-slug__price-rate">{data?.daily_rental_rate} KZT</div>
-                  <TextMuted>per day</TextMuted>
+                  <TextMuted>в день</TextMuted>
                 </div>
               ) : (
                 <div className="product-slug__price-block">
@@ -226,11 +226,13 @@ const ProductIdPage = () => {
               <DatePicker onSelectDates={setSelectedDates} />
               <div className="product-slug__button">
                 <div className="product-slug__total">
-                  <h1>Total Price</h1>
+                  <h1>Итоговая цена</h1>
                   <div className="product-slug__line" />
                   <h2>{total} KZT</h2>
                 </div>
-                <Button text="Confirm Rent" width="100%" />
+                <div className="product-slug__button-list">
+                  <Button width="100%">Написать владельцу</Button>
+                </div>
               </div>
             </form>
           </Card>

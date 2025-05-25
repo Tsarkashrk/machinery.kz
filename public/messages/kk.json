@@ -49,7 +49,7 @@
     "brands-all-equipment": "Барлық жабдықтар",
     "brands-machinery": "Техника",
     "brands-all-machinery": "Барлық техника"
-  },  
+  },
   "DealersPage": {
     "title": "Дилерлер",
     "dealers-all": "Барлығы",
@@ -59,12 +59,22 @@
     "title": "Таңдаулылар"
   },
   "ProfilePage": {
-    "title": "Профиль"
+    "title": "Профиль",
+    "my-profile": "Менің профилім",
+    "username": "Пайдаланушы аты",
+    "email": "Пошта"
   },
   "Button": {
     "new-listing": "Жаңа хабарландыру",
     "login": "Кіру",
     "register": "Тіркелу",
-    "details": "Толығырақ"
+    "details": "Толығырақ",
+    "save-changes": "Өзгерістерді сақтау",
+    "save": "Сақтау",
+    "logout": "Шығу"
+  },
+  "Badge": {
+    "rent": "Жалға алу",
+    "sell": "Сату"
   }
 }

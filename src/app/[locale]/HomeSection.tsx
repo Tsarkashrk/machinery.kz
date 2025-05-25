@@ -44,7 +44,7 @@ export default function HomeSection() {
               {t('all-machinery-categories')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>
-          {isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(11, 22)} />}
+          {isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(23, 100)} />}
         </SectionWithContent>
 
         <SectionWithContent>

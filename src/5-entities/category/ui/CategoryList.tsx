@@ -6,9 +6,10 @@ import { CategoryCard } from './CategoryCard'
 
 type Props = {
   categories: ICategory[]
+  rowCount?: number
 }
 
-export const CategoryList = ({ categories }: Props) => {
+export const CategoryList = ({ categories, rowCount }: Props) => {
   return (
     <div className="category-list">
       {categories.map((category: ICategory) => (

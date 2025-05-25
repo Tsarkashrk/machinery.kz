@@ -179,6 +179,9 @@ hr {
   flex-direction: column;
   gap: 1.5rem;
 }
+.categories-section__more {
+  margin: 0 auto;
+}
 .categories-section__img {
   max-width: 15rem;
   width: 100%;
@@ -380,9 +383,9 @@ hr {
   gap: 0.5rem;
 }
 .equipment-card__image {
-  max-height: 27rem;
+  max-height: 22.5rem;
   height: 100%;
-  max-width: 27rem;
+  max-width: 22.5rem;
   width: 100%;
   margin-bottom: 2rem;
   border-radius: 1rem;
@@ -491,6 +494,10 @@ hr {
 .category-card--doubled .category-card__image {
   max-width: 400px;
 }
+.category-card--machinery .category-card__image {
+  max-width: 21rem;
+  max-height: 14rem;
+}
 .category-card__image-container {
   display: flex;
   justify-content: end;
@@ -570,7 +577,7 @@ hr {
 .brand-header__text {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .equipment-card--small {
@@ -1081,7 +1088,7 @@ h3 {
 }
 
 .badge {
-  width: min-content;
+  width: max-content;
   padding: 0.5rem 1.5rem;
   border-radius: 0.75rem;
 }

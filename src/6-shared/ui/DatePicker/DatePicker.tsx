@@ -31,8 +31,8 @@ const DatePicker: React.FC<DatePickerProps> = ({ onSelectDates }) => {
         tileClassName={({ date }) => (dateRange[0] && dateRange[1] && date >= dateRange[0] && date <= dateRange[1] ? 'selected-day' : '')}
       />
       <p className="selected-dates">
-        {dateRange[0] ? `Start: ${format(dateRange[0], 'dd.MM.yyyy')}` : 'Choose Start Date'}
-        {dateRange[1] ? ` — End: ${format(dateRange[1], 'dd.MM.yyyy')}` : ''}
+        {dateRange[0] ? `Начало: ${format(dateRange[0], 'dd.MM.yyyy')}` : 'Choose Start Date'}
+        {dateRange[1] ? ` — Конец: ${format(dateRange[1], 'dd.MM.yyyy')}` : ''}
       </p>
     </div>
   )

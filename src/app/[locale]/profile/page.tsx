@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import ProfileSection from './ProfileSection'
 import Sidebar from '@/6-shared/ui/Sidebar/Sidebar'
-import { useProfile } from '@/5-entities/user'
 import { ListChecks, ShoppingBasket, User } from 'lucide-react'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 
@@ -15,7 +14,6 @@ const sidebarData = [
     text: 'Edit profile',
   },
   { text: 'Orders', icon: <ListChecks size={ICON_SIZE} /> },
-  { text: 'Cart', icon: <ShoppingBasket size={ICON_SIZE} /> },
 ]
 
 const ProfilePage = () => {

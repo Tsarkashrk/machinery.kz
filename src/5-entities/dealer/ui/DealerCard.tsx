@@ -23,7 +23,7 @@ export const DealerCard = ({ userDealer, companyDealer }: Props) => {
           <Title fontWeight="600" size="h3">
             {userDealer?.username || companyDealer?.company_name}
           </Title>
-          <Description>{userDealer?.date_joined || companyDealer?.founded_year}</Description>
+          <Description>{userDealer?.email || companyDealer?.founded_year}</Description>
         </div>
       </div>
     </Link>

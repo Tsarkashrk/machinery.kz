@@ -1,6 +1,6 @@
 {
   "Navigation": {
-    "categories-title": "Каталог",
+    "categories-title": "Категории",
     "brands-title": "Бренды",
     "dealers-title": "Дилеры",
     "favorites-title": "Избранные",
@@ -59,12 +59,22 @@
     "title": "Избранные"
   },
   "ProfilePage": {
-    "title": "Профиль"
+    "title": "Профиль",
+    "my-profile": "Мой профиль",
+    "username": "Имя пользователя",
+    "email": "Почта"
   },
   "Button": {
     "new-listing": "Новое объявление",
     "login": "Войти",
     "register": "Зарегистрироваться",
-    "details": "Подробнее"
+    "details": "Подробнее",
+    "save-changes": "Сохранить изменения",
+    "save": "Сохранить",
+    "logout": "Выйти"
+  },
+  "Badge": {
+    "rent": "Аренда",
+    "sell": "Продажа"
   }
 }

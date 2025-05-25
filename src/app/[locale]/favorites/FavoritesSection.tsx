@@ -14,7 +14,7 @@ const FavoritesSection = () => {
     <section className="favorite">
       <SectionWithContent>
         <Title size="h1">{t('title')}</Title>
-        <FavoritesList favoritesList={favorites} isLoading={isLoading} />
+        <FavoritesList favoritesList={favorites.results} isLoading={isLoading} />
       </SectionWithContent>
     </section>
   )

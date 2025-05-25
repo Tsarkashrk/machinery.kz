@@ -12,8 +12,12 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import { useTranslations } from 'next-intl'
 
 const ProfileSection = () => {
+  const t = useTranslations('Button')
+  const tProfile = useTranslations('ProfilePage')
+
   const { profile, isLoading } = useProfile()
 
   const { register, handleSubmit } = useForm<IUserRequest>({
@@ -48,12 +52,12 @@ const ProfileSection = () => {
   return (
     <section className="profile-section">
       <div className="profile-section__header">
-        <h1 className="profile-section__title">My Profile</h1>
+        <h1 className="profile-section__title">{tProfile('my-profile')}</h1>
         <LogoutButton />
       </div>
       <form className="profile-section__body" onSubmit={handleSubmit(onSubmit)}>
         <div className="profile-section__credentials">
-          <Label text="Username" forElement="username" />
+          <Label text={tProfile('username')} forElement="username" />
           <Input
             type="text"
             id="username"
@@ -64,7 +68,7 @@ const ProfileSection = () => {
           />
         </div>
         <div className="profile-section__credentials">
-          <Label text="Email" forElement="email" />
+          <Label text={tProfile('email')} forElement="email" />
           <Input
             type="email"
             id="email"
@@ -74,7 +78,7 @@ const ProfileSection = () => {
             })}
           />
         </div>
-        <Button variant="dark">Save changes</Button>
+        <Button variant="dark">{t('save-changes')}</Button>
       </form>
     </section>
   )

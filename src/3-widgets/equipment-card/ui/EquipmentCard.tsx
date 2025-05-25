@@ -19,6 +19,7 @@ type Props = {
 
 export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_price, name, id, image }: Props) => {
   const t = useTranslations('Button')
+  const tBadge = useTranslations('Badge')
 
   const listingType = available_for_rent ? 'rent' : 'sell'
   const equipmentPrice = listingType === 'rent' ? daily_rental_rate : purchase_price
@@ -27,14 +28,11 @@ export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_
     <div className="equipment-card">
       <div className="equipment-card__wrapper">
         <div className="equipment-card__badges">
-          <Badge type={listingType} text={listingType} />
+          <Badge type={listingType} text={tBadge(listingType)} />
         </div>
         <Image width={500} height={500} src={`/assets/eq2.webp`} className="equipment-card__image" alt={'equipment image'} />
         <span className="equipment-card__price">{name}</span>
         <p className="equipment-card__description">{equipmentPrice}</p>
-        <div className="equipment-card__available">
-          <TextMuted>Available</TextMuted>
-        </div>
         <div className="equipment-card__buttons">
           <ToggleFavoriteButton productId={id} isFavorite={false}>
             <Heart size={ICON_SIZE} />
