@@ -1,7 +1,7 @@
 'use client'
 
-import { IFavorite } from '@/entities/favorite'
-import { EquipmentCard } from '@/widgets/equipment-card'
+import { IFavorite } from '@/5-entities/favorite'
+import { EquipmentCard } from '@/3-widgets/equipment-card'
 
 type Props = {
   favoritesList: IFavorite[]

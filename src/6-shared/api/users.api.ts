@@ -1,5 +1,5 @@
 import { axiosClassic, axiosWithAuth } from './interceptors'
-import { IUserRequest, IUser } from '@/entities/user'
+import { IUserRequest, IUser } from '@/5-entities/user'
 
 const BASE_URL = '/users'
 

@@ -23,10 +23,10 @@
       "@/app": ["./src/app"],
       "@/ui": ["./src/6-shared/ui"],
       "@/config": ["./src/6-shared/config"],
-      "@/widgets": ["./src/widgets/"],
+      "@/widgets": ["./src/3-widgets/"],
       "@/shared": ["./src/6-shared"],
       "@/features": ["./src/4-features"],
-      "@/entities": ["./src/entities/"],
+      "@/entities": ["./src/5-entities/"],
       "@/scss": ["./src/scss/"]
     }
   },

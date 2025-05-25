@@ -3,7 +3,7 @@
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
 import Link from 'next/link'
 import Avatar from '../Avatar/Avatar'
-import { useProfile } from '@/entities/user'
+import { useProfile } from '@/5-entities/user'
 
 interface ProfileButtonProps {
   email: string

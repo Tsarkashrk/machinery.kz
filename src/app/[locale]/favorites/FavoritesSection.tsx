@@ -1,9 +1,9 @@
 'use client'
 
-import { useFavorites } from '@/entities/favorite'
+import { useFavorites } from '@/5-entities/favorite'
 import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
 import Title from '@/6-shared/ui/Title/Title'
-import { FavoritesList } from '@/widgets/favorites-list/FavoritesList'
+import { FavoritesList } from '@/3-widgets/favorites-list/FavoritesList'
 import { useTranslations } from 'next-intl'
 
 const FavoritesSection = () => {

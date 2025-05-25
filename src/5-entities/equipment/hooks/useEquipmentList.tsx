@@ -5,7 +5,7 @@ import { IEquipmentResponse } from '../model/equipment.model'
 export const useEquipmentList = () => {
   const { data, isLoading, isSuccess } = useQuery<IEquipmentResponse[]>({
     queryKey: ['equipment'],
-    queryFn: equipmentApi.getAllEquipment,
+    queryFn: () => equipmentApi.getAllEquipment(),
   })
 
   return {

@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import ProfileSection from './ProfileSection'
 import Sidebar from '@/6-shared/ui/Sidebar/Sidebar'
-import { useProfile } from '@/entities/user'
+import { useProfile } from '@/5-entities/user'
 import { ListChecks, ShoppingBasket, User } from 'lucide-react'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 

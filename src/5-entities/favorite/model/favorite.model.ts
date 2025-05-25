@@ -1,4 +1,4 @@
-import { IEquipment } from '@/entities/equipment'
+import { IEquipment } from '@/5-entities/equipment'
 
 interface IFavoriteBase {
   id: number

@@ -1,4 +1,4 @@
-import { IEquipment } from '@/entities/equipment/model/equipment.model'
+import { IEquipment } from '@/5-entities/equipment/model/equipment.model'
 
 export interface SearchState {
   query: string

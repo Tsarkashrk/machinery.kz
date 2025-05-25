@@ -1,4 +1,4 @@
-import { IAuth, IAuthLoginRequest, IAuthRegisterRequest } from '@/entities/auth'
+import { IAuth, IAuthLoginRequest, IAuthRegisterRequest } from '@/5-entities/auth'
 
 import { axiosClassic } from './interceptors'
 
