@@ -1,12 +1,16 @@
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 import TextMuted from '@/6-shared/ui/TextMuted/TextMuted'
 import Button from '@/6-shared/ui/Buttons/Button'
-import { Heart } from 'lucide-react'
+import { Heart, MapPin } from 'lucide-react'
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
 import { Badge } from '@/6-shared/ui/Badge/Badge'
 import Image from 'next/image'
 import { ToggleFavoriteButton } from '@/4-features/toggle-favorite'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
+import { Title } from '@/6-shared/ui/Title/Title'
+import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription'
+import { Description } from '@/6-shared/ui/Description/Description'
 
 type Props = {
   available_for_rent: boolean
@@ -15,9 +19,10 @@ type Props = {
   name: string
   id: number
   image?: string
+  variant?: 'wide'
 }
 
-export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_price, name, id, image }: Props) => {
+export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_price, name, id, image, variant }: Props) => {
   const t = useTranslations('Button')
   const tBadge = useTranslations('Badge')
 
@@ -25,23 +30,32 @@ export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_
   const equipmentPrice = listingType === 'rent' ? daily_rental_rate : purchase_price
 
   return (
-    <div className="equipment-card">
+    <Link href={`${PLATFORM_PAGES.PRODUCT}/${id}`} className={`equipment-card ${variant && `equipment-card--${variant}`}`}>
       <div className="equipment-card__wrapper">
-        <div className="equipment-card__badges">
-          <Badge type={listingType} text={tBadge(listingType)} />
-        </div>
-        <Image width={500} height={500} src={image ? image : `/assets/profile-placeholder.png`} className="equipment-card__image" alt={'equipment image'} />
-        <div className="equipment-card__content">
-          <span className="equipment-card__price">{name}</span>
-          <p className="equipment-card__description">{equipmentPrice}</p>
-          <div className="equipment-card__buttons">
-            <ToggleFavoriteButton productId={id} isFavorite={false}>
-              <Heart size={ICON_SIZE} />
-            </ToggleFavoriteButton>
-            <Button link={`${PLATFORM_PAGES.PRODUCT}/${id}`}>{t('details')}</Button>
+        <div className="equipment-card__header">
+          <div className="equipment-card__badges">
+            <Badge type={listingType} text={tBadge(listingType)} />
           </div>
+          <ToggleFavoriteButton productId={id} isFavorite={false} />
+        </div>
+        <div className="equipment-card__image-container">
+          <Image width={500} height={500} src={image ? image : `/assets/profile-placeholder.png`} className="equipment-card__image" alt={'equipment image'} />
+        </div>
+        <div className="equipment-card__content">
+          <Title size="h3" fontSize="18" fontWeight="600">
+            {name}
+          </Title>
+          <Description>
+            <MapPin fill="true" size={ICON_SIZE} /> Turkey, Antalia, Kerchiberuo 11
+          </Description>
+          <hr />
+          <Title size="h3" fontWeight="700">
+            <div className="equipment-card__price">
+              T {equipmentPrice} <TextMuted>/ per day</TextMuted>
+            </div>
+          </Title>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

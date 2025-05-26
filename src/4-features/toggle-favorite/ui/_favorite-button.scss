@@ -1,0 +1,20 @@
+.favorite-button {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  width: 3rem;
+  padding: 0;
+  border: $border-primary;
+  border-radius: 10rem;
+  background-color: white;
+  right: 0.7rem;
+  cursor: pointer;
+
+  &__icon {
+    &:hover {
+      color: red;
+    }
+  }
+}

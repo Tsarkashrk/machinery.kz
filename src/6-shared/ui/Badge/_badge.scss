@@ -2,13 +2,18 @@
   width: max-content;
   padding: 0.5rem 1.5rem;
   border-radius: $badge-radius;
+  border: $border-primary;
+  background-color: $base-color;
+  font-weight: $font-medium;
+  font-size: 14px;
 
   &--dark {
-    background-color: $base-dark-color;
+    // background-color: $base-dark-color;
+    color: $base-dark-color;
   }
 
   &--sell {
-    background-color: red;
+    color: blue;
   }
 
   &--light {
@@ -20,11 +25,6 @@
   }
 
   &--rent {
-    background-color: $main-color;
-  }
-
-  &__text {
-    font-size: 14px;
-    color: $base-color;
+    color: $primary-color;
   }
 }
