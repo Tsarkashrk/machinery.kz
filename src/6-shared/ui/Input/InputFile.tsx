@@ -13,7 +13,6 @@ export default function InputFile({ onChange, ...props }: InputFileProps) {
       setImages(imageUrls)
     }
 
-    // Если передан `onChange` (например, из `register()`), вызываем его
     if (onChange) {
       onChange(event)
     }
@@ -47,7 +46,7 @@ export default function InputFile({ onChange, ...props }: InputFileProps) {
             id="fileInput"
             multiple
             accept="image/*"
-            onChange={handleFileChange} // Объединяем `onChange`
+            onChange={handleFileChange} 
             {...props}
           />
           <label className="file-upload__button" htmlFor="fileInput">

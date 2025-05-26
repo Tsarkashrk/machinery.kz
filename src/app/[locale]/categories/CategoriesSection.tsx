@@ -4,7 +4,7 @@ import { useCategories } from '@/5-entities/category/hooks/useCategories'
 import { CategoryList } from '@/5-entities/category'
 import { useTranslations } from 'next-intl'
 import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
-import Title from '@/6-shared/ui/Title/Title'
+import { Title } from '@/6-shared/ui/Title/Title'
 import { Loading } from '@/6-shared/ui/Loading/Loading'
 import { useState } from 'react'
 import Button from '@/6-shared/ui/Buttons/Button'
@@ -27,7 +27,7 @@ const CategoriesSection = () => {
         <SectionWithContent>
           <Title size="h1">{t('categories')}</Title>
           <Title size="h2">{t('equipment-categories')}</Title>
-          <div className="categories-section__categories">{isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(0, fullCategoryList ? 100 : 11)} />}</div>
+          <div className="categories-section__categories">{isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(0, fullCategoryList ? 22 : 11)} />}</div>
           <div className="categories-section__more">
             <Button
               variant="underlined"

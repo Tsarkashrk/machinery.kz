@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
-import Title from '@/6-shared/ui/Title/Title'
+import { Title } from '@/6-shared/ui/Title/Title'
 
 const LoginSection = () => {
   const t = useTranslations('AuthPage')

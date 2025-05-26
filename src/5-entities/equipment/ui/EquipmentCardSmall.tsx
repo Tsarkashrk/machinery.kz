@@ -1,7 +1,7 @@
 import React from 'react'
 import { IEquipmentWithImage } from '../model/equipment.model'
 import Image from 'next/image'
-import Title from '@/6-shared/ui/Title/Title'
+import { Title } from '@/6-shared/ui/Title/Title'
 import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription'
 import Link from 'next/link'
 

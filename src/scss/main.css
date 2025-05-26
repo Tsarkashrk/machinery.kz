@@ -362,9 +362,10 @@ hr {
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 100%;
   padding: 1rem;
   background-color: white;
-  border-radius: 1rem;
+  border-radius: 1.6rem;
   box-shadow: 0 6px 12px rgba(41, 51, 53, 0.11);
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
   font-family: var(--font-gilroy);
@@ -375,10 +376,8 @@ hr {
   transform: translateY(-2px);
   transition: all 0.3s ease;
 }
-.equipment-card__badge {
-  position: absolute;
-}
 .equipment-card__badges {
+  position: absolute;
   display: flex;
   gap: 0.5rem;
 }
@@ -402,6 +401,12 @@ hr {
 .equipment-card__available {
   margin-bottom: 1rem;
 }
+.equipment-card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
 .equipment-card__buttons {
   display: grid;
   grid-template-columns: 6rem 1fr;
@@ -409,7 +414,8 @@ hr {
 }
 
 .equipment-list {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
 }
 .equipment-list--small {
@@ -459,6 +465,100 @@ hr {
   display: grid;
   column-gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
+}
+
+.chat-list {
+  max-width: 40rem;
+  width: 100%;
+}
+.chat-list__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  overflow-y: scroll;
+  height: 100%;
+  border-radius: 1.6rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 1px solid rgba(41, 71, 163, 0.1294117647);
+}
+
+.chat-item__wrapper {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.chat-item__wrapper:hover {
+  background-color: #f4f4f5;
+}
+.chat-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis !important;
+}
+.chat-item__timestamp {
+  margin-left: auto;
+  white-space: nowrap;
+}
+.chat-item--active {
+  border-radius: 1rem;
+  background-color: #f4f4f5;
+}
+
+.chat-window__wrapper {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 20rem);
+  max-height: calc(100vh - 20rem);
+  height: 100%;
+}
+
+.chat-content {
+  width: 100%;
+}
+.chat-content__wrapper {
+  position: relative;
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.6rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 1px solid rgba(41, 71, 163, 0.1294117647);
+  border-left: 0;
+}
+.chat-content__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.chat-content__start {
+  margin: 0 auto;
+}
+.chat-content__main {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 2rem auto 0;
+}
+.chat-content__input {
+  position: absolute;
+  width: calc(100% - 4rem);
+  bottom: 1rem;
+}
+
+.chat-header__wrapper {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(41, 71, 163, 0.1294117647);
 }
 
 .category {
@@ -611,6 +711,25 @@ hr {
   height: auto;
 }
 
+.chat-message__wrapper {
+  max-width: 50rem;
+  display: flex;
+  gap: 1rem;
+}
+.chat-message__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #f4f4f5;
+}
+.chat-message__footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .button {
   display: flex;
   align-items: center;
@@ -688,6 +807,12 @@ hr {
 }
 .button--secondary:hover {
   background-color: #dddefb;
+}
+.button--rounded {
+  color: black;
+  background-color: white;
+  padding: 0;
+  border-radius: 100rem;
 }
 
 .profile-button {
@@ -892,7 +1017,7 @@ h3 {
   color: white !important;
 }
 
-.avatar {
+.avatar__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -903,9 +1028,13 @@ h3 {
   border-radius: 100rem;
   transition: all 0.1s ease-in-out;
 }
-.avatar:hover {
+.avatar__wrapper:hover {
   opacity: 80%;
   transition: all 0.1s ease-in-out;
+}
+.avatar__wrapper--big {
+  width: 4.8rem;
+  height: 4.8rem;
 }
 .avatar__letter {
   font-weight: 600;
@@ -1061,6 +1190,12 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.title--gilroy {
+  font-family: var(--font-gilroy);
+}
+.title--geist {
+  font-family: var(--font-geist-sans);
 }
 
 .title-more {
@@ -1443,4 +1578,8 @@ h3 {
   background-color: #f4f4f5;
   color: #030612;
   font-weight: 500;
+}
+
+.description {
+  color: #3f3f46;
 }/*# sourceMappingURL=main.css.map */

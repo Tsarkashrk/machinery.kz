@@ -3,7 +3,7 @@
 import { DealersList } from '@/3-widgets/dealers-list'
 import { useDealersList } from '@/5-entities/dealer'
 import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
-import Title from '@/6-shared/ui/Title/Title'
+import { Title } from '@/6-shared/ui/Title/Title'
 import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription'
 import { useTranslations } from 'next-intl'
 

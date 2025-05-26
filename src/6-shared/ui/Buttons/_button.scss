@@ -101,6 +101,13 @@
       background-color: #dddefb;
     }
   }
+
+  &--rounded {
+    color: black;
+    background-color: white;
+    padding: 0;
+    border-radius: 100rem;
+  }
 }
 
 .profile-button {

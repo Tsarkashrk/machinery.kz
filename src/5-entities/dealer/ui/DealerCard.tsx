@@ -1,7 +1,7 @@
 import { IUser } from '@/5-entities/user'
 import React from 'react'
 import Image from 'next/image'
-import Title from '@/6-shared/ui/Title/Title'
+import { Title } from '@/6-shared/ui/Title/Title'
 import { ICompany } from '@/5-entities/company'
 import { Description } from '@/6-shared/ui/Description/Description'
 import Link from 'next/link'

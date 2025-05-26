@@ -1,15 +1,16 @@
 import Link from 'next/link'
 
-interface AvatarProps {
+type Props = {
   link: string
   username: string
+  size?: 'big' | 'medium' | 'small'
 }
 
-const Avatar = (data: AvatarProps) => {
+const Avatar = ({ link, username, size = 'medium' }: Props) => {
   return (
-    <Link className="avatar" href={data?.link}>
-      <div className="avatar__wrapper">
-        <p className="avatar__letter">{data?.username?.charAt(0)}</p>
+    <Link className={`avatar`} href={link}>
+      <div className={`avatar__wrapper avatar__wrapper--${size}`}>
+        <p className="avatar__letter">{username?.charAt(0)}</p>
       </div>
     </Link>
   )

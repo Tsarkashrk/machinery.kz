@@ -45,7 +45,7 @@ const Header = () => {
           <Navigation />
           <div className="header__buttons">
             <Button variant="outlined" onClick={() => toggleLocale()}>
-              <Globe size={ICON_SIZE} /> {locale === 'ru' ? 'KK' : 'RU'}
+              <Globe size={ICON_SIZE} /> {locale === 'ru' ? 'RU' : 'KK'}
             </Button>
             <Button link={PLATFORM_PAGES.NEW} variant="default" isLink>
               <Plus size={ICON_SIZE} />

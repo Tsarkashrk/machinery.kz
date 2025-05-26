@@ -20,6 +20,11 @@
 @import '../3-widgets/equipment-list/ui/equipment-list';
 @import '../3-widgets/search-modal/ui/search-modal';
 @import '../3-widgets/dealers-list/ui/dealer-list';
+@import '../3-widgets/chat-list/ui/chat-list';
+@import '../3-widgets/chat-item/ui/chat-item';
+@import '../3-widgets/chat-window/ui/chat-window';
+@import '../3-widgets/chat-content/ui/chat-content';
+@import '../3-widgets/chat-header/ui/chat-header';
 
 // Features
 
@@ -29,6 +34,7 @@
 @import '../5-entities/brand/ui/brand';
 @import '../5-entities/equipment/ui/equipment-card-small';
 @import '../5-entities/dealer/ui/dealer-card';
+@import '../5-entities/chat/ui/chat-message';
 
 // UI
 

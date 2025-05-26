@@ -65,10 +65,11 @@ const NewSection = () => {
   const { mutate } = useMutation({
     mutationKey: ['equipment'],
     mutationFn: (data: any) => equipmentApi.createEquipment(data),
-    onSuccess() {
+    onSuccess(data) {
       toast.success('Listing successfully created!')
       reset()
-      // push(PLATFORM_PAGES.PROFILE)
+      console.log(data)
+      push(`${PLATFORM_PAGES.PRODUCT}/${data.id}`)
     },
     onError() {
       toast.error('Invalid credentials', { description: 'Try again!' })
@@ -83,10 +84,6 @@ const NewSection = () => {
   console.log(profile)
 
   const onSubmit: SubmitHandler<any> = async (data: any) => {
-    // console.log('Submitting:', data)
-
-    const listingType = listingTypes.find((type) => type.value === data.type)
-
     const formattedData = {
       owner: profile?.id,
       brand: data.manufacturer,
@@ -104,14 +101,13 @@ const NewSection = () => {
         console.log('Equipment created:', createdEquipment)
 
         if (data.image && data.image[0]) {
-          const imagePayload = {
-            equipment: createdEquipment.data.id,
-            image_url: data.image[0],
-            image_type: 'webp',
-          }
+          // Создаем FormData с правильными полями
+          const formData = new FormData()
+          formData.append('file', data.image[0]) // file - бинарные данные
+          formData.append('equipment', createdEquipment.id.toString()) // equipment - integer как string
 
           try {
-            await equipmentImagesApi.uploadImage(imagePayload)
+            await equipmentImagesApi.uploadImage(formData)
             toast.success('Image uploaded successfully!')
           } catch (error) {
             console.error('Image upload failed:', error)

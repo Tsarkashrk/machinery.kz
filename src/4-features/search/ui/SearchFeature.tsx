@@ -5,6 +5,7 @@ import { Input } from '@/6-shared/ui/Input/Input'
 import { Search } from 'lucide-react'
 import { useSearch } from '../model/useSearch'
 import { EquipmentList } from '@/3-widgets/equipment-list'
+import { ICON_SIZE } from '@/6-shared/constants/constants'
 
 type Props = {
   placeholder?: string
@@ -22,7 +23,7 @@ export const SearchFeature = ({ placeholder = 'Search products' }: Props) => {
   return (
     <div className="search-feature">
       <Input value={query} onChange={handleChange} placeholder={placeholder}>
-        <Search size={16} />
+        <Search size={ICON_SIZE} />
       </Input>
 
       {searchTerm && (

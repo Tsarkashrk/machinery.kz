@@ -46,6 +46,8 @@ const ProductIdPage = () => {
   const { id } = useParams()
   const user: any = useProfile()
 
+  
+
   const { data, isLoading } = useQuery<any>({
     queryKey: ['equipment'],
     queryFn: () => equipmentApi.getEquipmentById(Number(id)),
@@ -231,7 +233,9 @@ const ProductIdPage = () => {
                   <h2>{total} KZT</h2>
                 </div>
                 <div className="product-slug__button-list">
-                  <Button width="100%">Написать владельцу</Button>
+                  <Button onClick={() => {}} link={`${PLATFORM_PAGES.MESSAGES}`} width="100%">
+                    Написать владельцу
+                  </Button>
                 </div>
               </div>
             </form>

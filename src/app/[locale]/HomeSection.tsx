@@ -9,7 +9,7 @@ import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 import { Loading } from '@/6-shared/ui/Loading/Loading'
 import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
-import Title from '@/6-shared/ui/Title/Title'
+import { Title } from '@/6-shared/ui/Title/Title'
 import { TitleMore } from '@/6-shared/ui/TitleMore/TitleMore'
 import { EquipmentList } from '@/3-widgets/equipment-list'
 import { ChevronRight } from 'lucide-react'
@@ -34,7 +34,7 @@ export default function HomeSection() {
               {t('all-equipment-categories')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>
-          {isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(0, 11)} />}
+          {isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(0, 5)} />}
         </SectionWithContent>
 
         <SectionWithContent>
@@ -44,7 +44,7 @@ export default function HomeSection() {
               {t('all-machinery-categories')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>
-          {isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(23, 100)} />}
+          {isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(23, 26)} />}
         </SectionWithContent>
 
         <SectionWithContent>

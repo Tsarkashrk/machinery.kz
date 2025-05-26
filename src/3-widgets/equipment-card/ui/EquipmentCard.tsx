@@ -30,14 +30,16 @@ export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_
         <div className="equipment-card__badges">
           <Badge type={listingType} text={tBadge(listingType)} />
         </div>
-        <Image width={500} height={500} src={`/assets/eq2.webp`} className="equipment-card__image" alt={'equipment image'} />
-        <span className="equipment-card__price">{name}</span>
-        <p className="equipment-card__description">{equipmentPrice}</p>
-        <div className="equipment-card__buttons">
-          <ToggleFavoriteButton productId={id} isFavorite={false}>
-            <Heart size={ICON_SIZE} />
-          </ToggleFavoriteButton>
-          <Button link={`${PLATFORM_PAGES.PRODUCT}/${id}`}>{t('details')}</Button>
+        <Image width={500} height={500} src={image ? image : `/assets/profile-placeholder.png`} className="equipment-card__image" alt={'equipment image'} />
+        <div className="equipment-card__content">
+          <span className="equipment-card__price">{name}</span>
+          <p className="equipment-card__description">{equipmentPrice}</p>
+          <div className="equipment-card__buttons">
+            <ToggleFavoriteButton productId={id} isFavorite={false}>
+              <Heart size={ICON_SIZE} />
+            </ToggleFavoriteButton>
+            <Button link={`${PLATFORM_PAGES.PRODUCT}/${id}`}>{t('details')}</Button>
+          </div>
         </div>
       </div>
     </div>

@@ -3,9 +3,10 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    height: 100%;
     padding: 1rem;
     background-color: $base-color;
-    border-radius: $border-radius-ui;
+    border-radius: $border-radius-card;
     box-shadow: $box-shadow-primary;
     border: $border-primary;
     font-family: $font-gilroy;
@@ -18,11 +19,8 @@
     }
   }
 
-  &__badge {
-    position: absolute;
-  }
-
   &__badges {
+    position: absolute;
     display: flex;
     gap: 0.5rem;
   }
@@ -49,6 +47,13 @@
 
   &__available {
     margin-bottom: 1rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
 
   &__buttons {

@@ -1,6 +1,6 @@
 import Card from '@/6-shared/ui/Cards/Card/Card'
 import { Description } from '@/6-shared/ui/Description/Description'
-import Title from '@/6-shared/ui/Title/Title'
+import { Title } from '@/6-shared/ui/Title/Title'
 import Image from 'next/image'
 
 type Props = {

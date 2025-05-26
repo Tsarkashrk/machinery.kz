@@ -1,0 +1,32 @@
+.chat-item {
+  &__wrapper {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: $border-radius-ui;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $zinc-100;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis !important;
+  }
+
+  &__timestamp {
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  &--active {
+    border-radius: $border-radius-ui;
+    background-color: $zinc-100;
+  }
+}

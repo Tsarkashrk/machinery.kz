@@ -2,4 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &--gilroy {
+    font-family: $font-gilroy;
+  }
+
+  &--geist {
+    font-family: $font-geist-sans;
+  }
 }

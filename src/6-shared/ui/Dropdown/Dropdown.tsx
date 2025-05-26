@@ -29,7 +29,6 @@ const CustomDropdown: React.FC<DropdownProps> = ({ name, control, options, place
       rules={rules}
       render={({ field, fieldState }) => (
         <div className="dropdown">
-          {/* Выбранный элемент */}
           <div className={`dropdown__selected ${isOpen ? 'dropdown__selected--open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
             {field.value ? options.find((o) => o.value === field.value)?.title : placeholder}
             {isOpen ? <ChevronUp size={ICON_SIZE} /> : <ChevronDown size={ICON_SIZE} />}
