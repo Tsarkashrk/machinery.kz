@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { Title } from '@/6-shared/ui/Title/Title'
 import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription'
 import { Description } from '@/6-shared/ui/Description/Description'
+import Avatar from '@/6-shared/ui/Avatar/Avatar'
 
 type Props = {
   available_for_rent: boolean
@@ -32,16 +33,17 @@ export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_
   return (
     <Link href={`${PLATFORM_PAGES.PRODUCT}/${id}`} className={`equipment-card ${variant && `equipment-card--${variant}`}`}>
       <div className="equipment-card__wrapper">
-        <div className="equipment-card__header">
-          <div className="equipment-card__badges">
-            <Badge type={listingType} text={tBadge(listingType)} />
-          </div>
-          <ToggleFavoriteButton productId={id} isFavorite={false} />
-        </div>
         <div className="equipment-card__image-container">
+          <div className="equipment-card__header">
+            <div className="equipment-card__badges">
+              <Badge type={listingType} text={tBadge(listingType)} />
+            </div>
+            <ToggleFavoriteButton productId={id} isFavorite={false} />
+          </div>
           <Image width={500} height={500} src={image ? image : `/assets/profile-placeholder.png`} className="equipment-card__image" alt={'equipment image'} />
         </div>
         <div className="equipment-card__content">
+          {/* <Avatar link={`${PLATFORM_PAGES.DEALERS}/${id}`} username={'sdf'} /> */}
           <Title size="h3" fontSize="18" fontWeight="600">
             {name}
           </Title>
