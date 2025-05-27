@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: '194.110.54.189',
+        hostname: `${process.env.NEXT_PUBLIC_API_URL}`,
         port: '9100',
         pathname: '/images/**',
       },

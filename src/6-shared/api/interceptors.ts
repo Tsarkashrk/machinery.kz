@@ -6,7 +6,7 @@ import { errorCatch } from './error'
 import { getAccessToken, removeFromStorage } from '@/6-shared/api'
 
 const options: CreateAxiosDefaults = {
-  baseURL: 'http://194.110.54.189:8084/api/v1',
+  baseURL: `http://${process.env.NEXT_PUBLIC_API_URL}:${process.env.NEXT_PUBLIC_API_PORT}/api/v1`,
   headers: {
     'Content-Type': 'application/json',
   },

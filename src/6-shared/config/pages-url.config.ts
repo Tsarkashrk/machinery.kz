@@ -14,7 +14,20 @@ class PLATFORM {
   PRODUCT = `${this.root}product`
   FAVORITES = `${this.root}favorites`
   BRANDS = `${this.root}brands`
-  DASHBOARD = `${this.root}dashboard`
+}
+
+class DASHBOARD {
+  public root = '/dashboard'
+
+  DASHBOARD = this.root
+  USERS = `${this.root}/users`
+  CATEGORIES = `${this.root}/categories`
+  COMPLAINTS = `${this.root}/complaints`
+  PUBLICATIONS = `${this.root}/publications`
+  REVIEWS = `${this.root}/reviews`
+  BRANDS = `${this.root}/brands`
+  VERIFICATION = `${this.root}/verification`
 }
 
 export const PLATFORM_PAGES = new PLATFORM()
+export const DASHBOARD_PAGES = new DASHBOARD()

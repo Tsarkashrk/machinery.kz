@@ -5,6 +5,11 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
+
+    &--machinery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    }
   }
 
   &-card {
@@ -13,7 +18,6 @@
     flex-direction: column;
     box-shadow: $box-shadow-primary;
     border: $border-primary;
-    // border: $border;
     border-radius: $border-radius-card;
     transition: $card-transition;
 

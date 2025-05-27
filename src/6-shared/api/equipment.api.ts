@@ -41,4 +41,9 @@ export const equipmentApi = {
     const response = await axiosWithAuth.get(`${BASE_URL}/search/?query=${query}`)
     return response.data
   },
+
+  async getUnverifiedEquipment() {
+    const response = await axiosClassic.get(`${BASE_URL}/unverified/`)
+    return response.data
+  },
 }

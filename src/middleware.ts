@@ -1,11 +1,10 @@
-// middleware.ts
 import { NextRequest, NextResponse } from 'next/server'
 import createIntlMiddleware from 'next-intl/middleware'
 import { EnumTokens } from '@/6-shared/api'
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
 import { routing } from './i18n/routing'
+import { hasAccess } from './6-shared/lib/check-role'
 
-// Создаём middleware от next-intl
 const intlMiddleware = createIntlMiddleware(routing)
 
 export async function middleware(request: NextRequest) {
@@ -26,7 +25,6 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(PLATFORM_PAGES.LOGIN, request.url))
   }
 
-  // Возвращаем результат intlMiddleware, если нет редиректов
   return response
 }
 

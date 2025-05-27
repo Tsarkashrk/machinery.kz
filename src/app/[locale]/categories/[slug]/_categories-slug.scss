@@ -1,10 +1,4 @@
 .categories-slug {
-  &__wrapper {
-    display: grid;
-    grid-template-columns: 30rem 1fr;
-    gap: $gap-bw-fields;;
-  }
-
   &__filters {
     &-title {
       margin-bottom: 2rem;

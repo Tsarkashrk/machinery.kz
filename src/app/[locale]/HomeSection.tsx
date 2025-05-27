@@ -15,6 +15,9 @@ import { EquipmentList } from '@/3-widgets/equipment-list'
 import { ChevronRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { BrandsList, useBrands } from '@/5-entities/brand'
+import { request } from 'http'
+import { EnumTokens } from '@/6-shared/api'
+import { NextRequest } from 'next/server'
 
 export default function HomeSection() {
   const t = useTranslations('HomePage')
@@ -34,7 +37,7 @@ export default function HomeSection() {
               {t('all-equipment-categories')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>
-          {isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(0, 5)} />}
+          {isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(0, 6)} />}
         </SectionWithContent>
 
         <SectionWithContent>
@@ -44,17 +47,17 @@ export default function HomeSection() {
               {t('all-machinery-categories')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>
-          {isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(22, 25)} />}
+          {isCategoriesLoading ? <Loading /> : categories && <CategoryList machinery categories={categories.slice(22, 26)} />}
         </SectionWithContent>
 
         <SectionWithContent>
           <Title size="h1">
-            {t('popular-equipment')}
+            {t('latest-equipment')}
             <TitleMore link={PLATFORM_PAGES.CATEGORIES}>
               {t('all-equipment')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>
-          <EquipmentList equipmentList={equipmentListData} isLoading={isLoading} />
+          <EquipmentList equipmentList={equipmentListData?.slice(0, 8)} isLoading={isLoading} />
         </SectionWithContent>
 
         <SectionWithContent>

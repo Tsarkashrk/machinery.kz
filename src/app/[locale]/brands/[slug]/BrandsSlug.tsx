@@ -46,9 +46,6 @@ const BrandsSlug = () => {
         <BrandHeader id={brand.id} logoUrl={brand.logo_url} name={brand.name} description={brand.description} foundedYear={brand.founded_year} />
         <Title size="h2">
           {t('brands-equipment')}
-          <TitleMore link={PLATFORM_PAGES.CATEGORIES}>
-            {t('brands-all-equipment')} <ChevronRight size={ICON_SIZE} />
-          </TitleMore>
         </Title>
         <EquipmentList equipmentList={equipmentList} isLoading={false} />
         <Title size="h2">

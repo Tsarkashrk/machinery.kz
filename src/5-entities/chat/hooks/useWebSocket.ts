@@ -32,7 +32,7 @@ export const useWebSocket = ({ chatId, onMessage, onTyping, onMessageRead, onErr
     try {
       const token = getAccessToken()
 
-      const wsUrl = `ws://194.110.54.189:8084/ws/chat/${chatId}/`
+      const wsUrl = `ws://${process.env.NEXT_PUBLIC_API_URL}:${process.env.NEXT_PUBLIC_WEBHOOKS_PORT}/ws/chat/${chatId}/?token=${token}`
 
       wsRef.current = new WebSocket(wsUrl)
 
