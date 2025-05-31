@@ -21,6 +21,7 @@ class DASHBOARD {
 
   DASHBOARD = this.root
   USERS = `${this.root}/users`
+  COMPANIES = `${this.root}/companies`
   CATEGORIES = `${this.root}/categories`
   COMPLAINTS = `${this.root}/complaints`
   PUBLICATIONS = `${this.root}/publications`

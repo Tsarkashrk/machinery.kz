@@ -6,9 +6,6 @@ export const ReviewsSection = () => {
   return (
     <section className="dashboard-section">
       <div className="dashboard-section__wrapper">
-        {/* <SectionWithContent>
-          <Title>Dashboard Section</Title>
-        </SectionWithContent> */}
         <AdminSidebar />
       </div>
     </section>

@@ -1,4 +1,6 @@
-import { DASHBOARD_PAGES, PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
+'use client'
+
+import { DASHBOARD_PAGES } from '@/6-shared/config/pages-url.config'
 import { Title } from '@/6-shared/ui/Title/Title'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -21,13 +23,13 @@ export const AdminSidebarList = ({ routes, title }: Props) => {
   return (
     <div className="admin-sidebar-list">
       <div className="admin-sidebar-list__title">
-        <Title fontSize="14px" fontFamily='geist' fontWeight="500" color="gray">
+        <Title fontSize="14px" fontFamily="geist" fontWeight="500" color="gray">
           {title}
         </Title>
       </div>
       <ul className="admin-sidebar-list__list">
         {routes.map((route) => {
-          const path = `${DASHBOARD_PAGES.DASHBOARD}/${route.path}`
+          const path = route.path
           const isActive = pathname.includes(route.path)
 
           return (

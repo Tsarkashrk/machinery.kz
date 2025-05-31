@@ -8,11 +8,11 @@
   font-size: 14px;
 
   &--dark {
-    // background-color: $base-dark-color;
     color: $base-dark-color;
   }
 
   &--sell {
+    background-color: rgb(227, 239, 254);
     color: blue;
   }
 
@@ -25,6 +25,7 @@
   }
 
   &--rent {
+    background-color: rgb(255, 245, 226);
     color: $primary-color;
   }
 }

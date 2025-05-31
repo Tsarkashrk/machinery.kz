@@ -64,6 +64,45 @@
     "username": "Имя пользователя",
     "email": "Почта"
   },
+  "DashboardPage": {
+    "title": "Панель управления",
+    "platform-management": "Управление платформой",
+    "user-management": "Управление пользователями",
+    "publication-management": "Управление публикациями",
+    "feedback-management": "Управление отзывами",
+    "categories": "Категории",
+    "brands": "Бренды",
+    "publications": "Публикации",
+    "users": "Пользователи",
+    "companies": "Компании",
+    "verification": "Верификация",
+    "reviews": "Отзывы",
+    "complaints": "Жалобы"
+  },
+  "DashboardPublicationPage": {
+    "title": "Публикации"
+  },
+  "DashboardVerificationPage": {
+    "title": "Верификация"
+  },
+  "DashboardUsersPage": {
+    "title": "Пользователи"
+  },
+  "DashboardCompaniesPage": {
+    "title": "Компании"
+  },
+  "DashboardCategoriesPage": {
+    "title": "Категории"
+  },
+  "DashboardBrandsPage": {
+    "title": "Бренды"
+  },
+  "DashboardReviewsPage": {
+    "title": "Отзывы"
+  },
+  "DashboardComplaintsPage": {
+    "title": "Жалобы"
+  },
   "Button": {
     "new-listing": "Новое объявление",
     "login": "Войти",

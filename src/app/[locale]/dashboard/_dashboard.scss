@@ -1,0 +1,22 @@
+.dashboard-layout {
+  display: flex;
+  gap: 3rem;
+
+  &__sidebar {
+    max-width: 22.5rem;
+    width: 100%;
+  }
+
+  &__content {
+    width: 100%;
+  }
+}
+
+.content {
+  &__card {
+    width: 100%;
+    padding: 2rem;
+    border: $border-primary;
+    border-radius: $border-radius-card;
+  }
+}

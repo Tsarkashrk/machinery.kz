@@ -41,7 +41,6 @@ const CustomDropdown: React.FC<DropdownProps> = ({ name, control, options, place
                 className="dropdown__option"
                 onClick={() => {
                   field.onChange(option.value)
-                  console.log(option.value)
                   setIsOpen(false)
                 }}>
                 {option.title}

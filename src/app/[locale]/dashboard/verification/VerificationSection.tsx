@@ -1,16 +1,123 @@
-import { AdminSidebar } from '@/4-features/admin-sidebar/ui/AdminSidebar'
-import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
+'use client'
+
+import { IEquipment, useUnverifiedEquipment } from '@/5-entities/equipment'
 import { Title } from '@/6-shared/ui/Title/Title'
+import { CircularProgress } from '@mui/material'
+import { DataTable } from '@/6-shared/ui/Table/Table'
+import { Chip } from '@mui/material'
+import { Search as SearchIcon, Edit as EditIcon, Delete as DeleteIcon, Visibility as ViewIcon } from '@mui/icons-material'
+import { Check } from 'lucide-react'
+import { useVerifyEquipment } from '@/5-entities/moderator/hooks/useVerifyEquipment'
 
 export const VerificationSection = () => {
-  return (
-    <section className="dashboard-section">
-      <div className="dashboard-section__wrapper">
-        {/* <SectionWithContent>
-          <Title>Dashboard Section</Title>
-        </SectionWithContent> */}
-        <AdminSidebar />
-      </div>
-    </section>
-  )
+  const { data, isLoading } = useUnverifiedEquipment({ page_size: 40 })
+
+  const verifyEquipmentMutation = useVerifyEquipment() 
+
+  const confirmEquipment = (id: number) => {
+    verifyEquipmentMutation.mutate(id) 
+  }
+
+  const columns: any = [
+    {
+      key: 'id',
+      label: 'ID',
+      width: 80,
+      sortable: true,
+    },
+    {
+      key: 'name',
+      label: 'Название',
+      sortable: true,
+      searchable: true,
+    },
+    {
+      key: 'category_details',
+      label: 'Категория',
+      accessor: (item: any) => item.category_details?.name || '-',
+      sortable: true,
+      searchable: true,
+    },
+    {
+      key: 'brand_details',
+      label: 'Бренд',
+      accessor: (item: any) => item.brand_details?.name || '-',
+      sortable: true,
+      searchable: true,
+    },
+    {
+      key: 'model',
+      label: 'Модель',
+      sortable: true,
+      searchable: true,
+    },
+    {
+      key: 'year',
+      label: 'Год',
+      width: 100,
+      sortable: true,
+      align: 'center',
+    },
+    {
+      key: 'condition',
+      label: 'Состояние',
+      render: (value: any) => {
+        const conditionMap: { [key: string]: { label: string; color: any } } = {
+          new: { label: 'Новое', color: 'success' },
+          good: { label: 'Хорошее', color: 'info' },
+          fair: { label: 'Удовлетворительное', color: 'warning' },
+          poor: { label: 'Плохое', color: 'error' },
+        }
+        const condition = conditionMap[value] || { label: value, color: 'default' }
+        return (
+          <>
+            <Chip label={condition.label} color={condition.color} size="small" />
+          </>
+        )
+      },
+      sortable: true,
+    },
+    {
+      key: 'purchase_price',
+      label: 'Цена покупки',
+      accessor: (item: any) => (item.purchase_price ? `${item.purchase_price} ₸` : '-'),
+      align: 'right',
+      sortable: true,
+    },
+    {
+      key: 'available_for_rent',
+      label: 'Аренда',
+      width: 100,
+      align: 'center',
+    },
+    {
+      key: 'available_for_sale',
+      label: 'Продажа',
+      width: 100,
+      align: 'center',
+    },
+  ]
+
+  const actions: any = [
+    {
+      icon: <ViewIcon />,
+      tooltip: 'Просмотр',
+      onClick: (item: IEquipment) => console.log('View:', item),
+      color: 'info',
+    },
+    {
+      icon: <Check />,
+      tooltip: 'Approve',
+      onClick: (item: IEquipment) => confirmEquipment(item.id),
+      color: 'primary',
+    },
+    {
+      icon: <DeleteIcon />,
+      tooltip: 'Удалить',
+      onClick: (item: IEquipment) => console.log('Delete:', item),
+      color: 'error',
+    },
+  ]
+
+  return <DataTable data={data?.results || []} columns={columns} loading={isLoading} title="Оборудование на проверке" actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
 }

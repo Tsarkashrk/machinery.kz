@@ -13,6 +13,9 @@
 @import '../app/[locale]/home';
 @import '../app/[locale]/brands/brands';
 @import '../app/[locale]/dealers/dealers';
+@import '../app/[locale]/dashboard/dashboard';
+@import '../app/[locale]/dashboard/publications/publications';
+@import '../app/[locale]/dashboard/reviews/reviews';
 
 // Widgets
 
@@ -46,6 +49,7 @@
 @import '../6-shared/ui/ErrorMessage/error-message';
 @import '../6-shared/ui/Dropdown/dropdown';
 @import '../6-shared/ui/DatePicker/date-picker';
+@import '../6-shared/ui/Modal/modal';
 @import '../6-shared/ui/Avatar/avatar';
 @import '../6-shared/ui/TextMuted/text-muted';
 @import '../6-shared/ui/Label/label';

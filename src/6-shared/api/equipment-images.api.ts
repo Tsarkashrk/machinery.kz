@@ -4,11 +4,7 @@ const BASE_URL = '/equipment-images'
 
 export const equipmentImagesApi = {
   async uploadImage(formData: FormData) {
-    const response = await axiosWithAuth.post(`${BASE_URL}/`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    const response = await axiosWithAuth.post(`${BASE_URL}/`, formData)
     return response.data
   },
 

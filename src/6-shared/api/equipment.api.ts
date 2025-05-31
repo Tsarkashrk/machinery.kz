@@ -42,8 +42,18 @@ export const equipmentApi = {
     return response.data
   },
 
-  async getUnverifiedEquipment() {
-    const response = await axiosClassic.get(`${BASE_URL}/unverified/`)
+  async updateEquipment(id: number, data: any) {
+    const response = await axiosWithAuth.put(`${BASE_URL}/${id}/`, data)
+    return response.data
+  },
+
+  async deleteEquipment(id: number) {
+    const response = await axiosWithAuth.delete(`${BASE_URL}/${id}/`)
+    return response.data
+  },
+
+  async getUnverifiedEquipment(params?: Props) {
+    const response = await axiosWithAuth.get(`${BASE_URL}/unverified/`, { params })
     return response.data
   },
 }

@@ -1,0 +1,8 @@
+.dashboard-publication-section {
+  width: 100%;
+  &__content {
+    width: 100%;
+    border: $border-primary;
+    border-radius: $border-radius-card;
+  }
+}

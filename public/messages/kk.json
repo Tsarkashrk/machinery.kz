@@ -64,6 +64,45 @@
     "username": "Пайдаланушы аты",
     "email": "Пошта"
   },
+  "DashboardPage": {
+    "title": "Басқару панелі",
+    "platform-management": "Платформаны басқару",
+    "user-management": "Пайдаланушыларды басқару",
+    "publication-management": "Басылымдарды басқару",
+    "feedback-management": "Пікірлерді басқару",
+    "categories": "Санаттар",
+    "brands": "Брендтер",
+    "publications": "Жарияланымдар",
+    "users": "Пайдаланушылар",
+    "companies": "Компаниялар",
+    "verification": "Тексеру",
+    "reviews": "Пікірлер",
+    "complaints": "Шағымдар"
+  },
+  "DashboardPublicationPage": {
+    "title": "Басылымдар"
+  },
+  "DashboardVerificationPage": {
+    "title": "Тексеру"
+  },
+  "DashboardUsersPage": {
+    "title": "Пайдаланушылар"
+  },
+  "DashboardCompaniesPage": {
+    "title": "Компаниялар"
+  },
+  "DashboardCategoriesPage": {
+    "title": "Санаттар"
+  },
+  "DashboardBrandsPage": {
+    "title": "Брендтер"
+  },
+  "DashboardReviewsPage": {
+    "title": "Пікірлер"
+  },
+  "DashboardComplaintsPage": {
+    "title": "Шағымдар"
+  },
   "Button": {
     "new-listing": "Жаңа хабарландыру",
     "login": "Кіру",

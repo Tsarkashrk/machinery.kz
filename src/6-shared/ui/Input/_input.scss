@@ -134,7 +134,7 @@
     transition: $transition;
     cursor: pointer;
     color: $base-color;
-    background-color: #7e90e4;
+    background-color: $secondary-color;
 
     &:hover {
       opacity: $opacity;

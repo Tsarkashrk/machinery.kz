@@ -76,11 +76,6 @@ const NewSection = () => {
     },
   })
 
-  // const onSubmit: SubmitHandler<any> = (data: any) => {
-  //   console.log(data)
-  //   mutate({ owner: 1, ...data, purchase_price: 12000 })
-  // }
-
   console.log(profile)
 
   const onSubmit: SubmitHandler<any> = async (data: any) => {
@@ -94,17 +89,16 @@ const NewSection = () => {
       available_for_sale: data.type === 'sell',
     }
 
-    console.log(formattedData)
-
     mutate(formattedData, {
       onSuccess: async (createdEquipment: any) => {
         console.log('Equipment created:', createdEquipment)
 
+        console.log(data)
+
         if (data.image && data.image[0]) {
-          // Создаем FormData с правильными полями
           const formData = new FormData()
-          formData.append('file', data.image[0]) // file - бинарные данные
-          formData.append('equipment', createdEquipment.id.toString()) // equipment - integer как string
+          formData.append('file', data.image[0])
+          formData.append('equipment', createdEquipment.id.toString())
 
           try {
             await equipmentImagesApi.uploadImage(formData)
@@ -140,7 +134,13 @@ const NewSection = () => {
           <Card>
             <h1 className="new-section__title">Upload Images</h1>
             <hr />
-            <InputFile {...register('image', { required: 'Image is required!' })} />
+            {/* <InputFile {...register('image', { required: 'Image is required!' })} onChange={(e) => console.log(e.target.value)} /> */}
+            <input
+              type="image"
+              {...register('image', {
+                required: 'image is required!',
+              })}
+            />
           </Card>
           <form onSubmit={handleSubmit(onSubmit)} className="new-section__form">
             <Card>

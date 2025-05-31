@@ -27,7 +27,7 @@ const CategoriesSection = () => {
         <SectionWithContent>
           <Title size="h1">{t('categories')}</Title>
           <Title size="h2">{t('equipment-categories')}</Title>
-          <div className="categories-section__categories">{isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(0, fullCategoryList ? 22 : 11)} />}</div>
+          <div className="categories-section__categories">{isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(0, fullCategoryList ? 22 : 13)} />}</div>
           <div className="categories-section__more">
             <Button
               variant="underlined"
@@ -39,7 +39,7 @@ const CategoriesSection = () => {
             </Button>
           </div>
           <Title size="h2">{t('machinery-categories')}</Title>
-          <div className="categories-section__categories">{isCategoriesLoading ? <Loading /> : categories && <CategoryList categories={categories.slice(22, 100)} />}</div>
+          <div className="categories-section__categories">{isCategoriesLoading ? <Loading /> : categories && <CategoryList machinery categories={categories.slice(22, 100)} />}</div>
         </SectionWithContent>
       </div>
     </section>
