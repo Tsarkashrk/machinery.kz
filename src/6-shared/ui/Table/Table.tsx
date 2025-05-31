@@ -2,8 +2,11 @@
 
 import React, { useState, useMemo } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, TableSortLabel, Paper, TextField, InputAdornment, Box, Typography, Chip, IconButton, Tooltip, Skeleton } from '@mui/material'
-import { Check, ViewIcon, EditIcon, SearchIcon, TrashIcon } from 'lucide-react'
+import { Check, ViewIcon, EditIcon, SearchIcon, TrashIcon, PlusIcon } from 'lucide-react'
 import { Badge } from '../Badge/Badge'
+import { ICON_SIZE } from '@/6-shared/constants/constants'
+import { Input } from '../Input/Input'
+import Button from '../Buttons/Button'
 
 export interface Column {
   key: string
@@ -35,11 +38,12 @@ interface DataTableProps {
   onRowClick?: (item: any) => void
   emptyMessage?: string
   title?: string
+  buttonOnChange?: () => void
 }
 
 type Order = 'asc' | 'desc'
 
-export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loading = false, searchable = true, sortable = true, pagination = true, rowsPerPageOptions = [5, 10, 25, 50], actions, onRowClick, emptyMessage = 'Нет данных для отображения', title }) => {
+export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loading = false, searchable = true, sortable = true, pagination = true, rowsPerPageOptions = [5, 10, 25, 50], actions, onRowClick, emptyMessage = 'Нет данных для отображения', title, buttonOnChange }) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageOptions[1] || 10)
   const [orderBy, setOrderBy] = useState<string>('')
@@ -180,20 +184,14 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
             </Typography>
           )}
           {searchable && (
-            <TextField
-              size="small"
-              placeholder="Поиск..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-              sx={{ minWidth: 250 }}
-            />
+            <Input maxWidth="25rem" placeholder="Поиск" onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm}>
+              <SearchIcon size={ICON_SIZE} />
+            </Input>
+          )}
+          {buttonOnChange && (
+            <Button onClick={buttonOnChange}>
+              <PlusIcon size={ICON_SIZE} />
+            </Button>
           )}
         </Box>
       )}
@@ -203,7 +201,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <TableCell className="font-geist" key={column.key} align={column.align || 'left'} style={{ width: column.width, fontSize: 14 }}>
+                <TableCell className="font-geist" key={column.key} align={column.align || 'left'} style={{ width: column.width, fontSize: 14, backgroundColor: '#e0e0e2' }}>
                   {sortable && column.sortable !== false ? (
                     <TableSortLabel active={orderBy === column.key} direction={orderBy === column.key ? order : 'asc'} onClick={() => handleSort(column.key)}>
                       {column.label}
@@ -214,7 +212,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
                 </TableCell>
               ))}
               {actions && actions.length > 0 && (
-                <TableCell align="center" className="font-geist font-size-14" style={{ fontSize: 14 }}>
+                <TableCell align="center" className="font-geist font-size-14" style={{ fontSize: 14, backgroundColor: '#e0e0e2' }}>
                   Действия
                 </TableCell>
               )}
@@ -272,7 +270,41 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
         </Table>
       </TableContainer>
 
-      {pagination && <TablePagination rowsPerPageOptions={rowsPerPageOptions} component="div" count={filteredData.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} labelRowsPerPage="Строк на странице:" labelDisplayedRows={({ from, to, count }) => `${from}-${to} из ${count !== -1 ? count : `более чем ${to}`}`} />}
+      {pagination && (
+        <TablePagination
+          sx={{
+            '& .MuiTablePagination-toolbar': {
+              fontSize: '14px',
+              fontFamily: 'Geist, sans-serif',
+            },
+            '& .MuiTablePagination-selectLabel': {
+              fontSize: '14px',
+              fontFamily: 'Geist, sans-serif',
+            },
+            '& .MuiTablePagination-displayedRows': {
+              fontSize: '14px',
+              fontFamily: 'Geist, sans-serif',
+            },
+            '& .MuiInputBase-root': {
+              fontSize: '14px',
+              fontFamily: 'Geist, sans-serif',
+            },
+            '& .MuiSelect-icon': {
+              fontSize: '20px',
+            },
+          }}
+          className="font-geist font-size-14"
+          rowsPerPageOptions={rowsPerPageOptions}
+          component="div"
+          count={filteredData.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          labelRowsPerPage="Строк на странице:"
+          labelDisplayedRows={({ from, to, count }) => `${from}-${to} из ${count !== -1 ? count : `более чем ${to}`}`}
+        />
+      )}
     </Paper>
   )
 }

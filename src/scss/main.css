@@ -1008,6 +1008,12 @@ hr {
   padding: 0;
   border-radius: 100rem;
 }
+.button--danger {
+  background-color: #ef4444;
+}
+.button--danger:hover {
+  background-color: #dc2626;
+}
 
 .profile-button {
   display: flex;

@@ -1,8 +1,8 @@
 export interface ICategoryBase {
   name: string
   description: string
-  parent_category: number
-  file: File
+  parent_category: any
+  file: any
 }
 
 export interface ICategory extends ICategoryBase {

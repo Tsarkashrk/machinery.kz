@@ -1,17 +1,111 @@
 'use client'
 
-import { AdminSidebar } from '@/4-features/admin-sidebar/ui/AdminSidebar'
-import { ICategory, useCategories } from '@/5-entities/category'
+import { CategoryDeleteModal } from '@/4-features/category'
+import { CategoryEditorModal } from '@/4-features/category/ui/CategoryEditorModal'
+import { ICategory, useCategories, useCreateCategory, useUpdateCategory, useDeleteCategory } from '@/5-entities/category'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
-import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
+import Button from '@/6-shared/ui/Buttons/Button'
 import { DataTable } from '@/6-shared/ui/Table/Table'
-import { Chip } from '@mui/material'
-import {  EditIcon, TrashIcon, ViewIcon } from 'lucide-react'
+import { EditIcon, TrashIcon, ViewIcon } from 'lucide-react'
+import { useState } from 'react'
 
 export const CategoriesSection = () => {
   const { categories, isLoading } = useCategories()
 
-  const editCategory = (item: ICategory) => {}
+  const createCategoryMutation = useCreateCategory()
+  const updateCategoryMutation = useUpdateCategory()
+  const deleteCategoryMutation = useDeleteCategory()
+
+  const [createModal, setCreateModal] = useState<{
+    isOpen: boolean
+    item: ICategory | null
+  }>({
+    isOpen: false,
+    item: null,
+  })
+
+  const [deleteModal, setDeleteModal] = useState<{
+    isOpen: boolean
+    item: ICategory | null
+  }>({
+    isOpen: false,
+    item: null,
+  })
+
+  const [updateModal, setUpdateModal] = useState<{
+    isOpen: boolean
+    item: ICategory | null
+  }>({
+    isOpen: false,
+    item: null,
+  })
+
+  const createCategory = () => {
+    setCreateModal({
+      isOpen: true,
+      item: null,
+    })
+  }
+
+  const deleteCategory = (item: ICategory) => {
+    setDeleteModal({
+      isOpen: true,
+      item,
+    })
+  }
+
+  const updateCategory = (item: ICategory) => {
+    setUpdateModal({
+      isOpen: true,
+      item,
+    })
+  }
+
+  const handleCreateConfirm = async (item: FormData) => {
+    createCategoryMutation.mutate(item, {
+      onSuccess: () => {
+        setCreateModal({ isOpen: false, item: null })
+      },
+    })
+  }
+
+  const handleCreateClose = () => {
+    setCreateModal({ isOpen: false, item: null })
+  }
+
+  const handleDeleteConfirm = () => {
+    if (deleteModal.item) {
+      deleteCategoryMutation.mutate(deleteModal.item.id, {
+        onSuccess: () => {
+          setDeleteModal({ isOpen: false, item: null })
+        },
+      })
+    }
+  }
+
+  const handleDeleteCancel = () => {
+    setDeleteModal({ isOpen: false, item: null })
+  }
+
+  const handleUpdateSave = async (data: FormData) => {
+    if (updateModal.item) {
+      updateCategoryMutation.mutate(
+        {
+          id: updateModal.item.id,
+          data: data,
+        },
+        {
+          onSuccess: () => {
+            setUpdateModal({ isOpen: false, item: null })
+          },
+        },
+      )
+    }
+  }
+
+  const handleUpdateClose = () => {
+    setUpdateModal({ isOpen: false, item: null })
+  }
 
   const columns: any = [
     {
@@ -41,21 +135,21 @@ export const CategoriesSection = () => {
 
   const actions: any = [
     {
-      icon: <ViewIcon size={ICON_SIZE}/>,
+      icon: <ViewIcon size={ICON_SIZE} />,
       tooltip: 'Просмотр',
       onClick: (item: ICategory) => console.log('View:', item),
       color: 'info',
     },
     {
-      icon: <EditIcon size={ICON_SIZE}/>,
+      icon: <EditIcon size={ICON_SIZE} />,
       tooltip: 'Редактирование',
-      onClick: (item: ICategory) => editCategory(item),
+      onClick: (item: ICategory) => updateCategory(item),
       color: 'info',
     },
     {
-      icon: <TrashIcon size={ICON_SIZE}/>,
+      icon: <TrashIcon size={ICON_SIZE} />,
       tooltip: 'Удалить',
-      onClick: (item: ICategory) => console.log('Delete:', item),
+      onClick: (item: ICategory) => deleteCategory(item),
       color: 'error',
     },
   ]
@@ -63,7 +157,13 @@ export const CategoriesSection = () => {
   return (
     <section className="dashboard-section">
       <div className="dashboard-section__wrapper">
-        <DataTable data={categories || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+        <DataTable data={categories || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} buttonOnChange={createCategory} />
+
+        <CategoryEditorModal isOpen={createModal.isOpen} onClose={handleCreateClose} item={createModal.item} onSave={handleCreateConfirm} isLoading={createCategoryMutation.isPending} />
+
+        <CategoryEditorModal isOpen={updateModal.isOpen} onClose={handleUpdateClose} item={updateModal.item} onSave={handleUpdateSave} isLoading={updateCategoryMutation.isPending} />
+
+        <CategoryDeleteModal isOpen={deleteModal.isOpen} onClose={handleDeleteCancel} isLoading={deleteCategoryMutation.isPending} item={deleteModal.item} onConfirm={handleDeleteConfirm} />
       </div>
     </section>
   )

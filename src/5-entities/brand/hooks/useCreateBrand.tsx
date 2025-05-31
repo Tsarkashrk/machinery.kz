@@ -10,7 +10,10 @@ export const useCreateBrand = () => {
     mutationFn: (data: IBrandRequest) => brandsApi.createBrand(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['brands'] })
-      toast.success('Компания успешно создана')
+      toast.success('Бренд успешно создан')
+    },
+    onError: (error) => {
+      toast.error(`${error}`)
     },
   })
   return { mutate, isPending, isSuccess }

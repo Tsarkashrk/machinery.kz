@@ -10,11 +10,12 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string
   isNumber?: boolean
   children?: React.ReactNode
+  maxWidth?: string
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(({ type = 'text', placeholder, id, extra, state, disabled, isNumber, children, ...rest }, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ type = 'text', placeholder, id, extra, state, disabled, isNumber, children, maxWidth, ...rest }, ref) => {
   return (
-    <div className="input">
+    <div className="input" style={{ maxWidth }}>
       <input
         ref={ref}
         className="input__field"

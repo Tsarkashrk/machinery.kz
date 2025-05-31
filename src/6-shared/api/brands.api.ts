@@ -20,7 +20,11 @@ export const brandsApi = {
   },
 
   async createBrand(data: IBrandRequest) {
-    const response = await axiosWithAuth.post(`${BASE_URL}/`, data)
+    const response = await axiosWithAuth.post(`${BASE_URL}/`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
     return response.data
   },
 }

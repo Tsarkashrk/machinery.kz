@@ -47,10 +47,10 @@ export const CompaniesSection = () => {
     })
   }
 
-  const deleteCompany = (company: ICompanyResponse) => {
+  const deleteCompany = (item: ICompanyResponse) => {
     setDeleteModal({
       isOpen: true,
-      company,
+      company: item,
     })
   }
 
