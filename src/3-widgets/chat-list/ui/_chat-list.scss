@@ -14,4 +14,17 @@
     border-bottom-right-radius: 0;
     border: $border-primary;
   }
+
+  &__empty {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__message {
+    background-color: $zinc-100;
+    padding: 1rem 5rem;
+    border-radius: $border-radius-ui;
+  }
 }

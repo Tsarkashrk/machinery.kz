@@ -2,14 +2,14 @@ import { IUser } from '@/5-entities/user'
 import React from 'react'
 import Image from 'next/image'
 import { Title } from '@/6-shared/ui/Title/Title'
-import { ICompany } from '@/5-entities/company'
+import { ICompanyResponse } from '@/5-entities/company'
 import { Description } from '@/6-shared/ui/Description/Description'
 import Link from 'next/link'
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
 
 type Props = {
   userDealer?: IUser
-  companyDealer?: ICompany
+  companyDealer?: ICompanyResponse
 }
 
 export const DealerCard = ({ userDealer, companyDealer }: Props) => {

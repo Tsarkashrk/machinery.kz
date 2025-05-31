@@ -7,7 +7,7 @@
     margin: 0 auto;
     padding: 2rem;
     border-radius: $border-radius-card;
-    box-shadow: $card-shadow;
+    border: $border-primary;
     background-color: $base-color;
   }
 
@@ -29,7 +29,7 @@
     &__body {
       display: flex;
       flex-direction: column;
-      gap: $gap-bw-fields;;
+      gap: $gap-bw-fields;
     }
   }
 }

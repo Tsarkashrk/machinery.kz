@@ -36,7 +36,7 @@ export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_
         <div className="equipment-card__image-container">
           <div className="equipment-card__header">
             <div className="equipment-card__badges">
-              <Badge type={listingType} text={tBadge(listingType)} />
+              <Badge type={listingType}>{tBadge(listingType)}</Badge>
             </div>
             <ToggleFavoriteButton productId={id} isFavorite={false} />
           </div>

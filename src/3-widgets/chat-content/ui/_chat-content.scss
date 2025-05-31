@@ -38,4 +38,17 @@
     width: calc(100% - 4rem);
     bottom: 1rem;
   }
+
+  &__empty {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__message {
+    padding: 1rem 5rem;
+    background-color: $zinc-100;
+    border-radius: $border-radius-ui;
+  }
 }

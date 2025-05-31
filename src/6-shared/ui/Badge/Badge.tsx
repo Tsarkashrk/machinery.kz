@@ -1,8 +1,10 @@
+import { ReactNode } from "react"
+
 type Props = {
-  text: string
-  type: 'dark' | 'light' | 'sale' | 'rent' | 'sell'
+  children: ReactNode 
+  type: 'dark' | 'light' | 'sale' | 'rent' | 'sell' | 'success' | 'error' | 'warning'
 }
 
-export const Badge = ({ type, text }: Props) => {
-  return <p className={`badge badge--${type}`}>{text}</p>
+export const Badge = ({ type, children }: Props) => {
+  return <p className={`badge badge--${type}`}>{children}</p>
 }

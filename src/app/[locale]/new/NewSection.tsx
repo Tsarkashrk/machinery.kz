@@ -17,31 +17,7 @@ import { equipmentApi, equipmentImagesApi } from '@/6-shared/api'
 import { useCategories } from '@/5-entities/category/hooks/useCategories'
 import { useProfile } from '@/5-entities/user'
 import { useBrands } from '@/5-entities/brand'
-
-const listingTypes = [
-  {
-    id: 1,
-    title: 'To sell',
-    value: 'sell',
-  },
-  {
-    id: 2,
-    title: 'To rent out',
-    value: 'rent',
-  },
-]
-const conditions = [
-  {
-    id: 1,
-    title: 'New',
-    value: 'new',
-  },
-  {
-    id: 2,
-    title: 'Used',
-    value: 'used',
-  },
-]
+import { useTranslations } from 'next-intl'
 
 const NewSection = () => {
   const { brands } = useBrands()
@@ -53,6 +29,8 @@ const NewSection = () => {
   const { register, handleSubmit, reset, control, watch } = useForm({
     mode: 'onChange',
   })
+
+  const t = useTranslations()
 
   const listingType = watch('type')
 
@@ -76,7 +54,30 @@ const NewSection = () => {
     },
   })
 
-  console.log(profile)
+  const listingTypes = [
+    {
+      id: 1,
+      title: t('to-sell'),
+      value: 'sell',
+    },
+    {
+      id: 2,
+      title: t('to-rent-out'),
+      value: 'rent',
+    },
+  ]
+  const conditions = [
+    {
+      id: 1,
+      title: t('new'),
+      value: 'new',
+    },
+    {
+      id: 2,
+      title: t('used'),
+      value: 'used',
+    },
+  ]
 
   const onSubmit: SubmitHandler<any> = async (data: any) => {
     const formattedData = {
@@ -121,8 +122,8 @@ const NewSection = () => {
           <Card>
             <div className="new-section__header">
               <div className="new-section__header-text">
-                <h1 className="new-section__title">Create New Listing</h1>
-                <TextMuted>Please fill in all the details to get approval for listing creation.</TextMuted>
+                <h1 className="new-section__title">{t('create-new-listing')}</h1>
+                <TextMuted>{t('fill-details-listing')}</TextMuted>
               </div>
               {/* <div className="new-section__header-buttons">
                 <Button text="Previous" variant="outlined" icon={<ChevronLeft size={ICON_SIZE} />} />
@@ -132,99 +133,85 @@ const NewSection = () => {
           </Card>
 
           <Card>
-            <h1 className="new-section__title">Upload Images</h1>
+            <h1 className="new-section__title">{t('upload-images')}</h1>
             <hr />
-            {/* <InputFile {...register('image', { required: 'Image is required!' })} onChange={(e) => console.log(e.target.value)} /> */}
-            <input
+            <InputFile {...register('image')} onChange={(e) => console.log(e.target.value)} />
+            {/* <input
               type="image"
               {...register('image', {
                 required: 'image is required!',
               })}
-            />
+            /> */}
           </Card>
           <form onSubmit={handleSubmit(onSubmit)} className="new-section__form">
             <Card>
-              <h1 className="new-section__title">Equipment information</h1>
+              <h1 className="new-section__title">{t('equipment-information')}</h1>
               <hr />
               <div className="new-section__info">
                 <div className="new-section__info-blocks">
                   <div className="new-section__info-block">
-                    <Label text="Listing type" forElement="type" />
-                    <Dropdown name="type" control={control} options={listingTypes} rules={{ required: 'Listing type is required!' }} />
+                    <Label forElement="type">{t('listing-type')}</Label>
+                    <Dropdown name="type" control={control} options={listingTypes} rules={{ required: t('listing-type-required') }} />
                   </div>
                   <div className="new-section__info-block">
-                    <Label text="Category" forElement="category" />
-                    <Dropdown name="category" control={control} options={categories?.map((category) => ({ ...category, title: category.name, value: category.id })) || []} rules={{ required: 'Category is required!' }} />
+                    <Label forElement="category">{t('category')}</Label>
+                    <Dropdown name="category" control={control} options={categories?.map((category) => ({ ...category, title: category.name, value: category.id })) || []} rules={{ required: t('category-required') }} />
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
                   <div className="new-section__info-block">
-                    <Label text="Name" forElement="name" />
+                    <Label forElement="name">{t('name')}</Label>
                     <Input
                       id="name"
                       type="text"
-                      placeholder="Cordless Drill Bosch"
+                      placeholder={t('equipment-title-placeholder')}
                       {...register('name', {
-                        required: 'Name is required!',
+                        required: t('name-required'),
                       })}
                     />
                   </div>
                   <div className="new-section__info-block">
-                    <Label text="Model" forElement="model" />
-                    <Input
-                      id="model"
-                      type="text"
-                      placeholder="GSR 12V-30"
-                      {...register('model', {
-                        required: 'Model is required!',
-                      })}
-                    />
+                    <Label forElement="model">{t('model')}</Label>
+                    <Input id="model" type="text" placeholder="GSR 12V-30" {...register('model', { required: t('model-required') })} />
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
                   <div className="new-section__info-block">
-                    <Label text="Manufacturer" forElement="manufacturer" />
-                    <Dropdown name="manufacturer" control={control} options={brands?.map((brand) => ({ ...brand, title: brand.name, value: brand.id })) || []} rules={{ required: 'Manufacturer is required!' }} />
+                    <Label forElement="manufacturer">{t('manufacturer')}</Label>
+                    <Dropdown name="manufacturer" control={control} options={brands?.map((brand) => ({ ...brand, title: brand.name, value: brand.id })) || []} rules={{ required: t('manufacturer-required') }} />
                   </div>
                   <div className="new-section__info-block">
-                    <Label text="Year" forElement="year" />
-                    <Input
-                      id="year"
-                      type="number"
-                      placeholder="2012"
-                      {...register('year', {
-                        required: 'Year is required!',
-                      })}
-                    />
+                    <Label forElement="year">{t('year')}</Label>
+                    <Input id="year" type="number" placeholder="2012" {...register('year', {required: t('year-required')})} />
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
                   <div className="new-section__info-block">
-                    <Label text="Condition" forElement="condition" />
-                    <Dropdown name="condition" control={control} options={conditions} rules={{ required: 'Condition is required!' }} />
+                    <Label forElement="condition">{t('condition')}</Label>
+                    <Dropdown name="condition" control={control} options={conditions} rules={{ required: t('condition-required') }} />
                   </div>
                   {listingType === 'rent' && (
                     <div className="new-section__info-block">
-                      <Label text="Daily rental price" forElement="daily_rental_rate" />
-                      <Input id="daily_rental_rate" type="number" placeholder="5000 KZT" {...register('daily_rental_rate', { required: 'Rental rate is required!' })} />
+                      <Label forElement="daily_rental_rate">{t('daily-rental-rate')}</Label>
+                      <Input id="daily_rental_rate" type="number" placeholder="5000 KZT" {...register('daily_rental_rate', { required: t('daily-rental-rate-required') })} />
                     </div>
                   )}
 
                   {listingType === 'sell' && (
                     <div className="new-section__info-block">
-                      <Label text="Purchase price" forElement="purchase_price" />
-                      <Input id="purchase_price" type="number" placeholder="25000 KZT" {...register('purchase_price', { required: 'Purchase price is required!' })} />
+                      <Label forElement="purchase_price">{t('purchase-price')}</Label>
+                      <Input id="purchase_price" type="number" placeholder="25000 KZT" {...register('purchase_price', { required: t('purchase-price-required') })} />
                     </div>
                   )}
                 </div>
 
                 <div className="new-section__info-blocks">
                   <div className="new-section__info-block">
-                    <Label text="Description" forElement="description" />
+                    <Label forElement="description">{t('description')}</Label>
                     <Input
                       id="description"
                       type="text"
-                      placeholder="Very powerfull machine"
+                      placeholder={t('equipment-description-placeholder')}
                       {...register('description', {
                         required: 'Description is required!',
                       })}
@@ -232,7 +219,7 @@ const NewSection = () => {
                   </div>
                 </div>
                 <Button type="submit" variant="default" width="100%">
-                  Confirm & Submit
+                  {t('confirm-submit')}
                 </Button>
               </div>
             </Card>

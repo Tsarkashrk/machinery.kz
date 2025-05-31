@@ -76,6 +76,18 @@ hr {
   margin: 2rem 0;
 }
 
+.font-geist {
+  font-family: var(--font-geist-sans) !important;
+}
+
+.font-weight-medium {
+  font-weight: 500 !important;
+}
+
+.font-size-14 {
+  font-size: 14px !important;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -92,7 +104,7 @@ hr {
   margin: 0 auto;
   padding: 2rem;
   border-radius: 1.6rem;
-  box-shadow: 0 4px 20px rgba(60, 70, 100, 0.1215686275);
+  border: 1px solid rgba(41, 71, 163, 0.1294117647);
   background-color: white;
 }
 .profile-section__title {
@@ -367,9 +379,6 @@ hr {
 
 .content__card {
   width: 100%;
-  padding: 2rem;
-  border: 1px solid rgba(41, 71, 163, 0.1294117647);
-  border-radius: 1.6rem;
 }
 
 .dashboard-publication-section {
@@ -527,6 +536,17 @@ hr {
   border-bottom-right-radius: 0;
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
 }
+.chat-list__empty {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat-list__message {
+  background-color: #f4f4f5;
+  padding: 1rem 5rem;
+  border-radius: 1rem;
+}
 
 .chat-item__wrapper {
   display: flex;
@@ -613,6 +633,17 @@ hr {
   position: absolute;
   width: calc(100% - 4rem);
   bottom: 1rem;
+}
+.chat-content__empty {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat-content__message {
+  padding: 1rem 5rem;
+  background-color: #f4f4f5;
+  border-radius: 1rem;
 }
 
 .chat-header__wrapper {
@@ -1665,7 +1696,7 @@ h3 {
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
   background-color: white;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 1.2rem;
 }
 .badge--dark {
   color: #030612;
@@ -1683,6 +1714,18 @@ h3 {
 .badge--rent {
   background-color: rgb(255, 245, 226);
   color: #ffa600;
+}
+.badge--success {
+  background-color: rgb(236, 255, 236);
+  color: green;
+}
+.badge--warning {
+  background-color: lightyellow;
+  color: #ffa600;
+}
+.badge--error {
+  background-color: rgb(254, 235, 235);
+  color: red;
 }
 
 .section-with-content {

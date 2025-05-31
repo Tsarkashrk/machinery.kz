@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react'
 import React, { useState } from 'react'
 import { Controller } from 'react-hook-form'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
+import { useTranslations } from 'next-intl'
 
 interface Option {
   id: number
@@ -19,8 +20,10 @@ interface DropdownProps {
   rules?: any
 }
 
-const CustomDropdown: React.FC<DropdownProps> = ({ name, control, options, placeholder = 'Select an option', rules }) => {
+const CustomDropdown: React.FC<DropdownProps> = ({ name, control, options, rules, placeholder }) => {
   const [isOpen, setIsOpen] = useState(false)
+
+  const t = useTranslations()
 
   return (
     <Controller
@@ -30,7 +33,7 @@ const CustomDropdown: React.FC<DropdownProps> = ({ name, control, options, place
       render={({ field, fieldState }) => (
         <div className="dropdown">
           <div className={`dropdown__selected ${isOpen ? 'dropdown__selected--open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
-            {field.value ? options.find((o) => o.value === field.value)?.title : placeholder}
+            {field.value ? options.find((o) => o.value === field.value)?.title : placeholder ? placeholder : t('select-option')}
             {isOpen ? <ChevronUp size={ICON_SIZE} /> : <ChevronDown size={ICON_SIZE} />}
           </div>
 

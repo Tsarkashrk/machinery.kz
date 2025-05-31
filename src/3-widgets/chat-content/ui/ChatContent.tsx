@@ -82,7 +82,11 @@ export const ChatContent = ({ activeChat }: Props) => {
   if (!activeChat) {
     return (
       <div className="chat-content">
-        <div className="chat-content__wrapper">Выберите чат</div>
+        <div className="chat-content__wrapper">
+          <div className="chat-content__empty">
+            <div className="chat-content__message">Выберите чат</div>
+          </div>
+        </div>
       </div>
     )
   }
@@ -90,7 +94,11 @@ export const ChatContent = ({ activeChat }: Props) => {
   if (!data) {
     return (
       <div className="chat-content">
-        <div className="chat-content__wrapper">Чат не найден</div>
+        <div className="chat-content__wrapper">
+          <div className="chat-content__empty">
+            <div className="chat-content__message">Чат не найден</div>
+          </div>
+        </div>
       </div>
     )
   }

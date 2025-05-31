@@ -2,7 +2,8 @@
 
 import React, { useState, useMemo } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, TableSortLabel, Paper, TextField, InputAdornment, Box, Typography, Chip, IconButton, Tooltip, Skeleton } from '@mui/material'
-import { Search as SearchIcon, Edit as EditIcon, Delete as DeleteIcon, Visibility as ViewIcon } from '@mui/icons-material'
+import { Check, ViewIcon, EditIcon, SearchIcon, DeleteIcon } from 'lucide-react'
+import { Badge } from '../Badge/Badge'
 
 export interface Column {
   key: string
@@ -144,7 +145,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
     }
 
     if (typeof value === 'boolean') {
-      return <Chip label={value ? 'Да' : 'Нет'} color={value ? 'success' : 'default'} size="small" />
+      return <Badge type={value ? 'success' : 'warning'}>{value ? 'Да' : 'Нет'}</Badge>
     }
 
     return String(value)
@@ -170,7 +171,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
   )
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden', border: '1px solid #2947a321', borderRadius: '1.6rem', boxShadow: 0 }}>
       {(title || searchable) && (
         <Box sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           {title && (
@@ -202,7 +203,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <TableCell key={column.key} align={column.align || 'left'} style={{ width: column.width }}>
+                <TableCell className="font-geist" key={column.key} align={column.align || 'left'} style={{ width: column.width, fontSize: 14 }}>
                   {sortable && column.sortable !== false ? (
                     <TableSortLabel active={orderBy === column.key} direction={orderBy === column.key ? order : 'asc'} onClick={() => handleSort(column.key)}>
                       {column.label}
@@ -212,7 +213,11 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
                   )}
                 </TableCell>
               ))}
-              {actions && actions.length > 0 && <TableCell align="center">Действия</TableCell>}
+              {actions && actions.length > 0 && (
+                <TableCell align="center" className="font-geist font-size-14" style={{ fontSize: 14 }}>
+                  Действия
+                </TableCell>
+              )}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -237,7 +242,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
                     '&:hover': onRowClick ? { backgroundColor: 'action.hover' } : {},
                   }}>
                   {columns.map((column) => (
-                    <TableCell key={column.key} align={column.align || 'left'}>
+                    <TableCell className="font-geist" key={column.key} align={column.align || 'left'} style={{ fontSize: 14 }}>
                       {renderCellValue(item, column)}
                     </TableCell>
                   ))}

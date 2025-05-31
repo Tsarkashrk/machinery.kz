@@ -5,7 +5,7 @@
   border: $border-primary;
   background-color: $base-color;
   font-weight: $font-medium;
-  font-size: 14px;
+  font-size: $font-xxs;
 
   &--dark {
     color: $base-dark-color;
@@ -27,5 +27,20 @@
   &--rent {
     background-color: rgb(255, 245, 226);
     color: $primary-color;
+  }
+
+  &--success {
+    background-color: rgb(236, 255, 236);
+    color: green;
+  }
+
+  &--warning {
+    background-color: lightyellow;
+    color: $primary-color;
+  }
+
+  &--error {
+    background-color: rgb(254, 235, 235);
+    color: red;
   }
 }

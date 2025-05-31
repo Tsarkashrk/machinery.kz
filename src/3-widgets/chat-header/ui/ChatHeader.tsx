@@ -1,7 +1,7 @@
 import { Wifi, WifiOff } from 'lucide-react'
 
 type Props = {
-  username: string
+  username?: string
   isOnline?: boolean
   isReconnecting?: boolean
 }

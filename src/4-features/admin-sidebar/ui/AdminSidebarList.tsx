@@ -1,6 +1,5 @@
 'use client'
 
-import { DASHBOARD_PAGES } from '@/6-shared/config/pages-url.config'
 import { Title } from '@/6-shared/ui/Title/Title'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
