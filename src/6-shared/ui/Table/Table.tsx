@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, TableSortLabel, Paper, TextField, InputAdornment, Box, Typography, Chip, IconButton, Tooltip, Skeleton } from '@mui/material'
-import { Check, ViewIcon, EditIcon, SearchIcon, DeleteIcon } from 'lucide-react'
+import { Check, ViewIcon, EditIcon, SearchIcon, TrashIcon } from 'lucide-react'
 import { Badge } from '../Badge/Badge'
 
 export interface Column {

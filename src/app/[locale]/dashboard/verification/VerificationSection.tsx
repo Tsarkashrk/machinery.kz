@@ -5,8 +5,7 @@ import { Title } from '@/6-shared/ui/Title/Title'
 import { CircularProgress } from '@mui/material'
 import { DataTable } from '@/6-shared/ui/Table/Table'
 import { Chip } from '@mui/material'
-// import { Search as SearchIcon, Edit as EditIcon, Delete as DeleteIcon, Visibility as ViewIcon } from '@mui/icons-material'
-import { Check, ViewIcon, EditIcon, SearchIcon, DeleteIcon } from 'lucide-react'
+import { Check, ViewIcon, EditIcon, SearchIcon, TrashIcon } from 'lucide-react'
 import { useVerifyEquipment } from '@/5-entities/moderator/hooks/useVerifyEquipment'
 import { Badge } from '@/6-shared/ui/Badge/Badge'
 
@@ -114,7 +113,7 @@ export const VerificationSection = () => {
       color: 'primary',
     },
     {
-      icon: <DeleteIcon />,
+      icon: <TrashIcon />,
       tooltip: 'Удалить',
       onClick: (item: IEquipment) => console.log('Delete:', item),
       color: 'error',

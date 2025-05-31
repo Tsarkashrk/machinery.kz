@@ -1,3 +1,4 @@
+import { IBrandRequest } from '@/5-entities/brand'
 import { axiosClassic, axiosWithAuth } from './interceptors'
 
 export const BASE_URL = '/brands'
@@ -18,8 +19,8 @@ export const brandsApi = {
     return response.data
   },
 
-  async createBrand() {
-    const response = await axiosWithAuth.post(`${BASE_URL}/`)
+  async createBrand(data: IBrandRequest) {
+    const response = await axiosWithAuth.post(`${BASE_URL}/`, data)
     return response.data
   },
 }

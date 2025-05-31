@@ -1,16 +1,40 @@
 'use client'
 
 import { AdminSidebar } from '@/4-features/admin-sidebar/ui/AdminSidebar'
-import { IBrand, useBrands } from '@/5-entities/brand'
+import { CreateBrandModal } from '@/4-features/brand/ui/CreateBrand'
+import { IBrand, IBrandRequest, useBrands } from '@/5-entities/brand'
+import { useCreateBrand } from '@/5-entities/brand/hooks/useCreateBrand'
+import Button from '@/6-shared/ui/Buttons/Button'
 import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
 import { DataTable } from '@/6-shared/ui/Table/Table'
 import { Chip } from '@mui/material'
-import { DeleteIcon, EditIcon, ViewIcon } from 'lucide-react'
+import { TrashIcon, EditIcon, ViewIcon } from 'lucide-react'
+import { useState } from 'react'
 
 export const BrandsSection = () => {
   const { brands, isLoading } = useBrands()
 
-  const editCategory = (item: IBrand) => {}
+  const createBrandMutation = useCreateBrand()
+
+  const [createModal, setCreateModal] = useState({
+    isOpen: false,
+    item: null,
+  })
+
+  const createBrand = () => {
+    setCreateModal({
+      isOpen: true,
+      item: null,
+    })
+  }
+
+  const handleCreateConfirm = async (data: IBrandRequest) => {
+    createBrandMutation.mutate(data)
+  }
+
+  const handleCreateClose = () => {
+    setCreateModal({ isOpen: false, item: null })
+  }
 
   const columns: any = [
     {
@@ -54,11 +78,11 @@ export const BrandsSection = () => {
     {
       icon: <EditIcon />,
       tooltip: 'Редактирование',
-      onClick: (item: IBrand) => editCategory(item),
+      onClick: (item: IBrand) => console.log(item),
       color: 'info',
     },
     {
-      icon: <DeleteIcon />,
+      icon: <TrashIcon />,
       tooltip: 'Удалить',
       onClick: (item: IBrand) => console.log('Delete:', item),
       color: 'error',
@@ -68,7 +92,10 @@ export const BrandsSection = () => {
   return (
     <section className="brands-section">
       <div className="brands-section__wrapper">
-        <DataTable data={brands || []} columns={columns} loading={isLoading} title="Оборудование на проверке" actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+        <Button onClick={() => createBrand()}>Создать компанию</Button>
+        <DataTable data={brands || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+
+        <CreateBrandModal isOpen={createModal.isOpen} onClose={handleCreateClose} item={createModal.item} onSave={handleCreateConfirm} isLoading={createBrandMutation.isPending} />
       </div>
     </section>
   )

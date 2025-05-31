@@ -141,7 +141,7 @@ export const UsersSection = () => {
   return (
     <section className="users-section">
       <div className="users-section__wrapper">
-        <DataTable data={usersList || []} columns={columns} loading={isLoading} title="Оборудование на проверке" actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+        <DataTable data={usersList || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
 
         <DeleteUserModal isOpen={deleteModal.isOpen} onClose={handleDeleteClose} user={deleteModal.user} onConfirm={handleDeleteConfirm} isLoading={deleteUserMutation.isPending} />
 

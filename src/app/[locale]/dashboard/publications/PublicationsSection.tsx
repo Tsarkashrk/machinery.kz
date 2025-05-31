@@ -4,7 +4,7 @@ import { IEquipment, useEquipmentList, useUnverifiedEquipment } from '@/5-entiti
 import { useVerifyEquipment } from '@/5-entities/moderator/hooks/useVerifyEquipment'
 import { DataTable } from '@/6-shared/ui/Table/Table'
 import { Chip } from '@mui/material'
-import { ViewIcon, Check, DeleteIcon } from 'lucide-react'
+import { ViewIcon, Check, TrashIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 export const PublicationsSection = () => {
@@ -100,7 +100,7 @@ export const PublicationsSection = () => {
       color: 'info',
     },
     {
-      icon: <DeleteIcon />,
+      icon: <TrashIcon />,
       tooltip: 'Удалить',
       onClick: (item: IEquipment) => console.log('Delete:', item),
       color: 'error',

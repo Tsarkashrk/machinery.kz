@@ -378,6 +378,7 @@ hr {
 }
 
 .content__card {
+  max-width: 126.5rem;
   width: 100%;
 }
 

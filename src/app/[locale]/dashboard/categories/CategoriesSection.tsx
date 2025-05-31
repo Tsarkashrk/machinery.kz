@@ -5,7 +5,7 @@ import { ICategory, useCategories } from '@/5-entities/category'
 import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
 import { DataTable } from '@/6-shared/ui/Table/Table'
 import { Chip } from '@mui/material'
-import { DeleteIcon, EditIcon, ViewIcon } from 'lucide-react'
+import {  EditIcon, TrashIcon, ViewIcon } from 'lucide-react'
 
 export const CategoriesSection = () => {
   const { categories, isLoading } = useCategories()
@@ -52,7 +52,7 @@ export const CategoriesSection = () => {
       color: 'info',
     },
     {
-      icon: <DeleteIcon />,
+      icon: <TrashIcon />,
       tooltip: 'Удалить',
       onClick: (item: ICategory) => console.log('Delete:', item),
       color: 'error',
