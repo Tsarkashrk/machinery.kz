@@ -1,4 +1,4 @@
-import { ICompanyEditRequest, ICompanyResponse } from '@/5-entities/company'
+import { ICompanyEditRequest, ICompanyPostRequest, ICompanyResponse } from '@/5-entities/company'
 import { axiosClassic, axiosWithAuth } from './interceptors'
 
 const BASE_URL = '/companies'
@@ -11,6 +11,11 @@ export const companiesApi = {
 
   async getCompany(id: number) {
     const response = await axiosClassic.get(`${BASE_URL}/${id}/`)
+    return response.data
+  },
+
+  createCompany: async (data: ICompanyPostRequest) => {
+    const response = await axiosWithAuth.post(`${BASE_URL}/create/`, data)
     return response.data
   },
 

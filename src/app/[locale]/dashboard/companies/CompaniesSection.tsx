@@ -3,17 +3,26 @@
 import { useState } from 'react'
 import { DataTable } from '@/6-shared/ui/Table/Table'
 import { Trash2Icon, EditIcon, ViewIcon } from 'lucide-react'
-import { ICompanyEditRequest, ICompanyResponse, useCompaniesList } from '@/5-entities/company'
-import { useDeleteCompany } from '@/5-entities/company/hooks/useDeleteCompany'
-import { useUpdateCompany } from '@/5-entities/company/hooks/useUpdateCompany'
+import { ICompanyEditRequest, ICompanyPostRequest, ICompanyResponse, useCompaniesList } from '@/5-entities/company'
 import { EditCompanyModal } from '@/4-features/company/ui/EditCompany'
 import { DeleteCompanyModal } from '@/4-features/company/ui/DeleteCompany'
+import Button from '@/6-shared/ui/Buttons/Button'
+import { CreateCompanyModal } from '@/4-features/company'
+import { useCreateCompany, useDeleteCompany, useUpdateCompany } from '@/5-entities/company'
 
 export const CompaniesSection = () => {
   const { companiesList, isLoading } = useCompaniesList()
+  const createCompanyMutation = useCreateCompany()
   const deleteCompanyMutation = useDeleteCompany()
   const updateCompanyMutation = useUpdateCompany()
 
+  const [createModal, setCreateModal] = useState<{
+    isOpen: boolean
+    company: ICompanyPostRequest | null
+  }>({
+    isOpen: false,
+    company: null,
+  })
   const [deleteModal, setDeleteModal] = useState<{
     isOpen: boolean
     company: ICompanyResponse | null
@@ -30,6 +39,13 @@ export const CompaniesSection = () => {
     company: null,
   })
 
+  const createCompany = () => {
+    setCreateModal({
+      isOpen: true,
+      company: null,
+    })
+  }
+
   const deleteCompany = (company: ICompanyResponse) => {
     setDeleteModal({
       isOpen: true,
@@ -42,6 +58,14 @@ export const CompaniesSection = () => {
       isOpen: true,
       company: item,
     })
+  }
+
+  const handleCreateConfirm = async (data: ICompanyPostRequest) => {
+    createCompanyMutation.mutate(data)
+  }
+
+  const handleCreateClose = () => {
+    setCreateModal({ isOpen: false, company: null })
   }
 
   const handleDeleteConfirm = () => {
@@ -62,7 +86,6 @@ export const CompaniesSection = () => {
   }
 
   const handleEditSave = async (data: any) => {
-
     if (editModal.company) {
       return updateCompanyMutation.mutate({
         id: editModal.company.id,
@@ -151,11 +174,14 @@ export const CompaniesSection = () => {
   return (
     <section className="companies-section">
       <div className="companies-section__wrapper">
+        <Button onClick={() => createCompany()}>Создать компанию</Button>
         <DataTable data={companiesList?.results} columns={columns} loading={isLoading} title="Оборудование на проверке" actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
 
         <DeleteCompanyModal isOpen={deleteModal.isOpen} onClose={handleDeleteCancel} company={deleteModal.company} onConfirm={handleDeleteConfirm} isLoading={deleteCompanyMutation.isPending} />
 
         <EditCompanyModal isOpen={editModal.isOpen} onClose={handleEditClose} company={editModal.company} onSave={handleEditSave} isLoading={updateCompanyMutation.isPending} />
+
+        <CreateCompanyModal isOpen={createModal.isOpen} onClose={handleCreateClose} company={createModal.company} onSave={handleCreateConfirm} isLoading={createCompanyMutation.isPending} />
       </div>
     </section>
   )
