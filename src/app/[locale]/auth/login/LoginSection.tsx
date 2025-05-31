@@ -54,13 +54,20 @@ const LoginSection = () => {
 
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
           <div className="auth-form__credentials">
-            <Label text={t('login-email')} forElement="email" />
+            <Label forElement="email">{t('login-email')}</Label>
             <Input type="email" id="email" placeholder="mchnry@ex.com" {...register('email', { required: 'Email is required!' })} />
           </div>
 
-          <div className="auth-form__credentials">
-            <Label text={t('login-password')} forElement="password" />
-            <Input type="password" id="password" {...register('password', { required: 'Password is required!' })} />
+          <div className="auth-form__container">
+            <div className="auth-form__credentials">
+              <Label forElement="password">{t('login-password')}</Label>
+              <Input type="password" id="password" {...register('password', { required: 'Password is required!' })} />
+            </div>
+
+            <div className="auth-form__credentials">
+              <Label forElement="password">{t('login-password')}</Label>
+              <Input type="password" id="password" {...register('password', { required: 'Password is required!' })} />
+            </div>
           </div>
 
           <Button variant="default" type="submit" isLoading={isPending}>

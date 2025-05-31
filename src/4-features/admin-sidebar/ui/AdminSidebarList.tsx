@@ -13,7 +13,7 @@ interface IRoute {
 }
 
 type Props = {
-  title: string
+  title?: string
   routes: IRoute[]
 }
 

@@ -1,13 +1,20 @@
 'use client'
 
 import { ICON_SIZE } from '@/6-shared/constants/constants'
-import { BadgeCheck, Building2, ChartGantt, OctagonAlert, PanelsLeftBottomIcon, ShieldCheck, Star, Users } from 'lucide-react'
+import { BadgeCheck, Building2, ChartGantt, Home, OctagonAlert, PanelsLeftBottomIcon, ShieldCheck, Star, Users } from 'lucide-react'
 import { AdminSidebarList } from './AdminSidebarList'
 import { useTranslations } from 'next-intl'
 import { DASHBOARD_PAGES } from '@/6-shared/config/pages-url.config'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export const AdminSidebar = () => {
+  const pathname = usePathname()
+  const isActive = pathname.includes(DASHBOARD_PAGES.root)
+
   const t = useTranslations('DashboardPage')
+
+  const mainManagement = [{ name: 'Главная', path: `${DASHBOARD_PAGES.root}`, icon: <Home size={ICON_SIZE} /> }]
 
   const userManagement = [
     { name: 'Пользователи', path: `${DASHBOARD_PAGES.USERS}`, icon: <Users size={ICON_SIZE} /> },
@@ -32,6 +39,7 @@ export const AdminSidebar = () => {
   return (
     <div className="admin-sidebar">
       <div className="admin-sidebar__wrapper">
+        <AdminSidebarList routes={mainManagement} />
         <AdminSidebarList title={t('platform-management')} routes={platformManagement} />
         <AdminSidebarList title={t('user-management')} routes={userManagement} />
         <AdminSidebarList title={t('publication-management')} routes={publicationManagement} />

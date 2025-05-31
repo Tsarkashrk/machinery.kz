@@ -13,14 +13,28 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { toast } from 'sonner'
 import { Title } from '@/6-shared/ui/Title/Title'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
+import { ICON_SIZE } from '@/6-shared/constants/constants'
+import { Eye, EyeOff } from 'lucide-react'
 
 const RegisterSection = () => {
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
   const t = useTranslations('AuthPage')
   const tButton = useTranslations('Button')
 
-  const { register, handleSubmit, reset } = useForm<IAuthRegisterRequest>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<IAuthRegisterRequest>({
     mode: 'onChange',
   })
+
+  const password = watch('password')
 
   const { push } = useRouter()
 
@@ -38,7 +52,8 @@ const RegisterSection = () => {
   })
 
   const onSubmit: SubmitHandler<IAuthRegisterRequest> = (data) => {
-    mutate(data)
+    const { confirm_password, ...payload } = data
+    mutate(payload)
   }
 
   return (
@@ -49,19 +64,30 @@ const RegisterSection = () => {
           <TextMuted>{t('register-description')}</TextMuted>
         </div>
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
+          <div className="auth-form__container">
+            <div className="auth-form__credentials">
+              <Label forElement="first_name">{t('register-first-name')}</Label>
+              <Input id="first_name" placeholder="Alex" {...register('first_name', { required: 'First name is required!' })} />
+            </div>
+            <div className="auth-form__credentials">
+              <Label forElement="last_name">{t('register-last-name')}</Label>
+              <Input type="text" id="last_name" placeholder="Morro" {...register('last_name', { required: 'Last name is required!' })} />
+            </div>
+          </div>
+
           <div className="auth-form__credentials">
-            <Label text={t('register-username')} forElement="username" />
+            <Label forElement="username">{t('register-username')}</Label>
             <Input
-              type="text"
               id="username"
-              placeholder="Jame Smith"
+              placeholder="AlexoMor"
               {...register('username', {
                 required: 'Username is required!',
               })}
             />
           </div>
+
           <div className="auth-form__credentials">
-            <Label text={t('register-email')} forElement="email" />
+            <Label forElement="email">{t('register-email')}</Label>
             <Input
               type="email"
               id="email"
@@ -71,16 +97,48 @@ const RegisterSection = () => {
               })}
             />
           </div>
-          <div className="auth-form__credentials">
-            <Label text={t('register-password')} forElement="password" />
-            <Input
-              type="password"
-              id="password"
-              {...register('password', {
-                required: 'Password is required!',
-              })}
-            />
+
+          <div className="auth-form__container">
+            <div className="auth-form__credentials auth-form__password">
+              <Label forElement="password">{t('register-password')}</Label>
+              <div className="relative">
+                <Input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  placeholder="••••••"
+                  {...register('password', {
+                    required: 'Password is required!',
+                    minLength: { value: 6, message: 'Password must be at least 6 characters' },
+                  })}
+                />
+                <div className="auth-form__eye" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <Eye size={ICON_SIZE} /> : <EyeOff size={ICON_SIZE} />}
+                </div>
+              </div>
+
+              {errors.password && <TextMuted color="red">{errors.password.message}</TextMuted>}
+            </div>
+
+            <div className="auth-form__credentials auth-form__password">
+              <Label forElement="confirm_password">{t('register-password-confirm')}</Label>
+              <div className="relative">
+                <Input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  id="confirm_password"
+                  placeholder="••••••"
+                  {...register('confirm_password', {
+                    required: 'Please confirm your password',
+                    validate: (value) => value === password || 'Passwords do not match',
+                  })}
+                />
+                <div className="auth-form__eye" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                  {showConfirmPassword ? <Eye size={ICON_SIZE} /> : <EyeOff size={ICON_SIZE} />}
+                </div>
+              </div>
+              {errors.confirm_password && <TextMuted color="red">{errors.confirm_password.message}</TextMuted>}
+            </div>
           </div>
+
           <Button variant="default" isLoading={isPending}>
             {tButton('register')}
           </Button>

@@ -18,7 +18,10 @@
     "register-username": "Имя пользователя",
     "register-email": "Электронная почта",
     "register-password": "Пароль",
-    "register-to-login": "Уже есть учетная запись?"
+    "register-password-confirm": "Повторно пароль",
+    "register-to-login": "Уже есть учетная запись?",
+    "register-first-name": "Имя",
+    "register-last-name": "Фамилия"
   },
   "HomePage": {
     "title": "Главная",

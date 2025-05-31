@@ -18,7 +18,10 @@
     "register-username": "Пайдаланушы аты",
     "register-email": "Пошта",
     "register-password": "Құпия сөз",
-    "register-to-login": "Есептік жазбаңыз бар ма?"
+    "register-password-confirm": "Құпия сөз қайта",
+    "register-to-login": "Есептік жазбаңыз бар ма?",
+    "register-first-name": "Атыңыз",
+    "register-last-name": "Жөніңіз"
   },
   "HomePage": {
     "title": "Басты",
