@@ -51,6 +51,10 @@
     cursor: pointer;
   }
 
+  &__error {
+    margin-top: 0.5rem;
+  }
+
   &__footer {
     display: flex;
     align-self: center;

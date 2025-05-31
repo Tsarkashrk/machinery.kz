@@ -13,8 +13,14 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
 import { Title } from '@/6-shared/ui/Title/Title'
+import { useState } from 'react'
+import { ICON_SIZE } from '@/6-shared/constants/constants'
+import { Eye, EyeOff } from 'lucide-react'
 
 const LoginSection = () => {
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
   const t = useTranslations('AuthPage')
   const tButton = useTranslations('Button')
 
@@ -22,8 +28,11 @@ const LoginSection = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<IAuthLoginRequest>({ mode: 'onChange' })
+
+  const password = watch('password')
 
   const { push } = useRouter()
 
@@ -41,7 +50,8 @@ const LoginSection = () => {
   })
 
   const onSubmit: SubmitHandler<IAuthLoginRequest> = (data) => {
-    mutate(data)
+    const { confirm_password, ...payload } = data
+    mutate(payload)
   }
 
   return (
@@ -54,19 +64,59 @@ const LoginSection = () => {
 
         <form className="auth-form__body" onSubmit={handleSubmit(onSubmit)}>
           <div className="auth-form__credentials">
-            <Label forElement="email">{t('login-email')}</Label>
-            <Input type="email" id="email" placeholder="mchnry@ex.com" {...register('email', { required: 'Email is required!' })} />
+            <Label forElement="email">{t('register-email')}</Label>
+            <Input
+              type="email"
+              id="email"
+              placeholder="mchnry@ex.com"
+              {...register('email', {
+                required: 'Email is required!',
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: 'Invalid email format!',
+                },
+              })}
+            />
+            <div className="auth-form__error">{errors.email && <TextMuted color="red">{errors.email.message}</TextMuted>}</div>
           </div>
 
           <div className="auth-form__container">
-            <div className="auth-form__credentials">
-              <Label forElement="password">{t('login-password')}</Label>
-              <Input type="password" id="password" {...register('password', { required: 'Password is required!' })} />
+            <div className="auth-form__credentials auth-form__password">
+              <Label forElement="password">{t('register-password')}</Label>
+              <div className="relative">
+                <Input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  placeholder="••••••"
+                  {...register('password', {
+                    required: 'Password is required!',
+                    minLength: { value: 6, message: 'Password must be at least 6 characters' },
+                  })}
+                />
+                <div className="auth-form__eye" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <Eye size={ICON_SIZE} /> : <EyeOff size={ICON_SIZE} />}
+                </div>
+              </div>
+              <div className="auth-form__error">{errors.password && <TextMuted color="red">{errors.password.message}</TextMuted>}</div>
             </div>
 
-            <div className="auth-form__credentials">
-              <Label forElement="password">{t('login-password')}</Label>
-              <Input type="password" id="password" {...register('password', { required: 'Password is required!' })} />
+            <div className="auth-form__credentials auth-form__password">
+              <Label forElement="confirm_password">{t('register-password-confirm')}</Label>
+              <div className="relative">
+                <Input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  id="confirm_password"
+                  placeholder="••••••"
+                  {...register('confirm_password', {
+                    required: 'Please confirm your password',
+                    validate: (value) => value === password || 'Passwords do not match',
+                  })}
+                />
+                <div className="auth-form__eye" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                  {showConfirmPassword ? <Eye size={ICON_SIZE} /> : <EyeOff size={ICON_SIZE} />}
+                </div>
+              </div>
+              <div className="auth-form__error">{errors.confirm_password && <TextMuted color="red">{errors.confirm_password.message}</TextMuted>}</div>
             </div>
           </div>
 

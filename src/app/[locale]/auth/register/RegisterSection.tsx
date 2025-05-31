@@ -94,8 +94,13 @@ const RegisterSection = () => {
               placeholder="mchnry@ex.com"
               {...register('email', {
                 required: 'Email is required!',
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: 'Invalid email format!',
+                },
               })}
             />
+            {errors.email && <TextMuted color="red">{errors.email.message}</TextMuted>}
           </div>
 
           <div className="auth-form__container">

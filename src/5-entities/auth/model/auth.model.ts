@@ -6,6 +6,7 @@ export interface IAuth {
 export interface IAuthLoginRequest {
   email: string
   password: string
+  confirm_password?: string
 }
 
 export interface IAuthRegisterRequest {

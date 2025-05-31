@@ -1850,6 +1850,9 @@ h3 {
   display: flex;
   cursor: pointer;
 }
+.auth-form__error {
+  margin-top: 0.5rem;
+}
 .auth-form__footer {
   display: flex;
   align-self: center;
