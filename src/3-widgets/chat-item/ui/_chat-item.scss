@@ -7,8 +7,14 @@
     cursor: pointer;
 
     &:hover {
-      background-color: $zinc-100;
+      background-color: $zinc-50;
     }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 
   &__info {
@@ -20,9 +26,20 @@
     text-overflow: ellipsis !important;
   }
 
+  &__header {
+    width: 100%;
+  }
+
   &__timestamp {
     margin-left: auto;
     white-space: nowrap;
+  }
+
+  &__message {
+    max-width: 29.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &--active {

@@ -4,32 +4,32 @@ import { axiosWithAuth } from './interceptors'
 const BASE_URL = '/chats'
 
 export const chatApi = {
-  async getChats() {
+  getChats: async () => {
     const response = await axiosWithAuth.get(`${BASE_URL}/`)
     return response.data
   },
 
-  async createChat(data: IChatRequest) {
+  createChat: async (data: IChatRequest) => {
     const response = await axiosWithAuth.post('/chats/', data)
     return response.data
   },
 
-  async getChatMessages(id: number) {
+  getChatMessages: async (id: number) => {
     const response = await axiosWithAuth.get(`${BASE_URL}/${id}/messages/`)
     return response.data
   },
 
-  async sendChatMessages(id: number, data: any) {
-    const response = await axiosWithAuth.post(`${BASE_URL}/${id}/messages/`, data)
+  sendMessage: async (chatId: number, messageData: any): Promise<any> => {
+    const response = await axiosWithAuth.post(`${BASE_URL}/${chatId}/messages/`, messageData)
     return response.data
   },
 
-  async getChatById(id: number) {
+  getChatById: async (id: number) => {
     const response = await axiosWithAuth.get(`${BASE_URL}/${id}/`)
     return response.data
   },
 
-  async markMessageRead(id: number) {
+  markMessageRead: async (id: number) => {
     const response = await axiosWithAuth.post(`${BASE_URL}/${id}/mark-read/`)
     return response.data
   },

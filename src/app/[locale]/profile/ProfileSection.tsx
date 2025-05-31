@@ -57,7 +57,9 @@ const ProfileSection = () => {
       </div>
       <form className="profile-section__body" onSubmit={handleSubmit(onSubmit)}>
         <div className="profile-section__credentials">
-          <Label text={tProfile('username')} forElement="username" />
+          <Label forElement="username">
+            {tProfile('username')}, {profile?.user_role}
+          </Label>
           <Input
             type="text"
             id="username"
@@ -68,7 +70,7 @@ const ProfileSection = () => {
           />
         </div>
         <div className="profile-section__credentials">
-          <Label text={tProfile('email')} forElement="email" />
+          <Label forElement="email">{tProfile('email')}</Label>
           <Input
             type="email"
             id="email"

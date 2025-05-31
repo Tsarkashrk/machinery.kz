@@ -21,7 +21,7 @@ export const DealerSlug = () => {
       {
         dealer: Number(slug),
         buyer: profile.id,
-        deal_item: 5,
+        deal_item: 6,
       },
       {
         onSuccess: (chat) => {

@@ -9,7 +9,5 @@ export const useChatById = (id: number) => {
     enabled: !!id,
   })
 
-  console.log('chat data: ' + data)
-
   return { data, isLoading, error }
 }

@@ -16,7 +16,7 @@ export const BrandCard = ({ brand }: Props) => {
       {/* <div className="brand-card__info">
         <h3 className="brand-card__name">{locale === 'ru' ? brand.name : brand.description}</h3>
       </div> */}
-      <Image src={brand.logo_url} alt={brand.name} className="brand-card__image" width={400} height={400} />
+      <Image src={brand.file} alt={brand.name} className="brand-card__image" width={400} height={400} />
     </Link>
   )
 }

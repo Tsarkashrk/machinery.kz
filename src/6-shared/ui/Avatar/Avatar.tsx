@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 type Props = {
   link: string
-  username: string
+  username?: string
   size?: 'big' | 'medium' | 'small'
 }
 

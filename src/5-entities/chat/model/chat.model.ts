@@ -1,4 +1,3 @@
-import { ICompany } from '@/5-entities/company'
 import { IEquipment } from '@/5-entities/equipment'
 import { IUser } from '@/5-entities/user'
 

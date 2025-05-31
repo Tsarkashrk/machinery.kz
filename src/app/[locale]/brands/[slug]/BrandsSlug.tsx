@@ -43,7 +43,7 @@ const BrandsSlug = () => {
         <Title>
           {t('title')} {brand.name}
         </Title>
-        <BrandHeader id={brand.id} logoUrl={brand.logo_url} name={brand.name} description={brand.description} foundedYear={brand.founded_year} />
+        <BrandHeader id={brand.id} logoUrl={brand.file} name={brand.name} description={brand.description} foundedYear={brand.founded_year} />
         <Title size="h2">
           {t('brands-equipment')}
         </Title>

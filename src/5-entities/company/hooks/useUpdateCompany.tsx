@@ -10,10 +10,12 @@ type Props = {
 export const useUpdateCompany = () => {
   const queryClient = useQueryClient()
 
-  return useMutation({
+  const { mutate, isPending, isSuccess } = useMutation({
     mutationFn: ({ id, data }: Props) => companiesApi.updateCompany(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['companies'] })
     },
   })
+
+  return { mutate, isPending, isSuccess }
 }

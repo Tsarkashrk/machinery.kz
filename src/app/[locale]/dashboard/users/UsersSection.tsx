@@ -2,13 +2,49 @@
 
 import { DataTable } from '@/6-shared/ui/Table/Table'
 import { Trash2Icon, EditIcon, ViewIcon } from 'lucide-react'
-import { IUser } from '@/5-entities/user/'
-import { useUsersList } from '@/5-entities/admin'
+import { EnumUserRoles, IUser, IUserRequest } from '@/5-entities/user/'
+import { IUserUpdateRole, useDeleteUser, useUsersList } from '@/5-entities/admin'
+import { useUpdateUser } from '@/5-entities/admin/hooks/useUpdateUser'
+import { useState } from 'react'
+import { UpdateUserModal } from '@/4-features/admin'
+import { DeleteUserModal } from '@/4-features/admin/ui/DeleteUser'
 
 export const UsersSection = () => {
   const { usersList, isLoading } = useUsersList()
+  const updateUserMutation = useUpdateUser()
+  const deleteUserMutation = useDeleteUser()
 
-  const editUser = (item: IUser) => {}
+  const [updateModal, setUpdateModal] = useState<{ isOpen: boolean; user: IUser | null }>({ isOpen: false, user: null })
+
+  const [deleteModal, setDeleteModal] = useState<{ isOpen: boolean; user: IUser | null }>({ isOpen: false, user: null })
+
+  const updateUser = (item: IUser) => {
+    setUpdateModal({ isOpen: true, user: item })
+  }
+
+  const handleUpdateConfirm = async (data: IUserUpdateRole) => {
+    if (updateModal.user) {
+      return updateUserMutation.mutate({ id: updateModal.user.id, data: data })
+    }
+  }
+
+  const handleUpdateClose = () => {
+    setUpdateModal({ isOpen: false, user: null })
+  }
+
+  const deleteUser = (item: IUser) => {
+    setDeleteModal({ isOpen: true, user: item })
+  }
+
+  const handleDeleteConfirm = async () => {
+    if (deleteModal.user) {
+      return deleteUserMutation.mutate(deleteModal.user.id)
+    }
+  }
+
+  const handleDeleteClose = () => {
+    setUpdateModal({ isOpen: false, user: null })
+  }
 
   const columns: any = [
     {
@@ -91,13 +127,13 @@ export const UsersSection = () => {
     {
       icon: <EditIcon />,
       tooltip: 'Редактирование',
-      onClick: (item: IUser) => editUser(item),
+      onClick: (item: IUser) => updateUser(item),
       color: 'info',
     },
     {
       icon: <Trash2Icon />,
       tooltip: 'Удалить',
-      onClick: (item: IUser) => console.log('Delete:', item),
+      onClick: (item: IUser) => deleteUser(item),
       color: 'error',
     },
   ]
@@ -106,6 +142,10 @@ export const UsersSection = () => {
     <section className="users-section">
       <div className="users-section__wrapper">
         <DataTable data={usersList || []} columns={columns} loading={isLoading} title="Оборудование на проверке" actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+
+        <DeleteUserModal isOpen={deleteModal.isOpen} onClose={handleDeleteClose} user={deleteModal.user} onConfirm={handleDeleteConfirm} isLoading={deleteUserMutation.isPending} />
+
+        <UpdateUserModal isOpen={updateModal.isOpen} onClose={handleUpdateClose} user={updateModal.user} onSave={handleUpdateConfirm} isLoading={updateUserMutation.isPending} />
       </div>
     </section>
   )

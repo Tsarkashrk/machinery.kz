@@ -13,7 +13,7 @@ interface Option {
 
 interface DropdownProps {
   name: string
-  control: any
+  control?: any
   options: Option[]
   placeholder?: string
   rules?: any

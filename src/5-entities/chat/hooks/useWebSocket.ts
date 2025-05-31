@@ -3,7 +3,7 @@ import { IChatMessage } from '@/5-entities/chat'
 import { getAccessToken } from '@/6-shared/api'
 
 interface WebSocketMessage {
-  type: 'message' | 'typing' | 'read' | 'error'
+  type: 'message' | 'message_sent' | 'typing' | 'read' | 'error'
   data: any
   chat_id?: number
 }
@@ -46,10 +46,19 @@ export const useWebSocket = ({ chatId, onMessage, onTyping, onMessageRead, onErr
       wsRef.current.onmessage = (event) => {
         try {
           const message: WebSocketMessage = JSON.parse(event.data)
+          console.log('WebSocket message received:', message)
 
           switch (message.type) {
             case 'message':
-              onMessage?.(message.data)
+              if (message.data && message.data.id) {
+                console.log('Received message from WebSocket:', message.data)
+                onMessage?.(message.data)
+              } else {
+                console.warn('Invalid message data from WebSocket:', message.data)
+              }
+              break
+            case 'message_sent':
+              console.log('Message sent notification received:', message.data)
               break
             case 'typing':
               onTyping?.(message.data)
@@ -60,6 +69,8 @@ export const useWebSocket = ({ chatId, onMessage, onTyping, onMessageRead, onErr
             case 'error':
               onError?.(message.data.message || 'WebSocket error')
               break
+            default:
+              console.warn('Unknown WebSocket message type:', message.type)
           }
         } catch (error) {
           console.error('Error parsing WebSocket message:', error)
@@ -105,10 +116,13 @@ export const useWebSocket = ({ chatId, onMessage, onTyping, onMessageRead, onErr
 
   const sendMessage = useCallback(
     (message: any) => {
+      console.log('WebSocket sendMessage called with:', message)
       if (wsRef.current?.readyState === WebSocket.OPEN) {
-        wsRef.current.send(JSON.stringify(message))
+        const messageString = JSON.stringify(message)
+        console.log('Sending to WebSocket:', messageString)
+        wsRef.current.send(messageString)
       } else {
-        console.warn('WebSocket is not connected')
+        console.warn('WebSocket is not connected, state:', wsRef.current?.readyState)
         onError?.('Connection not available')
       }
     },

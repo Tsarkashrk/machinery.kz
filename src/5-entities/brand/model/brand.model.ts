@@ -1,7 +1,7 @@
 interface IBrandBase {
   name: string
   description: string
-  logo_url: string
+  file: string
   website: string
   founded_year: number
 }

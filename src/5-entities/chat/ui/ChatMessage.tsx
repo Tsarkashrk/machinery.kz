@@ -8,28 +8,55 @@ import TextMuted from '@/6-shared/ui/TextMuted/TextMuted'
 import { formatTime } from '@/6-shared/lib/utils'
 import { CheckCheck } from 'lucide-react'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
+import { useProfile } from '@/5-entities/user'
+import { useMemo } from 'react'
 
 type Props = {
   message: IChatMessage
 }
 
 export const ChatMessage = ({ message }: Props) => {
-  const senderDetails = message?.sender_details
+  const { profile } = useProfile()
+
+  if (!message || !message.sender_details) {
+    console.warn('Invalid message or sender_details:', message)
+    return null
+  }
+
+  const senderDetails = message.sender_details
+
+  const isMyMessage = useMemo(() => {
+    return profile?.id === senderDetails.id
+  }, [profile?.id, senderDetails.id])
 
   return (
-    <div className="chat-message">
+    <div className={`chat-message ${isMyMessage ? 'chat-message--my' : 'chat-message--other'}`}>
       <div className="chat-message__wrapper">
-        <Avatar link={`${PLATFORM_PAGES.DEALERS}/${senderDetails.id}`} username={senderDetails.username} />
-        <div className="chat-message__info">
-          <Link href={`${PLATFORM_PAGES.DEALERS}/${senderDetails.id}`}>
-            <Title size="h4" color="black" fontSize="15px" fontWeight="500" fontFamily="geist">
-              {senderDetails.username}
-            </Title>
-          </Link>
-          <div className="chat-message__footer">
-            <Description>{message?.content}</Description>
-            <TextMuted>{message.timestamp && formatTime(message?.timestamp)}</TextMuted>
-            <CheckCheck size={ICON_SIZE} />
+        <div className="chat-message__container">
+          <div className="chat-message__content">
+            {!isMyMessage && <Avatar link={`${PLATFORM_PAGES.DEALERS}/${senderDetails.id}`} username={senderDetails.username} />}
+
+            <div className="chat-message__info">
+              {!isMyMessage && (
+                <Link href={`${PLATFORM_PAGES.DEALERS}/${senderDetails.id}`}>
+                  <div className="chat-message__title">
+                    <Title size="h4" color="black" fontSize="15px" fontWeight="500" fontFamily="geist">
+                      {senderDetails.username}
+                    </Title>
+                  </div>
+                </Link>
+              )}
+
+              <div className="chat-message__footer">
+                <Description>{message?.content}</Description>
+                <div className="chat-message__footer-container">
+                  <TextMuted>{message.timestamp && formatTime(message.timestamp)}</TextMuted>
+                  {isMyMessage && <CheckCheck size={ICON_SIZE} />}
+                </div>
+              </div>
+            </div>
+
+            {isMyMessage && <Avatar link={`${PLATFORM_PAGES.DEALERS}/${senderDetails.id}`} username={senderDetails.username} />}
           </div>
         </div>
       </div>

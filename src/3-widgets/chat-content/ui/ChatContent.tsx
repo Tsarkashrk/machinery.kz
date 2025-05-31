@@ -4,7 +4,7 @@ import { ICON_SIZE } from '@/6-shared/constants/constants'
 import Button from '@/6-shared/ui/Buttons/Button'
 import { Input } from '@/6-shared/ui/Input/Input'
 import { Title } from '@/6-shared/ui/Title/Title'
-import { ArrowUpCircle, Wifi, WifiOff } from 'lucide-react'
+import { ArrowUpCircle, Wifi, WifiOff, Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { useChatMessages } from '@/5-entities/chat/hooks/useChatMessages'
 import { useEffect, useRef, useState } from 'react'
@@ -19,7 +19,7 @@ export const ChatContent = ({ activeChat }: Props) => {
   const [isTyping, setIsTyping] = useState(false)
   const typingTimeoutRef = useRef<NodeJS.Timeout>()
 
-  const { messages, typingUsers, isConnected, isReconnecting, sendMessage, sendTyping, markMessageRead } = useChatMessages(activeChat)
+  const { messages, typingUsers, isConnected, isReconnecting, isSending, sendMessage, sendTyping, markMessageRead } = useChatMessages(activeChat)
 
   const {
     register,
@@ -59,12 +59,16 @@ export const ChatContent = ({ activeChat }: Props) => {
     }
   }, [messageContent, isTyping, sendTyping])
 
-  const onSubmit = (data: IChatMessageRequest) => {
-    if (data.content.trim()) {
-      sendMessage(data.content.trim())
+  const onSubmit = async (data: IChatMessageRequest) => {
+    console.log('Form submitted with data:', data)
+    if (data.content && data.content.trim()) {
+      console.log('Sending message:', data.content.trim())
+      await sendMessage(data.content.trim())
       reset()
       setIsTyping(false)
       sendTyping(false)
+    } else {
+      console.warn('Empty message content')
     }
   }
 
@@ -91,7 +95,22 @@ export const ChatContent = ({ activeChat }: Props) => {
     )
   }
 
-  const allMessages = [...(data.messages || []), ...messages].filter((msg, index, arr) => arr.findIndex((m) => m.id === msg.id) === index).sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime())
+  const allMessages = [...(data.messages || []), ...messages]
+    .filter((message) => message && message.id)
+    .reduce((acc, message) => {
+      if (!message || !message.id) return acc
+
+      if (!acc.some((msg) => msg && msg.id && msg.id === message.id)) {
+        acc.push(message)
+      }
+      return acc
+    }, [] as IChatMessage[])
+    .sort((a, b) => {
+      if (a.timestamp && b.timestamp) {
+        return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+      }
+      return (a.id || 0) - (b.id || 0)
+    })
 
   return (
     <div className="chat-content">
@@ -105,9 +124,14 @@ export const ChatContent = ({ activeChat }: Props) => {
             </div>
           ) : (
             <div className="chat-content__messages">
-              {allMessages.map((message: IChatMessage) => (
-                <ChatMessage key={message.id} message={message} />
-              ))}
+              {allMessages.map((message: IChatMessage) => {
+                if (!message || !message.id) {
+                  console.warn('Invalid message found:', message)
+                  return null
+                }
+
+                return <ChatMessage key={`message-${message.id}`} message={message} />
+              })}
 
               {typingUsers.size > 0 && (
                 <div className="chat-content__typing">
@@ -129,31 +153,12 @@ export const ChatContent = ({ activeChat }: Props) => {
 
         <div className="chat-content__input">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Input {...register('content', { required: true })} placeholder="Введите сообщение..." onKeyPress={handleKeyPress} disabled={!isConnected}>
+            <Input {...register('content', { required: true })} placeholder="Введите сообщение..." onKeyPress={handleKeyPress} disabled={!isConnected || isSending}>
               <Button type="submit" variant="rounded">
-                <ArrowUpCircle size={22} />
+                {isSending ? <Loader2 size={22} className="animate-spin" /> : <ArrowUpCircle size={22} />}
               </Button>
             </Input>
           </form>
-
-          <div className="connection-status">
-            {isReconnecting ? (
-              <div className="flex items-center text-yellow-500">
-                <WifiOff size={16} className="mr-1" />
-                <span className="text-sm">Переподключение...</span>
-              </div>
-            ) : isConnected ? (
-              <div className="flex items-center text-green-500">
-                <Wifi size={16} className="mr-1" />
-                <span className="text-sm">Подключено</span>
-              </div>
-            ) : (
-              <div className="flex items-center text-red-500">
-                <WifiOff size={16} className="mr-1" />
-                <span className="text-sm">Не подключено</span>
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </div>

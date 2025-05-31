@@ -95,9 +95,11 @@
   }
 
   &__content {
+    min-height: 300px;
+    height: 100%;
     padding: 1.5rem;
     overflow-y: auto;
-    flex: 1;
+    // flex: 1;
 
     &::-webkit-scrollbar {
       width: 6px;

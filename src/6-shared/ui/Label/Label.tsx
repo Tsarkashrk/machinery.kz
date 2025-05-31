@@ -1,14 +1,16 @@
+import { ReactNode } from 'react'
+
 interface ILabel {
-  text: string
+  children: ReactNode
   forElement?: string
   position?: 'start' | 'center' | 'end'
   color?: 'black' | 'white' | 'gray'
 }
 
-const Label = ({ text, forElement, position = 'start', color = 'black' }: ILabel) => {
+const Label = ({ children, forElement, position = 'start', color = 'black' }: ILabel) => {
   return (
     <label className={`label ${position && 'label--' + position} ${color && 'label--' + color}`} htmlFor={forElement}>
-      {text}
+      {children}
     </label>
   )
 }

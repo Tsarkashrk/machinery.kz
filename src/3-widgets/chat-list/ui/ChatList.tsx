@@ -10,7 +10,6 @@ type Props = {
 }
 
 export const ChatList = ({ onChatSelect, activeChatId, chatList, isLoading, error }: Props) => {
-  console.log(chatList)
 
   if (isLoading) {
     return (
