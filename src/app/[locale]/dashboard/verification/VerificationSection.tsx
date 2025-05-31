@@ -8,6 +8,7 @@ import { Chip } from '@mui/material'
 import { Check, ViewIcon, EditIcon, SearchIcon, TrashIcon } from 'lucide-react'
 import { useVerifyEquipment } from '@/5-entities/moderator/hooks/useVerifyEquipment'
 import { Badge } from '@/6-shared/ui/Badge/Badge'
+import { ICON_SIZE } from '@/6-shared/constants/constants'
 
 export const VerificationSection = () => {
   const { data, isLoading } = useUnverifiedEquipment({ page_size: 40 })
@@ -101,19 +102,19 @@ export const VerificationSection = () => {
 
   const actions: any = [
     {
-      icon: <ViewIcon />,
+      icon: <ViewIcon size={ICON_SIZE}/>,
       tooltip: 'Просмотр',
       onClick: (item: IEquipment) => console.log('View:', item),
       color: 'info',
     },
     {
-      icon: <Check />,
+      icon: <Check size={ICON_SIZE}/>,
       tooltip: 'Approve',
       onClick: (item: IEquipment) => confirmEquipment(item.id),
       color: 'primary',
     },
     {
-      icon: <TrashIcon />,
+      icon: <TrashIcon size={ICON_SIZE}/>,
       tooltip: 'Удалить',
       onClick: (item: IEquipment) => console.log('Delete:', item),
       color: 'error',

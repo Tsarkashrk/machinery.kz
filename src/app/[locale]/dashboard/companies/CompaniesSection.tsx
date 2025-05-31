@@ -9,6 +9,7 @@ import { DeleteCompanyModal } from '@/4-features/company/ui/DeleteCompany'
 import Button from '@/6-shared/ui/Buttons/Button'
 import { CreateCompanyModal } from '@/4-features/company'
 import { useCreateCompany, useDeleteCompany, useUpdateCompany } from '@/5-entities/company'
+import { ICON_SIZE } from '@/6-shared/constants/constants'
 
 export const CompaniesSection = () => {
   const { companiesList, isLoading } = useCompaniesList()
@@ -152,19 +153,19 @@ export const CompaniesSection = () => {
 
   const actions: any = [
     {
-      icon: <ViewIcon />,
+      icon: <ViewIcon size={ICON_SIZE}/>,
       tooltip: 'Просмотр',
       onClick: (item: ICompanyResponse) => console.log('View:', item),
       color: 'info',
     },
     {
-      icon: <EditIcon />,
+      icon: <EditIcon size={ICON_SIZE}/>,
       tooltip: 'Редактирование',
       onClick: (item: ICompanyResponse) => editCompany(item),
       color: 'info',
     },
     {
-      icon: <Trash2Icon />,
+      icon: <Trash2Icon size={ICON_SIZE}/>,
       tooltip: 'Удалить',
       onClick: (item: ICompanyResponse) => deleteCompany(item),
       color: 'error',
@@ -175,7 +176,7 @@ export const CompaniesSection = () => {
     <section className="companies-section">
       <div className="companies-section__wrapper">
         <Button onClick={() => createCompany()}>Создать компанию</Button>
-        <DataTable data={companiesList?.results} columns={columns} loading={isLoading} title="Оборудование на проверке" actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+        <DataTable data={companiesList?.results} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
 
         <DeleteCompanyModal isOpen={deleteModal.isOpen} onClose={handleDeleteCancel} company={deleteModal.company} onConfirm={handleDeleteConfirm} isLoading={deleteCompanyMutation.isPending} />
 

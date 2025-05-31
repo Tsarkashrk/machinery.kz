@@ -2,6 +2,7 @@
 
 import { AdminSidebar } from '@/4-features/admin-sidebar/ui/AdminSidebar'
 import { ICategory, useCategories } from '@/5-entities/category'
+import { ICON_SIZE } from '@/6-shared/constants/constants'
 import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
 import { DataTable } from '@/6-shared/ui/Table/Table'
 import { Chip } from '@mui/material'
@@ -40,19 +41,19 @@ export const CategoriesSection = () => {
 
   const actions: any = [
     {
-      icon: <ViewIcon />,
+      icon: <ViewIcon size={ICON_SIZE}/>,
       tooltip: 'Просмотр',
       onClick: (item: ICategory) => console.log('View:', item),
       color: 'info',
     },
     {
-      icon: <EditIcon />,
+      icon: <EditIcon size={ICON_SIZE}/>,
       tooltip: 'Редактирование',
       onClick: (item: ICategory) => editCategory(item),
       color: 'info',
     },
     {
-      icon: <TrashIcon />,
+      icon: <TrashIcon size={ICON_SIZE}/>,
       tooltip: 'Удалить',
       onClick: (item: ICategory) => console.log('Delete:', item),
       color: 'error',
@@ -62,7 +63,7 @@ export const CategoriesSection = () => {
   return (
     <section className="dashboard-section">
       <div className="dashboard-section__wrapper">
-        <DataTable data={categories || []} columns={columns} loading={isLoading} title="Оборудование на проверке" actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+        <DataTable data={categories || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
       </div>
     </section>
   )

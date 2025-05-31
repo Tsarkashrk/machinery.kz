@@ -2,6 +2,8 @@
 
 import { IEquipment, useEquipmentList, useUnverifiedEquipment } from '@/5-entities/equipment'
 import { useVerifyEquipment } from '@/5-entities/moderator/hooks/useVerifyEquipment'
+import { ICON_SIZE } from '@/6-shared/constants/constants'
+import { Badge } from '@/6-shared/ui/Badge/Badge'
 import { DataTable } from '@/6-shared/ui/Table/Table'
 import { Chip } from '@mui/material'
 import { ViewIcon, Check, TrashIcon } from 'lucide-react'
@@ -58,16 +60,10 @@ export const PublicationsSection = () => {
       render: (value: any) => {
         const conditionMap: { [key: string]: { label: string; color: any } } = {
           new: { label: 'Новое', color: 'success' },
-          good: { label: 'Хорошее', color: 'info' },
-          fair: { label: 'Удовлетворительное', color: 'warning' },
-          poor: { label: 'Плохое', color: 'error' },
+          used: { label: 'Б/У', color: 'warning' },
         }
         const condition = conditionMap[value] || { label: value, color: 'default' }
-        return (
-          <>
-            <Chip label={condition.label} color={condition.color} size="small" />
-          </>
-        )
+        return <Badge type={condition.color}>{condition.label}</Badge>
       },
       sortable: true,
     },
@@ -94,13 +90,13 @@ export const PublicationsSection = () => {
 
   const actions: any = [
     {
-      icon: <ViewIcon />,
+      icon: <ViewIcon size={ICON_SIZE} />,
       tooltip: 'Просмотр',
       onClick: (item: IEquipment) => console.log('View:', item),
       color: 'info',
     },
     {
-      icon: <TrashIcon />,
+      icon: <TrashIcon size={ICON_SIZE} />,
       tooltip: 'Удалить',
       onClick: (item: IEquipment) => console.log('Delete:', item),
       color: 'error',
@@ -110,7 +106,7 @@ export const PublicationsSection = () => {
   return (
     <section className="dashboard-publication-section">
       <div className="dashboard-publication-section__wrapper">
-        <DataTable data={equipmentList?.results || []} columns={columns} loading={isLoading} title="Оборудование на проверке" actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+        <DataTable data={equipmentList?.results || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
       </div>
     </section>
   )

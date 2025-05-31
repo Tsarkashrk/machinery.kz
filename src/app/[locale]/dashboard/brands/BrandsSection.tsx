@@ -4,6 +4,7 @@ import { AdminSidebar } from '@/4-features/admin-sidebar/ui/AdminSidebar'
 import { CreateBrandModal } from '@/4-features/brand/ui/CreateBrand'
 import { IBrand, IBrandRequest, useBrands } from '@/5-entities/brand'
 import { useCreateBrand } from '@/5-entities/brand/hooks/useCreateBrand'
+import { ICON_SIZE } from '@/6-shared/constants/constants'
 import Button from '@/6-shared/ui/Buttons/Button'
 import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
 import { DataTable } from '@/6-shared/ui/Table/Table'
@@ -70,19 +71,19 @@ export const BrandsSection = () => {
 
   const actions: any = [
     {
-      icon: <ViewIcon />,
+      icon: <ViewIcon size={ICON_SIZE} />,
       tooltip: 'Просмотр',
       onClick: (item: IBrand) => console.log('View:', item),
       color: 'info',
     },
     {
-      icon: <EditIcon />,
+      icon: <EditIcon size={ICON_SIZE} />,
       tooltip: 'Редактирование',
       onClick: (item: IBrand) => console.log(item),
       color: 'info',
     },
     {
-      icon: <TrashIcon />,
+      icon: <TrashIcon size={ICON_SIZE} />,
       tooltip: 'Удалить',
       onClick: (item: IBrand) => console.log('Delete:', item),
       color: 'error',

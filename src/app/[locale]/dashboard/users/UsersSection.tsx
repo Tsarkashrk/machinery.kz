@@ -8,6 +8,8 @@ import { useUpdateUser } from '@/5-entities/admin/hooks/useUpdateUser'
 import { useState } from 'react'
 import { UpdateUserModal } from '@/4-features/admin'
 import { DeleteUserModal } from '@/4-features/admin/ui/DeleteUser'
+import { ICON_SIZE } from '@/6-shared/constants/constants'
+import { Badge } from '@/6-shared/ui/Badge/Badge'
 
 export const UsersSection = () => {
   const { usersList, isLoading } = useUsersList()
@@ -112,6 +114,15 @@ export const UsersSection = () => {
     {
       key: 'user_role',
       label: 'Роль',
+      render: (value: any) => {
+        const roleMap: { [key: string]: { label: string; color: any } } = {
+          admin: { label: 'Админ', color: 'error' },
+          moderator: { label: 'Модератор', color: 'success' },
+          user: { label: 'Пользователь', color: 'warning' },
+        }
+        const role = roleMap[value] || { label: value, color: 'default' }
+        return <Badge type={role.color}>{role.label}</Badge>
+      },
       sortable: true,
       searchable: true,
     },
@@ -119,19 +130,19 @@ export const UsersSection = () => {
 
   const actions: any = [
     {
-      icon: <ViewIcon />,
+      icon: <ViewIcon size={ICON_SIZE} />,
       tooltip: 'Просмотр',
       onClick: (item: IUser) => console.log('View:', item),
       color: 'info',
     },
     {
-      icon: <EditIcon />,
+      icon: <EditIcon size={ICON_SIZE} />,
       tooltip: 'Редактирование',
       onClick: (item: IUser) => updateUser(item),
       color: 'info',
     },
     {
-      icon: <Trash2Icon />,
+      icon: <Trash2Icon size={ICON_SIZE} />,
       tooltip: 'Удалить',
       onClick: (item: IUser) => deleteUser(item),
       color: 'error',
