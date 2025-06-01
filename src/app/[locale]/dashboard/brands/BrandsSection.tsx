@@ -61,7 +61,7 @@ export const BrandsSection = () => {
       searchable: true,
     },
     {
-      key: 'logo_url',
+      key: 'file',
       label: 'Картинка',
     },
   ]
@@ -90,9 +90,7 @@ export const BrandsSection = () => {
   return (
     <section className="brands-section">
       <div className="brands-section__wrapper">
-        <Button onClick={() => createBrand()}>Создать компанию</Button>
-
-        <DataTable data={brands || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+        <DataTable data={brands || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} buttonOnChange={createBrand}/>
 
         <CreateBrandModal isOpen={createModal.isOpen} onClose={handleCreateClose} item={createModal.item} onSave={handleCreateConfirm} isLoading={createBrandMutation.isPending} />
       </div>

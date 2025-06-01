@@ -5,8 +5,9 @@ import { CategoryEditorModal } from '@/4-features/category/ui/CategoryEditorModa
 import { ICategory, useCategories, useCreateCategory, useUpdateCategory, useDeleteCategory } from '@/5-entities/category'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 import Button from '@/6-shared/ui/Buttons/Button'
+import { DeleteModal } from '@/6-shared/ui/DeleteModal/DeleteModal'
 import { DataTable } from '@/6-shared/ui/Table/Table'
-import { EditIcon, TrashIcon, ViewIcon } from 'lucide-react'
+import { Edit2, Edit3, EditIcon, TrashIcon, ViewIcon } from 'lucide-react'
 import { useState } from 'react'
 
 export const CategoriesSection = () => {
@@ -83,7 +84,7 @@ export const CategoriesSection = () => {
     }
   }
 
-  const handleDeleteCancel = () => {
+  const handleDeleteClose = () => {
     setDeleteModal({ isOpen: false, item: null })
   }
 
@@ -134,14 +135,14 @@ export const CategoriesSection = () => {
   ]
 
   const actions: any = [
+    // {
+    //   icon: <ViewIcon size={ICON_SIZE} />,
+    //   tooltip: 'Просмотр',
+    //   onClick: (item: ICategory) => console.log('View:', item),
+    //   color: 'info',
+    // },
     {
-      icon: <ViewIcon size={ICON_SIZE} />,
-      tooltip: 'Просмотр',
-      onClick: (item: ICategory) => console.log('View:', item),
-      color: 'info',
-    },
-    {
-      icon: <EditIcon size={ICON_SIZE} />,
+      icon: <Edit2 size={ICON_SIZE} color="#363435" />,
       tooltip: 'Редактирование',
       onClick: (item: ICategory) => updateCategory(item),
       color: 'info',
@@ -163,7 +164,9 @@ export const CategoriesSection = () => {
 
         <CategoryEditorModal isOpen={updateModal.isOpen} onClose={handleUpdateClose} item={updateModal.item} onSave={handleUpdateSave} isLoading={updateCategoryMutation.isPending} />
 
-        <CategoryDeleteModal isOpen={deleteModal.isOpen} onClose={handleDeleteCancel} isLoading={deleteCategoryMutation.isPending} item={deleteModal.item} onConfirm={handleDeleteConfirm} />
+        <DeleteModal isOpen={deleteModal.isOpen} onClose={handleDeleteClose} onConfirm={handleDeleteConfirm} isLoading={deleteCategoryMutation.isPending} itemName={deleteModal?.item?.name} entityName={'Категорию'} size="lg" />
+
+        {/* <CategoryDeleteModal isOpen={deleteModal.isOpen} onClose={handleDeleteCancel} isLoading={deleteCategoryMutation.isPending} item={deleteModal.item} onConfirm={handleDeleteConfirm} /> */}
       </div>
     </section>
   )

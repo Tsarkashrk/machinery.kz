@@ -4,6 +4,7 @@ import { DataTable } from '@/6-shared/ui/Table/Table'
 import { Trash2Icon, EditIcon, ViewIcon } from 'lucide-react'
 import { EnumUserRoles, IUser, IUserRequest } from '@/5-entities/user/'
 import { IUserUpdateRole, useDeleteUser, useUsersList } from '@/5-entities/admin'
+import { DeleteModal } from '@/6-shared/ui/DeleteModal/DeleteModal'
 import { useUpdateUser } from '@/5-entities/admin/hooks/useUpdateUser'
 import { useState } from 'react'
 import { UpdateUserModal } from '@/4-features/admin'
@@ -16,36 +17,40 @@ export const UsersSection = () => {
   const updateUserMutation = useUpdateUser()
   const deleteUserMutation = useDeleteUser()
 
-  const [updateModal, setUpdateModal] = useState<{ isOpen: boolean; user: IUser | null }>({ isOpen: false, user: null })
+  const [updateModal, setUpdateModal] = useState<{ isOpen: boolean; item: IUser | null }>({ isOpen: false, item: null })
 
-  const [deleteModal, setDeleteModal] = useState<{ isOpen: boolean; user: IUser | null }>({ isOpen: false, user: null })
+  const [deleteModal, setDeleteModal] = useState<{ isOpen: boolean; item: IUser | null }>({ isOpen: false, item: null })
 
   const updateUser = (item: IUser) => {
-    setUpdateModal({ isOpen: true, user: item })
+    setUpdateModal({ isOpen: true, item: item })
   }
 
   const handleUpdateConfirm = async (data: IUserUpdateRole) => {
-    if (updateModal.user) {
-      return updateUserMutation.mutate({ id: updateModal.user.id, data: data })
+    if (updateModal.item) {
+      return updateUserMutation.mutate({ id: updateModal.item.id, data: data })
     }
   }
 
   const handleUpdateClose = () => {
-    setUpdateModal({ isOpen: false, user: null })
+    setUpdateModal({ isOpen: false, item: null })
   }
 
   const deleteUser = (item: IUser) => {
-    setDeleteModal({ isOpen: true, user: item })
+    setDeleteModal({ isOpen: true, item: item })
   }
 
   const handleDeleteConfirm = async () => {
-    if (deleteModal.user) {
-      return deleteUserMutation.mutate(deleteModal.user.id)
+    if (deleteModal.item) {
+      deleteUserMutation.mutate(deleteModal.item.id, {
+        onSuccess: () => {
+          handleDeleteClose()
+        },
+      })
     }
   }
 
   const handleDeleteClose = () => {
-    setUpdateModal({ isOpen: false, user: null })
+    setDeleteModal({ isOpen: false, item: null })
   }
 
   const columns: any = [
@@ -154,9 +159,11 @@ export const UsersSection = () => {
       <div className="users-section__wrapper">
         <DataTable data={usersList || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
 
-        <DeleteUserModal isOpen={deleteModal.isOpen} onClose={handleDeleteClose} user={deleteModal.user} onConfirm={handleDeleteConfirm} isLoading={deleteUserMutation.isPending} />
+        <DeleteModal isOpen={deleteModal.isOpen} onClose={handleDeleteClose} onConfirm={handleDeleteConfirm} isLoading={deleteUserMutation.isPending} itemName={deleteModal?.item?.username} entityName={'Пользователя'} size="lg" />
 
-        <UpdateUserModal isOpen={updateModal.isOpen} onClose={handleUpdateClose} user={updateModal.user} onSave={handleUpdateConfirm} isLoading={updateUserMutation.isPending} />
+        {/* <DeleteUserModal isOpen={deleteModal.isOpen} onClose={handleDeleteClose} user={deleteModal.user} onConfirm={handleDeleteConfirm} isLoading={deleteUserMutation.isPending} /> */}
+
+        <UpdateUserModal isOpen={updateModal.isOpen} onClose={handleUpdateClose} user={updateModal.item} onSave={handleUpdateConfirm} isLoading={updateUserMutation.isPending} />
       </div>
     </section>
   )

@@ -14,7 +14,7 @@ interface DeleteCompanyModalProps {
 
 export const DeleteCompanyModal = ({ isOpen, onClose, company, onConfirm, isLoading = false }: DeleteCompanyModalProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="sm" closeOnOverlayClick={!isLoading}>
+    <Modal isOpen={isOpen} onClose={onClose} size="lg" closeOnOverlayClick={!isLoading}>
       <ModalHeader>
         <h2>Удалить компанию</h2>
       </ModalHeader>

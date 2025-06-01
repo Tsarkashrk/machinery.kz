@@ -201,7 +201,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <TableCell className="font-geist" key={column.key} align={column.align || 'left'} style={{ width: column.width, fontSize: 14, backgroundColor: '#e0e0e2' }}>
+                <TableCell className="font-geist table-cell" key={column.key} align={column.align || 'left'} style={{ width: column.width, fontSize: 14, backgroundColor: '#363435', color: 'white' }}>
                   {sortable && column.sortable !== false ? (
                     <TableSortLabel active={orderBy === column.key} direction={orderBy === column.key ? order : 'asc'} onClick={() => handleSort(column.key)}>
                       {column.label}
@@ -212,7 +212,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
                 </TableCell>
               ))}
               {actions && actions.length > 0 && (
-                <TableCell align="center" className="font-geist font-size-14" style={{ fontSize: 14, backgroundColor: '#e0e0e2' }}>
+                <TableCell align="center" className="font-geist font-size-14" style={{ fontSize: 14, backgroundColor: '#363435', color: 'white' }}>
                   Действия
                 </TableCell>
               )}
@@ -237,6 +237,7 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
                   onClick={onRowClick ? () => onRowClick(item) : undefined}
                   sx={{
                     cursor: onRowClick ? 'pointer' : 'default',
+                    backgroundColor: index % 2 === 0 ? 'white' : '#f5f5f5',
                     '&:hover': onRowClick ? { backgroundColor: 'action.hover' } : {},
                   }}>
                   {columns.map((column) => (
@@ -248,7 +249,9 @@ export const DataTable: React.FC<DataTableProps> = ({ data = [], columns, loadin
                     <TableCell align="center">
                       <Box sx={{ display: 'flex', gap: 0.5, justifyContent: 'center' }}>
                         {actions.map((action, actionIndex) => (
-                          <Tooltip key={actionIndex} title={action.tooltip}>
+                          <Tooltip
+                            key={actionIndex}
+                            title={action.tooltip}>
                             <IconButton
                               size="small"
                               color={action.color || 'primary'}

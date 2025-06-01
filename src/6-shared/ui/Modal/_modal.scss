@@ -87,19 +87,33 @@
       color: #111827;
       font-weight: 600;
     }
+  }
 
-    h2 {
-      font-size: 1.25rem;
-      line-height: 1.75rem;
-    }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__inside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
   }
 
   &__content {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
     min-height: 300px;
     height: 100%;
     padding: 1.5rem;
     overflow-y: auto;
-    // flex: 1;
+    font-size: $font-md !important;
+    flex: 1;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -118,6 +132,17 @@
         background: #a8a8a8;
       }
     }
+  }
+
+  &__subtitle {
+    font-size: $font-md;
+    font-weight: 600;
+  }
+
+  &__sure {
+    font-size: $font-sm !important;
+    font-weight: $font-medium !important;
+    color: $zinc-500;
   }
 
   &__footer {
@@ -142,11 +167,10 @@
   }
 }
 
-// Button styles for modal actions
 .modal-btn {
   padding: 0.5rem 1rem;
   border-radius: 6px;
-  font-size: 0.875rem;
+  // font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
@@ -241,7 +265,6 @@
   }
 }
 
-// Form styles for modal content
 .modal-form {
   .form-group {
     margin-bottom: 1rem;
@@ -254,7 +277,7 @@
   .form-label {
     display: block;
     margin-bottom: 0.5rem;
-    font-size: 0.875rem;
+    // font-size: 0.875rem;
     font-weight: 500;
     color: #374151;
 
@@ -269,7 +292,7 @@
     padding: 0.5rem 0.75rem;
     border: 1px solid #d1d5db;
     border-radius: 6px;
-    font-size: 0.875rem;
+    font-size: $font-sm;
     transition: border-color 0.2s, box-shadow 0.2s;
 
     &:focus {

@@ -55,7 +55,7 @@ const LoginSection = () => {
   }
 
   return (
-    <section className="auth-form">
+    <section className="auth-form auth-form--login">
       <div className="auth-form__wrapper">
         <div className="auth-form__header">
           <Title>{t('login-title')}</Title>
@@ -80,44 +80,23 @@ const LoginSection = () => {
             <div className="auth-form__error">{errors.email && <TextMuted color="red">{errors.email.message}</TextMuted>}</div>
           </div>
 
-          <div className="auth-form__container">
-            <div className="auth-form__credentials auth-form__password">
-              <Label forElement="password">{t('register-password')}</Label>
-              <div className="relative">
-                <Input
-                  type={showPassword ? 'text' : 'password'}
-                  id="password"
-                  placeholder="••••••"
-                  {...register('password', {
-                    required: 'Password is required!',
-                    minLength: { value: 6, message: 'Password must be at least 6 characters' },
-                  })}
-                />
-                <div className="auth-form__eye" onClick={() => setShowPassword(!showPassword)}>
-                  {showPassword ? <Eye size={ICON_SIZE} /> : <EyeOff size={ICON_SIZE} />}
-                </div>
+          <div className="auth-form__credentials auth-form__password">
+            <Label forElement="password">{t('register-password')}</Label>
+            <div className="relative">
+              <Input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                placeholder="••••••"
+                {...register('password', {
+                  required: 'Password is required!',
+                  minLength: { value: 6, message: 'Password must be at least 6 characters' },
+                })}
+              />
+              <div className="auth-form__eye" onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? <Eye size={ICON_SIZE} /> : <EyeOff size={ICON_SIZE} />}
               </div>
-              <div className="auth-form__error">{errors.password && <TextMuted color="red">{errors.password.message}</TextMuted>}</div>
             </div>
-
-            <div className="auth-form__credentials auth-form__password">
-              <Label forElement="confirm_password">{t('register-password-confirm')}</Label>
-              <div className="relative">
-                <Input
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  id="confirm_password"
-                  placeholder="••••••"
-                  {...register('confirm_password', {
-                    required: 'Please confirm your password',
-                    validate: (value) => value === password || 'Passwords do not match',
-                  })}
-                />
-                <div className="auth-form__eye" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                  {showConfirmPassword ? <Eye size={ICON_SIZE} /> : <EyeOff size={ICON_SIZE} />}
-                </div>
-              </div>
-              <div className="auth-form__error">{errors.confirm_password && <TextMuted color="red">{errors.confirm_password.message}</TextMuted>}</div>
-            </div>
+            <div className="auth-form__error">{errors.password && <TextMuted color="red">{errors.password.message}</TextMuted>}</div>
           </div>
 
           <Button variant="default" type="submit" isLoading={isPending}>
