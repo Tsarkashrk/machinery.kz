@@ -104,12 +104,9 @@
   }
 
   &__content {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
     min-height: 300px;
     height: 100%;
+    width: 100%;
     padding: 1.5rem;
     overflow-y: auto;
     font-size: $font-md !important;
@@ -135,6 +132,7 @@
   }
 
   &__subtitle {
+    font-family: $font-gilroy;
     font-size: $font-md;
     font-weight: 600;
   }

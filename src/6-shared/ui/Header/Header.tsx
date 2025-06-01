@@ -6,7 +6,7 @@ import { Plus, MessagesSquare, Heart, Globe } from 'lucide-react'
 
 import Navigation from '../Navigation/Navigation'
 import Button from '../Buttons/Button'
-import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
+import { PLATFORM_PAGES, PROFILE_PAGES } from '@/6-shared/config/pages-url.config'
 import { useProfile } from '@/5-entities/user'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 import Avatar from '../Avatar/Avatar'
@@ -60,7 +60,7 @@ const Header = () => {
             </div>
 
             {profile ? (
-              <Avatar username={profile.username} link={PLATFORM_PAGES.PROFILE} />
+              <Avatar username={profile.username} link={PROFILE_PAGES.PROFILE} />
             ) : (
               <Button isLink link={PLATFORM_PAGES.LOGIN} variant="outlined">
                 {tButton('login')}

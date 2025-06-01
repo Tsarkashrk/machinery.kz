@@ -27,4 +27,9 @@ export const brandsApi = {
     })
     return response.data
   },
+
+  async deleteBrand(id: number) {
+      const response = await axiosWithAuth.delete(`${BASE_URL}/${id}/`)
+      return response.data
+    },
 }

@@ -1,16 +1,17 @@
 'use client'
 
 import { IEquipment, useUnverifiedEquipment } from '@/5-entities/equipment'
-import { Title } from '@/6-shared/ui/Title/Title'
-import { CircularProgress } from '@mui/material'
 import { DataTable } from '@/6-shared/ui/Table/Table'
-import { Chip } from '@mui/material'
-import { Check, ViewIcon, EditIcon, SearchIcon, TrashIcon } from 'lucide-react'
+import { Check, ViewIcon, TrashIcon } from 'lucide-react'
 import { useVerifyEquipment } from '@/5-entities/moderator/hooks/useVerifyEquipment'
 import { Badge } from '@/6-shared/ui/Badge/Badge'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
+import { DASHBOARD_PAGES } from '@/6-shared/config/pages-url.config'
+import { useRouter } from 'next/navigation'
 
 export const VerificationSection = () => {
+  const router = useRouter()
+
   const { data, isLoading } = useUnverifiedEquipment({ page_size: 40 })
 
   const verifyEquipmentMutation = useVerifyEquipment()
@@ -18,6 +19,7 @@ export const VerificationSection = () => {
   const confirmEquipment = (id: number) => {
     verifyEquipmentMutation.mutate(id)
   }
+
 
   const columns: any = [
     {
@@ -102,19 +104,19 @@ export const VerificationSection = () => {
 
   const actions: any = [
     {
-      icon: <ViewIcon size={ICON_SIZE}/>,
+      icon: <ViewIcon size={ICON_SIZE} />,
       tooltip: 'Просмотр',
-      onClick: (item: IEquipment) => console.log('View:', item),
+      onClick: (item: IEquipment) => router.push(`${DASHBOARD_PAGES.VERIFICATION}/${item.id}`),
       color: 'info',
     },
     {
-      icon: <Check size={ICON_SIZE}/>,
+      icon: <Check size={ICON_SIZE} />,
       tooltip: 'Approve',
       onClick: (item: IEquipment) => confirmEquipment(item.id),
       color: 'primary',
     },
     {
-      icon: <TrashIcon size={ICON_SIZE}/>,
+      icon: <TrashIcon size={ICON_SIZE} />,
       tooltip: 'Удалить',
       onClick: (item: IEquipment) => console.log('Delete:', item),
       color: 'error',

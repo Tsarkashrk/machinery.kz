@@ -97,15 +97,10 @@ hr {
   }
 }
 .profile__wrapper {
-  display: grid;
-  grid-template-columns: 20rem 1fr;
-  gap: 3rem;
-  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
   border-radius: 1.6rem;
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
-  background-color: white;
 }
 .profile-section__title {
   margin-bottom: 3rem;
@@ -708,12 +703,56 @@ hr {
   font-weight: 500;
 }
 .admin-sidebar-list__route:hover {
-  background-color: #ffa600;
-  opacity: 0.7;
+  background-color: #363435;
+  opacity: 0.8;
   color: white;
 }
 .admin-sidebar-list__route--active {
-  background-color: #ffa600;
+  background-color: #363435;
+  color: white;
+}
+
+.profile-sidebar__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+.profile-sidebar-list {
+  display: flex;
+  flex-direction: column;
+}
+.profile-sidebar-list__title {
+  margin-left: 1rem;
+}
+.profile-sidebar-list__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(41, 71, 163, 0.1294117647);
+  border-radius: 1.6rem;
+}
+.profile-sidebar-list__route {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-height: 3.7rem;
+  padding: 1.15rem 1.5rem;
+  border-radius: 1rem;
+  transition: all 0.1s ease-in-out;
+  color: #030612;
+  font-family: var(--font-geist-sans);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.profile-sidebar-list__route:hover {
+  background-color: #363435;
+  opacity: 0.8;
+  color: white;
+}
+.profile-sidebar-list__route--active {
+  background-color: #363435;
   color: white;
 }
 
@@ -1014,7 +1053,6 @@ hr {
 .button--danger:hover {
   background-color: #dc2626;
 }
-
 .profile-button {
   display: flex;
   align-items: center;
@@ -1313,12 +1351,9 @@ h3 {
   gap: 3rem;
 }
 .modal__content {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  justify-content: center;
   min-height: 300px;
   height: 100%;
+  width: 100%;
   padding: 1.5rem;
   overflow-y: auto;
   font-size: 1.8rem !important;
@@ -1339,6 +1374,7 @@ h3 {
   background: #a8a8a8;
 }
 .modal__subtitle {
+  font-family: var(--font-gilroy);
   font-size: 1.8rem;
   font-weight: 600;
 }

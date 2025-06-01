@@ -4,7 +4,7 @@ import Card from '@/6-shared/ui/Cards/Card/Card'
 import Button from '@/6-shared/ui/Buttons/Button'
 import DatePicker from '@/6-shared/ui/DatePicker/DatePicker'
 import TextMuted from '@/6-shared/ui/TextMuted/TextMuted'
-import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
+import { PLATFORM_PAGES, PROFILE_PAGES } from '@/6-shared/config/pages-url.config'
 import { useProfile } from '@/5-entities/user'
 import { rentApi, equipmentApi } from '@/6-shared/api'
 import { useMutation, useQuery } from '@tanstack/react-query'
@@ -69,7 +69,7 @@ const ProductIdPage = () => {
     onSuccess() {
       toast.success('The lease has started successfully!')
       reset()
-      push(PLATFORM_PAGES.PROFILE)
+      push(PROFILE_PAGES.PROFILE)
     },
     onError() {
       toast.error('Invalid credentials', { description: 'Try again!' })

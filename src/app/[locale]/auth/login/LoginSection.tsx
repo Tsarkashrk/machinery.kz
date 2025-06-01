@@ -4,7 +4,7 @@ import Button from '@/6-shared/ui/Buttons/Button'
 import { Input } from '@/6-shared/ui/Input/Input'
 import Label from '@/6-shared/ui/Label/Label'
 import TextMuted from '@/6-shared/ui/TextMuted/TextMuted'
-import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
+import { PLATFORM_PAGES, PROFILE_PAGES } from '@/6-shared/config/pages-url.config'
 import { authApi } from '@/6-shared/api'
 import { IAuthLoginRequest } from '@/5-entities/auth'
 import { useMutation } from '@tanstack/react-query'
@@ -42,7 +42,7 @@ const LoginSection = () => {
     onSuccess() {
       toast.success('Successfully logged in!')
       reset()
-      push(PLATFORM_PAGES.PROFILE)
+      push(PROFILE_PAGES.PROFILE)
     },
     onError() {
       toast.error('Invalid credentials', { description: 'Try again!' })

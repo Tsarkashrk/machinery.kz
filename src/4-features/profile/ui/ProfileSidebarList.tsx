@@ -16,7 +16,7 @@ type Props = {
   routes: IRoute[]
 }
 
-export const AdminSidebarList = ({ routes, title }: Props) => {
+export const ProfileSidebarList = ({ routes, title }: Props) => {
   const pathname = usePathname()
 
   const removeLocalePrefix = (path: string) => {
@@ -35,18 +35,18 @@ export const AdminSidebarList = ({ routes, title }: Props) => {
   }
 
   return (
-    <div className="admin-sidebar-list">
-      <div className="admin-sidebar-list__title">
+    <div className="profile-sidebar-list">
+      <div className="profile-sidebar-list__title">
         <Title fontSize="14px" fontFamily="geist" fontWeight="500" color="gray">
           {title}
         </Title>
       </div>
-      <ul className="admin-sidebar-list__list">
+      <ul className="profile-sidebar-list__list">
         {routes.map((route) => {
           const isActive = isRouteActive(route.path)
 
           return (
-            <Link key={route.path} href={route.path} className={`admin-sidebar-list__route ${isActive ? 'admin-sidebar-list__route--active' : ''}`}>
+            <Link key={route.path} href={route.path} className={`profile-sidebar-list__route ${isActive ? 'profile-sidebar-list__route--active' : ''}`}>
               {route.icon}
               {route.name}
             </Link>

@@ -6,9 +6,19 @@ import { ICategory, useCategories, useCreateCategory, useUpdateCategory, useDele
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 import Button from '@/6-shared/ui/Buttons/Button'
 import { DeleteModal } from '@/6-shared/ui/DeleteModal/DeleteModal'
+import { EditorModal } from '@/6-shared/ui/EditorModal/EditorModal'
 import { DataTable } from '@/6-shared/ui/Table/Table'
 import { Edit2, Edit3, EditIcon, TrashIcon, ViewIcon } from 'lucide-react'
 import { useState } from 'react'
+
+// Define the form type for category editing
+interface CategoryFormData {
+  id?: number
+  name: string
+  description: string
+  parent_category: number | null
+  file: File | null
+}
 
 export const CategoriesSection = () => {
   const { categories, isLoading } = useCategories()
@@ -135,12 +145,6 @@ export const CategoriesSection = () => {
   ]
 
   const actions: any = [
-    // {
-    //   icon: <ViewIcon size={ICON_SIZE} />,
-    //   tooltip: 'Просмотр',
-    //   onClick: (item: ICategory) => console.log('View:', item),
-    //   color: 'info',
-    // },
     {
       icon: <Edit2 size={ICON_SIZE} color="#363435" />,
       tooltip: 'Редактирование',
@@ -155,18 +159,88 @@ export const CategoriesSection = () => {
     },
   ]
 
+  const fields = [
+    {
+      name: 'name',
+      label: 'Название категории',
+      type: 'text' as const,
+      required: true,
+      placeholder: 'Введите название',
+    },
+    {
+      name: 'description',
+      label: 'Описание',
+      type: 'text' as const,
+    },
+    {
+      name: 'file',
+      label: 'Изображение',
+      type: 'file' as const,
+    },
+  ]
+
   return (
     <section className="dashboard-section">
       <div className="dashboard-section__wrapper">
         <DataTable data={categories || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} buttonOnChange={createCategory} />
 
-        <CategoryEditorModal isOpen={createModal.isOpen} onClose={handleCreateClose} item={createModal.item} onSave={handleCreateConfirm} isLoading={createCategoryMutation.isPending} />
+        {/* <CategoryEditorModal isOpen={createModal.isOpen} onClose={handleCreateClose} item={createModal.item} onSave={handleCreateConfirm} isLoading={createCategoryMutation.isPending} /> */}
 
-        <CategoryEditorModal isOpen={updateModal.isOpen} onClose={handleUpdateClose} item={updateModal.item} onSave={handleUpdateSave} isLoading={updateCategoryMutation.isPending} />
+        <EditorModal
+          isOpen={createModal.isOpen}
+          onClose={handleCreateClose}
+          onSave={handleCreateConfirm}
+          isLoading={createCategoryMutation.isPending}
+          item={
+            updateModal.item
+              ? {
+                  id: updateModal.item.id,
+                  name: updateModal.item.name || '',
+                  description: updateModal.item.description || '',
+                  parent_category: updateModal.item.parent_category || null,
+                  file: null,
+                }
+              : null
+          }
+          title="Категорию"
+          defaultValues={{
+            id: updateModal?.item?.id || 0,
+            name: '',
+            description: '',
+            parent_category: null,
+            file: null,
+          }}
+          fields={fields}
+        />
+
+        <EditorModal
+          isOpen={updateModal.isOpen}
+          onClose={handleUpdateClose}
+          onSave={handleUpdateSave}
+          isLoading={updateCategoryMutation.isPending}
+          item={
+            updateModal.item
+              ? {
+                  id: updateModal.item.id,
+                  name: updateModal.item.name || '',
+                  description: updateModal.item.description || '',
+                  parent_category: updateModal.item.parent_category || null,
+                  file: null,
+                }
+              : null
+          }
+          title="Категорию"
+          defaultValues={{
+            id: updateModal?.item?.id || 0,
+            name: '',
+            description: '',
+            parent_category: null,
+            file: null,
+          }}
+          fields={fields}
+        />
 
         <DeleteModal isOpen={deleteModal.isOpen} onClose={handleDeleteClose} onConfirm={handleDeleteConfirm} isLoading={deleteCategoryMutation.isPending} itemName={deleteModal?.item?.name} entityName={'Категорию'} size="lg" />
-
-        {/* <CategoryDeleteModal isOpen={deleteModal.isOpen} onClose={handleDeleteCancel} isLoading={deleteCategoryMutation.isPending} item={deleteModal.item} onConfirm={handleDeleteConfirm} /> */}
       </div>
     </section>
   )

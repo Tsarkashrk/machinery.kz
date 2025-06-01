@@ -20,7 +20,7 @@ export const DeleteModal = ({ isOpen, onClose, onConfirm, isLoading = false, ite
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={size} closeOnOverlayClick={!isLoading}>
       <ModalHeader>
-        <Title fontFamily='geist' size="h2">Удалить {entityName}</Title>
+        <Title size="h2">Удалить {entityName}</Title>
       </ModalHeader>
 
       <ModalContent>
@@ -39,7 +39,7 @@ export const DeleteModal = ({ isOpen, onClose, onConfirm, isLoading = false, ite
             <Trash2 size={50} style={{ color: '#ef4444' }} />
           </div>
           <div className="modal__text">
-            <p className="modal__subtitle">Вы уверены, что хотите удалить {itemName}?</p>
+            <p className="modal__subtitle">Вы уверены, что хотите удалить "{itemName}"?</p>
             {itemName && <span className='modal__sure'>Это действие нельзя отменить</span>}
           </div>
         </div>

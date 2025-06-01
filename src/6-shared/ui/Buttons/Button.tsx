@@ -12,7 +12,7 @@ interface IButton {
   text?: string
   icon?: ReactNode
   type?: 'button' | 'submit' | 'reset' | undefined
-  variant?: 'light' | 'dark' | 'default' | 'outlined' | 'underlined' | 'secondary' | 'rounded' | 'danger'
+  variant?: 'light' | 'dark' | 'default' | 'outlined' | 'underlined' | 'secondary' | 'rounded' | 'danger' | 'success'
   textStart?: 'start' | 'middle' | 'end'
   children?: ReactNode
   onClick?: () => void

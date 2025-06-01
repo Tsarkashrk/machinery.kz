@@ -3,24 +3,16 @@ import ProfileSection from './ProfileSection'
 import Sidebar from '@/6-shared/ui/Sidebar/Sidebar'
 import { ListChecks, ShoppingBasket, User } from 'lucide-react'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
+import { ProfileSidebar } from '@/4-features/profile'
 
 export const metadata: Metadata = {
   title: 'Profile',
 }
 
-const sidebarData = [
-  {
-    icon: <User size={ICON_SIZE} />,
-    text: 'Edit profile',
-  },
-  { text: 'Orders', icon: <ListChecks size={ICON_SIZE} /> },
-]
-
 const ProfilePage = () => {
   return (
     <div className="profile">
       <div className="profile__wrapper">
-        <Sidebar sidebarData={sidebarData} />
         <ProfileSection />
       </div>
     </div>

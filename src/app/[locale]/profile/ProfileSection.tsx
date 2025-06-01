@@ -13,6 +13,7 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
+import { ProfileSidebar } from '@/4-features/profile'
 
 const ProfileSection = () => {
   const t = useTranslations('Button')
@@ -51,37 +52,38 @@ const ProfileSection = () => {
 
   return (
     <section className="profile-section">
-      <div className="profile-section__header">
-        <h1 className="profile-section__title">{tProfile('my-profile')}</h1>
-        <LogoutButton />
+      <div className="profile-section__wrapper">
+        <div className="profile-section__header">
+          <LogoutButton />
+        </div>
+        <form className="profile-section__body" onSubmit={handleSubmit(onSubmit)}>
+          <div className="profile-section__credentials">
+            <Label forElement="username">
+              {tProfile('username')}, {profile?.user_role}
+            </Label>
+            <Input
+              type="text"
+              id="username"
+              {...register('username', {
+                required: 'Username is required!',
+                value: profile?.username,
+              })}
+            />
+          </div>
+          <div className="profile-section__credentials">
+            <Label forElement="email">{tProfile('email')}</Label>
+            <Input
+              type="email"
+              id="email"
+              {...register('email', {
+                required: 'Email is required!',
+                value: profile?.email,
+              })}
+            />
+          </div>
+          <Button variant="dark">{t('save-changes')}</Button>
+        </form>
       </div>
-      <form className="profile-section__body" onSubmit={handleSubmit(onSubmit)}>
-        <div className="profile-section__credentials">
-          <Label forElement="username">
-            {tProfile('username')}, {profile?.user_role}
-          </Label>
-          <Input
-            type="text"
-            id="username"
-            {...register('username', {
-              required: 'Username is required!',
-              value: profile?.username,
-            })}
-          />
-        </div>
-        <div className="profile-section__credentials">
-          <Label forElement="email">{tProfile('email')}</Label>
-          <Input
-            type="email"
-            id="email"
-            {...register('email', {
-              required: 'Email is required!',
-              value: profile?.email,
-            })}
-          />
-        </div>
-        <Button variant="dark">{t('save-changes')}</Button>
-      </form>
     </section>
   )
 }

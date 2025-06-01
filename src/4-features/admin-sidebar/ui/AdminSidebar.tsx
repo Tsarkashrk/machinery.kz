@@ -14,7 +14,7 @@ export const AdminSidebar = () => {
 
   const t = useTranslations('DashboardPage')
 
-  const mainManagement = [{ name: 'Главная', path: '', icon: <Home size={ICON_SIZE} /> }]
+  const mainManagement = [{ name: 'Главная', path: '/dashboard', icon: <Home size={ICON_SIZE} /> }]
 
   const userManagement = [
     { name: 'Пользователи', path: `${DASHBOARD_PAGES.USERS}`, icon: <Users size={ICON_SIZE} /> },

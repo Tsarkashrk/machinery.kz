@@ -5,8 +5,7 @@ import { Title } from '@/6-shared/ui/Title/Title'
 export const ComplaintsSection = () => {
   return (
     <section className="dashboard-section">
-      <div className="dashboard-section__wrapper">
-      </div>
+      <div className="dashboard-section__wrapper">Complaints</div>
     </section>
   )
 }
