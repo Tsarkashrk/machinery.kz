@@ -5,7 +5,7 @@ import Button from '@/6-shared/ui/Buttons/Button'
 import { Input } from '@/6-shared/ui/Input/Input'
 import Label from '@/6-shared/ui/Label/Label'
 import TextMuted from '@/6-shared/ui/TextMuted/TextMuted'
-import React from 'react'
+import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
@@ -22,10 +22,6 @@ import { useTranslations } from 'next-intl'
 const NewSection = () => {
   const { brands } = useBrands()
 
-  const handleSelect = (item: { id: number; title: string }) => {
-    console.log('Выбранный элемент:', item)
-  }
-
   const { register, handleSubmit, reset, control, watch } = useForm({
     mode: 'onChange',
   })
@@ -36,23 +32,61 @@ const NewSection = () => {
 
   const { categories } = useCategories()
 
-  const { profile, isLoading, isSuccess } = useProfile()
+  const { profile, isSuccess } = useProfile()
 
   const { push } = useRouter()
 
-  const { mutate } = useMutation({
+  const [isImageUploading, setIsImageUploading] = useState(false)
+
+  const equipmentMutation = useMutation({
     mutationKey: ['equipment'],
     mutationFn: (data: any) => equipmentApi.createEquipment(data),
-    onSuccess(data) {
-      toast.success('Listing successfully created!')
-      reset()
-      console.log(data)
-      push(`${PLATFORM_PAGES.PRODUCT}/${data.id}`)
-    },
     onError() {
-      toast.error('Invalid credentials', { description: 'Try again!' })
+      toast.error('Failed to create equipment', { description: 'Try again!' })
     },
   })
+
+  const imageMutation = useMutation({
+    mutationKey: ['equipment-image'],
+    mutationFn: (formData: FormData) => equipmentImagesApi.uploadImage(formData),
+    onError() {
+      toast.error('Failed to upload image')
+    },
+  })
+
+  const onSubmit: SubmitHandler<any> = async (data: any) => {
+    const formattedData = {
+      owner: profile?.id,
+      brand: data.manufacturer,
+      ...data,
+      purchase_price: data.purchase_price | 0,
+      daily_rental_rate: data.daily_rental_rate | 0,
+      available_for_rent: data.type === 'rent',
+      available_for_sale: data.type === 'sell',
+    }
+
+    try {
+      const createdEquipment = await equipmentMutation.mutateAsync(formattedData)
+
+      if (data.file) {
+        const formData = new FormData()
+        formData.append('file', data.file[0])
+        formData.append('equipment', createdEquipment.id.toString())
+
+        await imageMutation.mutateAsync(formData)
+        toast.success('Equipment and image uploaded successfully!')
+      } else {
+        toast.success('Equipment created successfully!')
+      }
+
+      reset()
+      push(PLATFORM_PAGES.HOME)
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
+  const isLoading = equipmentMutation.isPending || imageMutation.isPending
 
   const listingTypes = [
     {
@@ -79,42 +113,6 @@ const NewSection = () => {
     },
   ]
 
-  const onSubmit: SubmitHandler<any> = async (data: any) => {
-    const formattedData = {
-      owner: profile?.id,
-      brand: data.manufacturer,
-      ...data,
-      purchase_price: data.purchase_price | 0,
-      daily_rental_rate: data.daily_rental_rate | 0,
-      available_for_rent: data.type === 'rent',
-      available_for_sale: data.type === 'sell',
-    }
-
-    mutate(formattedData, {
-      onSuccess: async (createdEquipment: any) => {
-        console.log('Equipment created:', createdEquipment)
-
-        console.log(data)
-
-        if (data.image && data.image[0]) {
-          const formData = new FormData()
-          formData.append('file', data.image[0])
-          formData.append('equipment', createdEquipment.id.toString())
-
-          try {
-            await equipmentImagesApi.uploadImage(formData)
-            toast.success('Image uploaded successfully!')
-          } catch (error) {
-            console.error('Image upload failed:', error)
-          }
-        }
-
-        reset()
-        push(PLATFORM_PAGES.HOME)
-      },
-    })
-  }
-
   return (
     <section className="new-section">
       <div className="new-section__wrapper">
@@ -132,19 +130,16 @@ const NewSection = () => {
             </div>
           </Card>
 
-          <Card>
+          {/* <Card>
             <h1 className="new-section__title">{t('upload-images')}</h1>
             <hr />
-            <InputFile {...register('image')} onChange={(e) => console.log(e.target.value)} />
-            {/* <input
-              type="image"
-              {...register('image', {
-                required: 'image is required!',
-              })}
-            /> */}
-          </Card>
+            <InputFile {...register('file')} onChange={(e) => console.log(e.target.value)} />
+          </Card> */}
           <form onSubmit={handleSubmit(onSubmit)} className="new-section__form">
             <Card>
+              <h1 className="new-section__title">{t('upload-images')}</h1>
+              <InputFile {...register('file')} />
+              <hr />
               <h1 className="new-section__title">{t('equipment-information')}</h1>
               <hr />
               <div className="new-section__info">
@@ -182,7 +177,7 @@ const NewSection = () => {
                   </div>
                   <div className="new-section__info-block">
                     <Label forElement="year">{t('year')}</Label>
-                    <Input id="year" type="number" placeholder="2012" {...register('year', {required: t('year-required')})} />
+                    <Input id="year" type="number" placeholder="2012" {...register('year', { required: t('year-required') })} />
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
@@ -219,7 +214,7 @@ const NewSection = () => {
                   </div>
                 </div>
                 <Button type="submit" variant="default" width="100%">
-                  {t('confirm-submit')}
+                  {isLoading ? 'Создание...' : t('confirm-submit')}
                 </Button>
               </div>
             </Card>

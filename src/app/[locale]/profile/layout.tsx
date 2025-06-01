@@ -12,7 +12,7 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
-export default async function DashboardLayout({ children, params }: Props) {
+export default async function ProfileLayout({ children, params }: Props) {
   const resolvedParams = await params
   const { locale } = resolvedParams
 
@@ -20,22 +20,18 @@ export default async function DashboardLayout({ children, params }: Props) {
     notFound()
   }
 
-  const t = getTranslations('DashboardPage')
+  const t = getTranslations('ProfilePage')
 
   const messages = await getMessages({ locale })
 
   return (
-    <div className="dashboard-layout">
-      {/* <Providers> */}
-      {/* <NextIntlClientProvider messages={messages} locale={locale}> */}
-      <div className="dashboard-layout__sidebar">
+    <div className="profile-layout">
+      <div className="profile-layout__sidebar">
         <ProfileSidebarWrapper />
       </div>
-      <main className="dashboard-layout__content">
+      <main className="profile-layout__content">
         <ProfileContentWrapper>{children}</ProfileContentWrapper>
       </main>
-      {/* </NextIntlClientProvider> */}
-      {/* </Providers> */}
     </div>
   )
 }

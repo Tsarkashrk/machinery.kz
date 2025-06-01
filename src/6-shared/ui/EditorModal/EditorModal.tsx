@@ -54,8 +54,11 @@ export const EditorModal = <T extends FieldValues>({ isOpen, onClose, onSave, is
       }
     }
 
-    await onSave(formData)
-    handleClose()
+    try {
+      await onSave(formData)
+    } catch (error) {
+      console.error('Error saving:', error)
+    }
   }
 
   const handleClose = () => {
@@ -107,8 +110,12 @@ export const EditorModal = <T extends FieldValues>({ isOpen, onClose, onSave, is
       </ModalContent>
 
       <ModalFooter>
-        <Button variant="outlined" onClick={handleClose}>Отмена</Button>
-        <Button>{isLoading ? 'Сохранение...' : 'Сохранить'}</Button>
+        <Button variant="outlined" onClick={handleClose}>
+          Отмена
+        </Button>
+        <Button onClick={handleSubmit(onSubmit)}>
+          {isLoading ? 'Сохранение...' : 'Сохранить'}
+        </Button>
       </ModalFooter>
     </Modal>
   )

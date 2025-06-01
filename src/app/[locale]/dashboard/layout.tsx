@@ -26,16 +26,12 @@ export default async function DashboardLayout({ children, params }: Props) {
 
   return (
     <div className="dashboard-layout">
-      {/* <Providers> */}
-        {/* <NextIntlClientProvider messages={messages} locale={locale}> */}
         <div className="dashboard-layout__sidebar">
           <AdminSidebarWrapper />
         </div>
         <main className="dashboard-layout__content">
           <AdminContentWrapper>{children}</AdminContentWrapper>
         </main>
-        {/* </NextIntlClientProvider> */}
-      {/* </Providers> */}
     </div>
   )
 }

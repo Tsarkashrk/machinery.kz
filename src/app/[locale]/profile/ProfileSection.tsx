@@ -14,6 +14,9 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
 import { ProfileSidebar } from '@/4-features/profile'
+import ErrorMessage from '@/6-shared/ui/ErrorMessage/ErrorMessage'
+import TextMuted from '@/6-shared/ui/TextMuted/TextMuted'
+import { ProfileCard } from '@/3-widgets/profile-card'
 
 const ProfileSection = () => {
   const t = useTranslations('Button')
@@ -21,7 +24,16 @@ const ProfileSection = () => {
 
   const { profile, isLoading } = useProfile()
 
-  const { register, handleSubmit } = useForm<IUserRequest>({
+  console.log(profile)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IUserRequest>({
+    defaultValues: {
+      phone_number: profile?.phone_number || null,
+    },
     mode: 'onChange',
   })
 
@@ -53,36 +65,23 @@ const ProfileSection = () => {
   return (
     <section className="profile-section">
       <div className="profile-section__wrapper">
-        <div className="profile-section__header">
-          <LogoutButton />
-        </div>
-        <form className="profile-section__body" onSubmit={handleSubmit(onSubmit)}>
-          <div className="profile-section__credentials">
-            <Label forElement="username">
-              {tProfile('username')}, {profile?.user_role}
-            </Label>
-            <Input
-              type="text"
-              id="username"
-              {...register('username', {
-                required: 'Username is required!',
-                value: profile?.username,
-              })}
-            />
-          </div>
-          <div className="profile-section__credentials">
-            <Label forElement="email">{tProfile('email')}</Label>
-            <Input
-              type="email"
-              id="email"
-              {...register('email', {
-                required: 'Email is required!',
-                value: profile?.email,
-              })}
-            />
-          </div>
-          <Button variant="dark">{t('save-changes')}</Button>
-        </form>
+        {profile && (
+          <ProfileCard
+            user={{
+              id: profile.id,
+              name: profile.first_name || profile.username,
+              title: profile.user_role,
+              location: profile.address,
+              avatar: profile.image_url,
+              isPro: true,
+              stats: {
+                followers: 0,
+                following: 0,
+                likes: 0,
+              },
+            }}
+          />
+        )}
       </div>
     </section>
   )

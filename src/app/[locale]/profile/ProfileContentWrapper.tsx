@@ -1,6 +1,6 @@
 'use client'
 
-import { DASHBOARD_PAGES } from '@/6-shared/config/pages-url.config'
+import { PROFILE_PAGES } from '@/6-shared/config/pages-url.config'
 import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
 import { Title } from '@/6-shared/ui/Title/Title'
 import { useTranslations } from 'next-intl'
@@ -12,14 +12,9 @@ type Props = {
 }
 
 const pathToTranslationKeyMap: Record<string, string> = {
-  [DASHBOARD_PAGES.CATEGORIES]: 'DashboardCategoriesPage',
-  [DASHBOARD_PAGES.BRANDS]: 'DashboardBrandsPage',
-  [DASHBOARD_PAGES.USERS]: 'DashboardUsersPage',
-  [DASHBOARD_PAGES.COMPANIES]: 'DashboardCompaniesPage',
-  [DASHBOARD_PAGES.PUBLICATIONS]: 'DashboardPublicationPage',
-  [DASHBOARD_PAGES.VERIFICATION]: 'DashboardVerificationPage',
-  [DASHBOARD_PAGES.REVIEWS]: 'DashboardReviewsPage',
-  [DASHBOARD_PAGES.COMPLAINTS]: 'DashboardComplaintsPage',
+  [PROFILE_PAGES.PUBLICATIONS]: 'ProfilePublicationsPage',
+  [PROFILE_PAGES.ORDERS]: 'ProfileOrdersPage',
+  [PROFILE_PAGES.SETTINGS]: 'ProfileSettingsPage',
 }
 
 export const ProfileContentWrapper = ({ children }: Props) => {

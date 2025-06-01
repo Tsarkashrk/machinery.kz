@@ -65,7 +65,21 @@
     "title": "Профиль",
     "my-profile": "Мой профиль",
     "username": "Имя пользователя",
-    "email": "Почта"
+    "email": "Почта",
+    "phone-number": "Номер телефона",
+    "first-name": "Имя",
+    "last-name": "Фамилия",
+    "address": "Адрес",
+    "image": "Фото"
+  },
+  "ProfileOrdersPage": {
+    "title": "Мои сделки"
+  },
+  "ProfileSettingsPage": {
+    "title": "Настройки профиля"
+  },
+  "ProfilePublicationsPage": {
+    "title": "Мои публикации"
   },
   "DashboardPage": {
     "title": "Панель управления",

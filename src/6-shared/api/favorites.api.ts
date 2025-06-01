@@ -16,7 +16,7 @@ export const favoritesApi = {
   },
 
   async removeFavorite(id: number) {
-    const response = await axiosWithAuth.delete(`${BASE_URL}/${id}/`)
+    const response = await axiosWithAuth.delete(`${BASE_URL}/remove/${id}/`)
 
     return response.data
   },

@@ -139,7 +139,7 @@ export const CategoriesSection = () => {
       searchable: true,
     },
     {
-      key: 'image_url',
+      key: 'file',
       label: 'Картинка',
     },
   ]
@@ -192,19 +192,19 @@ export const CategoriesSection = () => {
           onSave={handleCreateConfirm}
           isLoading={createCategoryMutation.isPending}
           item={
-            updateModal.item
+            createModal.item
               ? {
-                  id: updateModal.item.id,
-                  name: updateModal.item.name || '',
-                  description: updateModal.item.description || '',
-                  parent_category: updateModal.item.parent_category || null,
+                  id: createModal.item.id,
+                  name: createModal.item.name || '',
+                  description: createModal.item.description || '',
+                  parent_category: createModal.item.parent_category || null,
                   file: null,
                 }
               : null
           }
           title="Категорию"
           defaultValues={{
-            id: updateModal?.item?.id || 0,
+            id: createModal?.item?.id || 0,
             name: '',
             description: '',
             parent_category: null,

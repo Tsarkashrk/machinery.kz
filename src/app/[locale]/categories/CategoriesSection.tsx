@@ -12,7 +12,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 
 const CategoriesSection = () => {
-  const { categories, isLoading: isCategoriesLoading } = useCategories()
+  const { categories, isLoading: isCategoriesLoading } = useCategories({ ordering: 'id' })
   const [fullCategoryList, setFullCategoryList] = useState<boolean>(false)
 
   const t = useTranslations('CategoriesPage')

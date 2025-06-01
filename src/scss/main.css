@@ -105,6 +105,10 @@ hr {
 .profile-section__title {
   margin-bottom: 3rem;
 }
+.profile-section__content {
+  display: flex;
+  gap: 10rem;
+}
 .profile-section__header {
   display: flex;
   justify-content: space-between;
@@ -112,11 +116,49 @@ hr {
 .profile-section__credentials {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
-.profile-section__body {
+.profile-section__form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
+}
+.profile-section--horizontal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.profile-section__letter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #7e90e4;
+  color: white;
+  border-radius: 10rem;
+  width: 10rem;
+  height: 10rem;
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.profile-layout {
+  display: flex;
+  gap: 3rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.profile-layout__sidebar {
+  max-width: 22.5rem;
+  width: 100%;
+}
+.profile-layout__content {
+  width: 100%;
+}
+
+.content__card {
+  max-width: 126.5rem;
+  width: 100%;
 }
 
 .new-section__wrapper {
@@ -386,6 +428,12 @@ hr {
   border-radius: 1.6rem;
 }
 
+.settings-section__wrapper {
+  padding: 2rem;
+  border: 1px solid rgba(41, 71, 163, 0.1294117647);
+  border-radius: 1.6rem;
+}
+
 .equipment-card__wrapper {
   display: flex;
   flex-direction: column;
@@ -647,6 +695,95 @@ hr {
   gap: 1rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid rgba(41, 71, 163, 0.1294117647);
+}
+
+.profile-card {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.profile-card__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-card__avatar-section {
+  position: relative;
+  margin-bottom: 20px;
+}
+.profile-card__info {
+  text-align: center;
+  margin-bottom: 32px;
+  width: 100%;
+}
+.profile-card__header {
+  margin-bottom: 24px;
+}
+.profile-card__name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.profile-card__pro-badge {
+  font-size: 12px;
+  font-weight: 600;
+}
+.profile-card__title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4a4a4a;
+  margin: 0 0 4px 0;
+  line-height: 1.4;
+}
+.profile-card__location {
+  font-size: 14px;
+  color: #888888;
+  margin: 0;
+}
+.profile-card__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.profile-card__follow-btn, .profile-card__contact-btn {
+  min-width: 100px;
+}
+.profile-card__stats {
+  width: 100%;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 24px;
+}
+@media (max-width: 480px) {
+  .profile-card {
+    max-width: 100%;
+    margin: 0 16px;
+  }
+  .profile-card__content {
+    padding: 60px 20px 20px;
+  }
+  .profile-card__avatar {
+    width: 100px;
+    height: 100px;
+  }
+  .profile-card__name {
+    font-size: 20px;
+  }
+  .profile-card__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .profile-card__actions .button {
+    width: 100%;
+  }
 }
 
 .favorite-button {
@@ -963,6 +1100,44 @@ hr {
   background-color: #f4f4f5;
 }
 
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.profile-stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.profile-stats__item:hover {
+  transform: translateY(-2px);
+}
+.profile-stats__value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1;
+}
+.profile-stats__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666666;
+  text-transform: capitalize;
+}
+@media (max-width: 480px) {
+  .profile-stats__value {
+    font-size: 20px;
+  }
+  .profile-stats__label {
+    font-size: 12px;
+  }
+}
+
 .button {
   display: flex;
   align-items: center;
@@ -1100,7 +1275,10 @@ hr {
   }
 }
 .error-message {
+  margin-top: 0.5rem;
+  font-family: var(--font-geist-sans);
   color: red;
+  font-size: 1.4rem;
 }
 
 @keyframes dropdownFadeIn {
@@ -2154,4 +2332,75 @@ h3 {
   align-items: center;
   gap: 0.5rem;
   color: #3f3f46;
+}
+
+.preview-content {
+  padding: 0;
+}
+
+.preview-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.preview-field {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.preview-field__label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 1.6rem;
+}
+
+.preview-field__value {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+.preview-empty {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.preview-textarea {
+  white-space: pre-wrap;
+}
+
+.preview-textarea p {
+  margin: 0;
+}
+
+.preview-textarea p:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.preview-image {
+  max-width: 200px;
+}
+
+.preview-image__img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.preview-file-link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.preview-file-link:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .preview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .preview-field--full-width {
+    grid-column: 1/-1;
+  }
 }/*# sourceMappingURL=main.css.map */

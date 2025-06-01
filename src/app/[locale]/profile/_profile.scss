@@ -1,6 +1,5 @@
 .profile {
   &__wrapper {
-    // max-width: $max-width-secondary;
     margin: 0 auto;
     padding: 2rem;
     border-radius: $border-radius-card;
@@ -13,6 +12,11 @@
       margin-bottom: 3rem;
     }
 
+    &__content {
+      display: flex;
+      gap: 10rem;
+    }
+
     &__header {
       display: flex;
       justify-content: space-between;
@@ -21,12 +25,56 @@
     &__credentials {
       display: flex;
       flex-direction: column;
+      width: 100%;
     }
 
-    &__body {
+    &__form {
       display: flex;
       flex-direction: column;
       gap: $gap-bw-fields;
+      width: 100%;
     }
+
+    &--horizontal {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    &__letter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $main-color;
+      color: $base-color;
+      border-radius: 10rem;
+      width: 10rem;
+      height: 10rem;
+      font-size: 4rem;
+      font-weight: 900;
+    }
+  }
+}
+
+.profile-layout {
+  display: flex;
+  gap: 3rem;
+  max-width: $max-width-profile;
+  margin: 0 auto;
+
+  &__sidebar {
+    max-width: 22.5rem;
+    width: 100%;
+  }
+
+  &__content {
+    width: 100%;
+  }
+}
+
+.content {
+  &__card {
+    max-width: 126.5rem;
+    width: 100%;
   }
 }

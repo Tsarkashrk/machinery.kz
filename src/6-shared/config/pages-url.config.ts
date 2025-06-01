@@ -33,6 +33,7 @@ class PROFILE {
   PROFILE = this.root
   PUBLICATIONS = `${this.root}/publications`
   ORDERS = `${this.root}/orders`
+  SETTINGS = `${this.root}/settings`
 }
 
 export const PROFILE_PAGES = new PROFILE()

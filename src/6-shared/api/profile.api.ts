@@ -10,7 +10,12 @@ export const profileApi = {
   },
 
   async editProfile(data: IUserRequest) {
-    const response = await axiosWithAuth.put(`${BASE_URL}/`, data)
+    const response = await axiosWithAuth.put(`${BASE_URL}/`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+
     return response.data
   },
 }

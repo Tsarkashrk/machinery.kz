@@ -16,6 +16,7 @@ import { Title } from '@/6-shared/ui/Title/Title'
 import { useState } from 'react'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 import { Eye, EyeOff } from 'lucide-react'
+import ErrorMessage from '@/6-shared/ui/ErrorMessage/ErrorMessage'
 
 const LoginSection = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -77,7 +78,7 @@ const LoginSection = () => {
                 },
               })}
             />
-            <div className="auth-form__error">{errors.email && <TextMuted color="red">{errors.email.message}</TextMuted>}</div>
+            {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
           </div>
 
           <div className="auth-form__credentials auth-form__password">
@@ -96,7 +97,7 @@ const LoginSection = () => {
                 {showPassword ? <Eye size={ICON_SIZE} /> : <EyeOff size={ICON_SIZE} />}
               </div>
             </div>
-            <div className="auth-form__error">{errors.password && <TextMuted color="red">{errors.password.message}</TextMuted>}</div>
+            {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
           </div>
 
           <Button variant="default" type="submit" isLoading={isPending}>

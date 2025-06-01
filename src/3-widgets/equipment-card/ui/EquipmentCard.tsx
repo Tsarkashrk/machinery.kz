@@ -12,6 +12,7 @@ import { Title } from '@/6-shared/ui/Title/Title'
 import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription'
 import { Description } from '@/6-shared/ui/Description/Description'
 import Avatar from '@/6-shared/ui/Avatar/Avatar'
+import { useFavorites } from '@/5-entities/favorite'
 
 type Props = {
   available_for_rent: boolean
@@ -26,6 +27,7 @@ type Props = {
 export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_price, name, id, image, variant }: Props) => {
   const t = useTranslations('Button')
   const tBadge = useTranslations('Badge')
+  const {} = useFavorites()
 
   const listingType = available_for_rent ? 'rent' : 'sell'
   const equipmentPrice = listingType === 'rent' ? daily_rental_rate : purchase_price

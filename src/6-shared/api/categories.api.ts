@@ -3,9 +3,15 @@ import { axiosClassic, axiosWithAuth } from './interceptors'
 
 const BASE_URL = '/equipment-categories'
 
+type Props = {
+  ordering?: string
+  page?: number
+  search?: string
+}
+
 export const categoriesApi = {
-  getCategories: async () => {
-    const response = await axiosClassic.get(`${BASE_URL}/`)
+  getCategories: async (params: Props) => {
+    const response = await axiosClassic.get(`${BASE_URL}/`, { params })
     return response.data
   },
 

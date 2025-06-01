@@ -2,24 +2,50 @@
 
 import { IEquipment, useUnverifiedEquipment } from '@/5-entities/equipment'
 import { DataTable } from '@/6-shared/ui/Table/Table'
-import { Check, ViewIcon, TrashIcon } from 'lucide-react'
+import { Check, ViewIcon, TrashIcon, X, Eye } from 'lucide-react'
 import { useVerifyEquipment } from '@/5-entities/moderator/hooks/useVerifyEquipment'
 import { Badge } from '@/6-shared/ui/Badge/Badge'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 import { DASHBOARD_PAGES } from '@/6-shared/config/pages-url.config'
 import { useRouter } from 'next/navigation'
+import { useRejectEquipment } from '@/5-entities/moderator'
+import { useState } from 'react'
+import { PreviewModal } from '@/6-shared/ui/PreviewModal/PreviewModal'
 
 export const VerificationSection = () => {
   const router = useRouter()
 
   const { data, isLoading } = useUnverifiedEquipment({ page_size: 40 })
 
+  const [previewModal, setPreviewModal] = useState<{
+    isOpen: boolean
+    item: IEquipment | null
+  }>({
+    isOpen: false,
+    item: null,
+  })
+
+  const viewEquipment = (item: IEquipment) => {
+    setPreviewModal({
+      isOpen: true,
+      item,
+    })
+  }
+
+  const handlePreviewClose = () => {
+    setPreviewModal({ isOpen: false, item: null })
+  }
+
   const verifyEquipmentMutation = useVerifyEquipment()
+  const rejectEquipmentMutation = useRejectEquipment()
 
   const confirmEquipment = (id: number) => {
     verifyEquipmentMutation.mutate(id)
   }
 
+  const rejectEquipment = (id: number) => {
+    rejectEquipmentMutation.mutate(id)
+  }
 
   const columns: any = [
     {
@@ -93,35 +119,143 @@ export const VerificationSection = () => {
       label: 'Аренда',
       width: 100,
       align: 'center',
+      render: (value: boolean) => (value ? 'Да' : 'Нет'),
     },
     {
       key: 'available_for_sale',
       label: 'Продажа',
       width: 100,
       align: 'center',
+      render: (value: boolean) => (value ? 'Да' : 'Нет'),
+    },
+  ]
+
+  const previewFields = [
+    {
+      name: 'images',
+      label: 'Изображение',
+      type: 'images' as const,
+    },
+    {
+      name: 'id',
+      label: 'ID',
+      type: 'text' as const,
+    },
+    {
+      name: 'name',
+      label: 'Название',
+      type: 'text' as const,
+    },
+    {
+      name: 'description',
+      label: 'Описание',
+      type: 'textarea' as const,
+    },
+    {
+      name: 'category_details.name',
+      label: 'Категория',
+      type: 'text' as const,
+      render: (item: IEquipment) => item?.category_details?.name || '-',
+    },
+    {
+      name: 'brand_details',
+      label: 'Бренд',
+      type: 'text' as const,
+      render: (item: IEquipment) => item?.brand_details?.name || '-',
+    },
+    {
+      name: 'manufacturer',
+      label: 'Производитель',
+      type: 'text' as const,
+    },
+    {
+      name: 'model',
+      label: 'Модель',
+      type: 'text' as const,
+    },
+    {
+      name: 'year',
+      label: 'Год',
+      type: 'text' as const,
+    },
+    {
+      name: 'condition',
+      label: 'Состояние',
+      type: 'text' as const,
+      render: (item: IEquipment) => {
+        if (!item?.condition) return '-'
+        const conditionMap: { [key: string]: string } = {
+          new: 'Новое',
+          used: 'Б/У',
+        }
+        return conditionMap[item.condition] || item.condition
+      },
+    },
+    {
+      name: 'purchase_price',
+      label: 'Цена покупки',
+      type: 'text' as const,
+    },
+    {
+      name: 'daily_rental_rate',
+      label: 'Цена аренды',
+      type: 'text' as const,
+    },
+    {
+      name: 'available_for_rent',
+      label: 'Доступно для аренды',
+      type: 'text' as const,
+      render: (item: IEquipment) => (item?.available_for_rent ? 'Да' : 'Нет'),
+    },
+    {
+      name: 'available_for_sale',
+      label: 'Доступно для продажи',
+      type: 'text' as const,
+      render: (item: IEquipment) => (item?.available_for_sale ? 'Да' : 'Нет'),
+    },
+    {
+      name: 'created_at',
+      label: 'Дата создания',
+      type: 'text' as const,
+      render: (item: IEquipment) => {
+        if (!item?.created_at) return '-'
+        return new Date(item.created_at).toLocaleDateString('ru-RU', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        })
+      },
     },
   ]
 
   const actions: any = [
     {
-      icon: <ViewIcon size={ICON_SIZE} />,
+      icon: <Eye size={ICON_SIZE} color="#363435" />,
       tooltip: 'Просмотр',
-      onClick: (item: IEquipment) => router.push(`${DASHBOARD_PAGES.VERIFICATION}/${item.id}`),
+      onClick: (item: IEquipment) => viewEquipment(item),
       color: 'info',
     },
     {
-      icon: <Check size={ICON_SIZE} />,
-      tooltip: 'Approve',
+      icon: <Check size={ICON_SIZE} color="#363435" />,
+      tooltip: 'Подтвердить',
       onClick: (item: IEquipment) => confirmEquipment(item.id),
       color: 'primary',
     },
     {
-      icon: <TrashIcon size={ICON_SIZE} />,
-      tooltip: 'Удалить',
-      onClick: (item: IEquipment) => console.log('Delete:', item),
+      icon: <X size={ICON_SIZE} />,
+      tooltip: 'Отклонить',
+      onClick: (item: IEquipment) => rejectEquipment(item.id),
       color: 'error',
     },
   ]
 
-  return <DataTable data={data?.results || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+  return (
+    <>
+      <DataTable data={data?.results || []} columns={columns} loading={isLoading} actions={actions} onRowClick={(item) => console.log('Row clicked:', item)} />
+
+      <PreviewModal isOpen={previewModal.isOpen} onClose={handlePreviewClose} title="оборудования" item={previewModal.item} fields={previewFields} />
+    </>
+  )
 }

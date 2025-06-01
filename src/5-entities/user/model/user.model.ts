@@ -21,4 +21,9 @@ export interface IUser {
 export interface IUserRequest {
   email: string
   username: string
+  first_name: string
+  last_name: string
+  phone_number: string | null
+  address: string
+  file: File | string
 }

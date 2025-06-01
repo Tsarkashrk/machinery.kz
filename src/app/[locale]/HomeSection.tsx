@@ -15,16 +15,13 @@ import { EquipmentList } from '@/3-widgets/equipment-list'
 import { ChevronRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { BrandsList, useBrands } from '@/5-entities/brand'
-import { request } from 'http'
-import { EnumTokens } from '@/6-shared/api'
-import { NextRequest } from 'next/server'
 
 export default function HomeSection() {
   const t = useTranslations('HomePage')
 
   const { data: equipmentListData, isLoading, isSuccess } = useEquipmentWithImages()
   const { brands, isLoading: isBrandsLoading } = useBrands()
-  const { categories, isLoading: isCategoriesLoading } = useCategories()
+  const { categories, isLoading: isCategoriesLoading } = useCategories({ordering: 'id'})
 
   return (
     <div className="home-section">

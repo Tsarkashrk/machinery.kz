@@ -8,7 +8,7 @@ export const moderatorApi = {
     return response.data
   },
   async rejectEquipmentVerification(equipmentId: number) {
-    const response = await axiosWithAuth.post(`${BASE_URL}/delete-equipment/${equipmentId}`)
+    const response = await axiosWithAuth.delete(`${BASE_URL}/delete/${equipmentId}`)
     return response.data
   },
 }

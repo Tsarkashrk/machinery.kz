@@ -16,6 +16,7 @@
 @import '../app/[locale]/dashboard/dashboard';
 @import '../app/[locale]/dashboard/publications/publications';
 @import '../app/[locale]/dashboard/reviews/reviews';
+@import '../app/[locale]/profile/settings/settings-section';
 
 // Widgets
 
@@ -28,6 +29,7 @@
 @import '../3-widgets/chat-window/ui/chat-window';
 @import '../3-widgets/chat-content/ui/chat-content';
 @import '../3-widgets/chat-header/ui/chat-header';
+@import '../3-widgets/profile-card/ui/profile-card';
 
 // Features
 
@@ -42,6 +44,7 @@
 @import '../5-entities/equipment/ui/equipment-card-small';
 @import '../5-entities/dealer/ui/dealer-card';
 @import '../5-entities/chat/ui/chat-message';
+@import '../5-entities/profile/ui/profile-stats';
 
 // UI
 
@@ -72,3 +75,4 @@
 @import '../6-shared/ui/Cards/PromoCard/promo-card';
 @import '../6-shared/ui/Sidebar/sidebar';
 @import '../6-shared/ui/Description/description';
+@import '../6-shared/ui/PreviewModal/preview-modal';

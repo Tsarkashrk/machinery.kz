@@ -36,11 +36,13 @@ export const AdminSidebarList = ({ routes, title }: Props) => {
 
   return (
     <div className="admin-sidebar-list">
-      <div className="admin-sidebar-list__title">
-        <Title fontSize="14px" fontFamily="geist" fontWeight="500" color="gray">
-          {title}
-        </Title>
-      </div>
+      {title && (
+        <div className="admin-sidebar-list__title">
+          <Title fontSize="14px" fontFamily="geist" fontWeight="500" color="gray">
+            {title}
+          </Title>
+        </div>
+      )}
       <ul className="admin-sidebar-list__list">
         {routes.map((route) => {
           const isActive = isRouteActive(route.path)
