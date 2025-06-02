@@ -1,12 +1,12 @@
 import React from 'react'
-import { IEquipmentWithImage } from '../model/equipment.model'
+import { IEquipment, IEquipmentWithImage } from '../model/equipment.model'
 import Image from 'next/image'
 import { Title } from '@/6-shared/ui/Title/Title'
 import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription'
 import Link from 'next/link'
 
 interface Props {
-  equipment: IEquipmentWithImage
+  equipment: IEquipment
 }
 
 export const EquipmentCardSmall = ({ equipment }: Props) => {

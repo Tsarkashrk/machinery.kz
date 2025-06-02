@@ -17,6 +17,7 @@ import { ProfileSidebar } from '@/4-features/profile'
 import ErrorMessage from '@/6-shared/ui/ErrorMessage/ErrorMessage'
 import TextMuted from '@/6-shared/ui/TextMuted/TextMuted'
 import { ProfileCard } from '@/3-widgets/profile-card'
+import { useEquipmentList } from '@/5-entities/equipment'
 
 const ProfileSection = () => {
   const t = useTranslations('Button')
@@ -24,7 +25,9 @@ const ProfileSection = () => {
 
   const { profile, isLoading } = useProfile()
 
-  console.log(profile)
+  const profileId = profile?.id
+
+  const { data: equipmentList } = useEquipmentList(profileId ? { owner: profileId } : undefined)
 
   const {
     register,
@@ -65,7 +68,8 @@ const ProfileSection = () => {
   return (
     <section className="profile-section">
       <div className="profile-section__wrapper">
-        {profile && (
+        <LogoutButton />
+        {profile && equipmentList && (
           <ProfileCard
             user={{
               id: profile.id,
@@ -75,9 +79,9 @@ const ProfileSection = () => {
               avatar: profile.image_url,
               isPro: true,
               stats: {
-                followers: 0,
-                following: 0,
-                likes: 0,
+                equipment: equipmentList.count,
+                deals: 0,
+                rating: 0,
               },
             }}
           />

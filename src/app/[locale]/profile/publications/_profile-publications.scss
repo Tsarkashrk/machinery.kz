@@ -1,0 +1,11 @@
+.profile-publications {
+  &--empty {
+    .profile-publications__wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      border: $border-primary;
+      border-radius: $border-radius-card;
+    }
+  }
+}

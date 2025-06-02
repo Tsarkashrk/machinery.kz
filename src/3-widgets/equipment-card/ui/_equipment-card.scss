@@ -70,7 +70,6 @@
     color: $base-dark-color;
     font-weight: $font-bold;
     font-size: $font-xm;
-    margin-bottom: 1rem;
   }
 
   &__description {
@@ -85,6 +84,10 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.5rem;
+  }
+
+  &__line {
+    margin: 1rem 0;
   }
 
   &--wide {

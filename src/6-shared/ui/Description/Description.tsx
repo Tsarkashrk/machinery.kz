@@ -2,8 +2,13 @@ import { ReactNode } from 'react'
 
 type Props = {
   children: ReactNode
+  fontSize?: string
 }
 
-export const Description = ({ children }: Props) => {
-  return <p className="description">{children}</p>
+export const Description = ({ children, fontSize }: Props) => {
+  return (
+    <p className="description" style={{ fontSize }}>
+      {children}
+    </p>
+  )
 }

@@ -15,8 +15,8 @@ export const usersApi = {
   },
 
   async editProfile(data: IUserRequest) {
-    const response = await axiosWithAuth.put<IUser>(BASE_URL, data)
+    const response = await axiosWithAuth.put<IUser>(`${BASE_URL}`, data)
 
-    return response
+    return response.data
   },
 }

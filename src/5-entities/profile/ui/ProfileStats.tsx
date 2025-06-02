@@ -1,9 +1,9 @@
 'use client'
 
 interface ProfileStatsProps {
-  followers: number
-  following: number
-  likes: number
+  equipment: number
+  deals: number
+  rating: number
   className?: string
 }
 
@@ -17,22 +17,22 @@ const formatNumber = (num: number): string => {
   return num.toString()
 }
 
-export const ProfileStats = ({ followers, following, likes, className = '' }: ProfileStatsProps) => {
+export const ProfileStats = ({ equipment, deals, rating, className = '' }: ProfileStatsProps) => {
   const stats = [
     {
-      label: 'Followers',
-      value: followers,
-      key: 'followers',
+      label: 'Публикаций',
+      value: equipment,
+      key: 'equipment',
     },
     {
-      label: 'Following',
-      value: following,
-      key: 'following',
+      label: 'Сделок',
+      value: deals,
+      key: 'deals',
     },
     {
-      label: 'Likes',
-      value: likes,
-      key: 'likes',
+      label: 'Рейтинг',
+      value: rating,
+      key: 'rating',
     },
   ]
 

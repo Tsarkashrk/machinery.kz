@@ -19,6 +19,7 @@ type Props = {
   page_size?: number
   search?: string
   year?: number
+  owner?: number
 }
 
 export const equipmentApi = {

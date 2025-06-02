@@ -147,19 +147,6 @@ export const ProfileSettingsSection = () => {
               />
               {errors.address && <ErrorMessage>{errors.address.message}</ErrorMessage>}
             </div>
-            <div className="profile-section__credentials">
-              <Label forElement="file">{tProfile('image')}</Label>
-              <Input
-                type="file"
-                id="file"
-                placeholder="Image"
-                {...register('file', {
-                  // required: 'Введите имя',
-                  value: profile?.image_url,
-                })}
-              />
-              {errors.first_name && <ErrorMessage>{errors.first_name.message}</ErrorMessage>}
-            </div>
           </div>
           <Button variant="dark">{t('save-changes')}</Button>
         </form>

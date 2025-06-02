@@ -4,6 +4,10 @@
   gap: 1rem;
 
   &--small {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &--horizontal {
     display: flex;
     flex-direction: column;
   }

@@ -4,6 +4,19 @@
   overflow: hidden;
   margin: 0 auto;
 
+  &__letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    background-color: #1a1a1a;
+    border-radius: 10rem;
+    font-size: 4rem;
+    color: $base-color;
+    font-weight: 900;
+  }
+
   &__content {
     position: relative;
     display: flex;

@@ -5,4 +5,13 @@
     padding-bottom: 2rem;
     border-bottom: $border-primary;
   }
+
+  &__info {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__username {
+    margin-bottom: 0.2rem;
+  }
 }

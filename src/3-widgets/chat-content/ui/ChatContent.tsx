@@ -11,13 +11,16 @@ import { useEffect, useRef, useState } from 'react'
 
 type Props = {
   activeChat: number
+  chatList: any
 }
 
-export const ChatContent = ({ activeChat }: Props) => {
+export const ChatContent = ({ activeChat, chatList }: Props) => {
   const { data } = useChatById(activeChat)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const [isTyping, setIsTyping] = useState(false)
   const typingTimeoutRef = useRef<NodeJS.Timeout>()
+
+  const chat = chatList?.results.find((chat: any) => chat.id === activeChat) || null
 
   const { messages, typingUsers, isConnected, isReconnecting, isSending, sendMessage, sendTyping, markMessageRead } = useChatMessages(activeChat)
 
@@ -123,7 +126,7 @@ export const ChatContent = ({ activeChat }: Props) => {
   return (
     <div className="chat-content">
       <div className="chat-content__wrapper">
-        <ChatHeader username={data.dealer_details.username} isOnline={isConnected} isReconnecting={isReconnecting} />
+        <ChatHeader timestamp={chat && chat.last_message ? chat.last_message.timestamp : undefined} chat={chat} link={data.dealer_details.id} username={data.dealer_details.username} avatar={data.dealer_details.image_url} isOnline={isConnected} isReconnecting={isReconnecting} />
 
         <div className="chat-content__main">
           {allMessages.length === 0 ? (

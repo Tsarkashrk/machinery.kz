@@ -40,13 +40,13 @@ export const ChatItem = ({ chat, isActive, onClick }: Props) => {
     }
   }
 
-  console.log(isActive)
+  console.log(interlocutorChat)
 
   return (
     <div className={`chat-item ${isActive && 'chat-item--active'}`} onClick={handleClick}>
       <div className="chat-item__wrapper">
         <div className="chat-item__avatar">
-          <Avatar username={interlocutorChat?.username} link={`${PLATFORM_PAGES.DEALERS}/${interlocutorChat.id}`} />
+          <Avatar username={interlocutorChat?.username} link={`${PLATFORM_PAGES.DEALERS}/${interlocutorChat.id}`} avatar={interlocutorChat.image_url} />
         </div>
 
         <div className="chat-item__content">

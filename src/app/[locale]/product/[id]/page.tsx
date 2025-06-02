@@ -12,6 +12,9 @@ import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import { IEquipment } from '@/5-entities/equipment'
+import { useEquipmentById } from '@/5-entities/equipment/hooks/useEquipmentById'
+import { useCreateChat } from '@/5-entities/chat'
 
 const product = [
   {
@@ -38,28 +41,26 @@ const TABS = [
 ]
 
 const ProductIdPage = () => {
-  const [selectedTab, setSelectedTab] = useState('description')
-  const [selectedDates, setSelectedDates] = useState<[Date | null, Date | null]>([null, null])
-  const [selectedImage, setSelectedImage] = useState(product[0].img)
-  const [total, setTotal] = useState<any>('')
-
   const { id } = useParams()
   const user: any = useProfile()
 
-  
+  const { equipmentData } = useEquipmentById(Number(id))
 
-  const { data, isLoading } = useQuery<any>({
-    queryKey: ['equipment'],
-    queryFn: () => equipmentApi.getEquipmentById(Number(id)),
-  })
+  const [selectedTab, setSelectedTab] = useState('description')
+  const [selectedDates, setSelectedDates] = useState<[Date | null, Date | null]>([null, null])
+  const [total, setTotal] = useState<any>('')
 
-  const equipmentData = data
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (equipmentData?.images?.[0]?.image_url) {
+      setSelectedImage(equipmentData.images[0].image_url)
+    }
+  }, [equipmentData])
 
   const { register, handleSubmit, reset } = useForm({
     mode: 'onChange',
   })
-
-  console.log(data)
 
   const { push } = useRouter()
 
@@ -121,44 +122,70 @@ const ProductIdPage = () => {
     })
   }
 
+  const params = useParams()
+  const slug = Array.isArray(params?.id) ? params.id[0] : params?.id
+  const router = useRouter()
+  const { profile } = useProfile()
+
+  const { mutate: createChatMutation } = useCreateChat()
+
+  const handleCreateChat = () => {
+    if (!slug || !profile?.id) return
+
+    if (equipmentData) {
+      createChatMutation(
+        {
+          dealer: equipmentData.owner,
+          buyer: profile.id,
+          deal_item: equipmentData.id,
+        },
+        {
+          onSuccess: (chat) => {
+            router.push(`${PLATFORM_PAGES.MESSAGES}`)
+          },
+        },
+      )
+    }
+  }
+
   return (
     <section className="product-slug">
       <div className="product-slug__wrapper">
         <div className="product-slug__cards">
           <Card>
             <div className="product-slug__info">
-              <img className="product-slug__img" src={selectedImage} alt="" />
+              <img className="product-slug__img" src={selectedImage || `/assets/profile-placeholder.png`} alt="" />
               <div className="product-slug__images">
-                <img className="product-slug__img--small" src={product[0].img} alt="" onClick={() => setSelectedImage(product[0].img)} />
-                <img className="product-slug__img--small" src={product[1].img} alt="" onClick={() => setSelectedImage(product[1].img)} />
-                <img className="product-slug__img--small" src={product[2].img} alt="" onClick={() => setSelectedImage(product[2].img)} />
+                {equipmentData?.images.map((image) => (
+                  <img key={image.id} className="product-slug__img--small" src={image.image_url} alt="" onClick={() => setSelectedImage(image.image_url)} />
+                ))}
               </div>
               <div className="product-slug__details">
-                <h1 className="product-slug__h1">{data?.name}</h1>
+                <h1 className="product-slug__h1">{equipmentData?.name}</h1>
                 <div className="product-slug__info-details">
                   <div className="product-slug__row">
                     <TextMuted>Equipment ID:</TextMuted>
-                    <p>{data?.id}</p>
+                    <p>{equipmentData?.id}</p>
                   </div>
                   <div className="product-slug__row">
                     <TextMuted>Category:</TextMuted>
-                    <p>{data?.category_details?.name}</p>
+                    <p>{equipmentData?.category_details?.name}</p>
                   </div>
                   <div className="product-slug__row">
                     <TextMuted>Manufacturer:</TextMuted>
-                    <p>{data?.manufacturer}</p>
+                    <p>{equipmentData?.manufacturer}</p>
                   </div>
                   <div className="product-slug__row">
                     <TextMuted>Model:</TextMuted>
-                    <p>{data?.model}</p>
+                    <p>{equipmentData?.model}</p>
                   </div>
                   <div className="product-slug__row">
                     <TextMuted>Year:</TextMuted>
-                    <p>{data?.year}</p>
+                    <p>{equipmentData?.year}</p>
                   </div>
                   <div className="product-slug__row">
                     <TextMuted>Condition:</TextMuted>
-                    <p>{data?.condition}</p>
+                    <p>{equipmentData?.condition}</p>
                   </div>
                 </div>
               </div>
@@ -175,7 +202,7 @@ const ProductIdPage = () => {
               {selectedTab === 'description' && (
                 <div className="product-slug__description">
                   <h1>Описание</h1>
-                  <p className="product-slug__text">{data?.description || 'No description available.'} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed nesciunt nulla error, architecto hic ducimus consectetur? Facere nobis asperiores, nesciunt amet enim ducimus illum. Repudiandae alias aspernatur sapiente nemo voluptate!</p>
+                  <p className="product-slug__text">{equipmentData?.description || 'No description available.'} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed nesciunt nulla error, architecto hic ducimus consectetur? Facere nobis asperiores, nesciunt amet enim ducimus illum. Repudiandae alias aspernatur sapiente nemo voluptate!</p>
                 </div>
               )}
 
@@ -184,19 +211,19 @@ const ProductIdPage = () => {
                   <h1>Спецификации</h1>
                   <ul>
                     <li>
-                      <strong>Manufacturer:</strong> {data?.manufacturer}
+                      <strong>Manufacturer:</strong> {equipmentData?.manufacturer}
                     </li>
                     <li>
-                      <strong>Model:</strong> {data?.model}
+                      <strong>Model:</strong> {equipmentData?.model}
                     </li>
                     <li>
-                      <strong>Year:</strong> {data?.year}
+                      <strong>Year:</strong> {equipmentData?.year}
                     </li>
                     <li>
-                      <strong>Condition:</strong> {data?.condition}
+                      <strong>Condition:</strong> {equipmentData?.condition}
                     </li>
                     <li>
-                      <strong>Category:</strong> {data?.category_details?.name}
+                      <strong>Category:</strong> {equipmentData?.category_details?.name}
                     </li>
                   </ul>
                 </div>
@@ -212,33 +239,34 @@ const ProductIdPage = () => {
           </Card>
           <Card>
             <h1 className="product-slug__price">
-              {data?.available_for_rent ? (
+              {equipmentData?.available_for_rent ? (
                 <div className="product-slug__price-block">
-                  <div className="product-slug__price-rate">{data?.daily_rental_rate} KZT</div>
+                  <div className="product-slug__price-rate">{equipmentData?.daily_rental_rate} KZT</div>
                   <TextMuted>в день</TextMuted>
                 </div>
               ) : (
                 <div className="product-slug__price-block">
-                  <div className="product-slug__price-rate">{data?.purchase_price} KZT</div>
+                  <div className="product-slug__price-rate">{equipmentData?.purchase_price} KZT</div>
                 </div>
               )}{' '}
             </h1>
             <hr />
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <DatePicker onSelectDates={setSelectedDates} />
-              <div className="product-slug__button">
-                <div className="product-slug__total">
-                  <h1>Итоговая цена</h1>
-                  <div className="product-slug__line" />
-                  <h2>{total} KZT</h2>
+            {equipmentData?.available_for_rent && (
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <DatePicker onSelectDates={setSelectedDates} />
+                <div className="product-slug__button">
+                  <div className="product-slug__total">
+                    <h1>Итоговая цена</h1>
+                    <div className="product-slug__line" />
+                    <h2>{total} KZT</h2>
+                  </div>
+                  <div className="product-slug__button-list"></div>
                 </div>
-                <div className="product-slug__button-list">
-                  <Button onClick={() => {}} link={`${PLATFORM_PAGES.MESSAGES}`} width="100%">
-                    Написать владельцу
-                  </Button>
-                </div>
-              </div>
-            </form>
+              </form>
+            )}
+            <Button onClick={handleCreateChat} width="100%">
+              Написать владельцу
+            </Button>
           </Card>
         </div>
       </div>

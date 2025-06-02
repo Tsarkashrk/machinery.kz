@@ -17,12 +17,12 @@ interface ProfileCardProps {
     name: string
     title: string
     location: string
-    avatar: string
+    avatar?: string
     isPro: boolean
     stats: {
-      followers: number
-      following: number
-      likes: number
+      equipment: number
+      deals: number
+      rating: number
     }
   }
   isOwnProfile?: boolean
@@ -43,19 +43,18 @@ export const ProfileCard = ({ user, isOwnProfile = false }: ProfileCardProps) =>
     <div className="profile-card">
       <div className="profile-card__content">
         <div className="profile-card__avatar-section">
-          <LogoutButton />
-          <div className="profile-card__avatar">{user.avatar ? <Image src={user.avatar} alt={`${user.name} avatar`} width={120} height={120} className="profile-card__avatar-image" /> : <Avatar link={`${PLATFORM_PAGES.DEALERS}/${user.id}`} username={user.name} />}</div>
+          <div className="profile-card__avatar">{user.avatar ? <Image src={user.avatar} alt={`${user.name} avatar`} width={120} height={120} className="profile-card__avatar-image" /> : <div className="profile-card__letter">{user.name[0]}</div>}</div>
         </div>
 
         <div className="profile-card__info">
           <div className="profile-card__header">
             <h1 className="profile-card__name">
               {user.name}
-              {user.isPro && <Badge type="light">PRO 4</Badge>}
+              {/* {user.isPro && <Badge type="light">PRO 4</Badge>} */}
             </h1>
 
             <p className="profile-card__title">{user.title}</p>
-            <p className="profile-card__location">based in {user.location}</p>
+            {user.location && <p className="profile-card__location">based in {user.location}</p>}
           </div>
 
           <div className="profile-card__actions">
@@ -76,7 +75,7 @@ export const ProfileCard = ({ user, isOwnProfile = false }: ProfileCardProps) =>
         </div>
 
         <div className="profile-card__stats">
-          <ProfileStats followers={user.stats.followers} following={user.stats.following} likes={user.stats.likes} />
+          <ProfileStats equipment={user.stats.equipment} deals={user.stats.deals} rating={user.stats.rating} />
         </div>
       </div>
     </div>

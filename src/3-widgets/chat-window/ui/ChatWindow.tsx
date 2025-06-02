@@ -12,7 +12,7 @@ export const ChatWindow = () => {
     <div className="chat-window">
       <div className="chat-window__wrapper">
         <ChatList chatList={chatList} isLoading={isLoading} error={error} activeChatId={activeChat} onChatSelect={setActiveChat} />
-        <ChatContent activeChat={activeChat} />
+        <ChatContent activeChat={activeChat} chatList={chatList}/>
       </div>
     </div>
   )

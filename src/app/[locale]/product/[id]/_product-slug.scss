@@ -94,8 +94,8 @@
       width: max-content;
       padding: 0.5rem 1rem;
       border-radius: $border-radius-ui;
-      background-color: $secondary-color;
-      color: $main-color;
+      background-color: red;
+      color: $base-color;
     }
   }
 
@@ -122,7 +122,11 @@
   }
 
   &__tab {
-    padding: $button-padding;
+    display: flex;
+    align-items: center;
+    padding: 1.15rem 1.5rem;
+    height: 100%;
+    max-height: 3.7rem;
     border: $border;
     border-radius: $border-radius-ui;
     background-color: $base-color;
@@ -134,7 +138,7 @@
     cursor: pointer;
 
     &--active {
-      background-color: $base-dark-color;
+      background-color: $secondary-color;
       border: none;
       color: $base-color;
     }

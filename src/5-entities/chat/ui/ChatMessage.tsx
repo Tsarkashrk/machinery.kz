@@ -29,12 +29,31 @@ export const ChatMessage = ({ message }: Props) => {
     return profile?.id === senderDetails.id
   }, [profile?.id, senderDetails.id])
 
+  // const buyer = chat.buyer_details
+  // const dealer = chat.dealer_details
+
+  console.log(message)
+
+  // const { myChat, interlocutorChat } = useMemo(() => {
+  //   if (profile?.id === buyer.id) {
+  //     return {
+  //       myChat: { ...buyer },
+  //       interlocutorChat: { ...dealer },
+  //     }
+  //   } else {
+  //     return {
+  //       myChat: { ...dealer },
+  //       interlocutorChat: { ...buyer },
+  //     }
+  //   }
+  // }, [profile?.id, buyer, dealer])
+
   return (
     <div className={`chat-message ${isMyMessage ? 'chat-message--my' : 'chat-message--other'}`}>
       <div className="chat-message__wrapper">
         <div className="chat-message__container">
           <div className="chat-message__content">
-            {!isMyMessage && <Avatar link={`${PLATFORM_PAGES.DEALERS}/${senderDetails.id}`} username={senderDetails.username} />}
+            {!isMyMessage && <Avatar link={`${PLATFORM_PAGES.DEALERS}/${senderDetails.id}`} username={senderDetails.username} avatar={senderDetails.image_url} />}
 
             <div className="chat-message__info">
               {!isMyMessage && (
@@ -48,7 +67,7 @@ export const ChatMessage = ({ message }: Props) => {
               )}
 
               <div className="chat-message__footer">
-                <Description>{message?.content}</Description>
+                <Description fontSize="1.6rem">{message?.content}</Description>
                 <div className="chat-message__footer-container">
                   <TextMuted>{message.timestamp && formatTime(message.timestamp)}</TextMuted>
                   {isMyMessage && <CheckCheck size={ICON_SIZE} />}
@@ -56,7 +75,7 @@ export const ChatMessage = ({ message }: Props) => {
               </div>
             </div>
 
-            {isMyMessage && <Avatar link={`${PLATFORM_PAGES.DEALERS}/${senderDetails.id}`} username={senderDetails.username} />}
+            {isMyMessage && <Avatar avatar={senderDetails.image_url} link={`${PLATFORM_PAGES.DEALERS}/${senderDetails.id}`} username={senderDetails.username} />}
           </div>
         </div>
       </div>
