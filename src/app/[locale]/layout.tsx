@@ -93,7 +93,7 @@ export default async function RootLayout({
     notFound()
   }
   const messages = await getMessages()
-  console.log(messages)
+  
 
   return (
     <html lang={locale}>

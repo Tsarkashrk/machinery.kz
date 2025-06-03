@@ -43,7 +43,8 @@ export const ProfileCard = ({ user, isOwnProfile = false }: ProfileCardProps) =>
     <div className="profile-card">
       <div className="profile-card__content">
         <div className="profile-card__avatar-section">
-          <div className="profile-card__avatar">{user.avatar ? <Image src={user.avatar} alt={`${user.name} avatar`} width={120} height={120} className="profile-card__avatar-image" /> : <div className="profile-card__letter">{user.name[0]}</div>}</div>
+          <Avatar size="profile" link={user.id.toString()}  username={user.name[0]}/>
+          {/* <div className="profile-card__avatar">{user.avatar ? <Image src={user.avatar} alt={`${user.name} avatar`} width={120} height={120} className="profile-card__avatar-image" /> : <div className="profile-card__letter">{user.name[0]}</div>}</div> */}
         </div>
 
         <div className="profile-card__info">

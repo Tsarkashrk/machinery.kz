@@ -1,6 +1,7 @@
 'use client'
 
 import { DealersList } from '@/3-widgets/dealers-list'
+import { ProfileCard } from '@/3-widgets/profile-card'
 import { useDealersList } from '@/5-entities/dealer'
 import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
 import { Title } from '@/6-shared/ui/Title/Title'

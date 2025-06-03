@@ -202,7 +202,7 @@ const ProductIdPage = () => {
               {selectedTab === 'description' && (
                 <div className="product-slug__description">
                   <h1>Описание</h1>
-                  <p className="product-slug__text">{equipmentData?.description || 'No description available.'} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed nesciunt nulla error, architecto hic ducimus consectetur? Facere nobis asperiores, nesciunt amet enim ducimus illum. Repudiandae alias aspernatur sapiente nemo voluptate!</p>
+                  <p className="product-slug__text">{equipmentData?.description || 'No description available.'}</p>
                 </div>
               )}
 
@@ -232,7 +232,7 @@ const ProductIdPage = () => {
               {selectedTab === 'rental_terms' && (
                 <div className="product-slug__rental-terms">
                   <h1>Условия аренды</h1>
-                  <p className="product-slug__text">Standard rental terms apply. Equipment must be returned in the same condition.</p>
+                  <p className="product-slug__text">Действуют стандартные условия аренды. Оборудование должно быть возвращено в прежнем состоянии</p>
                 </div>
               )}
             </div>

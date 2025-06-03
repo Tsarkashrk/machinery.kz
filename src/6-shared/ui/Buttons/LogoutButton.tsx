@@ -31,7 +31,7 @@ export function LogoutButton() {
 
   return (
     <div className="logout">
-      <Button variant="outlined" icon={<LogOut size={ICON_SIZE} />} onClick={() => mutate()} isLoading={isPending}>
+      <Button variant="danger" icon={<LogOut size={ICON_SIZE} />} onClick={() => mutate()} isLoading={isPending}>
         {isPending ? 'Logging out...' : t('logout')}
       </Button>
     </div>

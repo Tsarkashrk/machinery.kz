@@ -77,7 +77,6 @@ export const UpdateUserModal = ({ isOpen, onClose, user, onSave, isLoading = fal
             <div className="form-group">
               <label className="form-label form-label--required">Название пользователя</label>
               <CustomDropdown control={control} {...register('user_role')} options={roles} />
-              {/* <input {...register('role', { required: 'Название обязательно' })} className={`form-input ${errors.role ? 'form-input--error' : ''}`} disabled={isLoading} placeholder="Введите название компании" /> */}
               {errors.user_role && <div className="form-error">{errors.user_role.message}</div>}
             </div>
 

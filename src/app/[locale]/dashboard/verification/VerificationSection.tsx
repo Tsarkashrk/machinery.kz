@@ -164,11 +164,6 @@ export const VerificationSection = () => {
       render: (item: IEquipment) => item?.brand_details?.name || '-',
     },
     {
-      name: 'manufacturer',
-      label: 'Производитель',
-      type: 'text' as const,
-    },
-    {
       name: 'model',
       label: 'Модель',
       type: 'text' as const,

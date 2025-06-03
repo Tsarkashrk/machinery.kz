@@ -22,7 +22,14 @@ import { useTranslations } from 'next-intl'
 const NewSection = () => {
   const { brands } = useBrands()
 
-  const { register, handleSubmit, reset, control, watch } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    control,
+    watch,
+  } = useForm({
     mode: 'onChange',
   })
 
@@ -30,7 +37,7 @@ const NewSection = () => {
 
   const listingType = watch('type')
 
-  const { categories } = useCategories()
+  const { categories } = useCategories({ ordering: 'name' })
 
   const { profile, isSuccess } = useProfile()
 
