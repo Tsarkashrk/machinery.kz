@@ -71,7 +71,7 @@ const LoginSection = () => {
               id="email"
               placeholder="mchnry@ex.com"
               {...register('email', {
-                required: 'Email is required!',
+                required: 'Введите почту',
                 pattern: {
                   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                   message: 'Неверный формат!',
@@ -89,8 +89,8 @@ const LoginSection = () => {
                 id="password"
                 placeholder="••••••"
                 {...register('password', {
-                  required: 'Password is required!',
-                  minLength: { value: 6, message: 'Password must be at least 6 characters' },
+                  required: 'Введите пароль',
+                  minLength: { value: 6, message: 'Пароль должен содержать не менее 6 символов!' },
                 })}
               />
               <div className="auth-form__eye" onClick={() => setShowPassword(!showPassword)}>
