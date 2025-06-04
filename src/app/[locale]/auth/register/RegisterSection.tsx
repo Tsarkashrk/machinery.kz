@@ -67,15 +67,17 @@ const RegisterSection = () => {
           <div className="auth-form__container">
             <div className="auth-form__credentials">
               <Label forElement="first_name">{t('register-first-name')}</Label>
-              <Input id="first_name" placeholder="Alex" {...register('first_name', { required: 'First name is required!' })} />
+              <Input id="first_name" placeholder="Alex" {...register('first_name', { required: 'Укажите имя' })} />
+              {errors.first_name && <TextMuted color="red">{errors.first_name.message}</TextMuted>}
             </div>
             <div className="auth-form__credentials">
               <Label forElement="last_name">{t('register-last-name')}</Label>
-              <Input type="text" id="last_name" placeholder="Morro" {...register('last_name', { required: 'Last name is required!' })} />
+              <Input type="text" id="last_name" placeholder="Morro" {...register('last_name', { required: 'Укажите фамилию' })} />
+              {errors.last_name && <TextMuted color="red">{errors.last_name.message}</TextMuted>}
             </div>
           </div>
 
-          <div className="auth-form__credentials">
+          {/* <div className="auth-form__credentials">
             <Label forElement="username">{t('register-username')}</Label>
             <Input
               id="username"
@@ -84,7 +86,7 @@ const RegisterSection = () => {
                 required: 'Username is required!',
               })}
             />
-          </div>
+          </div> */}
 
           <div className="auth-form__credentials">
             <Label forElement="email">{t('register-email')}</Label>
@@ -93,10 +95,10 @@ const RegisterSection = () => {
               id="email"
               placeholder="mchnry@ex.com"
               {...register('email', {
-                required: 'Email is required!',
+                required: 'Введите почту',
                 pattern: {
                   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: 'Invalid email format!',
+                  message: 'Неверный формат!',
                 },
               })}
             />
@@ -112,8 +114,8 @@ const RegisterSection = () => {
                   id="password"
                   placeholder="••••••"
                   {...register('password', {
-                    required: 'Password is required!',
-                    minLength: { value: 6, message: 'Password must be at least 6 characters' },
+                    required: 'Введите пароль',
+                    minLength: { value: 6, message: 'Пароль должен содержать не менее 6 символов!' },
                   })}
                 />
                 <div className="auth-form__eye" onClick={() => setShowPassword(!showPassword)}>
@@ -132,8 +134,8 @@ const RegisterSection = () => {
                   id="confirm_password"
                   placeholder="••••••"
                   {...register('confirm_password', {
-                    required: 'Please confirm your password',
-                    validate: (value) => value === password || 'Passwords do not match',
+                    required: 'Подтвердите пароль',
+                    validate: (value) => value === password || 'Пароли не совпадают!',
                   })}
                 />
                 <div className="auth-form__eye" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
