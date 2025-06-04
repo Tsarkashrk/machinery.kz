@@ -250,6 +250,7 @@ hr {
 .product-slug__wrapper {
   display: flex;
   flex-direction: column;
+  height: auto;
 }
 .product-slug__h1 {
   margin-bottom: 3rem;
@@ -286,6 +287,11 @@ hr {
 }
 .product-slug__img--small:hover {
   border: 2px solid #7e90e4 !important;
+}
+.product-slug__block {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 .product-slug__info {
   display: flex;

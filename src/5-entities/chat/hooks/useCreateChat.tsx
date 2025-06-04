@@ -7,7 +7,7 @@ export const useCreateChat = () => {
     mutationKey: ['create-chat'],
     mutationFn: chatApi.createChat,
     onSuccess() {
-      toast.success('Chat successfully created!')
+      toast.success('Чат успешно создан!')
     },
     onError(error: any) {
       toast.error('Error: ' + error.message || error)

@@ -1,8 +1,11 @@
 import React from 'react'
 import ProductsSection from './ProductsSection'
+import { Metadata } from 'next'
 
-const ProductPage = () => {
-  return <ProductsSection />
+export const metadata: Metadata = {
+  title: 'Объявления',
 }
 
-export default ProductPage
+export default function ProductPage() {
+  return <ProductsSection />
+}

@@ -2,6 +2,7 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
+    height: auto;
   }
 
   &__h1 {
@@ -44,6 +45,12 @@
         border: 2px solid $main-color !important;
       }
     }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   &__info {
