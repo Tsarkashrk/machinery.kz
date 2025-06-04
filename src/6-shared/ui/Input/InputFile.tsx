@@ -44,11 +44,11 @@ export default function InputFile({ onChange, ...props }: InputFileProps) {
         <div className="file-upload__buttons">
           <input className="file-upload__input" type="file" id="fileInput" multiple accept="image/*" onChange={handleFileChange} {...props} />
           <label className="file-upload__button" htmlFor="fileInput">
-            + Add Pictures
+            + Добавить изображение
           </label>
           {images.length > 0 && (
             <button type="button" className="file-upload__clear" onClick={handleClearImages}>
-              Clear Photos
+              Очистить
             </button>
           )}
         </div>

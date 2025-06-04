@@ -11,6 +11,8 @@ class PLATFORM {
   PRODUCT = `${this.root}product`
   FAVORITES = `${this.root}favorites`
   BRANDS = `${this.root}brands`
+  RESET = `${this.root}reset-password`
+  ACTIVATE = `${this.root}activate`
 }
 
 class DASHBOARD {

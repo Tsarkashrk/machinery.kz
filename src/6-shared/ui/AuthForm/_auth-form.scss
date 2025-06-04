@@ -37,6 +37,15 @@
     gap: 1rem;
   }
 
+  &__forgot {
+    text-align: end;
+    text-decoration: underline;
+    margin-top: 1rem;
+    color: $base-dark-color;
+    font-family: $font-geist-sans;
+    font-size: $font-xs;
+  }
+
   &__credentials {
     display: flex;
     flex-direction: column;

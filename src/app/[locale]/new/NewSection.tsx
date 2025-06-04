@@ -145,6 +145,7 @@ const NewSection = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="new-section__form">
             <Card>
               <h1 className="new-section__title">{t('upload-images')}</h1>
+              <hr />
               <InputFile {...register('file')} />
               <hr />
               <h1 className="new-section__title">{t('equipment-information')}</h1>

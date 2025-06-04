@@ -17,6 +17,8 @@ import { useState } from 'react'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
 import { Eye, EyeOff } from 'lucide-react'
 import ErrorMessage from '@/6-shared/ui/ErrorMessage/ErrorMessage'
+import Link from 'next/link'
+import { useToast } from '@/5-entities/toast/hooks/useToast'
 
 const LoginSection = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -33,7 +35,7 @@ const LoginSection = () => {
     formState: { errors },
   } = useForm<IAuthLoginRequest>({ mode: 'onChange' })
 
-  const password = watch('password')
+  const { showSuccess, showError } = useToast()
 
   const { push } = useRouter()
 
@@ -41,12 +43,12 @@ const LoginSection = () => {
     mutationKey: ['login'],
     mutationFn: (data: IAuthLoginRequest) => authApi.login(data),
     onSuccess() {
-      toast.success('Successfully logged in!')
+      toast.success('Вход выполнен успешно!')
       reset()
       push(PROFILE_PAGES.PROFILE)
     },
     onError() {
-      toast.error('Invalid credentials', { description: 'Try again!' })
+      toast.error('Неверные данные', { description: 'Повторите попытку!' })
     },
   })
 
@@ -98,6 +100,9 @@ const LoginSection = () => {
               </div>
             </div>
             {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
+            <Link href={PLATFORM_PAGES.RESET} className="auth-form__forgot">
+              Забыли пароль?
+            </Link>
           </div>
 
           <Button variant="default" type="submit" isLoading={isPending}>
