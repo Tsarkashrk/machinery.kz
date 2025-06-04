@@ -1,8 +1,8 @@
 import React from 'react'
-import ProductSection from './ProductSection'
+import ProductsSection from './ProductsSection'
 
 const ProductPage = () => {
-  return <ProductSection />
+  return <ProductsSection />
 }
 
 export default ProductPage

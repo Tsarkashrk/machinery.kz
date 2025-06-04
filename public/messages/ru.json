@@ -25,7 +25,7 @@
   },
   "HomePage": {
     "title": "Главная",
-    "latest-equipment": "Последние публикации",
+    "latest-equipment": "Последние объявления",
     "all-equipment": "Всё оборудование",
     "popular-equipment-categories": "Популярные категории оборудования",
     "all-equipment-categories": "Все категории",
@@ -79,17 +79,17 @@
     "title": "Настройки профиля"
   },
   "ProfilePublicationsPage": {
-    "title": "Мои публикации"
+    "title": "Мои объявления"
   },
   "DashboardPage": {
     "title": "Панель управления",
     "platform-management": "Управление платформой",
     "user-management": "Управление пользователями",
-    "publication-management": "Управление публикациями",
+    "publication-management": "Управление объявлениями",
     "feedback-management": "Управление отзывами",
     "categories": "Категории",
     "brands": "Бренды",
-    "publications": "Публикации",
+    "publications": "Объявления",
     "users": "Пользователи",
     "companies": "Компании",
     "verification": "Верификация",
@@ -97,7 +97,7 @@
     "complaints": "Жалобы"
   },
   "DashboardPublicationPage": {
-    "title": "Публикации"
+    "title": "Объявления"
   },
   "DashboardVerificationPage": {
     "title": "Верификация"

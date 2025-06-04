@@ -51,7 +51,7 @@ export const EquipmentCard = ({ available_for_rent, daily_rental_rate, purchase_
   }, [status])
 
   return (
-    <Link href={`${PLATFORM_PAGES.PRODUCT}/${id}`} className={`equipment-card ${variant && `equipment-card--${variant}`}`}>
+    <Link href={`${PLATFORM_PAGES.PRODUCTS}/${id}`} className={`equipment-card ${variant && `equipment-card--${variant}`}`}>
       <div className="equipment-card__wrapper">
         <div className="equipment-card__image-container">
           <div className="equipment-card__header">

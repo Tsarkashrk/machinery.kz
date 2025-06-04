@@ -2,7 +2,7 @@ import { IEquipmentFilters, IFilterFormData } from '../model/filter.model'
 
 export const convertFormDataToFilters = (formData: IFilterFormData): IEquipmentFilters => {
   const filters: IEquipmentFilters = {
-    page: 1, 
+    page: 1,
     page_size: 20,
   }
 
@@ -24,7 +24,7 @@ export const convertFormDataToFilters = (formData: IFilterFormData): IEquipmentF
 export const getInitialFormData = (): IFilterFormData => ({
   search: '',
   brand: '',
-  category: '',
+  category: null,
   available_for_rent: false,
   available_for_sale: false,
   min_price: '',

@@ -15,7 +15,7 @@ const FavoritesSection = () => {
     <section className="favorite-section">
       <SectionWithContent>
         <Title size="h1">{t('title')}</Title>
-        {!favorites || favorites.count === 0 ? <EmptyCard>У вас нет избранных публикаций</EmptyCard> : <FavoritesList favoritesList={favorites.results} isLoading={isLoading} />}
+        {!favorites || favorites.count === 0 ? <EmptyCard>У вас нет избранных объявлений</EmptyCard> : <FavoritesList favoritesList={favorites.results} isLoading={isLoading} />}
       </SectionWithContent>
     </section>
   )

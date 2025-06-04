@@ -11,7 +11,7 @@ export const ProfileSidebar = () => {
 
   const userManagement = [
     { name: 'Профиль', path: `/profile`, icon: <Users size={ICON_SIZE} /> },
-    { name: 'Мои публикации', path: `${PROFILE_PAGES.PUBLICATIONS}`, icon: <PanelsLeftBottomIcon size={ICON_SIZE} /> },
+    { name: 'Мои объявления', path: `${PROFILE_PAGES.PUBLICATIONS}`, icon: <PanelsLeftBottomIcon size={ICON_SIZE} /> },
     { name: 'Мои сделки', path: `${PROFILE_PAGES.ORDERS}`, icon: <ChartBarStacked size={ICON_SIZE} /> },
     { name: 'Настройки', path: `${PROFILE_PAGES.SETTINGS}`, icon: <Settings size={ICON_SIZE} /> },
   ]

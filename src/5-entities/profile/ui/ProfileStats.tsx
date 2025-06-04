@@ -20,7 +20,7 @@ const formatNumber = (num: number): string => {
 export const ProfileStats = ({ equipment, deals, rating, className = '' }: ProfileStatsProps) => {
   const stats = [
     {
-      label: 'Публикаций',
+      label: 'Объявлений',
       value: equipment,
       key: 'equipment',
     },

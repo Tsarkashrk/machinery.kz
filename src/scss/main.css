@@ -234,15 +234,15 @@ hr {
   height: auto;
 }
 
-.categories-slug__filters-title {
+.products-section__filters-title {
   margin-bottom: 2rem;
 }
-.categories-slug__brands {
+.products-section__brands {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.categories-slug__prices {
+.products-section__prices {
   display: flex;
   gap: 1rem;
 }

@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { ProfilePublicationsSection } from './ProfilePublicationsSection'
 
 export const metadata: Metadata = {
-  title: 'Мои публикации',
+  title: 'Мои объявления',
 }
 
 export default function ProfilePublicationsPage() {

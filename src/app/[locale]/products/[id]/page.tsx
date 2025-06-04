@@ -12,31 +12,12 @@ import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { IEquipment } from '@/5-entities/equipment'
 import { useEquipmentById } from '@/5-entities/equipment/hooks/useEquipmentById'
 import { useCreateChat } from '@/5-entities/chat'
 
-const product = [
-  {
-    name: 'Some text here',
-    description: 'description text here',
-    img: '/assets/eq1.webp',
-  },
-  {
-    name: 'Some text here',
-    description: 'description text here',
-    img: '/assets/eq2.webp',
-  },
-  {
-    name: 'Some text here',
-    description: 'description text here',
-    img: '/assets/eq3.webp',
-  },
-]
-
 const TABS = [
   { id: 'description', label: 'Описание' },
-  { id: 'specifications', label: 'Спецификации' },
+  { id: 'specifications', label: 'Характеристики' },
   { id: 'rental_terms', label: 'Условия аренды' },
 ]
 

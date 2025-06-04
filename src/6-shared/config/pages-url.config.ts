@@ -8,7 +8,7 @@ class PLATFORM {
   REGISTER = `${this.root}auth/register`
   NEW = `${this.root}new`
   MESSAGES = `${this.root}messages`
-  PRODUCT = `${this.root}product`
+  PRODUCTS = `${this.root}products`
   FAVORITES = `${this.root}favorites`
   BRANDS = `${this.root}brands`
   RESET = `${this.root}reset-password`

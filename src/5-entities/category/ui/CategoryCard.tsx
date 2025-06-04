@@ -12,7 +12,7 @@ export const CategoryCard = ({ category }: Props) => {
   const locale = useLocale()
 
   return (
-    <Link href={`${PLATFORM_PAGES.CATEGORIES}/${category.id}`} className={`category-card ${(category.id === 7 || category.id === 20) && 'category-card--doubled'} ${category.id >= 27 && 'category-card--machinery category-card--doubled'}`}>
+    <Link href={`${PLATFORM_PAGES.PRODUCTS}/?category=${category.id}`} className={`category-card ${(category.id === 7 || category.id === 20) && 'category-card--doubled'} ${category.id >= 27 && 'category-card--machinery category-card--doubled'}`}>
       <div className="category-card__info">
         <h3 className="category-card__name">{locale === 'ru' ? category.name : category.description}</h3>
       </div>

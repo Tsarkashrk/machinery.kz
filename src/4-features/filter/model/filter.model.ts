@@ -20,7 +20,7 @@ export interface IEquipmentFilters {
 export interface IFilterFormData {
   search: string
   brand: string
-  category: string
+  category: number | null
   available_for_rent: boolean
   available_for_sale: boolean
   min_price: string

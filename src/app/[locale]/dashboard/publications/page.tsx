@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { PublicationsSection } from './PublicationsSection'
 
 export const metadata: Metadata = {
-  title: 'Публикации',
+  title: 'Объявления',
 }
 
 const PublicationsPage = () => {

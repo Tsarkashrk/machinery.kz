@@ -58,7 +58,7 @@ const Navigation = () => {
             {data &&
               data.map((item) => (
                 <li key={item.id} className="navigation__search-item">
-                  <Link href={`${PLATFORM_PAGES.PRODUCT}/${item.id}`}>
+                  <Link href={`${PLATFORM_PAGES.PRODUCTS}/${item.id}`}>
                     <span>{item.name}</span>
                   </Link>
                 </li>

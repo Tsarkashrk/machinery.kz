@@ -16,7 +16,7 @@ export const ProfilePublicationsSection = () => {
     return (
       <div className="profile-publications profile-publications--empty">
         <div className="profile-publications__wrapper">
-          <Title size='h2'>У вас нет никаких публикаций</Title>
+          <Title size='h2'>У вас нет никаких объявлений</Title>
         </div>
       </div>
     )

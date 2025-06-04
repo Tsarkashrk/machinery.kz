@@ -12,7 +12,7 @@ interface Props {
 
 export const EquipmentCardSmall = ({ equipment }: Props) => {
   return (
-    <Link href={`${PLATFORM_PAGES.PRODUCT}/${equipment.id}`} className="equipment-card equipment-card--small">
+    <Link href={`${PLATFORM_PAGES.PRODUCTS}/${equipment.id}`} className="equipment-card equipment-card--small">
       <Image className="equipment-card__image" src="/assets/eq1.webp" width={50} height={50} alt={''} />
       <div className="equipment-card__info">
         <Title size="h2">{equipment.name}</Title>
