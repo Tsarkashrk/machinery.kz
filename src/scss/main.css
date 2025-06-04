@@ -1972,6 +1972,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 2rem;
 }
 .file-upload__preview {
   display: flex;

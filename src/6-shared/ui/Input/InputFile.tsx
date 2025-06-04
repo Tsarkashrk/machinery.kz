@@ -31,16 +31,16 @@ export default function InputFile({ onChange, ...props }: InputFileProps) {
   return (
     <div className="file-upload">
       <div className="file-upload__wrapper">
-        <div className="file-upload__preview">
-          {images.map((src, index) => (
+        {images.map((src, index) => (
+          <div className="file-upload__preview">
             <div key={index} className="file-upload__image-container">
               <img src={src} alt={`Selected ${index}`} className="file-upload__image" />
               <button type="button" className="file-upload__delete" onClick={() => handleDeleteImage(index)}>
                 <Trash />
               </button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
         <div className="file-upload__buttons">
           <input className="file-upload__input" type="file" id="fileInput" multiple accept="image/*" onChange={handleFileChange} {...props} />
           <label className="file-upload__button" htmlFor="fileInput">

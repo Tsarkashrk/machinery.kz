@@ -147,7 +147,7 @@ const NewSection = () => {
               <h1 className="new-section__title">{t('upload-images')}</h1>
               <hr />
               <InputFile {...register('file')} />
-              <hr />
+              
               <h1 className="new-section__title">{t('equipment-information')}</h1>
               <hr />
               <div className="new-section__info">
@@ -172,10 +172,12 @@ const NewSection = () => {
                         required: t('name-required'),
                       })}
                     />
+                    {typeof errors.name?.message === 'string' && <TextMuted color="red">* {errors.name.message}</TextMuted>}
                   </div>
                   <div className="new-section__info-block">
                     <Label forElement="model">{t('model')}</Label>
                     <Input id="model" type="text" placeholder="GSR 12V-30" {...register('model', { required: t('model-required') })} />
+                    {typeof errors.model?.message === 'string' && <TextMuted color="red">* {errors.model.message}</TextMuted>}
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
@@ -185,7 +187,8 @@ const NewSection = () => {
                   </div>
                   <div className="new-section__info-block">
                     <Label forElement="year">{t('year')}</Label>
-                    <Input id="year" type="number" placeholder="2012" {...register('year', { required: t('year-required') })} />
+                    <Input id="year" type="number" placeholder="2010-2025" {...register('year', { required: t('year-required'), max: { value: new Date().getFullYear(), message: 'Год не может быть в будущем' }, min: { value: 2010, message: 'Оборудование слишком старое' } })} />
+                    {typeof errors.year?.message === 'string' && <TextMuted color="red">* {errors.year.message}</TextMuted>}
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
@@ -216,9 +219,10 @@ const NewSection = () => {
                       type="text"
                       placeholder={t('equipment-description-placeholder')}
                       {...register('description', {
-                        required: 'Description is required!',
+                        required: 'Требуется заполнить описание!',
                       })}
                     />
+                    {typeof errors.description?.message === 'string' && <TextMuted color="red">* {errors.description.message}</TextMuted>}
                   </div>
                 </div>
                 <Button type="submit" variant="default" width="100%">
