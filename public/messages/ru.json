@@ -1,6 +1,7 @@
 {
   "Navigation": {
     "categories-title": "Категории",
+    "catalog-title": "Каталог",
     "brands-title": "Бренды",
     "dealers-title": "Дилеры",
     "favorites-title": "Избранные",
@@ -48,6 +49,7 @@
   },
   "BrandPage": {
     "title": "Бренд",
+    "brands-publications": "Объявления бренда",
     "brands-equipment": "Оборудование",
     "brands-all-equipment": "Все оборудование",
     "brands-machinery": "Техника",

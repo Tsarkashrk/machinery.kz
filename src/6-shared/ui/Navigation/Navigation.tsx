@@ -1,4 +1,4 @@
-import { Users, BadgeCheck, Search, ChartGantt } from 'lucide-react'
+import { Users, BadgeCheck, Search, ChartGantt, LucideStretchHorizontal } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
@@ -32,6 +32,7 @@ const Navigation = () => {
 
   const navItems = [
     { link: PLATFORM_PAGES.CATEGORIES, title: t('categories-title'), icon: <ChartGantt size={ICON_SIZE} /> },
+    { link: PLATFORM_PAGES.PRODUCTS, title: t('catalog-title'), icon: <LucideStretchHorizontal size={ICON_SIZE} /> },
     { link: PLATFORM_PAGES.BRANDS, title: t('brands-title'), icon: <BadgeCheck size={ICON_SIZE} /> },
     { link: PLATFORM_PAGES.DEALERS, title: t('dealers-title'), icon: <Users size={ICON_SIZE} /> },
   ]

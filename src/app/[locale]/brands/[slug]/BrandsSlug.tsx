@@ -13,6 +13,7 @@ import { TitleMore } from '@/6-shared/ui/TitleMore/TitleMore'
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
 import { ChevronRight } from 'lucide-react'
 import { ICON_SIZE } from '@/6-shared/constants/constants'
+import { EmptyCard } from '@/6-shared/ui/EmptyCard/EmptyCard'
 
 const BrandsSlug = () => {
   const params = useParams()
@@ -29,9 +30,7 @@ const BrandsSlug = () => {
     return (
       <section className="brands-slug">
         <div className="brands-slug__wrapper">
-          <Card>
-            <div>Brand not found</div>
-          </Card>
+          <EmptyCard>Бренд не найден</EmptyCard>
         </div>
       </section>
     )
@@ -44,16 +43,8 @@ const BrandsSlug = () => {
           {t('title')} {brand.name}
         </Title>
         <BrandHeader id={brand.id} logoUrl={brand.file} name={brand.name} description={brand.description} foundedYear={brand.founded_year} />
-        <Title size="h2">
-          {t('brands-equipment')}
-        </Title>
+        <Title size="h2">{t('brands-publications')}</Title>
         <EquipmentList equipmentList={equipmentList} isLoading={false} />
-        <Title size="h2">
-          {t('brands-machinery')}
-          <TitleMore link={PLATFORM_PAGES.CATEGORIES}>
-            {t('brands-all-machinery')} <ChevronRight size={ICON_SIZE} />
-          </TitleMore>
-        </Title>
       </div>
     </section>
   )
