@@ -11,7 +11,6 @@ html {
 }
 
 body {
-  background-color: white;
   font-family: var(--font-geist-sans);
   font-weight: 500;
   font-size: 1.6rem;
@@ -20,11 +19,9 @@ body {
 }
 
 main {
-  border-radius: 2.5rem 2.5rem 0 0;
   min-height: calc(100vh - 6.9rem);
   height: 100%;
   margin: 0 auto;
-  background-color: white;
 }
 
 .main__wrapper {
@@ -457,6 +454,15 @@ hr {
   padding: 2rem;
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
   border-radius: 1.6rem;
+}
+
+.activate-section__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: calc(100vh - 20rem);
 }
 
 .equipment-card__wrapper {

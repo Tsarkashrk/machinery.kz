@@ -21,6 +21,14 @@ export const authApi = {
     return response
   },
 
+  async activateUser(token: string | null) {
+    const response = await axiosClassic.get(`${BASE_URL}/activate/?token=${token}`)
+
+    console.log(response)
+
+    return response
+  },
+
   // async getNewTokens() {
   // 	const response = await axiosClassic.post<IAuthResponse>(
   // 		'auth/login/access-token'

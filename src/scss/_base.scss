@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  background-color: $base-color;
+  // background-color: $zinc-50;
   font-family: $font-geist-sans;
   font-weight: $font-medium;
   font-size: $font-sm;
@@ -14,11 +14,9 @@ body {
 }
 
 main {
-  border-radius: 2.5rem 2.5rem 0 0;
   min-height: calc(100vh - 6.9rem);
   height: 100%;
   margin: 0 auto;
-  background-color: $base-color;
 }
 
 .main__wrapper {
