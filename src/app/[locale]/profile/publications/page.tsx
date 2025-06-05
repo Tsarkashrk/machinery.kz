@@ -1,10 +1,10 @@
-import { Metadata } from 'next'
-import { ProfilePublicationsSection } from './ProfilePublicationsSection'
+import { Metadata } from "next";
+import { ProfilePublicationsSection } from "./ProfilePublicationsSection";
 
 export const metadata: Metadata = {
-  title: 'Мои объявления',
-}
+  title: "Мои объявления",
+};
 
 export default function ProfilePublicationsPage() {
-  return <ProfilePublicationsSection />
+  return <ProfilePublicationsSection />;
 }

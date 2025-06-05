@@ -1,3 +1,4 @@
-export { useActivateUser } from './hooks/useActivateUser'
+export { useActivateUser } from "./hooks/useActivateUser";
+export { usePasswordReset } from "./hooks/usePasswordReset";
 
-export * from './model/auth.model'
+export * from "./model/auth.model";

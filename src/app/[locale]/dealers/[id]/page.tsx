@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import { DealerSlug } from './DealerSlug'
+import { Metadata } from "next";
+import { DealerSlug } from "./DealerSlug";
 
 export const metadata: Metadata = {
-  title: 'Dealer',
-}
+  title: "Dealer",
+};
 
 const DealerPage = () => {
-  return <DealerSlug />
-}
+  return <DealerSlug />;
+};
 
-export default DealerPage
+export default DealerPage;

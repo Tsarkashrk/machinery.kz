@@ -1,12 +1,15 @@
-'use client'
+"use client";
 
-import { PLATFORM_PAGES, PROFILE_PAGES } from '@/6-shared/config/pages-url.config'
-import Link from 'next/link'
-import Avatar from '../Avatar/Avatar'
+import {
+  PLATFORM_PAGES,
+  PROFILE_PAGES,
+} from "@/6-shared/config/pages-url.config";
+import Link from "next/link";
+import Avatar from "../Avatar/Avatar";
 
 interface ProfileButtonProps {
-  email: string
-  username: string
+  email: string;
+  username: string;
 }
 
 const ProfileButton = (data: ProfileButtonProps) => {
@@ -15,7 +18,7 @@ const ProfileButton = (data: ProfileButtonProps) => {
       <Avatar link={PROFILE_PAGES.PROFILE} username={data.username} />
       <p className="profile-button__email">{data.email}</p>
     </Link>
-  )
-}
+  );
+};
 
-export default ProfileButton
+export default ProfileButton;

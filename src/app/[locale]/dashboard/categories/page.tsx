@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import { CategoriesSection } from './CategoriesSection'
+import { Metadata } from "next";
+import { CategoriesSection } from "./CategoriesSection";
 
 export const metadata: Metadata = {
-  title: 'Категории',
-}
+  title: "Категории",
+};
 
 const CategoriesPage = () => {
-  return <CategoriesSection />
-}
+  return <CategoriesSection />;
+};
 
-export default CategoriesPage
+export default CategoriesPage;

@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { ChatWindow } from '@/3-widgets/chat-window'
-import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent'
-import { Title } from '@/6-shared/ui/Title/Title'
-import React from 'react'
+import { ChatWindow } from "@/3-widgets/chat-window";
+import { SectionWithContent } from "@/6-shared/ui/SectionWithContent/SectionWithContent";
+import { Title } from "@/6-shared/ui/Title/Title";
+import React from "react";
 
 const MessagesSection = () => {
   return (
@@ -15,7 +15,7 @@ const MessagesSection = () => {
         </SectionWithContent>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default MessagesSection
+export default MessagesSection;

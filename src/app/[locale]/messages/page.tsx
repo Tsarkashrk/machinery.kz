@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import MessagesSection from './MessagesSection'
+import { Metadata } from "next";
+import MessagesSection from "./MessagesSection";
 
 export const metadata: Metadata = {
-  title: 'Messages',
-}
+  title: "Messages",
+};
 
 const MessagesPage = () => {
-  return <MessagesSection />
-}
+  return <MessagesSection />;
+};
 
-export default MessagesPage
+export default MessagesPage;

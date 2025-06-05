@@ -1,13 +1,13 @@
-import { Metadata } from 'next'
-import React from 'react'
-import CategoriesSection from './CategoriesSection'
+import { Metadata } from "next";
+import React from "react";
+import CategoriesSection from "./CategoriesSection";
 
 export const metadata: Metadata = {
-  title: 'Categories',
-}
+  title: "Categories",
+};
 
 const CategoriesPage = () => {
-  return <CategoriesSection />
-}
+  return <CategoriesSection />;
+};
 
-export default CategoriesPage
+export default CategoriesPage;

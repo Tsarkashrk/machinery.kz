@@ -1,23 +1,23 @@
-'use client'
+"use client";
 
-import { IUser } from '@/5-entities/user'
-import Button from '../Buttons/Button'
-import { useProfile } from '@/5-entities/user'
-import { ReactNode } from 'react'
-import { LogoutButton } from '../Buttons/LogoutButton'
-import Label from '../Label/Label'
+import { IUser } from "@/5-entities/user";
+import Button from "../Buttons/Button";
+import { useProfile } from "@/5-entities/user";
+import { ReactNode } from "react";
+import { LogoutButton } from "../Buttons/LogoutButton";
+import Label from "../Label/Label";
 
 interface IData {
-  text: string
-  icon: ReactNode
+  text: string;
+  icon: ReactNode;
 }
 
 interface SidebarProps {
-  sidebarData: IData[]
+  sidebarData: IData[];
 }
 
 const Sidebar = ({ sidebarData }: SidebarProps) => {
-  const { profile } = useProfile()
+  const { profile } = useProfile();
 
   return (
     <div className="sidebar">
@@ -38,7 +38,7 @@ const Sidebar = ({ sidebarData }: SidebarProps) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

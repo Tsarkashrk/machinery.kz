@@ -1,3 +1,1 @@
-export const UpdateCompany = () => {
-  
-}
+export const UpdateCompany = () => {};

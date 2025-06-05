@@ -1,1 +1,1 @@
-export { UpdateUserModal } from './ui/UpdateUser'
+export { UpdateUserModal } from "./ui/UpdateUser";

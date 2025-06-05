@@ -1,11 +1,11 @@
-import React from 'react'
-import ProductsSection from './ProductsSection'
-import { Metadata } from 'next'
+import React from "react";
+import ProductsSection from "./ProductsSection";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Объявления',
-}
+  title: "Объявления",
+};
 
 export default function ProductPage() {
-  return <ProductsSection />
+  return <ProductsSection />;
 }

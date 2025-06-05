@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from "react";
 
 const ErrorMessage = ({ children }: PropsWithChildren) => {
-  return <span className="error-message">* {children}</span>
-}
+  return <span className="error-message">* {children}</span>;
+};
 
-export default ErrorMessage
+export default ErrorMessage;

@@ -1,13 +1,13 @@
-import { Metadata } from 'next'
-import BrandsSlug from './BrandsSlug'
-import React from 'react'
+import { Metadata } from "next";
+import BrandsSlug from "./BrandsSlug";
+import React from "react";
 
 export const metadata: Metadata = {
-  title: 'Brand',
-}
+  title: "Brand",
+};
 
 const BrandsSlugPage = () => {
-  return <BrandsSlug />
-}
+  return <BrandsSlug />;
+};
 
-export default BrandsSlugPage
+export default BrandsSlugPage;

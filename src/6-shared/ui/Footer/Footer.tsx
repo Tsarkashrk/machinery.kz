@@ -1,6 +1,6 @@
-import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
-import Link from 'next/link'
-import React from 'react'
+import { PLATFORM_PAGES } from "@/6-shared/config/pages-url.config";
+import Link from "next/link";
+import React from "react";
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
         </Link>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

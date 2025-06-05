@@ -48,7 +48,7 @@
 //       {messages.map((message, index) => {
 //         const prevMessage = messages[index - 1];
 //         const showAvatar = !prevMessage || prevMessage.sender_id !== message.sender_id;
-        
+
 //         return (
 //           <MessageItem
 //             key={message.id}

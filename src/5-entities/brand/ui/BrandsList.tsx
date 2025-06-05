@@ -1,9 +1,9 @@
-import { IBrand } from '../model/brand.model'
-import { BrandCard } from './BrandCard'
+import { IBrand } from "../model/brand.model";
+import { BrandCard } from "./BrandCard";
 
 type Props = {
-  brands: IBrand[] | undefined
-}
+  brands: IBrand[] | undefined;
+};
 
 export const BrandsList = ({ brands }: Props) => {
   return (
@@ -12,5 +12,5 @@ export const BrandsList = ({ brands }: Props) => {
         <BrandCard key={brand.id} brand={brand} />
       ))}
     </div>
-  )
-}
+  );
+};

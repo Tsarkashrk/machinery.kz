@@ -1,3 +1,1 @@
-export const ROLES = {
-  
-}
+export const ROLES = {};

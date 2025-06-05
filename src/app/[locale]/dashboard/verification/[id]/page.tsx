@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import { VerificationSlugSection } from './VerificationSlugSection'
+import { Metadata } from "next";
+import { VerificationSlugSection } from "./VerificationSlugSection";
 
 export const metadata: Metadata = {
-  title: 'Верификация',
-}
+  title: "Верификация",
+};
 
 const VerificationSugPage = () => {
-  return <VerificationSlugSection />
-}
+  return <VerificationSlugSection />;
+};
 
-export default VerificationSugPage
+export default VerificationSugPage;

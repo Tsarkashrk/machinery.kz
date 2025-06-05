@@ -1,11 +1,11 @@
-import { ReactNode } from 'react'
-import Button from '../Buttons/Button'
+import { ReactNode } from "react";
+import Button from "../Buttons/Button";
 
 type Props = {
-  children: ReactNode
-  fontSize?: string
-  link?: string
-}
+  children: ReactNode;
+  fontSize?: string;
+  link?: string;
+};
 
 export const TitleMore = ({ children, fontSize, link }: Props) => {
   return (
@@ -14,5 +14,5 @@ export const TitleMore = ({ children, fontSize, link }: Props) => {
         {children}
       </Button>
     </div>
-  )
-}
+  );
+};

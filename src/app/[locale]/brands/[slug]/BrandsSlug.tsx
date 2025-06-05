@@ -1,30 +1,30 @@
-'use client'
+"use client";
 
-import Card from '@/6-shared/ui/Cards/Card/Card'
-import React from 'react'
-import { useParams } from 'next/navigation'
-import { BrandHeader, useBrandSearch } from '@/5-entities/brand'
-import Image from 'next/image'
-import { EquipmentList } from '@/3-widgets/equipment-list'
-import { useEquipmentWithImages } from '@/5-entities/equipment'
-import { Title } from '@/6-shared/ui/Title/Title'
-import { useTranslations } from 'next-intl'
-import { TitleMore } from '@/6-shared/ui/TitleMore/TitleMore'
-import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config'
-import { ChevronRight } from 'lucide-react'
-import { ICON_SIZE } from '@/6-shared/constants/constants'
-import { EmptyCard } from '@/6-shared/ui/EmptyCard/EmptyCard'
+import Card from "@/6-shared/ui/Cards/Card/Card";
+import React from "react";
+import { useParams } from "next/navigation";
+import { BrandHeader, useBrandSearch } from "@/5-entities/brand";
+import Image from "next/image";
+import { EquipmentList } from "@/3-widgets/equipment-list";
+import { useEquipmentWithImages } from "@/5-entities/equipment";
+import { Title } from "@/6-shared/ui/Title/Title";
+import { useTranslations } from "next-intl";
+import { TitleMore } from "@/6-shared/ui/TitleMore/TitleMore";
+import { PLATFORM_PAGES } from "@/6-shared/config/pages-url.config";
+import { ChevronRight } from "lucide-react";
+import { ICON_SIZE } from "@/6-shared/constants/constants";
+import { EmptyCard } from "@/6-shared/ui/EmptyCard/EmptyCard";
 
 const BrandsSlug = () => {
-  const params = useParams()
-  const slug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug
+  const params = useParams();
+  const slug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
 
-  const { brand, isLoading, isSuccess } = useBrandSearch(slug || '')
-  const { data: equipmentList } = useEquipmentWithImages({ brand: brand?.id })
+  const { brand, isLoading, isSuccess } = useBrandSearch(slug || "");
+  const { data: equipmentList } = useEquipmentWithImages({ brand: brand?.id });
 
-  const t = useTranslations('BrandPage')
+  const t = useTranslations("BrandPage");
 
-  console.log('Brand data:', brand)
+  console.log("Brand data:", brand);
 
   if (!brand || !isSuccess) {
     return (
@@ -33,21 +33,27 @@ const BrandsSlug = () => {
           <EmptyCard>Бренд не найден</EmptyCard>
         </div>
       </section>
-    )
+    );
   }
 
   return (
     <section className="brands-slug">
       <div className="brands-slug__wrapper">
         <Title>
-          {t('title')} {brand.name}
+          {t("title")} {brand.name}
         </Title>
-        <BrandHeader id={brand.id} logoUrl={brand.file} name={brand.name} description={brand.description} foundedYear={brand.founded_year} />
-        <Title size="h2">{t('brands-publications')}</Title>
+        <BrandHeader
+          id={brand.id}
+          logoUrl={brand.file}
+          name={brand.name}
+          description={brand.description}
+          foundedYear={brand.founded_year}
+        />
+        <Title size="h2">{t("brands-publications")}</Title>
         <EquipmentList equipmentList={equipmentList} isLoading={false} />
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default BrandsSlug
+export default BrandsSlug;

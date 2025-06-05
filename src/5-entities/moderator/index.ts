@@ -1,1 +1,1 @@
-export { useRejectEquipment } from './hooks/useRejectEquipment'
+export { useRejectEquipment } from "./hooks/useRejectEquipment";

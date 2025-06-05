@@ -1,13 +1,13 @@
-import { Metadata } from 'next'
-import React from 'react'
-import NewSection from './NewSection'
+import { Metadata } from "next";
+import React from "react";
+import NewSection from "./NewSection";
 
 export const metadata: Metadata = {
-  title: 'New',
-}
+  title: "New",
+};
 
 const NewPage = () => {
-  return <NewSection />
-}
+  return <NewSection />;
+};
 
-export default NewPage
+export default NewPage;

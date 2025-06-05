@@ -1,10 +1,10 @@
-import { Metadata } from 'next'
-import { ProductIdSection } from './ProductsIdSection'
+import { Metadata } from "next";
+import { ProductIdSection } from "./ProductsIdSection";
 
 export const metadata: Metadata = {
-  title: 'Объявление',
-}
+  title: "Объявление",
+};
 
 export default function ProductsIdPage() {
-  return <ProductIdSection />
+  return <ProductIdSection />;
 }

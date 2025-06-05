@@ -1,26 +1,26 @@
-'use client'
+"use client";
 
-import Button from '@/6-shared/ui/Buttons/Button'
-import { Input } from '@/6-shared/ui/Input/Input'
-import Label from '@/6-shared/ui/Label/Label'
-import { useProfile } from '@/5-entities/user'
-import { profileApi } from '@/6-shared/api'
-import { IUserRequest } from '@/5-entities/user'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { toast } from 'sonner'
-import { useTranslations } from 'next-intl'
-import ErrorMessage from '@/6-shared/ui/ErrorMessage/ErrorMessage'
+import Button from "@/6-shared/ui/Buttons/Button";
+import { Input } from "@/6-shared/ui/Input/Input";
+import Label from "@/6-shared/ui/Label/Label";
+import { useProfile } from "@/5-entities/user";
+import { profileApi } from "@/6-shared/api";
+import { IUserRequest } from "@/5-entities/user";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { useTranslations } from "next-intl";
+import ErrorMessage from "@/6-shared/ui/ErrorMessage/ErrorMessage";
 
 export const ProfileSettingsSection = () => {
-  const t = useTranslations('Button')
-  const tProfile = useTranslations('ProfilePage')
+  const t = useTranslations("Button");
+  const tProfile = useTranslations("ProfilePage");
 
-  const { profile, isLoading } = useProfile()
+  const { profile, isLoading } = useProfile();
 
-  console.log(profile)
+  console.log(profile);
 
   const {
     register,
@@ -30,127 +30,144 @@ export const ProfileSettingsSection = () => {
     defaultValues: {
       phone_number: profile?.phone_number || null,
     },
-    mode: 'onChange',
-  })
+    mode: "onChange",
+  });
 
-  const { push } = useRouter()
+  const { push } = useRouter();
 
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
-    mutationKey: ['edit profile'],
+    mutationKey: ["edit profile"],
     mutationFn: (data: IUserRequest) => profileApi.editProfile(data),
     onSuccess: (updatedData) => {
-      queryClient.setQueryData(['profile'], updatedData)
-      queryClient.invalidateQueries({ queryKey: ['profile'] })
-      toast.success('Successfully edited!')
+      queryClient.setQueryData(["profile"], updatedData);
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
+      toast.success("Successfully edited!");
     },
     onError: () => {
-      toast.error('Invalid credentials', { description: 'Try again!' })
+      toast.error("Invalid credentials", { description: "Try again!" });
     },
-  })
+  });
 
   const onSubmit: SubmitHandler<IUserRequest> = (data) => {
-    mutate(data)
-  }
+    mutate(data);
+  };
 
   return (
     <section className="settings-section">
       <div className="settings-section__wrapper">
-        <form className="profile-section__form" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="profile-section__form"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="profile-section--horizontal">
             <div className="profile-section__credentials">
-              <Label forElement="first_name">{tProfile('first-name')}</Label>
+              <Label forElement="first_name">{tProfile("first-name")}</Label>
               <Input
                 type="text"
                 id="first_name"
                 placeholder="Alex"
-                {...register('first_name', {
+                {...register("first_name", {
                   // required: 'Введите имя',
                   value: profile?.first_name,
                 })}
               />
-              {errors.first_name && <ErrorMessage>{errors.first_name.message}</ErrorMessage>}
+              {errors.first_name && (
+                <ErrorMessage>{errors.first_name.message}</ErrorMessage>
+              )}
             </div>
             <div className="profile-section__credentials">
-              <Label forElement="last_name">{tProfile('last-name')}</Label>
+              <Label forElement="last_name">{tProfile("last-name")}</Label>
               <Input
                 type="text"
                 id="last_name"
                 placeholder="Morro"
-                {...register('last_name', {
+                {...register("last_name", {
                   // required: 'Last name is required!',
                   value: profile?.last_name,
                 })}
               />
-              {errors.last_name && <ErrorMessage>{errors.last_name.message}</ErrorMessage>}
+              {errors.last_name && (
+                <ErrorMessage>{errors.last_name.message}</ErrorMessage>
+              )}
             </div>
             <div className="profile-section__credentials">
-              <Label forElement="username">{tProfile('username')}</Label>
+              <Label forElement="username">{tProfile("username")}</Label>
               <Input
                 type="text"
                 id="username"
                 placeholder="AlexoMor"
-                {...register('username', {
-                  required: 'Username is required!',
+                {...register("username", {
+                  required: "Username is required!",
                   value: profile?.username,
                 })}
               />
-              {errors.username && <ErrorMessage>{errors.username.message}</ErrorMessage>}
+              {errors.username && (
+                <ErrorMessage>{errors.username.message}</ErrorMessage>
+              )}
             </div>
             <div className="profile-section__credentials">
-              <Label forElement="email">{tProfile('email')}</Label>
+              <Label forElement="email">{tProfile("email")}</Label>
               <Input
                 type="email"
                 id="email"
                 placeholder="example@mail.ru"
-                {...register('email', {
-                  required: 'Email is required!',
+                {...register("email", {
+                  required: "Email is required!",
                   value: profile?.email,
                 })}
               />
-              {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+              {errors.email && (
+                <ErrorMessage>{errors.email.message}</ErrorMessage>
+              )}
             </div>
             <div className="profile-section__credentials">
-              <Label forElement="phone_number">{tProfile('phone-number')}</Label>
+              <Label forElement="phone_number">
+                {tProfile("phone-number")}
+              </Label>
               <Input
                 type="text"
                 id="phone_number"
                 placeholder="+7-(707)-707-70-70"
-                {...register('phone_number', {
-                  setValueAs: (value) => (value === '' ? null : value),
+                {...register("phone_number", {
+                  setValueAs: (value) => (value === "" ? null : value),
                   pattern: {
                     value: /^\+?[0-9]{10,15}$/,
-                    message: 'Некорректный номер телефона',
+                    message: "Некорректный номер телефона",
                   },
                   minLength: {
                     value: 10,
-                    message: 'Номер должен содержать минимум 10 цифр',
+                    message: "Номер должен содержать минимум 10 цифр",
                   },
                   maxLength: {
                     value: 15,
-                    message: 'Номер не должен превышать 15 цифр',
+                    message: "Номер не должен превышать 15 цифр",
                   },
                 })}
               />
-              {errors.phone_number && <ErrorMessage>{errors.phone_number.message}</ErrorMessage>}
+              {errors.phone_number && (
+                <ErrorMessage>{errors.phone_number.message}</ErrorMessage>
+              )}
             </div>
             <div className="profile-section__credentials">
-              <Label forElement="address">{tProfile('address')}</Label>
+              <Label forElement="address">{tProfile("address")}</Label>
               <Input
                 type="text"
                 id="address"
-                {...register('address', {
+                {...register("address", {
                   // required: 'Address is required!',
                   value: profile?.address,
                 })}
               />
-              {errors.address && <ErrorMessage>{errors.address.message}</ErrorMessage>}
+              {errors.address && (
+                <ErrorMessage>{errors.address.message}</ErrorMessage>
+              )}
             </div>
           </div>
-          <Button variant="dark">{t('save-changes')}</Button>
+          <Button variant="dark">{t("save-changes")}</Button>
         </form>
       </div>
     </section>
-  )
-}
+  );
+};

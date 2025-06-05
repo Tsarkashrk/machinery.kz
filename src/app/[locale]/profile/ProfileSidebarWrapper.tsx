@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import { ProfileSidebar } from "@/4-features/profile"
+import { ProfileSidebar } from "@/4-features/profile";
 
 export const ProfileSidebarWrapper = () => {
-  return <ProfileSidebar />
-}
+  return <ProfileSidebar />;
+};

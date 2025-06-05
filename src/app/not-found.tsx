@@ -1,7 +1,5 @@
-export default function NotFound( ) {
-  return <main>
-    Страница не найдена
-  </main>
+export default function NotFound() {
+  return <main>Страница не найдена</main>;
 }
 
 // // export default function NotFound() {

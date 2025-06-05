@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import { DashboardSection } from './DashboardSection'
+import { Metadata } from "next";
+import { DashboardSection } from "./DashboardSection";
 
 export const metadata: Metadata = {
-  title: 'Панель управления',
-}
+  title: "Панель управления",
+};
 
 const DashboardPage = () => {
-  return <DashboardSection />
-}
+  return <DashboardSection />;
+};
 
-export default DashboardPage
+export default DashboardPage;

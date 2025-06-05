@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { ICompanyResponse } from '@/5-entities/company'
-import { DealerCard, useDealersList } from '@/5-entities/dealer'
-import { IUser } from '@/5-entities/user'
+import { ICompanyResponse } from "@/5-entities/company";
+import { DealerCard, useDealersList } from "@/5-entities/dealer";
+import { IUser } from "@/5-entities/user";
 
 type Props = {
-  companies: ICompanyResponse[]
-  users: IUser[]
-}
+  companies: ICompanyResponse[];
+  users: IUser[];
+};
 
 export const DealersList = ({ companies, users }: Props) => {
   return (
@@ -21,5 +21,5 @@ export const DealersList = ({ companies, users }: Props) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};

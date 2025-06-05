@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import { ReviewsSection } from './ReviewsSection'
+import { Metadata } from "next";
+import { ReviewsSection } from "./ReviewsSection";
 
 export const metadata: Metadata = {
-  title: 'Отзывы',
-}
+  title: "Отзывы",
+};
 
 const ReviewsPage = () => {
-  return <ReviewsSection />
-}
+  return <ReviewsSection />;
+};
 
-export default ReviewsPage
+export default ReviewsPage;

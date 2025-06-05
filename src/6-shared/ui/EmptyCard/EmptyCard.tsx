@@ -1,9 +1,9 @@
-import { ReactNode } from 'react'
-import { Title } from '../Title/Title'
+import { ReactNode } from "react";
+import { Title } from "../Title/Title";
 
 type Props = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 export const EmptyCard = ({ children }: Props) => {
   return (
@@ -12,5 +12,5 @@ export const EmptyCard = ({ children }: Props) => {
         <Title size="h2">{children}</Title>
       </div>
     </div>
-  )
-}
+  );
+};

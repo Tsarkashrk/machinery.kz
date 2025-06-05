@@ -1,2 +1,2 @@
-export * from './model/useToggleFavorite'
-export * from './ui/ToggleFavoriteButton'
+export * from "./model/useToggleFavorite";
+export * from "./ui/ToggleFavoriteButton";

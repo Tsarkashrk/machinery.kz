@@ -23,7 +23,9 @@
 .modal {
   background: white;
   border-radius: 8px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   width: 100%;
   max-height: 90vh;
   overflow: hidden;
@@ -280,7 +282,7 @@
     color: #374151;
 
     &--required::after {
-      content: ' *';
+      content: " *";
       color: #ef4444;
     }
   }
@@ -291,7 +293,9 @@
     border: 1px solid #d1d5db;
     border-radius: 6px;
     font-size: $font-sm;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
 
     &:focus {
       outline: none;

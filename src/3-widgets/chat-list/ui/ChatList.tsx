@@ -1,15 +1,21 @@
-import { ChatItem } from '@/3-widgets/chat-item'
-import { IChatsResponse } from '@/5-entities/chat'
+import { ChatItem } from "@/3-widgets/chat-item";
+import { IChatsResponse } from "@/5-entities/chat";
 
 type Props = {
-  onChatSelect?: (chatId: number) => void
-  activeChatId?: number | null
-  chatList: IChatsResponse
-  isLoading: boolean
-  error: Error | null
-}
+  onChatSelect?: (chatId: number) => void;
+  activeChatId?: number | null;
+  chatList: IChatsResponse;
+  isLoading: boolean;
+  error: Error | null;
+};
 
-export const ChatList = ({ onChatSelect, activeChatId, chatList, isLoading, error }: Props) => {
+export const ChatList = ({
+  onChatSelect,
+  activeChatId,
+  chatList,
+  isLoading,
+  error,
+}: Props) => {
   return (
     <div className="chat-list">
       <div className="chat-list__wrapper">
@@ -32,8 +38,17 @@ export const ChatList = ({ onChatSelect, activeChatId, chatList, isLoading, erro
             </div>
           ))}
 
-        {chatList && chatList.results && chatList.results.map((chat: any, index: number) => <ChatItem key={chat.id} chat={chat} isActive={activeChatId === chat.id} onClick={(chatId) => onChatSelect?.(chatId)} />)}
+        {chatList &&
+          chatList.results &&
+          chatList.results.map((chat: any, index: number) => (
+            <ChatItem
+              key={chat.id}
+              chat={chat}
+              isActive={activeChatId === chat.id}
+              onClick={(chatId) => onChatSelect?.(chatId)}
+            />
+          ))}
       </div>
     </div>
-  )
-}
+  );
+};

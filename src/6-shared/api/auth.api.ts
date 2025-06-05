@@ -1,32 +1,49 @@
-import { IAuth, IAuthLoginRequest, IAuthRegisterRequest } from '@/5-entities/auth'
+import {
+  IAuth,
+  IAuthLoginRequest,
+  IAuthRegisterRequest,
+} from "@/5-entities/auth";
 
-import { axiosClassic } from './interceptors'
+import { axiosClassic } from "./interceptors";
 
-import { removeFromStorage, saveTokenStorage } from './auth-token.api'
+import { removeFromStorage, saveTokenStorage } from "./auth-token.api";
 
-const BASE_URL = '/auth'
+const BASE_URL = "/auth";
 
 export const authApi = {
   async register(data: IAuthRegisterRequest) {
-    const response = await axiosClassic.post<IAuth>(`${BASE_URL}/register/`, data)
+    const response = await axiosClassic.post<IAuth>(
+      `${BASE_URL}/register/`,
+      data,
+    );
 
-    return response
+    return response;
   },
 
   async login(data: IAuthLoginRequest) {
-    const response = await axiosClassic.post<IAuth>(`${BASE_URL}/login/`, data)
+    const response = await axiosClassic.post<IAuth>(`${BASE_URL}/login/`, data);
 
-    if (response.data.access && response.data.refresh) saveTokenStorage(response.data.access, response.data.refresh)
+    if (response.data.access && response.data.refresh)
+      saveTokenStorage(response.data.access, response.data.refresh);
 
-    return response
+    return response;
   },
 
   async activateUser(token: string | null) {
-    const response = await axiosClassic.get(`${BASE_URL}/activate/?token=${token}`)
+    const response = await axiosClassic.get(
+      `${BASE_URL}/activate/?token=${token}`,
+    );
 
-    console.log(response)
+    return response;
+  },
 
-    return response
+  async resetPassword(email: string) {
+    const response = await axiosClassic.post(
+      `${BASE_URL}/password-reset/`,
+      email,
+    );
+
+    return response.data;
   },
 
   // async getNewTokens() {
@@ -43,8 +60,8 @@ export const authApi = {
     // const response = await axiosClassic.post<boolean>('/auth/logout')
 
     // if (response.data)
-    removeFromStorage()
+    removeFromStorage();
 
     // return response
   },
-}
+};

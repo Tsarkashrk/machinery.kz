@@ -1,24 +1,25 @@
-'use client'
+"use client";
 
-import { FC, ChangeEvent } from 'react'
-import { Input } from '@/6-shared/ui/Input/Input'
-import { Search } from 'lucide-react'
-import { useSearch } from '../model/useSearch'
-import { EquipmentList } from '@/3-widgets/equipment-list'
-import { ICON_SIZE } from '@/6-shared/constants/constants'
+import { FC, ChangeEvent } from "react";
+import { Input } from "@/6-shared/ui/Input/Input";
+import { Search } from "lucide-react";
+import { useSearch } from "../model/useSearch";
+import { EquipmentList } from "@/3-widgets/equipment-list";
+import { ICON_SIZE } from "@/6-shared/constants/constants";
 
 type Props = {
-  placeholder?: string
-}
+  placeholder?: string;
+};
 
-export const SearchFeature = ({ placeholder = 'Search products' }: Props) => {
-  const [{ query, searchTerm, results, isLoading }, handleQueryChange] = useSearch()
+export const SearchFeature = ({ placeholder = "Search products" }: Props) => {
+  const [{ query, searchTerm, results, isLoading }, handleQueryChange] =
+    useSearch();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handleQueryChange(e.target.value)
-  }
+    handleQueryChange(e.target.value);
+  };
 
-  console.log(results)
+  console.log(results);
 
   return (
     <div className="search-feature">
@@ -26,13 +27,21 @@ export const SearchFeature = ({ placeholder = 'Search products' }: Props) => {
         <Search size={ICON_SIZE} />
       </Input>
 
+      <p className="search-feature__count" style={{ marginTop: "10px" }}>
+        Найдено {results?.length} объявлений
+      </p>
+
       {searchTerm && (
-        <div className="search-feature__results">
+        <div className="search-feature__results" style={{ marginTop: "10px" }}>
           {isLoading ? (
             <p className="search-feature__loading">Loading...</p>
           ) : results?.length ? (
             <ul className="search-feature__list">
-              <EquipmentList equipmentList={results} isLoading={false} variant="small" />
+              <EquipmentList
+                equipmentList={results.slice(0, 5)}
+                isLoading={false}
+                variant="horizontal"
+              />
             </ul>
           ) : (
             <p className="search-feature__empty">No products found</p>
@@ -40,5 +49,5 @@ export const SearchFeature = ({ placeholder = 'Search products' }: Props) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};

@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import LoginSection from './LoginSection'
+import { Metadata } from "next";
+import LoginSection from "./LoginSection";
 
 export const metadata: Metadata = {
-  title: 'Авторизация',
-}
+  title: "Авторизация",
+};
 
 const LoginPage = () => {
-  return <LoginSection />
-}
+  return <LoginSection />;
+};
 
-export default LoginPage
+export default LoginPage;

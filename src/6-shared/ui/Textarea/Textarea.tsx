@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Textarea = () => {
   return (
-    <textarea name="asd" id="asd">Someth</textarea>
-  )
-}
+    <textarea name="asd" id="asd">
+      Someth
+    </textarea>
+  );
+};
 
-export default Textarea
+export default Textarea;

@@ -1,16 +1,16 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 type CarouselItem = {
-  img: string
-  title: string
-  description: string
-  link: string
-  price: string
-}
+  img: string;
+  title: string;
+  description: string;
+  link: string;
+  price: string;
+};
 
 interface ICardData {
-  cardData: CarouselItem
-  secondary?: boolean
+  cardData: CarouselItem;
+  secondary?: boolean;
 }
 
 export const PromoCard = ({ cardData }: ICardData) => {
@@ -28,5 +28,5 @@ export const PromoCard = ({ cardData }: ICardData) => {
       </div> */}
       </div>
     </Link>
-  )
-}
+  );
+};

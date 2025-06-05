@@ -1,22 +1,34 @@
-import Card from '@/6-shared/ui/Cards/Card/Card'
-import { Description } from '@/6-shared/ui/Description/Description'
-import { Title } from '@/6-shared/ui/Title/Title'
-import Image from 'next/image'
+import Card from "@/6-shared/ui/Cards/Card/Card";
+import { Description } from "@/6-shared/ui/Description/Description";
+import { Title } from "@/6-shared/ui/Title/Title";
+import Image from "next/image";
 
 type Props = {
-  id: number
-  logoUrl: string
-  name: string
-  description: string
-  foundedYear: number
-}
+  id: number;
+  logoUrl: string;
+  name: string;
+  description: string;
+  foundedYear: number;
+};
 
-export const BrandHeader = ({ id, logoUrl, name, description, foundedYear }: Props) => {
+export const BrandHeader = ({
+  id,
+  logoUrl,
+  name,
+  description,
+  foundedYear,
+}: Props) => {
   return (
     <div className="brand-header">
       <div className="brand-header__wrapper">
         <div className="brand-header__info">
-          <Image className="brand-header__logo" width={300} height={300} src={logoUrl} alt={name || 'Brand logo'} />
+          <Image
+            className="brand-header__logo"
+            width={300}
+            height={300}
+            src={logoUrl}
+            alt={name || "Brand logo"}
+          />
           <div className="brand-header__text">
             <Title>
               {name} ({foundedYear})
@@ -26,5 +38,5 @@ export const BrandHeader = ({ id, logoUrl, name, description, foundedYear }: Pro
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

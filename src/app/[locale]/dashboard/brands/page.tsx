@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import { BrandsSection } from './BrandsSection'
+import { Metadata } from "next";
+import { BrandsSection } from "./BrandsSection";
 
 export const metadata: Metadata = {
-  title: 'Бренды',
-}
+  title: "Бренды",
+};
 
 const BrandsPage = () => {
-  return <BrandsSection />
-}
+  return <BrandsSection />;
+};
 
-export default BrandsPage
+export default BrandsPage;

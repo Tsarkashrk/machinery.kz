@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import FavoritesSection from './FavoritesSection'
+import { Metadata } from "next";
+import FavoritesSection from "./FavoritesSection";
 
 export const metadata: Metadata = {
-  title: 'Favorites',
-}
+  title: "Favorites",
+};
 
 const FavoritesPage = () => {
-  return <FavoritesSection />
-}
+  return <FavoritesSection />;
+};
 
-export default FavoritesPage
+export default FavoritesPage;

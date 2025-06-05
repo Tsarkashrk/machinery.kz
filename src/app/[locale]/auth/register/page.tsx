@@ -1,12 +1,12 @@
-import { Metadata } from 'next'
-import RegisterSection from './RegisterSection'
+import { Metadata } from "next";
+import RegisterSection from "./RegisterSection";
 
 export const metadata: Metadata = {
-  title: 'Регистрация',
-}
+  title: "Регистрация",
+};
 
 const RegisterPage = () => {
-  return <RegisterSection />
-}
+  return <RegisterSection />;
+};
 
-export default RegisterPage
+export default RegisterPage;

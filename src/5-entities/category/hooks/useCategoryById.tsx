@@ -1,13 +1,13 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from "@tanstack/react-query";
 
-import { categoriesApi } from '@/6-shared/api'
-import { ICategory } from '../model/category.model'
+import { categoriesApi } from "@/6-shared/api";
+import { ICategory } from "../model/category.model";
 
 export function useCategoryById(id: number) {
   const { data, isLoading, isSuccess } = useQuery<ICategory>({
-    queryKey: ['category'],
+    queryKey: ["category"],
     queryFn: () => categoriesApi.getCategoryById(id),
-  })
+  });
 
-  return { category: data, isLoading, isSuccess }
+  return { category: data, isLoading, isSuccess };
 }

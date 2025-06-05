@@ -1,28 +1,28 @@
-import { hasLocale, NextIntlClientProvider } from 'next-intl'
-import React, { ReactNode } from 'react'
-import { Providers } from '../providers'
-import { routing } from '@/i18n/routing'
-import { getMessages, getTranslations } from 'next-intl/server'
-import { notFound } from 'next/navigation'
-import { ProfileSidebarWrapper } from './ProfileSidebarWrapper'
-import { ProfileContentWrapper } from './ProfileContentWrapper'
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import React, { ReactNode } from 'react';
+import { Providers } from '../providers';
+import { routing } from '@/i18n/routing';
+import { getMessages, getTranslations } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { ProfileSidebarWrapper } from './ProfileSidebarWrapper';
+import { ProfileContentWrapper } from './ProfileContentWrapper';
 
 type Props = {
-  children: ReactNode
-  params: Promise<{ locale: string }>
-}
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+};
 
 export default async function ProfileLayout({ children, params }: Props) {
-  const resolvedParams = await params
-  const { locale } = resolvedParams
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
 
   if (!hasLocale(routing.locales, locale)) {
-    notFound()
+    notFound();
   }
 
-  const t = getTranslations('ProfilePage')
+  const t = getTranslations('ProfilePage');
 
-  const messages = await getMessages({ locale })
+  const messages = await getMessages({ locale });
 
   return (
     <div className="profile-layout">
@@ -33,5 +33,5 @@ export default async function ProfileLayout({ children, params }: Props) {
         <ProfileContentWrapper>{children}</ProfileContentWrapper>
       </main>
     </div>
-  )
+  );
 }

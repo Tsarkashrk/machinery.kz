@@ -1,2 +1,2 @@
-export * from './hooks/useFavorites'
-export * from './model/favorite.model'
+export * from "./hooks/useFavorites";
+export * from "./model/favorite.model";

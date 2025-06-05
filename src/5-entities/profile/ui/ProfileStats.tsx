@@ -1,40 +1,45 @@
-'use client'
+"use client";
 
 interface ProfileStatsProps {
-  equipment: number
-  deals: number
-  rating: number
-  className?: string
+  equipment: number;
+  deals: number;
+  rating: number;
+  className?: string;
 }
 
 const formatNumber = (num: number): string => {
   if (num >= 1000000) {
-    return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M'
+    return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
   }
   if (num >= 1000) {
-    return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K'
+    return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
   }
-  return num.toString()
-}
+  return num.toString();
+};
 
-export const ProfileStats = ({ equipment, deals, rating, className = '' }: ProfileStatsProps) => {
+export const ProfileStats = ({
+  equipment,
+  deals,
+  rating,
+  className = "",
+}: ProfileStatsProps) => {
   const stats = [
     {
-      label: 'Объявлений',
+      label: "Объявлений",
       value: equipment,
-      key: 'equipment',
+      key: "equipment",
     },
     {
-      label: 'Сделок',
+      label: "Сделок",
       value: deals,
-      key: 'deals',
+      key: "deals",
     },
     {
-      label: 'Рейтинг',
+      label: "Рейтинг",
       value: rating,
-      key: 'rating',
+      key: "rating",
     },
-  ]
+  ];
 
   return (
     <div className={`profile-stats ${className}`}>
@@ -45,5 +50,5 @@ export const ProfileStats = ({ equipment, deals, rating, className = '' }: Profi
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
