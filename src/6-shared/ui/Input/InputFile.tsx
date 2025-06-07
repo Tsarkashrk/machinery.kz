@@ -1,5 +1,5 @@
-import { Trash } from "lucide-react";
-import { useState } from "react";
+import { Trash } from 'lucide-react';
+import { useState } from 'react';
 
 interface InputFileProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -33,24 +33,32 @@ export default function InputFile({ onChange, ...props }: InputFileProps) {
   return (
     <div className="file-upload">
       <div className="file-upload__wrapper">
-        {images.map((src, index) => (
-          <div className="file-upload__preview">
-            <div key={index} className="file-upload__image-container">
-              <img
-                src={src}
-                alt={`Selected ${index}`}
-                className="file-upload__image"
-              />
-              <button
-                type="button"
-                className="file-upload__delete"
-                onClick={() => handleDeleteImage(index)}
+        <div className="file-upload__images">
+          {images.map((src, index) => (
+            <div
+              key={src}
+              className="file-upload__preview"
+            >
+              <div
+                key={index}
+                className="file-upload__image-container"
               >
-                <Trash />
-              </button>
+                <img
+                  src={src}
+                  alt={`Selected ${index}`}
+                  className="file-upload__image"
+                />
+                <button
+                  type="button"
+                  className="file-upload__delete"
+                  onClick={() => handleDeleteImage(index)}
+                >
+                  <Trash />
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
         <div className="file-upload__buttons">
           <input
             className="file-upload__input"
@@ -61,7 +69,10 @@ export default function InputFile({ onChange, ...props }: InputFileProps) {
             onChange={handleFileChange}
             {...props}
           />
-          <label className="file-upload__button" htmlFor="fileInput">
+          <label
+            className="file-upload__button"
+            htmlFor="fileInput"
+          >
             + Добавить изображение
           </label>
           {images.length > 0 && (

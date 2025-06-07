@@ -5,11 +5,11 @@ import Button from '@/6-shared/ui/Buttons/Button';
 import ErrorMessage from '@/6-shared/ui/ErrorMessage/ErrorMessage';
 import { Input } from '@/6-shared/ui/Input/Input';
 import Label from '@/6-shared/ui/Label/Label';
-import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent';
 import TextMuted from '@/6-shared/ui/TextMuted/TextMuted';
 import { Title } from '@/6-shared/ui/Title/Title';
 import { useTranslations } from 'next-intl';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useSearchParams } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 
 interface IResetPassword {
   email: string;
@@ -24,7 +24,7 @@ export const ResetPasswordSection = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IResetPassword>();
+  } = useForm<IResetPassword>({ mode: 'onChange' });
 
   const onSubmit = async (data: IResetPassword) => {
     mutate({ email: data.email });
@@ -66,9 +66,7 @@ export const ResetPasswordSection = () => {
                 disabled={isPending}
                 width="100%"
               >
-                {isPending
-                  ? 'Сбросить текущий пароль...'
-                  : `Сбросить текущий пароль`}
+                Сбросить текущий пароль
               </Button>
             </div>
           </form>

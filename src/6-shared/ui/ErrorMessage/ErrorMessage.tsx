@@ -1,6 +1,10 @@
-import React, { PropsWithChildren } from "react";
+import React, { ReactNode } from 'react';
 
-const ErrorMessage = ({ children }: PropsWithChildren) => {
+type Props = {
+  children: ReactNode;
+};
+
+const ErrorMessage = ({ children }: Props) => {
   return <span className="error-message">* {children}</span>;
 };
 

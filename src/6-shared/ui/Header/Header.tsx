@@ -71,7 +71,6 @@ const Header = ({ isSimple }: Props) => {
                 <Button
                   link={PLATFORM_PAGES.NEW}
                   variant="default"
-                  isLink
                 >
                   <Plus size={ICON_SIZE} />
                   {tButton('new-listing')}
@@ -95,7 +94,6 @@ const Header = ({ isSimple }: Props) => {
                   />
                 ) : (
                   <Button
-                    isLink
                     link={PLATFORM_PAGES.LOGIN}
                     variant="outlined"
                   >

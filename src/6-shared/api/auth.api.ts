@@ -14,6 +14,12 @@ type Props = {
   email: string;
 };
 
+type TypeConfirm = {
+  token: string;
+  new_password: string;
+  confirm_password: string;
+};
+
 export const authApi = {
   async register(data: IAuthRegisterRequest) {
     const response = await axiosClassic.post<IAuth>(
@@ -45,6 +51,23 @@ export const authApi = {
     const response = await axiosClassic.post(`${BASE_URL}/password-reset/`, {
       email: data.email,
     });
+
+    return response.data;
+  },
+
+  async validateResetToken(token: string | null) {
+    const response = await axiosClassic.get(
+      `${BASE_URL}/password-reset/validate/?token=${token}`,
+    );
+
+    return response.data;
+  },
+
+  async confirmPassword(data: TypeConfirm) {
+    const response = await axiosClassic.post(
+      `${BASE_URL}/password-reset/confirm/`,
+      data,
+    );
 
     return response.data;
   },

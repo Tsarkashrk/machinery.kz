@@ -38,8 +38,8 @@
   }
 
   &__forgot {
-    text-align: end;
-    text-decoration: underline;
+    display: flex;
+    justify-content: flex-end;
     margin-top: 1rem;
     color: $base-dark-color;
     font-family: $font-geist-sans;

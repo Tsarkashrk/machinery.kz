@@ -5,7 +5,6 @@ import { ReactNode, ButtonHTMLAttributes } from 'react';
 import { usePathname } from 'next/navigation';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-  isLink?: boolean;
   isLoading?: boolean;
   width?: string;
   link?: string;
