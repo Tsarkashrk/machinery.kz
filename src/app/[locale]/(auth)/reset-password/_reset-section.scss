@@ -1,0 +1,33 @@
+.reset-password {
+  width: 100%;
+  height: calc(100vh - 30rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__wrapper {
+    width: 100%;
+    padding: 2rem;
+    max-width: 40rem;
+    border: $border-primary;
+    border-radius: $border-radius-card;
+    box-shadow: $box-shadow-primary;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2.4rem;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__button {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+}

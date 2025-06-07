@@ -1,5 +1,5 @@
 class PLATFORM {
-  public root = "/";
+  public root = '/';
 
   HOME = this.root;
   DEALERS = `${this.root}dealers`;
@@ -11,12 +11,12 @@ class PLATFORM {
   PRODUCTS = `${this.root}products`;
   FAVORITES = `${this.root}favorites`;
   BRANDS = `${this.root}brands`;
-  RESET = `${this.root}auth/reset-password`;
+  RESET = `${this.root}reset-password`;
   ACTIVATE = `${this.root}activate`;
 }
 
 class DASHBOARD {
-  public root = "/dashboard";
+  public root = '/dashboard';
 
   DASHBOARD = this.root;
   USERS = `${this.root}/users`;
@@ -30,7 +30,7 @@ class DASHBOARD {
 }
 
 class PROFILE {
-  public root = "/profile";
+  public root = '/profile';
 
   PROFILE = this.root;
   PUBLICATIONS = `${this.root}/publications`;

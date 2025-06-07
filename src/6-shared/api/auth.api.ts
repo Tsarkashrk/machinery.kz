@@ -2,13 +2,17 @@ import {
   IAuth,
   IAuthLoginRequest,
   IAuthRegisterRequest,
-} from "@/5-entities/auth";
+} from '@/5-entities/auth';
 
-import { axiosClassic } from "./interceptors";
+import { axiosClassic } from './interceptors';
 
-import { removeFromStorage, saveTokenStorage } from "./auth-token.api";
+import { removeFromStorage, saveTokenStorage } from './auth-token.api';
 
-const BASE_URL = "/auth";
+const BASE_URL = '/auth';
+
+type Props = {
+  email: string;
+};
 
 export const authApi = {
   async register(data: IAuthRegisterRequest) {
@@ -37,11 +41,10 @@ export const authApi = {
     return response;
   },
 
-  async resetPassword(email: string) {
-    const response = await axiosClassic.post(
-      `${BASE_URL}/password-reset/`,
-      email,
-    );
+  async resetPassword(data: Props) {
+    const response = await axiosClassic.post(`${BASE_URL}/password-reset/`, {
+      email: data.email,
+    });
 
     return response.data;
   },

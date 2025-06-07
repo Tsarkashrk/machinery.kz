@@ -28,15 +28,15 @@ export const ActivateSection = () => {
     );
   }
 
-  if (isLoading) {
-    return (
-      <div className="activate-section">
-        <div className="activate-section__wrapper">
-          <EmptyCard>Проверяем ваш токен...</EmptyCard>
-        </div>
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="activate-section">
+  //       <div className="activate-section__wrapper">
+  //         <EmptyCard>Проверяем ваш токен...</EmptyCard>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   const axiosError = error as AxiosError<{ error: string }>;
   if (axiosError?.response?.data?.error === "Account is already activated.") {

@@ -1,14 +1,15 @@
-"use client";
+'use client';
 
-import axios, { type CreateAxiosDefaults } from "axios";
+import axios, { type CreateAxiosDefaults } from 'axios';
 
-import { errorCatch } from "./error";
-import { getAccessToken, removeFromStorage } from "@/6-shared/api";
+import { errorCatch } from './error';
+import { getAccessToken, removeFromStorage } from '@/6-shared/api';
 
 const options: CreateAxiosDefaults = {
-  baseURL: `http://${process.env.NEXT_PUBLIC_API_URL}:${process.env.NEXT_PUBLIC_API_PORT}/api/v1`,
+  baseURL: `https://${process.env.NEXT_PUBLIC_DOMEN_URL}/api/v1`,
+  // baseURL: `http://${process.env.NEXT_PUBLIC_API_URL}:${process.env.NEXT_PUBLIC_API_PORT}/api/v1`,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
   withCredentials: true,
 };
@@ -32,8 +33,8 @@ axiosWithAuth.interceptors.response.use(
 
     if (
       (error?.response?.status === 401 ||
-        errorCatch(error) === "jwt expired" ||
-        errorCatch(error) === "jwt must be provided") &&
+        errorCatch(error) === 'jwt expired' ||
+        errorCatch(error) === 'jwt must be provided') &&
       error.config &&
       !error.config._isRetry
     ) {
