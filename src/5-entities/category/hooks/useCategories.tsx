@@ -9,7 +9,7 @@ type Props = {
   search?: string;
 };
 
-export function useCategories(params: Props) {
+export function useCategories(params?: Props) {
   const { data, isLoading, isSuccess } = useQuery<ICategory[]>({
     queryKey: ["categories"],
     queryFn: () => categoriesApi.getCategories(params),

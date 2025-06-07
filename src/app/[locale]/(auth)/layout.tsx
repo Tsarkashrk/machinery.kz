@@ -86,7 +86,7 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: any;
 }>) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
@@ -101,7 +101,7 @@ export default async function RootLayout({
       >
         <Providers>
           <NextIntlClientProvider messages={messages}>
-            <Header isSimple/>
+            <Header isSimple />
             <main className="main">
               <div className="main__wrapper">{children}</div>
             </main>

@@ -17,7 +17,6 @@ import { DataTable } from "@/6-shared/ui/Table/Table";
 import { Edit2, Edit3, EditIcon, TrashIcon, ViewIcon } from "lucide-react";
 import { useState } from "react";
 
-// Define the form type for category editing
 interface CategoryFormData {
   id?: number;
   name: string;

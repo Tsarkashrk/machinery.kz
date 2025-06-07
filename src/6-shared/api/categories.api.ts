@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const categoriesApi = {
-  getCategories: async (params: Props) => {
+  getCategories: async (params?: Props) => {
     const response = await axiosClassic.get(`${BASE_URL}/`, { params });
     return response.data;
   },
