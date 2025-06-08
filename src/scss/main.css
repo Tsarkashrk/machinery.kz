@@ -419,7 +419,7 @@ hr {
   gap: 3rem;
 }
 .dashboard-layout__sidebar {
-  max-width: 22.5rem;
+  max-width: 25rem;
   width: 100%;
 }
 .dashboard-layout__content {
@@ -2009,6 +2009,40 @@ h3 {
   font-weight: 600;
   font-size: 5rem;
   color: white;
+}
+.avatar__wrapper--profile .avatar__upload {
+  cursor: pointer !important;
+  display: flex;
+}
+.avatar__link {
+  position: relative;
+}
+.avatar__load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  border: 1px solid rgba(41, 71, 163, 0.1294117647);
+  border-radius: 100rem;
+  background-color: white;
+  height: 3rem;
+  width: 3rem;
+}
+.avatar__load:hover {
+  background-color: #f4f4f5;
+}
+.avatar__button {
+  cursor: pointer !important;
+}
+.avatar__input {
+  cursor: pointer !important;
+}
+.avatar__image {
+  border-radius: 100rem;
+  border: 1px solid rgba(41, 71, 163, 0.1294117647);
 }
 .avatar__letter {
   font-weight: 600;

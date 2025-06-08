@@ -89,6 +89,7 @@ const Header = ({ isSimple }: Props) => {
 
                 {profile ? (
                   <Avatar
+                    avatar={profile.image_url}
                     username={profile.username}
                     link={PROFILE_PAGES.PROFILE}
                   />

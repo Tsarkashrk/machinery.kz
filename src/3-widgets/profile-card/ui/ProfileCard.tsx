@@ -1,15 +1,8 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import Button from "@/6-shared/ui/Buttons/Button";
-import { Badge } from "@/6-shared/ui/Badge/Badge";
-import { ProfileStats } from "@/5-entities/profile";
-import Avatar from "@/6-shared/ui/Avatar/Avatar";
-import { PLATFORM_PAGES } from "@/6-shared/config/pages-url.config";
-import { LogoutButton } from "@/6-shared/ui/Buttons/LogoutButton";
-// import { FollowButton } from '@/4-features/follow'
-// import { ContactButton } from '@/4-features/contact'
+import { useState } from 'react';
+import { ProfileStats } from '@/5-entities/profile';
+import Avatar from '@/6-shared/ui/Avatar/Avatar';
 
 interface ProfileCardProps {
   user: {
@@ -39,7 +32,7 @@ export const ProfileCard = ({
   };
 
   const handleContact = () => {
-    console.log("Contact user:", user.id);
+    console.log('Contact user:', user.id);
   };
 
   return (
@@ -47,7 +40,9 @@ export const ProfileCard = ({
       <div className="profile-card__content">
         <div className="profile-card__avatar-section">
           <Avatar
+            avatar={user.avatar}
             size="profile"
+            type={isOwnProfile ? 'profile' : 'default'}
             link={user.id.toString()}
             username={user.name[0]}
           />

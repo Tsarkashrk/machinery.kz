@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
 
-import { categoriesApi } from "@/6-shared/api";
-import { ICategory } from "../model/category.model";
+import { categoriesApi, CategoryType } from '@/6-shared/api';
+import { ICategory } from '../model/category.model';
 
 type Props = {
   ordering?: string;
@@ -9,10 +9,10 @@ type Props = {
   search?: string;
 };
 
-export function useCategories(params?: Props) {
+export function useCategories(type: CategoryType, params?: Props) {
   const { data, isLoading, isSuccess } = useQuery<ICategory[]>({
-    queryKey: ["categories"],
-    queryFn: () => categoriesApi.getCategories(params),
+    queryKey: ['categories'],
+    queryFn: () => categoriesApi.getCategories(type, params),
   });
 
   return { categories: data, isLoading, isSuccess };

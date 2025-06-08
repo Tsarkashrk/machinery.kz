@@ -73,6 +73,7 @@ const ProfileSection = () => {
         <LogoutButton />
         {profile && equipmentList && (
           <ProfileCard
+            isOwnProfile
             user={{
               id: profile.id,
               name: profile.first_name || profile.username,

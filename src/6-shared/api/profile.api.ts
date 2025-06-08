@@ -19,7 +19,7 @@ export const profileApi = {
   },
 
   updateProfileImage: async (image: FormData) => {
-    const response = await axiosWithAuth.put(
+    const response = await axiosWithAuth.post(
       `${BASE_URL}/profile-image/`,
       image,
       {

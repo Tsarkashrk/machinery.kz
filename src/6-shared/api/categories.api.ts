@@ -1,7 +1,10 @@
-import { ICategoryRequest } from "@/5-entities/category";
-import { axiosClassic, axiosWithAuth } from "./interceptors";
+import { ICategoryRequest } from '@/5-entities/category';
+import { axiosClassic, axiosWithAuth } from './interceptors';
 
-const BASE_URL = "/equipment-categories";
+const EQUIPMENT_URL = '/equipment-categories';
+const MACHINERY_URL = '/heavy-machinery-categories';
+
+export type CategoryType = 'equipment' | 'machinery';
 
 type Props = {
   ordering?: string;
@@ -9,37 +12,41 @@ type Props = {
   search?: string;
 };
 
+const getUrl = (type: CategoryType) => {
+  return type === 'equipment' ? EQUIPMENT_URL : MACHINERY_URL;
+};
+
 export const categoriesApi = {
-  getCategories: async (params?: Props) => {
-    const response = await axiosClassic.get(`${BASE_URL}/`, { params });
+  getCategories: async (type: CategoryType, params?: Props) => {
+    const response = await axiosClassic.get(`${getUrl(type)}/`, { params });
     return response.data;
   },
 
-  getCategoryById: async (id: number) => {
-    const response = await axiosClassic.get(`${BASE_URL}/${id}/`);
+  getCategoryById: async (type: CategoryType, id: number) => {
+    const response = await axiosClassic.get(`${getUrl(type)}/${id}/`);
     return response.data;
   },
 
-  createCategory: async (data: FormData) => {
-    const response = await axiosWithAuth.post(`${BASE_URL}/`, data, {
+  createCategory: async (type: CategoryType, data: FormData) => {
+    const response = await axiosWithAuth.post(`${getUrl(type)}/`, data, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     });
     return response.data;
   },
 
-  updateCategory: async (id: number, data: FormData) => {
-    const response = await axiosWithAuth.put(`${BASE_URL}/${id}/`, data, {
+  updateCategory: async (type: CategoryType, id: number, data: FormData) => {
+    const response = await axiosWithAuth.put(`${getUrl(type)}/${id}/`, data, {
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'multipart/form-data',
       },
     });
     return response.data;
   },
 
-  deleteCategory: async (id: number) => {
-    const response = await axiosWithAuth.delete(`${BASE_URL}/${id}/`);
+  deleteCategory: async (type: CategoryType, id: number) => {
+    const response = await axiosWithAuth.delete(`${getUrl(type)}/${id}/`);
     return response.data;
   },
 };

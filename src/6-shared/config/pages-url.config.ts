@@ -21,7 +21,8 @@ class DASHBOARD {
   DASHBOARD = this.root;
   USERS = `${this.root}/users`;
   COMPANIES = `${this.root}/companies`;
-  CATEGORIES = `${this.root}/categories`;
+  EQUIPMENT_CATEGORIES = `${this.root}/equipment-categories`;
+  // MACHINERY_CATEGORIES = `${this.root}/machinery-categories`;
   COMPLAINTS = `${this.root}/complaints`;
   PUBLICATIONS = `${this.root}/publications`;
   REVIEWS = `${this.root}/reviews`;

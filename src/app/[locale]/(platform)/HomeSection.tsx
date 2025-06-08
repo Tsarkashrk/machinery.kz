@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { CategoryList } from "@/5-entities/category";
-import { useCategories } from "@/5-entities/category/hooks/useCategories";
-import { useEquipmentWithImages } from "@/5-entities/equipment";
+import { CategoryList } from '@/5-entities/category';
+import { useCategories } from '@/5-entities/category/hooks/useCategories';
+import { useEquipmentWithImages } from '@/5-entities/equipment';
 
-import { Hero } from "@/6-shared/ui/Hero/Hero";
-import { PLATFORM_PAGES } from "@/6-shared/config/pages-url.config";
-import { ICON_SIZE } from "@/6-shared/constants/constants";
-import { Loading } from "@/6-shared/ui/Loading/Loading";
-import { SectionWithContent } from "@/6-shared/ui/SectionWithContent/SectionWithContent";
-import { Title } from "@/6-shared/ui/Title/Title";
-import { TitleMore } from "@/6-shared/ui/TitleMore/TitleMore";
-import { EquipmentList } from "@/3-widgets/equipment-list";
-import { ChevronRight } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { BrandsList, useBrands } from "@/5-entities/brand";
+import { Hero } from '@/6-shared/ui/Hero/Hero';
+import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config';
+import { ICON_SIZE } from '@/6-shared/constants/constants';
+import { Loading } from '@/6-shared/ui/Loading/Loading';
+import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent';
+import { Title } from '@/6-shared/ui/Title/Title';
+import { TitleMore } from '@/6-shared/ui/TitleMore/TitleMore';
+import { EquipmentList } from '@/3-widgets/equipment-list';
+import { ChevronRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { BrandsList, useBrands } from '@/5-entities/brand';
 
 export default function HomeSection() {
-  const t = useTranslations("HomePage");
+  const t = useTranslations('HomePage');
 
   const {
     data: equipmentListData,
@@ -25,9 +25,12 @@ export default function HomeSection() {
     isSuccess,
   } = useEquipmentWithImages();
   const { brands, isLoading: isBrandsLoading } = useBrands();
-  const { categories, isLoading: isCategoriesLoading } = useCategories({
-    ordering: "id",
-  });
+  const { categories, isLoading: isCategoriesLoading } = useCategories(
+    'equipment',
+    {
+      ordering: 'id',
+    },
+  );
 
   return (
     <div className="home-section">
@@ -35,9 +38,9 @@ export default function HomeSection() {
         <Hero />
         <SectionWithContent>
           <Title size="h1">
-            {t("popular-equipment-categories")}
+            {t('popular-equipment-categories')}
             <TitleMore link={PLATFORM_PAGES.CATEGORIES}>
-              {t("all-equipment-categories")} <ChevronRight size={ICON_SIZE} />
+              {t('all-equipment-categories')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>
           {isCategoriesLoading ? (
@@ -49,25 +52,28 @@ export default function HomeSection() {
 
         <SectionWithContent>
           <Title size="h1">
-            {t("popular-machinery-categories")}
+            {t('popular-machinery-categories')}
             <TitleMore link={PLATFORM_PAGES.CATEGORIES}>
-              {t("all-machinery-categories")} <ChevronRight size={ICON_SIZE} />
+              {t('all-machinery-categories')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>
           {isCategoriesLoading ? (
             <Loading />
           ) : (
             categories && (
-              <CategoryList machinery categories={categories.slice(22, 26)} />
+              <CategoryList
+                machinery
+                categories={categories.slice(22, 26)}
+              />
             )
           )}
         </SectionWithContent>
 
         <SectionWithContent>
           <Title size="h1">
-            {t("latest-equipment")}
+            {t('latest-equipment')}
             <TitleMore link={PLATFORM_PAGES.CATEGORIES}>
-              {t("all-equipment")} <ChevronRight size={ICON_SIZE} />
+              {t('all-equipment')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>
           <EquipmentList
@@ -78,9 +84,9 @@ export default function HomeSection() {
 
         <SectionWithContent>
           <Title size="h1">
-            {t("popular-brands")}
+            {t('popular-brands')}
             <TitleMore link={PLATFORM_PAGES.BRANDS}>
-              {t("all-brands")} <ChevronRight size={ICON_SIZE} />
+              {t('all-brands')} <ChevronRight size={ICON_SIZE} />
             </TitleMore>
           </Title>
           <BrandsList brands={brands} />

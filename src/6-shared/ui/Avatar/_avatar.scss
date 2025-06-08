@@ -33,7 +33,48 @@
         font-size: 5rem;
         color: $base-color;
       }
+
+      .avatar__upload {
+        cursor: pointer !important;
+        display: flex;
+      }
     }
+  }
+
+  &__link {
+    position: relative;
+  }
+
+  &__load {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    border: $border-primary;
+    border-radius: 100rem;
+    background-color: $base-color;
+    height: 3rem;
+    width: 3rem;
+
+    &:hover {
+      background-color: $zinc-100;
+    }
+  }
+
+  &__button {
+    cursor: pointer !important;
+  }
+
+  &__input {
+    cursor: pointer !important;
+  }
+
+  &__image {
+    border-radius: 100rem;
+    border: $border-primary;
   }
 
   &__letter {

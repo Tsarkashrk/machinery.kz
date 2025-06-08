@@ -1,21 +1,18 @@
-"use client";
+'use client';
 
-import { CategoryDeleteModal } from "@/4-features/category";
-import { CategoryEditorModal } from "@/4-features/category/ui/CategoryEditorModal";
 import {
   ICategory,
   useCategories,
   useCreateCategory,
   useUpdateCategory,
   useDeleteCategory,
-} from "@/5-entities/category";
-import { ICON_SIZE } from "@/6-shared/constants/constants";
-import Button from "@/6-shared/ui/Buttons/Button";
-import { DeleteModal } from "@/6-shared/ui/DeleteModal/DeleteModal";
-import { EditorModal } from "@/6-shared/ui/EditorModal/EditorModal";
-import { DataTable } from "@/6-shared/ui/Table/Table";
-import { Edit2, Edit3, EditIcon, TrashIcon, ViewIcon } from "lucide-react";
-import { useState } from "react";
+} from '@/5-entities/category';
+import { ICON_SIZE } from '@/6-shared/constants/constants';
+import { DeleteModal } from '@/6-shared/ui/DeleteModal/DeleteModal';
+import { EditorModal } from '@/6-shared/ui/EditorModal/EditorModal';
+import { DataTable } from '@/6-shared/ui/Table/Table';
+import { Edit2, Edit3, EditIcon, TrashIcon, ViewIcon } from 'lucide-react';
+import { useState } from 'react';
 
 interface CategoryFormData {
   id?: number;
@@ -26,11 +23,13 @@ interface CategoryFormData {
 }
 
 export const CategoriesSection = () => {
-  const { categories, isLoading } = useCategories();
+  const { categories, isLoading } = useCategories('equipment', {
+    ordering: 'id',
+  });
 
-  const createCategoryMutation = useCreateCategory();
-  const updateCategoryMutation = useUpdateCategory();
-  const deleteCategoryMutation = useDeleteCategory();
+  const createCategoryMutation = useCreateCategory('equipment');
+  const updateCategoryMutation = useUpdateCategory('equipment');
+  const deleteCategoryMutation = useDeleteCategory('equipment');
 
   const [createModal, setCreateModal] = useState<{
     isOpen: boolean;
@@ -125,62 +124,67 @@ export const CategoriesSection = () => {
 
   const columns: any = [
     {
-      key: "id",
-      label: "ID",
+      key: 'id',
+      label: 'ID',
       width: 80,
       sortable: true,
       searchable: true,
     },
     {
-      key: "name",
-      label: "Название",
+      key: 'name',
+      label: 'Название',
       sortable: true,
       searchable: true,
     },
     {
-      key: "description",
-      label: "Описание",
+      key: 'description',
+      label: 'Описание',
       sortable: true,
       searchable: true,
     },
     {
-      key: "file",
-      label: "Картинка",
+      key: 'file',
+      label: 'Картинка',
     },
   ];
 
   const actions: any = [
     {
-      icon: <Edit2 size={ICON_SIZE} color="#363435" />,
-      tooltip: "Редактирование",
+      icon: (
+        <Edit2
+          size={ICON_SIZE}
+          color="#363435"
+        />
+      ),
+      tooltip: 'Редактирование',
       onClick: (item: ICategory) => updateCategory(item),
-      color: "info",
+      color: 'info',
     },
     {
       icon: <TrashIcon size={ICON_SIZE} />,
-      tooltip: "Удалить",
+      tooltip: 'Удалить',
       onClick: (item: ICategory) => deleteCategory(item),
-      color: "error",
+      color: 'error',
     },
   ];
 
   const fields = [
     {
-      name: "name",
-      label: "Название категории",
-      type: "text" as const,
+      name: 'name',
+      label: 'Название категории',
+      type: 'text' as const,
       required: true,
-      placeholder: "Введите название",
+      placeholder: 'Введите название',
     },
     {
-      name: "description",
-      label: "Описание",
-      type: "text" as const,
+      name: 'description',
+      label: 'Описание',
+      type: 'text' as const,
     },
     {
-      name: "file",
-      label: "Изображение",
-      type: "file" as const,
+      name: 'file',
+      label: 'Изображение',
+      type: 'file' as const,
     },
   ];
 
@@ -192,7 +196,7 @@ export const CategoriesSection = () => {
           columns={columns}
           loading={isLoading}
           actions={actions}
-          onRowClick={(item) => console.log("Row clicked:", item)}
+          onRowClick={(item) => console.log('Row clicked:', item)}
           buttonOnChange={createCategory}
         />
 
@@ -207,8 +211,8 @@ export const CategoriesSection = () => {
             createModal.item
               ? {
                   id: createModal.item.id,
-                  name: createModal.item.name || "",
-                  description: createModal.item.description || "",
+                  name: createModal.item.name || '',
+                  description: createModal.item.description || '',
                   parent_category: createModal.item.parent_category || null,
                   file: null,
                 }
@@ -217,8 +221,8 @@ export const CategoriesSection = () => {
           title="Категорию"
           defaultValues={{
             id: createModal?.item?.id || 0,
-            name: "",
-            description: "",
+            name: '',
+            description: '',
             parent_category: null,
             file: null,
           }}
@@ -234,8 +238,8 @@ export const CategoriesSection = () => {
             updateModal.item
               ? {
                   id: updateModal.item.id,
-                  name: updateModal.item.name || "",
-                  description: updateModal.item.description || "",
+                  name: updateModal.item.name || '',
+                  description: updateModal.item.description || '',
                   parent_category: updateModal.item.parent_category || null,
                   file: null,
                 }
@@ -244,8 +248,8 @@ export const CategoriesSection = () => {
           title="Категорию"
           defaultValues={{
             id: updateModal?.item?.id || 0,
-            name: "",
-            description: "",
+            name: '',
+            description: '',
             parent_category: null,
             file: null,
           }}
@@ -258,7 +262,7 @@ export const CategoriesSection = () => {
           onConfirm={handleDeleteConfirm}
           isLoading={deleteCategoryMutation.isPending}
           itemName={deleteModal?.item?.name}
-          entityName={"Категорию"}
+          entityName={'Категорию'}
           size="lg"
         />
       </div>

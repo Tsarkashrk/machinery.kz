@@ -107,13 +107,6 @@ export const UsersSection = () => {
       sortable: true,
       searchable: true,
     },
-
-    {
-      key: "image_url",
-      label: "Картинка",
-      sortable: true,
-      searchable: true,
-    },
     {
       key: "date_joined",
       label: "Дата регистрации",
@@ -184,9 +177,7 @@ export const UsersSection = () => {
           entityName={"Пользователя"}
           size="lg"
         />
-
-        {/* <DeleteUserModal isOpen={deleteModal.isOpen} onClose={handleDeleteClose} user={deleteModal.user} onConfirm={handleDeleteConfirm} isLoading={deleteUserMutation.isPending} /> */}
-
+        
         <UpdateUserModal
           isOpen={updateModal.isOpen}
           onClose={handleUpdateClose}
