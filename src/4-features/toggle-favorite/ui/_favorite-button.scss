@@ -6,15 +6,21 @@
   height: 3rem;
   width: 3rem;
   padding: 0;
-  border: $border-primary;
+  border: 0;
   border-radius: 10rem;
-  background-color: white;
+  color: $base-color;
+  background-color: $primary-color;
   right: 0.7rem;
   cursor: pointer;
+  transition: $transition;
 
   &__icon {
+    transition: $transition;
+    
     &:hover {
-      color: red;
+      color: $primary-color;
+      fill: red;
+      transition: $transition;
     }
   }
 }

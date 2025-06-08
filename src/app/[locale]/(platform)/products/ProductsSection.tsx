@@ -40,7 +40,7 @@ const ProductSection = () => {
 
   const handleFiltersChange = useCallback(
     (newFilters: IEquipmentFilters) => {
-      setCurrentPage(1); 
+      setCurrentPage(1);
 
       const params = new URLSearchParams(searchParams.toString());
 
@@ -76,7 +76,9 @@ const ProductSection = () => {
     }));
   };
 
-  const totalPages = equipmentList ? Math.ceil(equipmentList.count / PAGE_SIZE) : 0;
+  const totalPages = equipmentList
+    ? Math.ceil(equipmentList.count / PAGE_SIZE)
+    : 0;
 
   return (
     <section className="products-section">
@@ -89,6 +91,8 @@ const ProductSection = () => {
             initialFilters={filters}
             className="mb-6"
           />
+
+          <Title size='h2'>Найдено объявлений - {equipmentList?.count}</Title>
 
           {!equipmentList || equipmentList.count === 0 ? (
             <EmptyCard>По вашему поиску объявлений не найдено</EmptyCard>

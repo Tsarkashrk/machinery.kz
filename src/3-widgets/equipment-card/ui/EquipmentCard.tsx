@@ -86,7 +86,7 @@ export const EquipmentCard = ({
         </div>
         <div className="equipment-card__content">
           {/* <Avatar link={`${PLATFORM_PAGES.DEALERS}/${id}`} username={'sdf'} /> */}
-          <Title size="h3" fontSize="18" fontWeight="600">
+          <Title size="h5" fontSize="18" fontWeight="600">
             {name}
           </Title>
           <Description>

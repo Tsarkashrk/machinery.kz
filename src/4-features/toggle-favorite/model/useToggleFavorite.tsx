@@ -1,22 +1,23 @@
-import { favoritesApi } from "@/6-shared/api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
+import { favoritesApi } from '@/6-shared/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 export const useToggleFavorite = () => {
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
-    mutationKey: ["favorite"],
+    mutationKey: ['favorite'],
     mutationFn: async (productId: number) =>
       favoritesApi.addFavorite(productId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["favorite"] });
+      queryClient.invalidateQueries({ queryKey: ['favorite'] });
+      toast.success('Публикация добавлена в избранное');
     },
     onError: (error) => {
       toast.error(
-        error.message.includes("401")
-          ? "Войди в аккаунт"
-          : "Ошибка сервера, попробуйте позже",
+        error.message.includes('401')
+          ? 'Войди в аккаунт'
+          : 'Ошибка сервера, попробуйте позже',
       );
     },
   });

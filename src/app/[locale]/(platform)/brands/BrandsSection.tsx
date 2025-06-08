@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { BrandsList, useBrands } from "@/5-entities/brand";
-import { useTranslations } from "next-intl";
-import { SectionWithContent } from "@/6-shared/ui/SectionWithContent/SectionWithContent";
-import { Title } from "@/6-shared/ui/Title/Title";
-import { TitleDescription } from "@/6-shared/ui/TitleDescription/TitleDescription";
+import { BrandsList, useBrands } from '@/5-entities/brand';
+import { useTranslations } from 'next-intl';
+import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent';
+import { Title } from '@/6-shared/ui/Title/Title';
+import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription';
 
 const BrandsSection = () => {
   const { brands, isLoading: isBrandsLoading } = useBrands();
 
-  const t = useTranslations("BrandsPage");
+  const t = useTranslations('BrandsPage');
 
   return (
     <section className="brands-section">
@@ -17,12 +17,13 @@ const BrandsSection = () => {
         <SectionWithContent>
           <div className="brands-section__titles">
             <div className="brands-section__title">
-              <Title size="h1">{t("brands")}</Title>
+              <Title size="h1">{t('brands')}</Title>
             </div>
             <div className="brands-section_description">
-              <TitleDescription color="gray">
+              {/* <TitleDescription color="gray">
                 {t("brands-all")} {brands?.length} {t("brands-amount")}
-              </TitleDescription>
+              </TitleDescription> */}
+              <Title size="h2">Найдено брендов - {brands?.length}</Title>
             </div>
           </div>
           {brands && <BrandsList brands={brands} />}
