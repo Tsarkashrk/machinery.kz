@@ -1,4 +1,5 @@
 .equipment-card {
+  background-color: white;
   &__wrapper {
     // position: relative;
     display: flex;
@@ -7,13 +8,12 @@
     padding: 0.8rem;
     background-color: $base-color;
     border-radius: $border-radius-card;
-    box-shadow: $box-shadow-primary;
+    // box-shadow: $box-shadow-primary;
     border: $border-primary;
     font-family: $font-gilroy;
     transition: $card-transition;
 
     &:hover {
-      box-shadow: $card-shadow;
       transform: translateY(-2px);
       transition: $card-transition;
     }

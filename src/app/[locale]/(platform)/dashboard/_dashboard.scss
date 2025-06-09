@@ -14,7 +14,10 @@
 
 .content {
   &__card {
+    background-color: $base-color;
+    border-radius: $border-radius-card;
     max-width: 126.5rem;
     width: 100%;
+    // border: $border-primary;
   }
 }

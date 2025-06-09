@@ -1,12 +1,10 @@
 .card {
-  height: 100%;
   &__wrapper {
-    height: 100%;
     padding: 3rem;
     border: $border-primary;
     border-width: 1px;
     border-radius: $border-radius-card;
     background-color: $base-color;
-    box-shadow: $card-shadow;
+    // box-shadow: $card-shadow;
   }
 }

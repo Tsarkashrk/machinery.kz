@@ -1,5 +1,6 @@
-import { moderatorApi } from "@/6-shared/api/moderator.api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { moderatorApi } from '@/6-shared/api/moderator.api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 export const useVerifyEquipment = () => {
   const queryClient = useQueryClient();
@@ -8,11 +9,11 @@ export const useVerifyEquipment = () => {
     mutationFn: (equipmentId: number) =>
       moderatorApi.confirmEquipmentVerification(equipmentId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["equipment", "unverified"] });
-      console.log("Equipment verified successfully!");
+      toast.success('Верификация прошла успешно!');
+      queryClient.invalidateQueries({ queryKey: ['equipment', 'unverified'] });
     },
     onError: (error) => {
-      console.error("Failed to verify equipment:", error);
+      console.error('Ошибка верификации:', error);
     },
   });
 };

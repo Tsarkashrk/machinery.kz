@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@googlemaps/js-api-loader": "^1.16.8",
     "@mui/material": "^7.1.0",
     "@mui/x-data-grid": "^8.4.0",
     "@tanstack/react-query": "^5.66.0",
@@ -33,6 +34,7 @@
     "swiper": "^11.2.1"
   },
   "devDependencies": {
+    "@types/google.maps": "^3.58.1",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",

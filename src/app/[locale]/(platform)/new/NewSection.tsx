@@ -79,12 +79,15 @@ const NewSection = () => {
       const createdEquipment =
         await equipmentMutation.mutateAsync(formattedData);
 
-      if (data.file) {
-        const formData = new FormData();
-        formData.append('file', data.file[0]);
-        formData.append('equipment', createdEquipment.id.toString());
+      if (data.file && data.file.length > 0) {
+        const uploadPromises = Array.from(data.file).map((file: any) => {
+          const formData = new FormData();
+          formData.append('file', file);
+          formData.append('equipment', createdEquipment.id.toString());
+          return imageMutation.mutateAsync(formData);
+        });
 
-        await imageMutation.mutateAsync(formData);
+        await Promise.all(uploadPromises);
       } else {
         toast.success('Публикация успешно отправлена на проверку');
       }
@@ -199,10 +202,8 @@ const NewSection = () => {
                       })}
                     />
                     {typeof errors.name?.message === 'string' && (
-                        <ErrorMessage>
-                          {errors.name.message}
-                        </ErrorMessage>
-                      )}
+                      <ErrorMessage>{errors.name.message}</ErrorMessage>
+                    )}
                   </div>
                   <div className="new-section__info-block">
                     <Label forElement="model">{t('model')}</Label>
@@ -213,10 +214,8 @@ const NewSection = () => {
                       {...register('model', { required: t('model-required') })}
                     />
                     {typeof errors.model?.message === 'string' && (
-                        <ErrorMessage>
-                          {errors.model.message}
-                        </ErrorMessage>
-                      )}
+                      <ErrorMessage>{errors.model.message}</ErrorMessage>
+                    )}
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
@@ -254,10 +253,8 @@ const NewSection = () => {
                       })}
                     />
                     {typeof errors.year?.message === 'string' && (
-                        <ErrorMessage>
-                          {errors.year.message}
-                        </ErrorMessage>
-                      )}
+                      <ErrorMessage>{errors.year.message}</ErrorMessage>
+                    )}
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
@@ -313,7 +310,42 @@ const NewSection = () => {
                     </div>
                   )}
                 </div>
-
+                <div className="new-section__info-blocks">
+                  <div className="new-section__info-block">
+                    <Label forElement="location_city">
+                      {t('location-city')}
+                    </Label>
+                    <Input
+                      id="location_city"
+                      placeholder="Астана"
+                      {...register('location_city', {
+                        required: t('location-city-required'),
+                      })}
+                    />
+                    {typeof errors.location_city?.message === 'string' && (
+                      <ErrorMessage>
+                        {errors.location_city.message}
+                      </ErrorMessage>
+                    )}
+                  </div>
+                  <div className="new-section__info-block">
+                    <Label forElement="location_address">
+                      {t('location-address')}
+                    </Label>
+                    <Input
+                      id="location_address"
+                      placeholder="Мангилик Ел"
+                      {...register('location_address', {
+                        required: t('location-address-required'),
+                      })}
+                    />
+                    {typeof errors.location_address?.message === 'string' && (
+                      <ErrorMessage>
+                        {errors.location_address.message}
+                      </ErrorMessage>
+                    )}
+                  </div>
+                </div>
                 <div className="new-section__info-blocks">
                   <div className="new-section__info-block">
                     <Label forElement="description">{t('description')}</Label>

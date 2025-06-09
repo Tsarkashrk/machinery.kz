@@ -16,7 +16,13 @@
   &__cards {
     display: grid;
     grid-template-columns: 1fr 30rem;
-    gap: 3rem;
+    gap: 2rem;
+  }
+
+  &__section-map {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   &__images {
@@ -26,6 +32,8 @@
     overflow-y: auto;
     max-height: 40rem;
     height: 100%;
+    max-width: 9rem;
+    width: 100%;
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -124,8 +132,15 @@
     padding: 1rem;
     border: $border;
     border-radius: $border-radius-ui;
-    box-shadow: $ui-shadow;
+    // box-shadow: $ui-shadow;
     cursor: pointer;
+  }
+
+  &__price-block {
+    padding: 1.2rem;
+    background-color: $base-color;
+    border-radius: $border-radius-ui;
+    border: $border-primary;
   }
 
   &__price {
@@ -134,11 +149,15 @@
     border-radius: $border-radius-ui;
 
     &-rate {
+      display: flex;
+      align-items: flex-end;
+      gap: 1rem;
+      line-height: 1;
       width: max-content;
-      padding: 0.5rem 1rem;
+      // padding: 0.5rem 1rem;
       border-radius: $border-radius-ui;
-      background-color: red;
-      color: $base-color;
+      // background-color: red;
+      color: $base-dark-color;
     }
   }
 
@@ -157,7 +176,8 @@
     margin-bottom: 2rem;
     border: $border;
     border-radius: $border-radius-ui;
-    box-shadow: $ui-shadow;
+    background-color: $base-color;
+    // box-shadow: $ui-shadow;
   }
 
   &__line {
@@ -179,5 +199,11 @@
 
   &__text {
     font-size: $font-sm;
+  }
+
+  &__map {
+    width: 100%;
+    height: 100%;
+    max-height: 70rem;
   }
 }

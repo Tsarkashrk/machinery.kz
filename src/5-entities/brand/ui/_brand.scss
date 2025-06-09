@@ -16,13 +16,12 @@
   padding: 2rem;
   background-color: $base-color;
   border-radius: $border-radius-ui;
-  box-shadow: $box-shadow-primary;
+  // box-shadow: $box-shadow-primary;
   border: $border-primary;
   font-family: $font-gilroy;
   transition: $card-transition;
 
   &:hover {
-    box-shadow: $card-shadow;
     transform: translateY(-2px);
     transition: $card-transition;
   }
@@ -43,7 +42,7 @@
     padding: 3rem;
     border-radius: $border-radius-card;
     border: $border-primary;
-    box-shadow: $box-shadow-primary;
+    // box-shadow: $box-shadow-primary;
   }
 
   &__info {

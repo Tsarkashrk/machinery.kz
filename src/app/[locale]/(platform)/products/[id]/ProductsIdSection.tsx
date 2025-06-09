@@ -24,6 +24,7 @@ import { EquipmentList } from '@/3-widgets/equipment-list';
 import { Title } from '@/6-shared/ui/Title/Title';
 import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription';
 import { useCreateRental, useRequestRental } from '@/5-entities/rental';
+import { GoogleMaps } from '@/6-shared/ui/GoogleMaps/GoogleMaps';
 
 export const ProductIdSection = () => {
   const { id } = useParams();
@@ -188,103 +189,120 @@ export const ProductIdSection = () => {
       <div className="product-slug__wrapper">
         <SectionWithContent>
           <div className="product-slug__cards">
-            <Card>
-              <div className="product-slug__title">
-                <Title size="h2">{equipmentData?.name}</Title>
-              </div>
-              <div className="product-slug__info">
-                <img
-                  className="product-slug__img"
-                  src={selectedImage || `/assets/profile-placeholder.png`}
-                  alt=""
-                />
-                <div className="product-slug__images">
-                  {equipmentData?.images.map((image) => (
-                    <img
-                      key={image.id}
-                      className="product-slug__img--small"
-                      src={image.image_url}
-                      alt=""
-                      onClick={() => setSelectedImage(image.image_url)}
-                    />
-                  ))}
+            <div className="product-slug__section-map">
+              <Card>
+                <div className="product-slug__title">
+                  <Title size="h2">{equipmentData?.name}</Title>
                 </div>
-                <div className="product-slug__titles">
-                  <div className="product-slug__tab">
-                    <Title size="h2">Описание</Title>
-                    <TitleDescription
-                      color="gray"
-                      fontSize="16px"
-                    >
-                      {equipmentData?.description}
-                    </TitleDescription>
+                <div className="product-slug__info">
+                  <img
+                    className="product-slug__img"
+                    src={selectedImage || `/assets/profile-placeholder.png`}
+                    alt=""
+                  />
+                  <div className="product-slug__images">
+                    {equipmentData?.images.map((image) => (
+                      <img
+                        key={image.id}
+                        className="product-slug__img--small"
+                        src={image.image_url}
+                        alt=""
+                        onClick={() => setSelectedImage(image.image_url)}
+                      />
+                    ))}
                   </div>
-                  <div className="product-slug__tab">
-                    <Title size="h2">Спецификации</Title>
-                    <TitleDescription
-                      color="gray"
-                      fontSize="16px"
-                    >
-                      <div className="product-slug__specifications">
-                        <ul>
-                          <li>
-                            <strong>Производитель </strong>
-                          </li>
-                          <li>
-                            <strong>Модель </strong>
-                          </li>
-                          <li>
-                            <strong>Год </strong>
-                          </li>
-                          <li>
-                            <strong>Состояние </strong>
-                          </li>
-                          <li>
-                            <strong>Категория </strong>
-                          </li>
-                        </ul>
-                        <ul>
-                          <li>{equipmentData?.brand_details.name}</li>
-                          <li>{equipmentData?.model}</li>
-                          <li>{equipmentData?.year}</li>
-                          <li>
-                            {equipmentData?.condition === 'new'
-                              ? 'Новое'
-                              : 'Б/У'}
-                          </li>
-                          <li>{equipmentData?.category_details?.name}</li>
-                        </ul>
-                      </div>
-                    </TitleDescription>
-                  </div>
-                  <div className="product-slug__tab">
-                    <Title size="h2">Условия аренды</Title>
-                    <TitleDescription
-                      color="gray"
-                      fontSize="16px"
-                    >
-                      Действуют стандартные условия аренды. Оборудование должно
-                      быть возвращено в прежнем состоянии
-                    </TitleDescription>
+                  <div className="product-slug__titles">
+                    <div className="product-slug__tab">
+                      <Title size="h2">Описание</Title>
+                      <TitleDescription
+                        color="gray"
+                        fontSize="14px"
+                      >
+                        {equipmentData?.description}
+                      </TitleDescription>
+                    </div>
+                    <div className="product-slug__tab">
+                      <Title size="h2">Спецификации</Title>
+                      <TitleDescription
+                        color="gray"
+                        fontSize="14px"
+                      >
+                        <div className="product-slug__specifications">
+                          <ul>
+                            <li>
+                              <strong
+                                style={{
+                                  overflow: 'hidden',
+                                  maxWidth: '10rem',
+                                  width: '100%',
+                                }}
+                              >
+                                Производитель
+                              </strong>
+                            </li>
+                            <li>
+                              <strong>Модель </strong>
+                            </li>
+                            <li>
+                              <strong>Год </strong>
+                            </li>
+                            <li>
+                              <strong>Состояние </strong>
+                            </li>
+                            <li>
+                              <strong>Категория </strong>
+                            </li>
+                          </ul>
+                          <ul>
+                            <li>{equipmentData?.brand_details.name}</li>
+                            <li>{equipmentData?.model}</li>
+                            <li>{equipmentData?.year}</li>
+                            <li>
+                              {equipmentData?.condition === 'new'
+                                ? 'Новое'
+                                : 'Б/У'}
+                            </li>
+                            <li>{equipmentData?.category_details?.name}</li>
+                          </ul>
+                        </div>
+                      </TitleDescription>
+                    </div>
+                    <div className="product-slug__tab">
+                      <Title size="h2">Условия аренды</Title>
+                      <TitleDescription
+                        color="gray"
+                        fontSize="14px"
+                      >
+                        Действуют стандартные условия аренды. Оборудование
+                        должно быть возвращено в прежнем состоянии
+                      </TitleDescription>
+                    </div>
                   </div>
                 </div>
+              </Card>
+              <div className="product-slug__map">
+                <GoogleMaps />
               </div>
-
-              <div className="product-slug__tab-content"></div>
-            </Card>
+            </div>
             <div className="product-slug__block">
               <h1 className="product-slug__price">
                 {equipmentData?.available_for_rent ? (
                   <div className="product-slug__price-block">
                     <div className="product-slug__price-rate">
-                      {equipmentData?.daily_rental_rate} KZT
+                      {equipmentData?.daily_rental_rate} ₸{' '}
+                      <TextMuted
+                        fontSize="16px"
+                        fontWeight="600"
+                      >
+                        {' '}
+                        / день
+                      </TextMuted>
                     </div>
-                    <TextMuted>в день</TextMuted>
                   </div>
                 ) : (
                   <div className="product-slug__price-block">
                     <div className="product-slug__price-rate">
-                      {equipmentData?.purchase_price} KZT
+                      {equipmentData?.purchase_price} ₸
                     </div>
                   </div>
                 )}
@@ -296,7 +314,7 @@ export const ProductIdSection = () => {
                     <div className="product-slug__total">
                       <h1>Итоговая цена</h1>
                       <div className="product-slug__line" />
-                      <h2>{total} KZT</h2>
+                      <h2>{total} ₸</h2>
                     </div>
                     <div className="product-slug__button-list"></div>
                   </div>

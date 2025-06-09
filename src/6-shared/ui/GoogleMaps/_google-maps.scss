@@ -1,0 +1,10 @@
+.google-maps {
+  width: 100%;
+  height: 40rem;
+  overflow: visible;
+  position: relative;
+
+  & > div {
+    position: absolute;
+  }
+}

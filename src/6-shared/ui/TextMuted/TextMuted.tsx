@@ -1,14 +1,18 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
   fontSize?: string;
   color?: string;
+  fontWeight?: string;
 };
 
-const TextMuted = ({ children, fontSize, color }: Props) => {
+const TextMuted = ({ children, fontSize, color, fontWeight }: Props) => {
   return (
-    <p className="text-muted" style={{ fontSize, color }}>
+    <p
+      className="text-muted"
+      style={{ fontSize, color, fontWeight }}
+    >
       {children}
     </p>
   );

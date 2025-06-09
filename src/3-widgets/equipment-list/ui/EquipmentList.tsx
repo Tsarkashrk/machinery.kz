@@ -37,6 +37,9 @@ export const EquipmentList = ({
             key={equipment.id}
             id={equipment.id}
             name={equipment.name}
+            city={equipment.location_city}
+            address={equipment.location_address}
+            ownerId={equipment.owner}
             image={
               equipment.images?.[0]?.image_url ??
               "/assets/profile-placeholder.png"

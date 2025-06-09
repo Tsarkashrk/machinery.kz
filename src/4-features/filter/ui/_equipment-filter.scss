@@ -3,7 +3,8 @@
     padding: 2rem;
     border: $border-primary;
     border-radius: $border-radius-card;
-    box-shadow: $card-shadow;
+    background-color: $base-color;
+    // box-shadow: $card-shadow;
   }
 
   &__toggle-btn {
