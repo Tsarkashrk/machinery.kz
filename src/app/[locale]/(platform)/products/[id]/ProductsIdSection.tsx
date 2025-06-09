@@ -1,33 +1,28 @@
-"use client";
+'use client';
 
-import Card from "@/6-shared/ui/Cards/Card/Card";
-import Button from "@/6-shared/ui/Buttons/Button";
-import DatePicker from "@/6-shared/ui/DatePicker/DatePicker";
-import TextMuted from "@/6-shared/ui/TextMuted/TextMuted";
+import Card from '@/6-shared/ui/Cards/Card/Card';
+import Button from '@/6-shared/ui/Buttons/Button';
+import DatePicker from '@/6-shared/ui/DatePicker/DatePicker';
+import TextMuted from '@/6-shared/ui/TextMuted/TextMuted';
 import {
   PLATFORM_PAGES,
   PROFILE_PAGES,
-} from "@/6-shared/config/pages-url.config";
-import { useProfile } from "@/5-entities/user";
-import { rentApi, equipmentApi } from "@/6-shared/api";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { useEquipmentById } from "@/5-entities/equipment/hooks/useEquipmentById";
-import { useCreateChat } from "@/5-entities/chat";
-import { SectionWithContent } from "@/6-shared/ui/SectionWithContent/SectionWithContent";
-import { useCategoryById } from "@/5-entities/category";
-import { useEquipmentList } from "@/5-entities/equipment";
-import { EquipmentList } from "@/3-widgets/equipment-list";
-import { Title } from "@/6-shared/ui/Title/Title";
-
-const TABS = [
-  { id: "description", label: "Описание" },
-  { id: "specifications", label: "Характеристики" },
-  { id: "rental_terms", label: "Условия аренды" },
-];
+} from '@/6-shared/config/pages-url.config';
+import { useProfile } from '@/5-entities/user';
+import { rentApi, equipmentApi } from '@/6-shared/api';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useParams, useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { useEquipmentById } from '@/5-entities/equipment/hooks/useEquipmentById';
+import { useCreateChat } from '@/5-entities/chat';
+import { SectionWithContent } from '@/6-shared/ui/SectionWithContent/SectionWithContent';
+import { useCategoryById } from '@/5-entities/category';
+import { useEquipmentList } from '@/5-entities/equipment';
+import { EquipmentList } from '@/3-widgets/equipment-list';
+import { Title } from '@/6-shared/ui/Title/Title';
+import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription';
 
 export const ProductIdSection = () => {
   const { id } = useParams();
@@ -47,30 +42,31 @@ export const ProductIdSection = () => {
       setSelectedImage(equipmentData.images[0].image_url);
     }
   }, [equipmentData]);
-  const [selectedTab, setSelectedTab] = useState("description");
+  const [selectedTab, setSelectedTab] = useState('description');
   const [selectedDates, setSelectedDates] = useState<
     [Date | null, Date | null]
   >([null, null]);
-  const [total, setTotal] = useState<any>("");
+  const [total, setTotal] = useState<any>('');
+  const [showNumber, setShowNumber] = useState(false);
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const { register, handleSubmit, reset } = useForm({
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   const { push } = useRouter();
 
   const { mutate } = useMutation({
-    mutationKey: ["rent"],
+    mutationKey: ['rent'],
     mutationFn: (data: any) => rentApi.rentEquipment(data),
     onSuccess() {
-      toast.success("The lease has started successfully!");
+      toast.success('The lease has started successfully!');
       reset();
       push(PROFILE_PAGES.PROFILE);
     },
     onError(error) {
-      toast.error(`${error}`, { description: "Try again!" });
+      toast.error(`${error}`, { description: 'Try again!' });
     },
   });
 
@@ -104,32 +100,32 @@ export const ProductIdSection = () => {
     return date ? date.toISOString() : null;
   };
 
-  const onSubmit: SubmitHandler<any> = (data: any) => {
-    if (!selectedDates[0] || !selectedDates[1]) {
-      toast.error("Выберите даты аренды!");
-      return;
-    }
+  // const onSubmit: SubmitHandler<any> = (data: any) => {
+  //   if (!selectedDates[0] || !selectedDates[1]) {
+  //     toast.error('Выберите даты аренды!');
+  //     return;
+  //   }
 
-    console.log(data);
+  //   console.log(data);
 
-    const totalAmount = calculateTotalAmount(
-      selectedDates,
-      Number(equipmentData?.daily_rental_rate),
-    );
+  //   const totalAmount = calculateTotalAmount(
+  //     selectedDates,
+  //     Number(equipmentData?.daily_rental_rate),
+  //   );
 
-    setTotal(totalAmount);
+  //   setTotal(totalAmount);
 
-    mutate({
-      rental_terms: "sadfsdf",
-      equipment: id,
-      renter: user?.data?.id,
-      start_date: formatDateToAPI(selectedDates[0]),
-      end_date: formatDateToAPI(selectedDates[1]),
-      total_amount: totalAmount,
-      status: "pending",
-      ...data,
-    });
-  };
+  //   mutate({
+  //     rental_terms: 'sadfsdf',
+  //     equipment: id,
+  //     renter: user?.data?.id,
+  //     start_date: formatDateToAPI(selectedDates[0]),
+  //     end_date: formatDateToAPI(selectedDates[1]),
+  //     total_amount: totalAmount,
+  //     status: 'pending',
+  //     ...data,
+  //   });
+  // };
 
   const params = useParams();
   const slug = Array.isArray(params?.id) ? params.id[0] : params?.id;
@@ -146,7 +142,7 @@ export const ProductIdSection = () => {
         {
           dealer: equipmentData.owner,
           buyer: profile.id,
-          deal_item: equipmentData.id,
+          equipment: equipmentData.id,
         },
         {
           onSuccess: (chat) => {
@@ -163,6 +159,9 @@ export const ProductIdSection = () => {
         <SectionWithContent>
           <div className="product-slug__cards">
             <Card>
+              <div className="product-slug__title">
+                <Title size="h2">{equipmentData?.name}</Title>
+              </div>
               <div className="product-slug__info">
                 <img
                   className="product-slug__img"
@@ -180,94 +179,68 @@ export const ProductIdSection = () => {
                     />
                   ))}
                 </div>
-                <div className="product-slug__details">
-                  <h1 className="product-slug__h1">{equipmentData?.name}</h1>
-                  <div className="product-slug__info-details">
-                    <div className="product-slug__row">
-                      <TextMuted>Equipment ID:</TextMuted>
-                      <p>{equipmentData?.id}</p>
-                    </div>
-                    <div className="product-slug__row">
-                      <TextMuted>Category:</TextMuted>
-                      <p>{equipmentData?.category_details?.name}</p>
-                    </div>
-                    <div className="product-slug__row">
-                      <TextMuted>Manufacturer:</TextMuted>
-                      <p>{equipmentData?.manufacturer}</p>
-                    </div>
-                    <div className="product-slug__row">
-                      <TextMuted>Model:</TextMuted>
-                      <p>{equipmentData?.model}</p>
-                    </div>
-                    <div className="product-slug__row">
-                      <TextMuted>Year:</TextMuted>
-                      <p>{equipmentData?.year}</p>
-                    </div>
-                    <div className="product-slug__row">
-                      <TextMuted>Condition:</TextMuted>
-                      <p>{equipmentData?.condition}</p>
-                    </div>
+                <div className="product-slug__titles">
+                  <div className="product-slug__tab">
+                    <Title size="h2">Описание</Title>
+                    <TitleDescription
+                      color="gray"
+                      fontSize="16px"
+                    >
+                      {equipmentData?.description}
+                    </TitleDescription>
+                  </div>
+                  <div className="product-slug__tab">
+                    <Title size="h2">Спецификации</Title>
+                    <TitleDescription
+                      color="gray"
+                      fontSize="16px"
+                    >
+                      <div className="product-slug__specifications">
+                        <ul>
+                          <li>
+                            <strong>Производитель </strong>
+                          </li>
+                          <li>
+                            <strong>Модель </strong>
+                          </li>
+                          <li>
+                            <strong>Год </strong>
+                          </li>
+                          <li>
+                            <strong>Состояние </strong>
+                          </li>
+                          <li>
+                            <strong>Категория </strong>
+                          </li>
+                        </ul>
+                        <ul>
+                          <li>{equipmentData?.brand_details.name}</li>
+                          <li>{equipmentData?.model}</li>
+                          <li>{equipmentData?.year}</li>
+                          <li>
+                            {equipmentData?.condition === 'new'
+                              ? 'Новое'
+                              : 'Б/У'}
+                          </li>
+                          <li>{equipmentData?.category_details?.name}</li>
+                        </ul>
+                      </div>
+                    </TitleDescription>
+                  </div>
+                  <div className="product-slug__tab">
+                    <Title size="h2">Условия аренды</Title>
+                    <TitleDescription
+                      color="gray"
+                      fontSize="16px"
+                    >
+                      Действуют стандартные условия аренды. Оборудование должно
+                      быть возвращено в прежнем состоянии
+                    </TitleDescription>
                   </div>
                 </div>
               </div>
-              <div className="product-slug__tabs">
-                {TABS.map((tab) => (
-                  <button
-                    key={tab.id}
-                    className={`product-slug__tab ${selectedTab === tab.id ? "product-slug__tab--active" : ""}`}
-                    onClick={() => setSelectedTab(tab.id)}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
 
-              <div className="product-slug__tab-content">
-                {selectedTab === "description" && (
-                  <div className="product-slug__description">
-                    <h1>Описание</h1>
-                    <p className="product-slug__text">
-                      {equipmentData?.description ||
-                        "No description available."}
-                    </p>
-                  </div>
-                )}
-
-                {selectedTab === "specifications" && (
-                  <div className="product-slug__specifications">
-                    <h1>Спецификации</h1>
-                    <ul>
-                      <li>
-                        <strong>Manufacturer:</strong>{" "}
-                        {equipmentData?.manufacturer}
-                      </li>
-                      <li>
-                        <strong>Model:</strong> {equipmentData?.model}
-                      </li>
-                      <li>
-                        <strong>Year:</strong> {equipmentData?.year}
-                      </li>
-                      <li>
-                        <strong>Condition:</strong> {equipmentData?.condition}
-                      </li>
-                      <li>
-                        <strong>Category:</strong>{" "}
-                        {equipmentData?.category_details?.name}
-                      </li>
-                    </ul>
-                  </div>
-                )}
-
-                {selectedTab === "rental_terms" && (
-                  <div className="product-slug__rental-terms">
-                    <h1>Условия аренды</h1>
-                    <p className="product-slug__text">
-                      Действуют стандартные условия аренды. Оборудование должно
-                      быть возвращено в прежнем состоянии
-                    </p>
-                  </div>
-                )}
-              </div>
+              <div className="product-slug__tab-content"></div>
             </Card>
             <div className="product-slug__block">
               <h1 className="product-slug__price">
@@ -287,7 +260,7 @@ export const ProductIdSection = () => {
                 )}
               </h1>
               {equipmentData?.available_for_rent && (
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form>
                   <DatePicker onSelectDates={setSelectedDates} />
                   <div className="product-slug__button">
                     <div className="product-slug__total">
@@ -297,9 +270,21 @@ export const ProductIdSection = () => {
                     </div>
                     <div className="product-slug__button-list"></div>
                   </div>
-                  <Button onClick={handleCreateChat} width="100%">
-                    Написать владельцу
-                  </Button>
+                  <div className="product-slug__buttons">
+                    <Button
+                      onClick={handleCreateChat}
+                      width="100%"
+                    >
+                      Написать владельцу
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      onClick={() => setShowNumber(!showNumber)}
+                      width="100%"
+                    >
+                      {showNumber ? '87477810777' : 'Показать номер'}
+                    </Button>
+                  </div>
                 </form>
               )}
             </div>

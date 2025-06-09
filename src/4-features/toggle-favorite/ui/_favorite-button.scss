@@ -3,9 +3,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3rem;
-  width: 3rem;
-  padding: 0;
+  height: 4rem;
+  width: 4rem;
+  padding: 0.5rem;
   border: 0;
   border-radius: 10rem;
   color: $base-color;
@@ -16,7 +16,7 @@
 
   &__icon {
     transition: $transition;
-    
+
     &:hover {
       color: $primary-color;
       fill: red;

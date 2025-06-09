@@ -1,9 +1,15 @@
-import React from "react";
+import React, { ReactNode, TextareaHTMLAttributes } from 'react';
+interface ITextarea extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  children?: ReactNode;
+}
 
-const Textarea = () => {
+const Textarea = ({ children, ...rest }: ITextarea) => {
   return (
-    <textarea name="asd" id="asd">
-      Someth
+    <textarea
+      className="textarea"
+      {...rest}
+    >
+      {children}
     </textarea>
   );
 };

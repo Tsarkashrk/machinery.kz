@@ -1,9 +1,9 @@
-import { ICON_SIZE } from "@/6-shared/constants/constants";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import React, { useState } from "react";
-import { Controller } from "react-hook-form";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import { useTranslations } from "next-intl";
+import { ICON_SIZE } from '@/6-shared/constants/constants';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import React, { useState } from 'react';
+import { Controller } from 'react-hook-form';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { useTranslations } from 'next-intl';
 
 interface Option {
   id: number;
@@ -39,14 +39,14 @@ const CustomDropdown: React.FC<DropdownProps> = ({
       render={({ field, fieldState }) => (
         <div className="dropdown">
           <div
-            className={`dropdown__selected ${isOpen ? "dropdown__selected--open" : ""}`}
+            className={`dropdown__selected ${isOpen ? 'dropdown__selected--open' : ''}`}
             onClick={() => setIsOpen(!isOpen)}
           >
             {field.value
               ? options.find((o) => o.value === field.value)?.title
               : placeholder
                 ? placeholder
-                : t("select-option")}
+                : t('select-option')}
             {isOpen ? (
               <ChevronUp size={ICON_SIZE} />
             ) : (
@@ -55,7 +55,7 @@ const CustomDropdown: React.FC<DropdownProps> = ({
           </div>
 
           <ul
-            className={`dropdown__list dropdown__list--${isOpen ? "open" : "closed"}`}
+            className={`dropdown__list dropdown__list--${isOpen ? 'open' : 'closed'}`}
           >
             {options.map((option) => (
               <li
@@ -71,9 +71,11 @@ const CustomDropdown: React.FC<DropdownProps> = ({
             ))}
           </ul>
 
-          {fieldState.error && (
-            <ErrorMessage>{fieldState.error.message}</ErrorMessage>
-          )}
+          <div className="dropdown__message">
+            {fieldState.error && (
+              <ErrorMessage>{fieldState.error.message}</ErrorMessage>
+            )}
+          </div>
         </div>
       )}
     />

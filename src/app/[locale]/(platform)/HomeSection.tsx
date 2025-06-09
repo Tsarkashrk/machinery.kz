@@ -2,7 +2,10 @@
 
 import { CategoryList } from '@/5-entities/category';
 import { useCategories } from '@/5-entities/category/hooks/useCategories';
-import { useEquipmentWithImages } from '@/5-entities/equipment';
+import {
+  useEquipmentList,
+  useEquipmentWithImages,
+} from '@/5-entities/equipment';
 
 import { Hero } from '@/6-shared/ui/Hero/Hero';
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config';
@@ -19,11 +22,7 @@ import { BrandsList, useBrands } from '@/5-entities/brand';
 export default function HomeSection() {
   const t = useTranslations('HomePage');
 
-  const {
-    data: equipmentListData,
-    isLoading,
-    isSuccess,
-  } = useEquipmentWithImages();
+  const { data: equipmentListData, isLoading, isSuccess } = useEquipmentList();
   const { brands, isLoading: isBrandsLoading } = useBrands();
   const { categories, isLoading: isCategoriesLoading } = useCategories(
     'equipment',
@@ -77,7 +76,7 @@ export default function HomeSection() {
             </TitleMore>
           </Title>
           <EquipmentList
-            equipmentList={equipmentListData?.slice(0, 8)}
+            equipmentList={equipmentListData?.results.slice(0, 8)}
             isLoading={isLoading}
           />
         </SectionWithContent>

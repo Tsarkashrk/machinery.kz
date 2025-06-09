@@ -43,7 +43,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ onSelectDates }) => {
       <p className="selected-dates">
         {dateRange[0]
           ? `Начало: ${format(dateRange[0], "dd.MM.yyyy")}`
-          : "Choose Start Date"}
+          : "Выберите дату"}
         {dateRange[1] ? ` — Конец: ${format(dateRange[1], "dd.MM.yyyy")}` : ""}
       </p>
     </div>

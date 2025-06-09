@@ -18,6 +18,8 @@ import { useCategories } from '@/5-entities/category/hooks/useCategories';
 import { useProfile } from '@/5-entities/user';
 import { useBrands } from '@/5-entities/brand';
 import { useTranslations } from 'next-intl';
+import Textarea from '@/6-shared/ui/Textarea/Textarea';
+import ErrorMessage from '@/6-shared/ui/ErrorMessage/ErrorMessage';
 
 const NewSection = () => {
   const { brands } = useBrands();
@@ -83,15 +85,14 @@ const NewSection = () => {
         formData.append('equipment', createdEquipment.id.toString());
 
         await imageMutation.mutateAsync(formData);
-        toast.success('Equipment and image uploaded successfully!');
       } else {
-        toast.success('Equipment created successfully!');
+        toast.success('Публикация успешно отправлена на проверку');
       }
 
       reset();
       push(PLATFORM_PAGES.HOME);
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Ошибка:', error);
     }
   };
 
@@ -198,8 +199,10 @@ const NewSection = () => {
                       })}
                     />
                     {typeof errors.name?.message === 'string' && (
-                      <TextMuted color="red">* {errors.name.message}</TextMuted>
-                    )}
+                        <ErrorMessage>
+                          {errors.name.message}
+                        </ErrorMessage>
+                      )}
                   </div>
                   <div className="new-section__info-block">
                     <Label forElement="model">{t('model')}</Label>
@@ -210,10 +213,10 @@ const NewSection = () => {
                       {...register('model', { required: t('model-required') })}
                     />
                     {typeof errors.model?.message === 'string' && (
-                      <TextMuted color="red">
-                        * {errors.model.message}
-                      </TextMuted>
-                    )}
+                        <ErrorMessage>
+                          {errors.model.message}
+                        </ErrorMessage>
+                      )}
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
@@ -251,8 +254,10 @@ const NewSection = () => {
                       })}
                     />
                     {typeof errors.year?.message === 'string' && (
-                      <TextMuted color="red">* {errors.year.message}</TextMuted>
-                    )}
+                        <ErrorMessage>
+                          {errors.year.message}
+                        </ErrorMessage>
+                      )}
                   </div>
                 </div>
                 <div className="new-section__info-blocks">
@@ -278,6 +283,12 @@ const NewSection = () => {
                           required: t('daily-rental-rate-required'),
                         })}
                       />
+                      {typeof errors.daily_rental_rate?.message ===
+                        'string' && (
+                        <ErrorMessage>
+                          {errors.daily_rental_rate.message}
+                        </ErrorMessage>
+                      )}
                     </div>
                   )}
 
@@ -294,6 +305,11 @@ const NewSection = () => {
                           required: t('purchase-price-required'),
                         })}
                       />
+                      {typeof errors.purchase_price?.message === 'string' && (
+                        <ErrorMessage>
+                          {errors.purchase_price.message}
+                        </ErrorMessage>
+                      )}
                     </div>
                   )}
                 </div>
@@ -301,18 +317,16 @@ const NewSection = () => {
                 <div className="new-section__info-blocks">
                   <div className="new-section__info-block">
                     <Label forElement="description">{t('description')}</Label>
-                    <Input
+                    <Textarea
                       id="description"
-                      type="text"
                       placeholder={t('equipment-description-placeholder')}
                       {...register('description', {
                         required: 'Требуется заполнить описание!',
                       })}
                     />
+
                     {typeof errors.description?.message === 'string' && (
-                      <TextMuted color="red">
-                        * {errors.description.message}
-                      </TextMuted>
+                      <ErrorMessage>{errors.description.message}</ErrorMessage>
                     )}
                   </div>
                 </div>
@@ -320,6 +334,7 @@ const NewSection = () => {
                   type="submit"
                   variant="default"
                   width="100%"
+                  isLoading={isLoading}
                 >
                   {isLoading ? 'Создание...' : t('confirm-submit')}
                 </Button>

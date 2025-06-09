@@ -45,7 +45,7 @@ export interface IChatResponse {
 export interface IChatRequest {
   dealer: number;
   buyer: number;
-  deal_item: number;
+  equipment: number;
 }
 
 export interface IChatsResponse {
