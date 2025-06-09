@@ -11,6 +11,13 @@ export const useChatMessages = (chatId: number) => {
   const [isSending, setIsSending] = useState(false);
   const queryClient = useQueryClient();
 
+  // Очищаем сообщения при изменении чата
+  useEffect(() => {
+    console.log('Chat ID changed, clearing messages:', chatId);
+    setMessages([]);
+    setTypingUsers(new Set());
+  }, [chatId]);
+
   const handleNewMessage = useCallback(
     (message: IChatMessage) => {
       if (!message || !message.id) {
@@ -18,21 +25,38 @@ export const useChatMessages = (chatId: number) => {
         return;
       }
 
-      console.log("handleNewMessage called with:", message);
+      console.log("handleNewMessage called:", { messageId: message.id, chatId: message.chat });
 
-      setMessages((prev) => {
-        const exists = prev.some(
+      // Проверяем, что сообщение относится к текущему чату
+      if (message.chat && message.chat !== chatId) {
+        console.log("Message for different chat, ignoring:", message.chat);
+        return;
+      }
+
+      setMessages((prevMessages) => {
+        // Проверяем, есть ли уже такое сообщение
+        const messageExists = prevMessages.some(
           (msg) => msg && msg.id && msg.id === message.id,
         );
-        if (exists) {
+        
+        if (messageExists) {
           console.log("Message already exists, skipping:", message.id);
-          return prev;
+          return prevMessages;
         }
 
         console.log("Adding new message to state:", message.id);
-        return [...prev, message];
+        const newMessages = [...prevMessages, message].sort((a, b) => {
+          // Сортируем по timestamp или по id
+          if (a.timestamp && b.timestamp) {
+            return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
+          }
+          return (a.id || 0) - (b.id || 0);
+        });
+
+        return newMessages;
       });
 
+      // Инвалидируем кэш для обновления UI
       queryClient.invalidateQueries({ queryKey: [`chat-${chatId}`] });
       queryClient.invalidateQueries({ queryKey: ["chats"] });
     },
@@ -40,7 +64,15 @@ export const useChatMessages = (chatId: number) => {
   );
 
   const handleTyping = useCallback(
-    (data: { user_id: number; is_typing: boolean }) => {
+    (data: { user_id: number; is_typing: boolean; chat_id?: number }) => {
+      // Проверяем, что индикатор печати для текущего чата
+      if (data.chat_id && data.chat_id !== chatId) {
+        console.log("Typing indicator for different chat, ignoring");
+        return;
+      }
+
+      console.log("Typing indicator:", data);
+
       setTypingUsers((prev) => {
         const newSet = new Set(prev);
         if (data.is_typing) {
@@ -51,6 +83,7 @@ export const useChatMessages = (chatId: number) => {
         return newSet;
       });
 
+      // Автоматически убираем индикатор печати через 3 секунды
       if (data.is_typing) {
         setTimeout(() => {
           setTypingUsers((prev) => {
@@ -61,20 +94,32 @@ export const useChatMessages = (chatId: number) => {
         }, 3000);
       }
     },
-    [],
+    [chatId],
   );
 
-  const handleMessageRead = useCallback((data: { message_id: number }) => {
-    setMessages((prev) =>
-      prev.map((msg) =>
-        msg && msg.id && msg.id === data.message_id
-          ? { ...msg, is_read: true }
-          : msg,
-      ),
-    );
-  }, []);
+  const handleMessageRead = useCallback(
+    (data: { message_id: number; chat_id?: number }) => {
+      // Проверяем, что уведомление о прочтении для текущего чата
+      if (data.chat_id && data.chat_id !== chatId) {
+        console.log("Read notification for different chat, ignoring");
+        return;
+      }
+
+      console.log("Message read:", data.message_id);
+
+      setMessages((prevMessages) =>
+        prevMessages.map((msg) =>
+          msg && msg.id && msg.id === data.message_id
+            ? { ...msg, is_read: true }
+            : msg,
+        ),
+      );
+    },
+    [chatId],
+  );
 
   const handleError = useCallback((error: string) => {
+    console.error("WebSocket error:", error);
     toast.error(`Chat error: ${error}`);
   }, []);
 
@@ -94,9 +139,12 @@ export const useChatMessages = (chatId: number) => {
 
   const sendMessage = useCallback(
     async (content: string) => {
-      if (isSending) return;
+      if (isSending || !content.trim()) {
+        console.log("Message sending skipped:", { isSending, hasContent: !!content.trim() });
+        return;
+      }
 
-      console.log("useChatMessages sendMessage called with:", content);
+      console.log("Sending message:", content);
       setIsSending(true);
 
       try {
@@ -106,24 +154,25 @@ export const useChatMessages = (chatId: number) => {
           is_read: false,
         };
 
-        console.log("Sending HTTP request to create message:", messageData);
+        console.log("Creating message via API:", messageData);
         const response = await chatApi.sendMessage(chatId, messageData);
         console.log("Message created successfully:", response);
 
-        if (response) {
+        // Добавляем сообщение локально (оно также должно прийти через WebSocket)
+        if (response && response.id) {
           handleNewMessage(response);
         }
 
+        // Уведомляем других пользователей через WebSocket
         const wsNotification = {
-          type: "message_sent",
-          data: {
-            chat_id: chatId,
-            message_id: response?.id,
-          },
+          type: "message",
+          data: response,
+          chat_id: chatId,
         };
 
         console.log("Sending WebSocket notification:", wsNotification);
         wsSendMessage(wsNotification);
+
       } catch (error) {
         console.error("Failed to send message:", error);
         toast.error("Failed to send message");
@@ -131,16 +180,20 @@ export const useChatMessages = (chatId: number) => {
         setIsSending(false);
       }
     },
-    [wsSendMessage, chatId, isSending, handleNewMessage],
+    [chatId, isSending, wsSendMessage, handleNewMessage],
   );
 
+  // Загружаем существующие сообщения из кэша при изменении chatId
   useEffect(() => {
     const cachedData = queryClient.getQueryData<any>([`chat-${chatId}`]);
     if (cachedData?.messages) {
+      console.log("Loading cached messages:", cachedData.messages.length);
       const validMessages = cachedData.messages.filter(
         (msg: any) => msg && msg.id,
       );
       setMessages(validMessages);
+    } else {
+      console.log("No cached messages found for chat:", chatId);
     }
   }, [chatId, queryClient]);
 

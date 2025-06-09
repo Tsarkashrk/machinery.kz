@@ -26,7 +26,7 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
   const typingTimeoutRef = useRef<NodeJS.Timeout>();
 
   const chat =
-    chatList?.results.find((chat: any) => chat.id === activeChat) || null;
+    chatList?.results?.find((chat: any) => chat.id === activeChat) || null;
 
   const {
     messages,
@@ -49,25 +49,38 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
 
   const messageContent = watch('content');
 
+  // Автоскролл при новых сообщениях
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [messages]);
 
+  // Обработка индикатора печати
   useEffect(() => {
-    if (messageContent && messageContent.length > 0) {
+    if (messageContent && messageContent.trim().length > 0) {
       if (!isTyping) {
         setIsTyping(true);
         sendTyping(true);
       }
 
+      // Очищаем предыдущий таймер
       if (typingTimeoutRef.current) {
         clearTimeout(typingTimeoutRef.current);
       }
 
+      // Устанавливаем новый таймер
       typingTimeoutRef.current = setTimeout(() => {
         setIsTyping(false);
         sendTyping(false);
       }, 1000);
+    } else if (isTyping) {
+      // Если поле очищено, сразу убираем индикатор печати
+      setIsTyping(false);
+      sendTyping(false);
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
     }
 
     return () => {
@@ -77,14 +90,37 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
     };
   }, [messageContent, isTyping, sendTyping]);
 
+  // Очистка при размонтировании компонента
+  useEffect(() => {
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+      if (isTyping) {
+        sendTyping(false);
+      }
+    };
+  }, [isTyping, sendTyping]);
+
   const onSubmit = async (data: IChatMessageRequest) => {
     console.log('Form submitted with data:', data);
+    
     if (data.content && data.content.trim()) {
       console.log('Sending message:', data.content.trim());
+      
+      // Останавливаем индикатор печати
+      if (isTyping) {
+        setIsTyping(false);
+        sendTyping(false);
+      }
+      
+      // Очищаем таймер
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+      
       await sendMessage(data.content.trim());
       reset();
-      setIsTyping(false);
-      sendTyping(false);
     } else {
       console.warn('Empty message content');
     }
@@ -114,31 +150,41 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
       <div className="chat-content">
         <div className="chat-content__wrapper">
           <div className="chat-content__empty">
-            <div className="chat-content__message">Чат не найден</div>
+            <div className="chat-content__message">Загрузка чата...</div>
           </div>
         </div>
       </div>
     );
   }
 
+  // Объединяем сообщения из API и WebSocket, убираем дубликаты
   const allMessages = [...(data.messages || []), ...messages]
-    .filter((message) => message && message.id)
+    .filter((message) => message && message.id) // Фильтруем невалидные сообщения
     .reduce((acc, message) => {
       if (!message || !message.id) return acc;
-
-      if (!acc.some((msg) => msg && msg.id && msg.id === message.id)) {
+      
+      // Проверяем, нет ли уже такого сообщения
+      const exists = acc.some((msg) => msg && msg.id && msg.id === message.id);
+      if (!exists) {
         acc.push(message);
       }
       return acc;
     }, [] as IChatMessage[])
     .sort((a, b) => {
+      // Сортируем по timestamp или по id
       if (a.timestamp && b.timestamp) {
-        return (
-          new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-        );
+        return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
       }
       return (a.id || 0) - (b.id || 0);
     });
+
+  console.log('Rendering messages:', {
+    apiMessages: data.messages?.length || 0,
+    wsMessages: messages.length,
+    totalMessages: allMessages.length,
+    isConnected,
+    isReconnecting
+  });
 
   return (
     <div className="chat-content">
@@ -159,6 +205,11 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
           {allMessages.length === 0 ? (
             <div className="chat-content__start">
               <Title>Начните общение</Title>
+              {!isConnected && (
+                <p className="text-sm text-gray-500 mt-2">
+                  {isReconnecting ? 'Переподключение...' : 'Нет соединения'}
+                </p>
+              )}
             </div>
           ) : (
             <div className="chat-content__messages">
@@ -198,13 +249,18 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               {...register('content', { required: true })}
-              placeholder="Введите сообщение..."
+              placeholder={
+                !isConnected 
+                  ? (isReconnecting ? 'Переподключение...' : 'Нет соединения') 
+                  : 'Введите сообщение...'
+              }
               onKeyPress={handleKeyPress}
               disabled={!isConnected || isSending}
             >
               <Button
                 type="submit"
                 variant="rounded"
+                disabled={!isConnected || isSending}
               >
                 {isSending ? (
                   <Loader2
