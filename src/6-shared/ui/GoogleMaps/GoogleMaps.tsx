@@ -1,50 +1,30 @@
-import { Loader } from '@googlemaps/js-api-loader';
-import { useEffect, useRef } from 'react';
+import React from 'react';
 
-export const GoogleMaps = () => {
-  const mapRef = useRef<HTMLDivElement>(null);
+interface GoogleMapsProps {
+  lat?: number;
+  lng?: number;
+  address?: string;
+}
 
-  useEffect(() => {
-    const initMap = async () => {
-      const loader = new Loader({
-        apiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY || '',
-        version: 'quarterly',
-        libraries: ['places'],
-      });
+export const GoogleMaps = ({ lat, lng, address }: GoogleMapsProps) => {
+  const mapSrc =
+    lat && lng
+      ? `https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`
+      : address
+        ? `https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=15&output=embed`
+        : '';
 
-      const { Map } = await loader.importLibrary('maps');
-
-      const location = {
-        lat: 40.73061,
-        lng: -73.935242,
-      };
-
-      const options: google.maps.MapOptions = {
-        center: location,
-        zoom: 15,
-        mapId: 'map',
-      };
-
-      const map = new Map(mapRef.current as HTMLElement, options);
-
-      const { AdvancedMarkerElement } = (await loader.importLibrary(
-        'marker',
-      )) as google.maps.MarkerLibrary;
-
-      new AdvancedMarkerElement({
-        position: location,
-        map: map,
-      });
-
-    };
-
-    initMap();
-  }, []);
-
-  return (
-    <div
-      className="google-maps"
-      ref={mapRef}
+  return mapSrc ? (
+    <iframe
+      src={mapSrc}
+      width="100%"
+      height="400"
+      style={{ border: 0 }}
+      loading="lazy"
+      allowFullScreen
+      referrerPolicy="no-referrer-when-downgrade"
     />
+  ) : (
+    <p>Адрес недоступен</p>
   );
 };

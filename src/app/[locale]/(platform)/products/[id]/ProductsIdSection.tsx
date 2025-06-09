@@ -281,7 +281,9 @@ export const ProductIdSection = () => {
                 </div>
               </Card>
               <div className="product-slug__map">
-                <GoogleMaps />
+                <GoogleMaps
+                  address={`${equipmentData?.location_city}, ${equipmentData?.location_address}`}
+                />
               </div>
             </div>
             <div className="product-slug__block">
