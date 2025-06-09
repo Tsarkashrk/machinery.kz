@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface WebSocketState {
   ws: WebSocket | null;
@@ -15,7 +15,7 @@ const createWebSocketService = () => {
 
   const maxReconnectAttempts = 5;
   const reconnectInterval = 3000;
-  const baseUrl = `ws://${process.env.NEXT_PUBLIC_API_URL}:${process.env.NEXT_PUBLIC_WEBHOOKS_PORT}`;
+  const baseUrl = `wss://${process.env.NEXT_PUBLIC_DOMEN_URL}`;
 
   const handleMessage = (data: any) => {
     const { type, ...payload } = data;
@@ -48,7 +48,7 @@ const createWebSocketService = () => {
     state.ws = new WebSocket(wsUrl);
 
     state.ws.onopen = () => {
-      console.log("WebSocket connected");
+      console.log('WebSocket connected');
       state.reconnectAttempts = 0;
     };
 
@@ -57,17 +57,17 @@ const createWebSocketService = () => {
         const data = JSON.parse(event.data);
         handleMessage(data);
       } catch (error) {
-        console.error("Error parsing WebSocket message:", error);
+        console.error('Error parsing WebSocket message:', error);
       }
     };
 
     state.ws.onclose = () => {
-      console.log("WebSocket disconnected");
+      console.log('WebSocket disconnected');
       reconnect(token);
     };
 
     state.ws.onerror = (error) => {
-      console.error("WebSocket error:", error);
+      console.error('WebSocket error:', error);
     };
   };
 
@@ -92,7 +92,7 @@ const createWebSocketService = () => {
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
       state.ws.send(JSON.stringify(data));
     } else {
-      console.error("WebSocket is not connected");
+      console.error('WebSocket is not connected');
     }
   };
 
