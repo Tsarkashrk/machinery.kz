@@ -144,15 +144,9 @@ export const useChatMessages = (chatId: number) => {
 
   const sendMessage = useCallback(
     async (content: string) => {
-      if (isSending || !content.trim()) {
-        console.log('Message sending skipped:', {
-          isSending,
-          hasContent: !!content.trim(),
-        });
-        return;
-      }
+      if (isSending) return;
 
-      console.log('Sending message:', content);
+      console.log('useChatMessages sendMessage called with:', content);
       setIsSending(true);
 
       try {
@@ -162,20 +156,22 @@ export const useChatMessages = (chatId: number) => {
           is_read: false,
         };
 
-        console.log('Creating message via API:', messageData);
+        console.log('Sending HTTP request to create message:', messageData);
         const response = await chatApi.sendMessage(chatId, messageData);
         console.log('Message created successfully:', response);
 
-        // Добавляем сообщение локально (оно также должно прийти через WebSocket)
-        // if (response && response.id) {
-        //   handleNewMessage(response);
-        // }
+        if (response) {
+          // Handle the new message only once
+          handleNewMessage(response);
+        }
 
-        // Уведомляем других пользователей через WebSocket
+        // Send WebSocket notification only if the message was successfully created
         const wsNotification = {
-          type: 'message',
-          data: response,
-          chat_id: chatId,
+          type: 'message_sent',
+          data: {
+            chat_id: chatId,
+            message_id: response?.id,
+          },
         };
 
         console.log('Sending WebSocket notification:', wsNotification);
@@ -187,7 +183,7 @@ export const useChatMessages = (chatId: number) => {
         setIsSending(false);
       }
     },
-    [chatId, isSending, wsSendMessage],
+    [wsSendMessage, chatId, isSending, handleNewMessage],
   );
 
   // Загружаем существующие сообщения из кэша при изменении chatId
