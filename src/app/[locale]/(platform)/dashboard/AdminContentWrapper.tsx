@@ -12,7 +12,7 @@ type Props = {
 };
 
 const pathToTranslationKeyMap: Record<string, string> = {
-  [DASHBOARD_PAGES.CATEGORIES]: "DashboardCategoriesPage",
+  [DASHBOARD_PAGES.EQUIPMENT_CATEGORIES]: "DashboardCategoriesPage",
   [DASHBOARD_PAGES.BRANDS]: "DashboardBrandsPage",
   [DASHBOARD_PAGES.USERS]: "DashboardUsersPage",
   [DASHBOARD_PAGES.COMPANIES]: "DashboardCompaniesPage",
