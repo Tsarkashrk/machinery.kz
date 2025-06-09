@@ -23,6 +23,7 @@ import { useEquipmentList } from '@/5-entities/equipment';
 import { EquipmentList } from '@/3-widgets/equipment-list';
 import { Title } from '@/6-shared/ui/Title/Title';
 import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription';
+import { useCreateRental, useRequestRental } from '@/5-entities/rental';
 
 export const ProductIdSection = () => {
   const { id } = useParams();
@@ -133,24 +134,53 @@ export const ProductIdSection = () => {
   const { profile } = useProfile();
 
   const { mutate: createChatMutation } = useCreateChat();
+  const { mutate: requestRentalTransaction } = useRequestRental();
 
-  const handleCreateChat = () => {
-    if (!slug || !profile?.id) return;
+  const handleAction = (e: any) => {
+    e.preventDefault();
 
-    if (equipmentData) {
-      createChatMutation(
-        {
-          dealer: equipmentData.owner,
-          buyer: profile.id,
-          equipment: equipmentData.id,
-        },
-        {
-          onSuccess: (chat) => {
-            router.push(`${PLATFORM_PAGES.MESSAGES}`);
-          },
-        },
-      );
+    if (!equipmentData) {
+      return;
     }
+
+    if (!profile) {
+      toast.error('Войдите в аккаунт!');
+      return;
+    }
+
+    if (!selectedDates || !selectedDates[0] || !selectedDates[1]) {
+      toast.warning('Выберите даты аренды');
+      return;
+    }
+
+    createChatMutation(
+      {
+        dealer: equipmentData.owner,
+        buyer: profile.id,
+        equipment: equipmentData.id,
+      },
+      {
+        onSuccess: () => {
+          router.push(`${PLATFORM_PAGES.MESSAGES}`);
+        },
+      },
+    );
+
+    requestRentalTransaction({
+      equipment: equipmentData.id,
+      renter: profile.id,
+      start_date: selectedDates[0],
+      end_date: selectedDates[1],
+      pickup_confirmed_by_owner: false,
+      pickup_confirmed_by_renter: false,
+      rental_terms:
+        'Действуют стандартные условия аренды. Оборудование должно быть возвращено в прежнем состоянии',
+      return_confirmed_by_owner: false,
+      return_confirmed_by_renter: false,
+      security_deposit_amount: '',
+      status: 'requested',
+      total_amount: total,
+    });
   };
 
   return (
@@ -272,7 +302,7 @@ export const ProductIdSection = () => {
                   </div>
                   <div className="product-slug__buttons">
                     <Button
-                      onClick={handleCreateChat}
+                      onClick={(e) => handleAction(e)}
                       width="100%"
                     >
                       Написать владельцу

@@ -2,6 +2,7 @@ import { useProfile } from '@/5-entities/user';
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config';
 import { formatTime } from '@/6-shared/lib/utils';
 import Avatar from '@/6-shared/ui/Avatar/Avatar';
+import Button from '@/6-shared/ui/Buttons/Button';
 import { Description } from '@/6-shared/ui/Description/Description';
 import { Wifi, WifiOff } from 'lucide-react';
 import { useMemo } from 'react';
@@ -46,6 +47,10 @@ export const ChatHeader = ({
     }
   }, [profile?.id, buyer, dealer]);
 
+  const handleApprove = () => {
+
+  }
+
   return (
     <div className="chat-header">
       <div className="chat-header__wrapper">
@@ -73,23 +78,9 @@ export const ChatHeader = ({
             </div>
           </div>
         </div>
-        <div className="chat-header__connection">
-          {isReconnecting ? (
-            <WifiOff
-              className="text-yellow-500"
-              size={20}
-            />
-          ) : isOnline ? (
-            <Wifi
-              className="text-green-500"
-              size={20}
-            />
-          ) : (
-            <WifiOff
-              className="text-red-500"
-              size={20}
-            />
-          )}
+        <div className="chat-header__actions">
+          Подтвердить транзакцию? 
+          <Button onClick={handleApprove}>Подтвердить</Button>
         </div>
       </div>
     </div>
