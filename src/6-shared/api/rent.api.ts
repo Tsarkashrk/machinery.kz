@@ -23,7 +23,7 @@ export interface IConfirmRentalPickup {
   pickup_photos: string[];
 }
 
-export interface IReportIssue {
+export interface IRentalReportIssue {
   issue_type: 'equipment_damage' | string;
   description: string;
   evidence_urls: string[];
@@ -68,7 +68,7 @@ export const rentApi = {
     return response.data;
   },
 
-  reportIssue: async (id: number, data: IReportIssue) => {
+  reportIssue: async (id: number, data: IRentalReportIssue) => {
     const response = await axiosWithAuth.post(
       `${BASE_URL}/${id}/report-issue/`,
       data,
