@@ -27,9 +27,6 @@ export const ProfileSettingsSection = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IUserRequest>({
-    defaultValues: {
-      phone_number: profile?.phone_number || null,
-    },
     mode: 'onChange',
   });
 

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { IFavorite } from "@/5-entities/favorite";
-import { EquipmentCard } from "@/3-widgets/equipment-card";
+import { IFavorite } from '@/5-entities/favorite';
+import { EquipmentCard } from '@/3-widgets/equipment-card';
 
 type Props = {
   favoritesList: IFavorite[];
@@ -10,7 +10,7 @@ type Props = {
 
 export const FavoritesList = ({ favoritesList, isLoading }: Props) => {
   return isLoading ? (
-    "loading"
+    'loading'
   ) : (
     <div className="equipment-list">
       {favoritesList?.map((favorite: IFavorite) => (
@@ -21,6 +21,9 @@ export const FavoritesList = ({ favoritesList, isLoading }: Props) => {
           purchase_price={favorite.equipment.purchase_price}
           name={favorite.equipment.name}
           id={favorite.equipment.id}
+          city={favorite.equipment.location_city}
+          address={favorite.equipment.location_address}
+          ownerId={favorite.equipment.owner}
         />
       ))}
     </div>
