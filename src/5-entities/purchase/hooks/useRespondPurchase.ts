@@ -1,9 +1,9 @@
-import { IRespondRequest, purchaseApi } from '@/6-shared/api';
+import { IPurchaseRespondRequest, purchaseApi } from '@/6-shared/api';
 import { useMutation } from '@tanstack/react-query';
 
 type Props = {
   id: number;
-  data: IRespondRequest;
+  data: IPurchaseRespondRequest;
 };
 
 export const useRespondPurchase = () => {

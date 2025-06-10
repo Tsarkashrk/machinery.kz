@@ -63,7 +63,10 @@ export const purchaseApi = {
     return response.data;
   },
 
-  respondToPurchaseRequest: async (id: number, data: IPurchaseRespondRequest) => {
+  respondToPurchaseRequest: async (
+    id: number,
+    data: IPurchaseRespondRequest,
+  ) => {
     const response = await axiosWithAuth.post(
       `${BASE_URL}/${id}/respond/`,
       data,
