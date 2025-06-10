@@ -16,7 +16,7 @@ $input-padding: 1.05rem 1.3rem;
 
 // Font
 
-$gilroy-regular: "GilroyRegular";
+$gilroy-regular: 'GilroyRegular';
 
 $font-gilroy: var(--font-gilroy);
 $font-inter: var(--font-inter);
@@ -50,6 +50,13 @@ $border-radius-ui: 1rem;
 $badge-radius: 0.75rem;
 
 // Color
+
+$badge-gray-color: #717179;
+$badge-purple-color: #8b5cf6;
+$badge-blue-color: #3b82f6;
+$badge-green-color: #10b982;
+$badge-orange-color: #f49e0b;
+$badge-red-color: #ee4445;
 
 $bg-color: #f9fbfc;
 

@@ -511,6 +511,11 @@ hr {
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
   border-radius: 1.6rem;
 }
+.profile-deals__tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
 
 .activate-section__wrapper {
   display: flex;
@@ -990,6 +995,120 @@ hr {
   }
 }
 
+.transactions-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+}
+.transactions-list--small {
+  grid-template-columns: repeat(3, 1fr);
+}
+.transactions-list--horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.transaction-card__wrapper {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  height: 100%;
+  padding: 1.5rem;
+  border-radius: 1.6rem;
+  border: 1px solid rgba(41, 71, 163, 0.1294117647);
+  font-family: var(--font-gilroy);
+  transition: all 0.3s ease;
+}
+.transaction-card__wrapper:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+.transaction-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.transaction-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.transaction-card__content {
+  display: flex;
+  gap: 2rem;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border-radius: 1rem;
+}
+.transaction-card__right {
+  display: flex;
+  flex-direction: column;
+}
+.transaction-card__user {
+  display: flex;
+  gap: 1rem;
+}
+.transaction-card__badges {
+  display: flex;
+  gap: 0.5rem;
+}
+.transaction-card__image-container {
+  height: 100%;
+  width: 100%;
+  max-width: 15rem;
+  max-height: 15rem;
+}
+.transaction-card__image {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: cover;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+}
+.transaction-card__price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #030612;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.transaction-card__description {
+  margin-bottom: 1rem;
+}
+.transaction-card__available {
+  margin-bottom: 1rem;
+}
+.transaction-card__buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+.transaction-card__line {
+  margin: 1rem 0;
+}
+.line-vertical {
+  border: 1px solid rgba(41, 71, 163, 0.1294117647);
+}
+
+.start {
+  margin-top: 1rem;
+}
+
+.start,
+.end {
+  color: #030612;
+}
+
+.transaction-button {
+  width: 100%;
+  margin-top: 1rem;
+  height: 100%;
+}
+
 .favorite-button {
   position: absolute;
   display: flex;
@@ -1053,7 +1172,7 @@ hr {
 }
 .admin-sidebar-list__route:hover {
   background-color: #363435;
-  opacity: 0.8;
+  opacity: 0.9;
   color: white;
 }
 .admin-sidebar-list__route--active {
@@ -1100,7 +1219,7 @@ hr {
 }
 .profile-sidebar-list__route:hover {
   background-color: #363435;
-  opacity: 0.8;
+  opacity: 0.9;
   color: white;
 }
 .profile-sidebar-list__route--active {
@@ -1348,6 +1467,7 @@ hr {
   font-family: var(--font-geist-sans);
 }
 .dealer-card__wrapper {
+  background-color: white;
   display: flex;
   gap: 2rem;
   padding: 2rem;
@@ -1526,10 +1646,10 @@ hr {
 .button--secondary {
   background-color: #363435;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
 }
 .button--secondary:hover {
-  opacity: 0.7;
+  opacity: 0.9;
 }
 .button--rounded {
   color: black;
@@ -2344,42 +2464,46 @@ h5 {
 }
 
 .badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   width: max-content;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(41, 71, 163, 0.1294117647);
+  padding: 0.6rem 1rem;
+  border-radius: 10rem;
   background-color: white;
   font-weight: 500;
   font-size: 1.2rem;
 }
-.badge--dark {
-  color: #030612;
-}
-.badge--sell {
-  background-color: rgb(227, 239, 254);
-  color: blue;
-}
-.badge--light {
+.badge__circle {
+  display: flex;
+  width: 1rem;
+  height: 1rem;
   background-color: white;
+  border-radius: 10rem;
 }
-.badge--light .badge__text {
-  color: #030612;
+.badge--gray {
+  background-color: #717179;
+  color: white;
 }
-.badge--rent {
-  background-color: rgb(255, 245, 226);
-  color: #ffa600;
+.badge--purple {
+  background-color: #8b5cf6;
+  color: white;
 }
-.badge--success {
-  background-color: rgb(236, 255, 236);
-  color: green;
+.badge--blue {
+  background-color: #3b82f6;
+  color: white;
 }
-.badge--warning {
-  background-color: lightyellow;
-  color: #ffa600;
+.badge--orange {
+  background-color: #f49e0b;
+  color: white;
 }
-.badge--error {
-  background-color: rgb(254, 235, 235);
-  color: red;
+.badge--green {
+  background-color: #10b982;
+  color: white;
+}
+.badge--red {
+  background-color: #ee4445;
+  color: white;
 }
 
 .section-with-content {
@@ -3120,4 +3244,223 @@ h5 {
 }
 .google-maps > div {
   position: absolute;
+}
+
+.rental-phase-manager {
+  padding: 20px;
+  max-width: 600px;
+}
+
+.rental-phase-manager__status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.confirmation-status {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.confirmation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.confirmation-item.confirmed {
+  background: #e8f5e8;
+  border: 1px solid #c3e6c3;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal--large {
+  max-width: 800px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type=checkbox] {
+  width: auto;
+}
+
+.rental-status-tracker {
+  margin: 20px 0;
+}
+
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.progress-bar::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: #e5e5e5;
+  z-index: 1;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.step-indicator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.progress-step--completed .step-indicator {
+  background: #22c55e;
+  color: white;
+}
+
+.progress-step--current .step-indicator {
+  background: #3b82f6;
+  color: white;
+}
+
+.progress-step--pending .step-indicator {
+  background: #e5e5e5;
+  color: #666;
+}
+
+.step-label {
+  font-size: 12px;
+  text-align: center;
+  max-width: 80px;
+}
+
+.overdue-warning {
+  margin: 10px 0;
+  padding: 8px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+}
+
+.status-alert {
+  margin: 15px 0;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.status-alert--cancelled {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+}
+
+.status-alert--disputed {
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
+}
+
+.transaction-card-wrapper {
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.transaction-actions {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e5e5;
 }/*# sourceMappingURL=main.css.map */

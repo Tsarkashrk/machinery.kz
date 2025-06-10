@@ -1,46 +1,50 @@
 .badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   width: max-content;
-  padding: 0.5rem 1.5rem;
-  border-radius: $badge-radius;
-  border: $border-primary;
+  padding: 0.6rem 1rem;
+  border-radius: 10rem;
+  // border: $border-primary;
   background-color: $base-color;
   font-weight: $font-medium;
   font-size: $font-xxs;
 
-  &--dark {
-    color: $base-dark-color;
-  }
-
-  &--sell {
-    background-color: rgb(227, 239, 254);
-    color: blue;
-  }
-
-  &--light {
+  &__circle {
+    display: flex;
+    width: 1rem;
+    height: 1rem;
     background-color: $base-color;
-
-    .badge__text {
-      color: $base-dark-color;
-    }
+    border-radius: 10rem;
   }
 
-  &--rent {
-    background-color: rgb(255, 245, 226);
-    color: $primary-color;
+  &--gray {
+    background-color: $badge-gray-color;
+    color: $base-color;
   }
 
-  &--success {
-    background-color: rgb(236, 255, 236);
-    color: green;
+  &--purple {
+    background-color: $badge-purple-color;
+    color: $base-color;
   }
 
-  &--warning {
-    background-color: lightyellow;
-    color: $primary-color;
+  &--blue {
+    background-color: $badge-blue-color;
+    color: $base-color;
   }
 
-  &--error {
-    background-color: rgb(254, 235, 235);
-    color: red;
+  &--orange {
+    background-color: $badge-orange-color;
+    color: $base-color;
+  }
+
+  &--green {
+    background-color: $badge-green-color;
+    color: $base-color;
+  }
+
+  &--red {
+    background-color: $badge-red-color;
+    color: $base-color;
   }
 }

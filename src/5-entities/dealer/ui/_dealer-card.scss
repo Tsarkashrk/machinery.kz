@@ -1,5 +1,6 @@
 .dealer-card {
   &__wrapper {
+    background-color: $base-color;
     display: flex;
     gap: 2rem;
     padding: 2rem;

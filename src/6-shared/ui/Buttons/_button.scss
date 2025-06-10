@@ -91,10 +91,10 @@
   &--secondary {
     background-color: $secondary-color;
     color: $base-color;
-    font-weight: $font-semibold;
+    font-weight: $font-medium;
 
     &:hover {
-      opacity: 0.7;
+      opacity: 0.9;
     }
   }
 

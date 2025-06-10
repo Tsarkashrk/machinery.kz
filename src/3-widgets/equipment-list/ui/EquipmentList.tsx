@@ -11,7 +11,7 @@ import { EquipmentCard } from "@/3-widgets/equipment-card";
 
 type Props = {
   equipmentList: IEquipment[] | IEquipmentWithImage[] | undefined;
-  isLoading: boolean;
+  isLoading?: boolean;
   variant?: "vertical" | "horizontal";
   size?: "default" | "small";
   isProfile?: boolean;

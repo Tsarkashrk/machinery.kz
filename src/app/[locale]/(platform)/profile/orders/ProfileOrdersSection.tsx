@@ -1,33 +1,57 @@
-"use client";
+'use client';
 
-import { useEquipmentList } from "@/5-entities/equipment";
-import { useProfile } from "@/5-entities/user";
-import { Title } from "@/6-shared/ui/Title/Title";
+import { TransactionsList } from '@/3-widgets/transactions-list';
+import { useMyTransactions } from '@/5-entities/rental';
+import { useProfile } from '@/5-entities/user';
+import Button from '@/6-shared/ui/Buttons/Button';
+import { useState } from 'react';
 
 export const ProfileOrdersSection = () => {
   const { profile } = useProfile();
+  const [activeTab, setActiveTab] = useState<'listings' | 'deals'>('listings');
 
-  const ownerId = profile?.id;
+  const { data: allTransactions, isLoading } = useMyTransactions();
 
-  const {
-    data: equipmentList,
-    isLoading,
-    isSuccess,
-  } = useEquipmentList(ownerId ? { owner: ownerId } : undefined);
+  const myListingsTransactions = allTransactions?.filter(
+    (t: any) => t.equipment_details.owner === profile?.id,
+  );
 
-  if (equipmentList && equipmentList?.count === 0) {
-    return (
-      <div className="profile-deals profile-deals--empty">
-        <div className="profile-deals__wrapper">
-          <Title size="h2">У вас нет никаких сделок</Title>
-        </div>
-      </div>
-    );
-  }
+  const myDealsTransactions = allTransactions?.filter(
+    (t: any) => t.equipment_details.owner !== profile?.id,
+  );
+
+  const selectedTransactions =
+    activeTab === 'listings' ? myListingsTransactions : myDealsTransactions;
 
   return (
     <section className="profile-deals">
-      <div className="profile-deals__wrapper"></div>
+      <div className="profile-deals__wrapper">
+        <div className="profile-deals__tabs">
+          <Button
+            variant={activeTab === 'listings' ? 'secondary' : 'outlined'}
+            onClick={() => setActiveTab('listings')}
+          >
+            Полученные заявки
+          </Button>
+          <Button
+            variant={activeTab === 'deals' ? 'secondary' : 'outlined'}
+            onClick={() => setActiveTab('deals')}
+          >
+            Отправленные заявки
+          </Button>
+        </div>
+
+        {isLoading ? (
+          <p>Загрузка...</p>
+        ) : selectedTransactions?.length === 0 ? (
+          <p>Нет транзакций</p>
+        ) : (
+          <TransactionsList
+            equipmentList={selectedTransactions}
+            tab={activeTab}
+          />
+        )}
+      </div>
     </section>
   );
 };

@@ -36,6 +36,8 @@
 @import '../3-widgets/chat-content/ui/chat-content';
 @import '../3-widgets/chat-header/ui/chat-header';
 @import '../3-widgets/profile-card/ui/profile-card';
+@import '../3-widgets/transactions-list/ui/transactions-list';
+@import '../3-widgets/transaction-card/ui/transaction-card';
 
 // Features
 
@@ -88,3 +90,4 @@
 @import '../6-shared/ui/Pagination/pagination';
 @import '../6-shared/ui/Textarea/textarea';
 @import '../6-shared/ui/GoogleMaps/google-maps';
+@import '../6-shared/ui/PickupConfirmationModal/pickup-modal';

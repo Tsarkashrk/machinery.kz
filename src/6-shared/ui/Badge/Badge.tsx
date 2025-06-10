@@ -1,18 +1,14 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
-  type:
-    | "dark"
-    | "light"
-    | "sale"
-    | "rent"
-    | "sell"
-    | "success"
-    | "error"
-    | "warning";
+  type: string;
 };
 
 export const Badge = ({ type, children }: Props) => {
-  return <p className={`badge badge--${type}`}>{children}</p>;
+  return (
+    <p className={`badge badge--${type}`}>
+      <span className="badge__circle" /> {children}
+    </p>
+  );
 };

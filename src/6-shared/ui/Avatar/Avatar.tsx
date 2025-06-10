@@ -75,7 +75,13 @@ const Avatar = ({
               alt="Аватар пользователя"
             />
           ) : (
-            <p className="avatar__letter">{username?.charAt(0)}</p>
+            <Image
+              className="avatar__image"
+              src="/assets/profile-placeholder.png"
+              width={500}
+              height={500}
+              alt="Аватар пользователя"
+            />
           )}
         </div>
       </Link>

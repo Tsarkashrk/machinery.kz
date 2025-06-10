@@ -151,7 +151,7 @@ export const ProfileSettingsSection = () => {
               )}
             </div>
           </div>
-          <Button variant="dark">{t('save-changes')}</Button>
+          <Button variant="secondary">{t('save-changes')}</Button>
         </form>
       </div>
     </section>

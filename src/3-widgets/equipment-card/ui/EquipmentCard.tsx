@@ -44,9 +44,7 @@ export const EquipmentCard = ({
   status,
 }: Props) => {
   const [statusState, setStatusState] = useState('PENDING');
-  const [colorState, setColorState] = useState<'success' | 'error' | 'warning'>(
-    'warning',
-  );
+  const [colorState, setColorState] = useState<any>('');
 
   const t = useTranslations('Button');
   const tBadge = useTranslations('Badge');
@@ -61,13 +59,13 @@ export const EquipmentCard = ({
   useEffect(() => {
     if (status === 'PENDING') {
       setStatusState('На рассмотрении');
-      setColorState('warning');
+      setColorState('orange');
     } else if (status === 'AVAILABLE') {
       setStatusState('Опубликован');
-      setColorState('success');
+      setColorState('green');
     } else {
       setStatusState('Отклонен');
-      setColorState('error');
+      setColorState('red');
     }
   }, [status]);
 
@@ -80,7 +78,9 @@ export const EquipmentCard = ({
         <div className="equipment-card__image-container">
           <div className="equipment-card__header">
             <div className="equipment-card__badges">
-              <Badge type={listingType}>{tBadge(listingType)}</Badge>
+              <Badge type={listingType === 'rent' ? 'green' : 'red'}>
+                {tBadge(listingType)}
+              </Badge>
               {status && <Badge type={colorState}>{statusState}</Badge>}
             </div>
             <ToggleFavoriteButton

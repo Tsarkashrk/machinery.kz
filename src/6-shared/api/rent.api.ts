@@ -34,6 +34,13 @@ export interface IRentalRespondRequest {
   response_message: string;
 }
 
+export interface IConfirmReturn {
+  equipment_condition_notes: string;
+  return_photos: any;
+  damage_reported: boolean;
+  damage_description: string;
+}
+
 export const rentApi = {
   getRentalList: async () => {
     const response = await axiosWithAuth.post(`${BASE_URL}/`);
@@ -41,7 +48,7 @@ export const rentApi = {
   },
 
   getRentalTransaction: async (id: number) => {
-    const response = await axiosWithAuth.get(`${BASE_URL}/${id}`);
+    const response = await axiosWithAuth.get(`${BASE_URL}/${id}/`);
     return response.data;
   },
 
@@ -68,6 +75,14 @@ export const rentApi = {
     return response.data;
   },
 
+  confirmReturn: async (id: number, data: IConfirmReturn) => {
+    const response = await axiosWithAuth.post(
+      `${BASE_URL}/${id}/confirm-return/`,
+      data,
+    );
+    return response.data;
+  },
+
   reportIssue: async (id: number, data: IRentalReportIssue) => {
     const response = await axiosWithAuth.post(
       `${BASE_URL}/${id}/report-issue/`,
@@ -86,6 +101,16 @@ export const rentApi = {
 
   requestRental: async (data: IRentEquipment) => {
     const response = await axiosWithAuth.post(`${BASE_URL}/request/`, data);
+    return response.data;
+  },
+
+  cancelRental: async (id: number) => {
+    const response = await axiosWithAuth.post(`${BASE_URL}/${id}/cancel/`);
+    return response.data;
+  },
+
+  myTransactions: async () => {
+    const response = await axiosWithAuth.get(`${BASE_URL}/my-transactions/`);
     return response.data;
   },
 };

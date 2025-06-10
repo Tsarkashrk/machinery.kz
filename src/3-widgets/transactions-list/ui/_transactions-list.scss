@@ -1,0 +1,15 @@
+.transactions-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+
+  &--small {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &--horizontal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

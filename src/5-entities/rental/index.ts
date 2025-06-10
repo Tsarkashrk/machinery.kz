@@ -7,3 +7,5 @@ export { useConfirmPickup } from './hooks/useConfirmPickup';
 export { useReportIssue } from './hooks/useReportIssue';
 export { useUpdateRental } from './hooks/useUpdateRental';
 export { useDeleteRental } from './hooks/useDeleteRental';
+export { useCancelRental } from './hooks/useCancelRental';
+export { useMyTransactions } from './hooks/useMyTransactions';

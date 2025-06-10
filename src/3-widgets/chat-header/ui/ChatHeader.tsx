@@ -1,5 +1,6 @@
 import { IChatMessage, IChatResponse } from '@/5-entities/chat';
-import { useRespondRental } from '@/5-entities/rental';
+import { useGetRental, useRespondRental } from '@/5-entities/rental';
+import { useCancelRental } from '@/5-entities/rental/hooks/useCancelRental';
 import { useProfile } from '@/5-entities/user';
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config';
 import { formatTime } from '@/6-shared/lib/utils';
@@ -7,7 +8,7 @@ import Avatar from '@/6-shared/ui/Avatar/Avatar';
 import Button from '@/6-shared/ui/Buttons/Button';
 import { Description } from '@/6-shared/ui/Description/Description';
 import { Wifi, WifiOff } from 'lucide-react';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 type Props = {
   username?: string;
@@ -40,6 +41,29 @@ export const ChatHeader = ({
   const isOwner = profile?.id === dealer?.id;
 
   const { mutate, isPending, error } = useRespondRental();
+  const {
+    rentalTransaction,
+    isLoading,
+    error: rentalError,
+  } = useGetRental(transactionId ?? 0);
+
+  const [transactionStatus, setTransactionStatus] = useState(
+    rentalTransaction?.status,
+  );
+
+  useEffect(() => {
+    if (rentalTransaction?.status) {
+      setTransactionStatus(rentalTransaction.status);
+    }
+  }, [rentalTransaction?.status]);
+
+  const {
+    mutate: rejectMutate,
+    isPending: isRejectPending,
+    error: rejectError,
+  } = useCancelRental();
+
+  console.log(rentalTransaction);
 
   if (error) {
     console.error('useRespondRental error:', error);
@@ -70,14 +94,6 @@ export const ChatHeader = ({
       return;
     }
 
-    console.log('Calling mutate with:', {
-      id: transactionId,
-      data: {
-        action: 'approve',
-        response_message: '',
-      },
-    });
-
     mutate(
       {
         id: transactionId,
@@ -88,7 +104,8 @@ export const ChatHeader = ({
       },
       {
         onSuccess: (data) => {
-          console.log('Approve success:', data);
+          setTransactionStatus('approved');
+          console.log('Успешно подтвержден:', data);
         },
         onError: (error) => {
           console.error('Approve error:', error);
@@ -96,6 +113,30 @@ export const ChatHeader = ({
       },
     );
   };
+
+  const handleReject = () => {
+    if (!transactionId) {
+      console.error('No transaction ID found');
+      return;
+    }
+
+    if (!isOwner) {
+      console.error('User is not the owner/dealer');
+      return;
+    }
+
+    rejectMutate(transactionId, {
+      onSuccess: (data) => {
+        setTransactionStatus('rejected');
+        console.log('Успешно отклонен:', data);
+      },
+      onError: (error) => {
+        console.error('Approve error:', error);
+      },
+    });
+  };
+
+  console.log(transactionStatus)
 
   return (
     <div className="chat-header">
@@ -120,18 +161,29 @@ export const ChatHeader = ({
             </div>
           </div>
         </div>
-        {isOwner && transactionId && (
-          <div className="chat-header__actions">
-            Подтвердить транзакцию?
-            <Button
-              onClick={handleApprove}
-              isLoading={isPending}
-              disabled={!transactionId}
-            >
-              Подтвердить
-            </Button>
-          </div>
-        )}
+        {isOwner &&
+          transactionId &&
+          rentalTransaction &&
+          transactionStatus === 'requested' && (
+            <div className="chat-header__actions">
+              Подтвердить транзакцию?
+              <Button
+                onClick={handleApprove}
+                isLoading={isPending}
+                disabled={!transactionId}
+              >
+                Подтвердить
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={handleReject}
+                isLoading={isRejectPending}
+                disabled={!transactionId}
+              >
+                Отклонить
+              </Button>
+            </div>
+          )}
       </div>
     </div>
   );
