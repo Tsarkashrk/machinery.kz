@@ -76,7 +76,7 @@ export default function HomeSection() {
             </TitleMore>
           </Title>
           <EquipmentList
-            equipmentList={equipmentListData?.results.slice(0, 8)}
+            equipmentList={equipmentListData?.results.slice(0, 10)}
             isLoading={isLoading}
           />
         </SectionWithContent>

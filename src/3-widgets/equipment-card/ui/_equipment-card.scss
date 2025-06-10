@@ -1,12 +1,11 @@
 .equipment-card {
-  background-color: white;
   &__wrapper {
+    background-color: white;
     // position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
     padding: 0.8rem;
-    background-color: $base-color;
     border-radius: $border-radius-card;
     // box-shadow: $box-shadow-primary;
     border: $border-primary;

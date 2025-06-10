@@ -12,7 +12,7 @@ import { Title } from '@/6-shared/ui/Title/Title';
 import { ArrowUpCircle, Wifi, WifiOff, Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useChatMessages } from '@/5-entities/chat/hooks/useChatMessages';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 
 type Props = {
   activeChat: number;
@@ -49,12 +49,51 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
 
   const messageContent = watch('content');
 
+  // Объединяем сообщения из API и WebSocket, убираем дубликаты
+  const allMessages = useMemo(() => {
+    const combined = [...(data?.messages || []), ...messages]
+      .filter((message) => message && message.id) // Фильтруем невалидные сообщения
+      .reduce((acc, message) => {
+        if (!message || !message.id) return acc;
+
+        // Проверяем, нет ли уже такого сообщения
+        const exists = acc.some(
+          (msg) => msg && msg.id && msg.id === message.id,
+        );
+        if (!exists) {
+          acc.push(message);
+        }
+        return acc;
+      }, [] as IChatMessage[])
+      .sort((a, b) => {
+        // Сортируем по timestamp или по id
+        if (a.timestamp && b.timestamp) {
+          return (
+            new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+          );
+        }
+        return (a.id || 0) - (b.id || 0);
+      });
+
+    return combined;
+  }, [data?.messages, messages]);
+
+  // Создаем обновленный объект chat с актуальными сообщениями
+  const updatedChat = useMemo(() => {
+    if (!data) return null;
+
+    return {
+      ...data,
+      messages: allMessages, // Используем объединенные сообщения
+    };
+  }, [data, allMessages]);
+
   // Автоскролл при новых сообщениях
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages]);
+  }, [allMessages]);
 
   // Обработка индикатора печати
   useEffect(() => {
@@ -104,21 +143,21 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
 
   const onSubmit = async (data: IChatMessageRequest) => {
     console.log('Form submitted with data:', data);
-    
+
     if (data.content && data.content.trim()) {
       console.log('Sending message:', data.content.trim());
-      
+
       // Останавливаем индикатор печати
       if (isTyping) {
         setIsTyping(false);
         sendTyping(false);
       }
-      
+
       // Очищаем таймер
       if (typingTimeoutRef.current) {
         clearTimeout(typingTimeoutRef.current);
       }
-      
+
       await sendMessage(data.content.trim());
       reset();
     } else {
@@ -145,7 +184,7 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
     );
   }
 
-  if (!data) {
+  if (!data || !updatedChat) {
     return (
       <div className="chat-content">
         <div className="chat-content__wrapper">
@@ -157,33 +196,13 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
     );
   }
 
-  // Объединяем сообщения из API и WebSocket, убираем дубликаты
-  const allMessages = [...(data.messages || []), ...messages]
-    .filter((message) => message && message.id) // Фильтруем невалидные сообщения
-    .reduce((acc, message) => {
-      if (!message || !message.id) return acc;
-      
-      // Проверяем, нет ли уже такого сообщения
-      const exists = acc.some((msg) => msg && msg.id && msg.id === message.id);
-      if (!exists) {
-        acc.push(message);
-      }
-      return acc;
-    }, [] as IChatMessage[])
-    .sort((a, b) => {
-      // Сортируем по timestamp или по id
-      if (a.timestamp && b.timestamp) {
-        return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
-      }
-      return (a.id || 0) - (b.id || 0);
-    });
-
   console.log('Rendering messages:', {
     apiMessages: data.messages?.length || 0,
     wsMessages: messages.length,
     totalMessages: allMessages.length,
     isConnected,
-    isReconnecting
+    isReconnecting,
+    lastMessage: allMessages[allMessages.length - 1],
   });
 
   return (
@@ -193,7 +212,7 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
           timestamp={
             chat && chat.last_message ? chat.last_message.timestamp : undefined
           }
-          chat={chat}
+          chat={updatedChat}
           link={data.dealer_details.id}
           username={data.dealer_details.username}
           avatar={data.dealer_details.image_url}
@@ -250,8 +269,10 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
             <Input
               {...register('content', { required: true })}
               placeholder={
-                !isConnected 
-                  ? (isReconnecting ? 'Переподключение...' : 'Нет соединения') 
+                !isConnected
+                  ? isReconnecting
+                    ? 'Переподключение...'
+                    : 'Нет соединения'
                   : 'Введите сообщение...'
               }
               onKeyPress={handleKeyPress}

@@ -1,11 +1,10 @@
 .profile {
-  background-color: $base-color;
   &__wrapper {
     margin: 0 auto;
     padding: 2rem;
     border-radius: $border-radius-card;
     border: $border-primary;
-    // background-color: $base-color;
+    background-color: $base-color;
   }
 
   &-section {
@@ -46,7 +45,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: $main-color;
       color: $base-color;
       border-radius: 10rem;
       width: 10rem;

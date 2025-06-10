@@ -1,3 +1,5 @@
+import { IChatMessage, IChatResponse } from '@/5-entities/chat';
+import { useRespondRental } from '@/5-entities/rental';
 import { useProfile } from '@/5-entities/user';
 import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config';
 import { formatTime } from '@/6-shared/lib/utils';
@@ -13,7 +15,7 @@ type Props = {
   isReconnecting?: boolean;
   avatar: string;
   link: number;
-  chat: any;
+  chat: IChatResponse;
   timestamp?: string;
 };
 
@@ -28,13 +30,23 @@ export const ChatHeader = ({
 }: Props) => {
   const { profile } = useProfile();
 
-  console.log(chat);
-
   const buyer = chat.buyer_details;
   const dealer = chat.dealer_details;
 
+  const messages = chat?.messages;
+  const transactionMessage = messages?.[0];
+
+  const transactionId = transactionMessage?.transaction_id;
+  const isOwner = profile?.id === dealer?.id;
+
+  const { mutate, isPending, error } = useRespondRental();
+
+  if (error) {
+    console.error('useRespondRental error:', error);
+  }
+
   const { myChat, interlocutorChat } = useMemo(() => {
-    if (profile?.id === buyer.id) {
+    if (profile?.id === buyer?.id) {
       return {
         myChat: { ...buyer },
         interlocutorChat: { ...dealer },
@@ -48,8 +60,42 @@ export const ChatHeader = ({
   }, [profile?.id, buyer, dealer]);
 
   const handleApprove = () => {
+    if (!transactionId) {
+      console.error('No transaction ID found');
+      return;
+    }
 
-  }
+    if (!isOwner) {
+      console.error('User is not the owner/dealer');
+      return;
+    }
+
+    console.log('Calling mutate with:', {
+      id: transactionId,
+      data: {
+        action: 'approve',
+        response_message: '',
+      },
+    });
+
+    mutate(
+      {
+        id: transactionId,
+        data: {
+          action: 'approve',
+          response_message: '',
+        },
+      },
+      {
+        onSuccess: (data) => {
+          console.log('Approve success:', data);
+        },
+        onError: (error) => {
+          console.error('Approve error:', error);
+        },
+      },
+    );
+  };
 
   return (
     <div className="chat-header">
@@ -57,31 +103,35 @@ export const ChatHeader = ({
         <div className="chat-header__info">
           <Avatar
             size="big"
-            username={interlocutorChat.username}
+            username={interlocutorChat?.username}
             link={`${PLATFORM_PAGES.DEALERS}/${link}`}
           />
           <div className="chat-header__status">
             <h3 className="chat-header__username">
-              {interlocutorChat.username}
+              {interlocutorChat?.username}
             </h3>
             <div className="chat-header__status">
-              {
-                isReconnecting && (
-                  <span className="text-yellow-500 text-sm">
-                    переподключение...
-                  </span>
-                )
-
-                // : isOnline ? <span className="text-green-500 text-sm">в сети</span> : <span className="text-gray-500 text-sm">не в сети</span>
-              }
+              {isReconnecting && (
+                <span className="text-yellow-500 text-sm">
+                  переподключение...
+                </span>
+              )}
               {timestamp && <Description>{formatTime(timestamp)}</Description>}
             </div>
           </div>
         </div>
-        <div className="chat-header__actions">
-          Подтвердить транзакцию? 
-          <Button onClick={handleApprove}>Подтвердить</Button>
-        </div>
+        {isOwner && transactionId && (
+          <div className="chat-header__actions">
+            Подтвердить транзакцию?
+            <Button
+              onClick={handleApprove}
+              isLoading={isPending}
+              disabled={!transactionId}
+            >
+              Подтвердить
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

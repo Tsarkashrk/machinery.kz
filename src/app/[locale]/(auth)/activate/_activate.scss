@@ -7,4 +7,29 @@
     gap: 2rem;
     height: calc(100vh - 20rem);
   }
+
+  &__check {
+    color: rgb(26, 141, 26);
+    height: 10rem;
+    width: 10rem;
+    background-color: rgb(168, 255, 168);
+    border-radius: 10rem;
+    padding: 1rem;
+  }
+
+  &__x {
+    color: $danger-color;
+    height: 10rem;
+    width: 10rem;
+    background-color: rgb(255, 213, 213);
+    border-radius: 10rem;
+    padding: 1rem;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column !important;
+    gap: 2rem;
+    background-color: $base-color;
+  }
 }

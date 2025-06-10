@@ -1,7 +1,7 @@
 export enum EnumUserRoles {
-  "admin" = "admin",
-  "user" = "user",
-  "moderator" = "moderator",
+  'admin' = 'admin',
+  'user' = 'user',
+  'moderator' = 'moderator',
 }
 
 export interface IUser {
@@ -16,6 +16,7 @@ export interface IUser {
   last_name: string;
   address: string;
   phone_number: string;
+  iin: any;
 }
 
 export interface IUserRequest {
@@ -23,7 +24,7 @@ export interface IUserRequest {
   username: string;
   first_name: string;
   last_name: string;
-  phone_number: string | null;
+  phone_number: string;
   address: string;
   file: File | string;
 }

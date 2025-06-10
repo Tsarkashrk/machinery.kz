@@ -1,11 +1,19 @@
-import { IEquipment } from "@/5-entities/equipment";
-import { IUser } from "@/5-entities/user";
+import { IEquipment } from '@/5-entities/equipment';
+import { IUser } from '@/5-entities/user';
 
 export interface ILastMessage {
   content: string;
   sender_id: number;
   timestamp: string;
   is_read: boolean;
+}
+
+export interface IRentalTransactionDetails {
+  end_date: string;
+  id: number;
+  start_date: string;
+  status: string;
+  total_amount: number;
 }
 
 export interface IChatMessage {
@@ -15,6 +23,11 @@ export interface IChatMessage {
   content: string;
   timestamp: string;
   is_read: boolean;
+  transaction_id: number | null;
+  transaction_type: string | null;
+  purchase_transaction_details: any;
+  rental_transaction_details: any;
+  message_type: string;
 }
 
 export interface IChatMessageRequest {

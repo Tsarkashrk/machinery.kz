@@ -29,7 +29,7 @@ export interface IReportIssue {
   evidence_urls: string[];
 }
 
-export interface IRespondRequest {
+export interface IRentalRespondRequest {
   action: string;
   response_message: string;
 }
@@ -76,7 +76,7 @@ export const rentApi = {
     return response.data;
   },
 
-  respondToRentalRequest: async (id: number, data: IRespondRequest) => {
+  respondToRentalRequest: async (id: number, data: IRentalRespondRequest) => {
     const response = await axiosWithAuth.post(
       `${BASE_URL}/${id}/respond/`,
       data,

@@ -1,28 +1,39 @@
-"use client";
+'use client';
 
-import { AxiosError } from "axios";
-import { useActivateUser } from "@/5-entities/auth";
-import { PLATFORM_PAGES } from "@/6-shared/config/pages-url.config";
-import Button from "@/6-shared/ui/Buttons/Button";
-import { EmptyCard } from "@/6-shared/ui/EmptyCard/EmptyCard";
-import { useSearchParams } from "next/navigation";
-import { useQueryClient } from "@tanstack/react-query";
+import { AxiosError } from 'axios';
+import { useActivateUser } from '@/5-entities/auth';
+import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config';
+import Button from '@/6-shared/ui/Buttons/Button';
+import { EmptyCard } from '@/6-shared/ui/EmptyCard/EmptyCard';
+import { useSearchParams } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
+import { Check, X } from 'lucide-react';
 
 export const ActivateSection = () => {
   const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+  const token = searchParams.get('token');
 
   const { data, error, isLoading, isSuccess } = useActivateUser(token);
 
   const queryClient = useQueryClient();
-  const profileData = queryClient.getQueryData(["profile"]);
+  const profileData = queryClient.getQueryData(['profile']);
 
   if (!token) {
     return (
       <div className="activate-section">
         <div className="activate-section__wrapper">
-          <EmptyCard>Неверная ссылка активации</EmptyCard>
-          <Button link={PLATFORM_PAGES.HOME}>На главную страницу</Button>
+          <EmptyCard
+            className="activate-section__empty"
+            text="Неверная ссылка активации"
+          >
+            <X className="activate-section__x" />
+          </EmptyCard>
+          <Button
+            variant="secondary"
+            link={PLATFORM_PAGES.HOME}
+          >
+            На главную страницу
+          </Button>
         </div>
       </div>
     );
@@ -39,15 +50,20 @@ export const ActivateSection = () => {
   // }
 
   const axiosError = error as AxiosError<{ error: string }>;
-  if (axiosError?.response?.data?.error === "Account is already activated.") {
+  if (axiosError?.response?.data?.error === 'Account is already activated.') {
     return (
       <div className="activate-section">
         <div className="activate-section__wrapper">
-          <EmptyCard>Ваш аккаунт уже активирован</EmptyCard>
+          <EmptyCard
+            className="activate-section__empty"
+            text="Ваш аккаунт уже активирован"
+          >
+            <Check className="activate-section__check" />
+          </EmptyCard>
           {profileData ? (
-            <Button link={PLATFORM_PAGES.HOME}>На главную страницу</Button>
+            <Button variant="secondary" link={PLATFORM_PAGES.HOME}>На главную страницу</Button>
           ) : (
-            <Button link={PLATFORM_PAGES.LOGIN}>Войти в аккаунт</Button>
+            <Button variant="secondary" link={PLATFORM_PAGES.LOGIN}>Войти в аккаунт</Button>
           )}
         </div>
       </div>
@@ -58,8 +74,13 @@ export const ActivateSection = () => {
     return (
       <div className="activate-section">
         <div className="activate-section__wrapper">
-          <EmptyCard>Ошибка активации, попробуйте позже...</EmptyCard>
-          <Button link={PLATFORM_PAGES.HOME}>На главную страницу</Button>
+          <EmptyCard
+            className="activate-section__empty"
+            text="Ошибка активации, попробуйте позже..."
+          >
+            <X className="activate-section__x" />
+          </EmptyCard>
+          <Button variant="secondary" link={PLATFORM_PAGES.HOME}>На главную страницу</Button>
         </div>
       </div>
     );
@@ -68,10 +89,13 @@ export const ActivateSection = () => {
   return (
     <div className="activate-section">
       <div className="activate-section__wrapper">
-        <EmptyCard>
-          Вы успешно активировали свой аккаунт. Войдите в него
+        <EmptyCard
+          className="activate-section__empty"
+          text="Вы успешно активировали свой аккаунт. Войдите в него"
+        >
+          <Check className="activate-section__check" />
         </EmptyCard>
-        <Button link={PLATFORM_PAGES.LOGIN}>Войти в аккаунт</Button>
+        <Button variant="secondary" link={PLATFORM_PAGES.LOGIN}>Войти в аккаунт</Button>
       </div>
     </div>
   );

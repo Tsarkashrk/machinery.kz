@@ -11,7 +11,7 @@ import Label from '@/6-shared/ui/Label/Label';
 import TextMuted from '@/6-shared/ui/TextMuted/TextMuted';
 import { Title } from '@/6-shared/ui/Title/Title';
 import { AxiosError } from 'axios';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, X } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -58,8 +58,18 @@ export const ConfirmSection = () => {
     return (
       <div className="activate-section">
         <div className="activate-section__wrapper">
-          <EmptyCard>Неверная ссылка активации</EmptyCard>
-          <Button link={PLATFORM_PAGES.HOME}>На главную страницу</Button>
+          <EmptyCard
+            className="activate-section__empty"
+            text="Неверная ссылка активации"
+          >
+            <X className="activate-section__x" />
+          </EmptyCard>
+          <Button
+            variant="secondary"
+            link={PLATFORM_PAGES.HOME}
+          >
+            На главную страницу
+          </Button>
         </div>
       </div>
     );
@@ -69,7 +79,10 @@ export const ConfirmSection = () => {
     return (
       <div className="activate-section">
         <div className="activate-section__wrapper">
-          <EmptyCard>Проверяем вашу ссылку...</EmptyCard>
+          <EmptyCard
+            className="activate-section__empty"
+            text="Проверяем вашу ссылку..."
+          ></EmptyCard>
         </div>
       </div>
     );
@@ -83,8 +96,18 @@ export const ConfirmSection = () => {
     return (
       <div className="activate-section">
         <div className="activate-section__wrapper">
-          <EmptyCard>Ссылка истекла или недействительна</EmptyCard>
-          <Button link={PLATFORM_PAGES.RESET}>Повторите запрос</Button>
+          <EmptyCard
+            className="activate-section__empty"
+            text="Ссылка истекла или недействительна"
+          >
+            <X className="activate-section__x" />
+          </EmptyCard>
+          <Button
+            variant="secondary"
+            link={PLATFORM_PAGES.RESET}
+          >
+            Повторите запрос
+          </Button>
         </div>
       </div>
     );
@@ -94,8 +117,18 @@ export const ConfirmSection = () => {
     return (
       <div className="activate-section">
         <div className="activate-section__wrapper">
-          <EmptyCard>Ссылка не найдена</EmptyCard>
-          <Button link={PLATFORM_PAGES.RESET}>Повторите запрос</Button>
+          <EmptyCard
+            className="activate-section__empty"
+            text="Ссылка не найдена"
+          >
+            <X className="activate-section__x" />
+          </EmptyCard>
+          <Button
+            variant="secondary"
+            link={PLATFORM_PAGES.RESET}
+          >
+            Повторите запрос
+          </Button>
         </div>
       </div>
     );
@@ -105,10 +138,18 @@ export const ConfirmSection = () => {
     return (
       <div className="activate-section">
         <div className="activate-section__wrapper">
-          <EmptyCard>
-            {message || 'Ошибка сброса, попробуйте позже...'}
+          <EmptyCard
+            className="activate-section__empty"
+            text={message || 'Ошибка сброса, попробуйте позже...'}
+          >
+            <X className="activate-section__x" />
           </EmptyCard>
-          <Button link={PLATFORM_PAGES.HOME}>На главную страницу</Button>
+          <Button
+            variant="secondary"
+            link={PLATFORM_PAGES.HOME}
+          >
+            На главную страницу
+          </Button>
         </div>
       </div>
     );
@@ -153,7 +194,7 @@ export const ConfirmSection = () => {
             </div>
 
             {errors.new_password && (
-              <TextMuted color="red">{errors.new_password.message}</TextMuted>
+              <ErrorMessage>{errors.new_password.message}</ErrorMessage>
             )}
           </div>
 
@@ -182,9 +223,7 @@ export const ConfirmSection = () => {
               </div>
             </div>
             {errors.confirm_password && (
-              <TextMuted color="red">
-                {errors.confirm_password.message}
-              </TextMuted>
+              <ErrorMessage>{errors.confirm_password.message}</ErrorMessage>
             )}
           </div>
 

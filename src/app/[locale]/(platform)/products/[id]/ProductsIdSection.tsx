@@ -8,7 +8,7 @@ import {
   PLATFORM_PAGES,
   PROFILE_PAGES,
 } from '@/6-shared/config/pages-url.config';
-import { useProfile } from '@/5-entities/user';
+import { useProfile, useUserById } from '@/5-entities/user';
 import { rentApi, equipmentApi } from '@/6-shared/api';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
@@ -28,10 +28,12 @@ import { GoogleMaps } from '@/6-shared/ui/GoogleMaps/GoogleMaps';
 
 export const ProductIdSection = () => {
   const { id } = useParams();
-  const user: any = useProfile();
 
   const { equipmentData } = useEquipmentById(Number(id));
   const categoryId = equipmentData?.category_details?.id;
+
+  const ownerId = equipmentData?.owner;
+  const { user: ownerData } = useUserById(ownerId ?? 0);
 
   const {
     data: equipmentList,
@@ -329,10 +331,13 @@ export const ProductIdSection = () => {
                     </Button>
                     <Button
                       variant="secondary"
-                      onClick={() => setShowNumber(!showNumber)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShowNumber(!showNumber);
+                      }}
                       width="100%"
                     >
-                      {showNumber ? '87477810777' : 'Показать номер'}
+                      {showNumber ? ownerData?.phone_number : 'Показать номер'}
                     </Button>
                   </div>
                 </form>

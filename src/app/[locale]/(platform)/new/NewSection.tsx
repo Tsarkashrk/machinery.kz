@@ -20,6 +20,7 @@ import { useBrands } from '@/5-entities/brand';
 import { useTranslations } from 'next-intl';
 import Textarea from '@/6-shared/ui/Textarea/Textarea';
 import ErrorMessage from '@/6-shared/ui/ErrorMessage/ErrorMessage';
+import GoogleAutocompleteInput from '@/6-shared/ui/GoogleAutoComplete/GoogleAutoComplete';
 
 const NewSection = () => {
   const { brands } = useBrands();

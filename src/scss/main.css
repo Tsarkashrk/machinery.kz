@@ -94,14 +94,12 @@ hr {
     transform: rotate(360deg);
   }
 }
-.profile {
-  background-color: white;
-}
 .profile__wrapper {
   margin: 0 auto;
   padding: 2rem;
   border-radius: 1.6rem;
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
+  background-color: white;
 }
 .profile-section__title {
   margin-bottom: 3rem;
@@ -134,7 +132,6 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #7e90e4;
   color: white;
   border-radius: 10rem;
   width: 10rem;
@@ -478,7 +475,6 @@ hr {
 }
 
 .content__card {
-  background-color: white;
   border-radius: 1.6rem;
   max-width: 126.5rem;
   width: 100%;
@@ -494,6 +490,7 @@ hr {
 }
 
 .settings-section__wrapper {
+  background-color: white;
   padding: 2rem;
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
   border-radius: 1.6rem;
@@ -523,6 +520,28 @@ hr {
   gap: 2rem;
   height: calc(100vh - 20rem);
 }
+.activate-section__check {
+  color: rgb(26, 141, 26);
+  height: 10rem;
+  width: 10rem;
+  background-color: rgb(168, 255, 168);
+  border-radius: 10rem;
+  padding: 1rem;
+}
+.activate-section__x {
+  color: #ef4444;
+  height: 10rem;
+  width: 10rem;
+  background-color: rgb(255, 213, 213);
+  border-radius: 10rem;
+  padding: 1rem;
+}
+.activate-section__empty {
+  display: flex;
+  flex-direction: column !important;
+  gap: 2rem;
+  background-color: white;
+}
 
 .reset-password {
   width: 100%;
@@ -537,6 +556,7 @@ hr {
   max-width: 40rem;
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
   border-radius: 1.6rem;
+  background-color: white;
 }
 .reset-password__header {
   display: flex;
@@ -567,6 +587,7 @@ hr {
   width: 100%;
   border-radius: 1.6rem;
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
+  background-color: white;
 }
 .confirm-section__field {
   display: flex;
@@ -587,15 +608,12 @@ hr {
   cursor: pointer;
 }
 
-.equipment-card {
-  background-color: white;
-}
 .equipment-card__wrapper {
+  background-color: white;
   display: flex;
   flex-direction: column;
   height: 100%;
   padding: 0.8rem;
-  background-color: white;
   border-radius: 1.6rem;
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
   font-family: var(--font-gilroy);
@@ -737,6 +755,7 @@ hr {
   border-radius: 1.6rem;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  background-color: white;
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
 }
 .chat-list__empty {
@@ -813,6 +832,7 @@ hr {
   border-bottom-left-radius: 0;
   border: 1px solid rgba(41, 71, 163, 0.1294117647);
   border-left: 0;
+  background-color: white;
 }
 .chat-content__messages {
   display: flex;
@@ -2106,7 +2126,7 @@ h3 {
 }
 .avatar__image {
   border-radius: 100rem;
-  border: 1px solid rgba(41, 71, 163, 0.1294117647);
+  border: 0;
 }
 .avatar__letter {
   font-weight: 600;

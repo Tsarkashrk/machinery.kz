@@ -43,7 +43,7 @@ const RegisterSection = () => {
     mutationKey: ['register'],
     mutationFn: (data: IAuthRegisterRequest) => authApi.register(data),
     onSuccess() {
-      toast.success('Successfully registered!');
+      toast.success('Ссылка для подтверждения отправлена вам на почту');
       reset();
       push(PLATFORM_PAGES.LOGIN);
     },

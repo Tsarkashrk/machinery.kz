@@ -18,7 +18,7 @@ export interface IReportIssue {
   evidence_urls: string[];
 }
 
-export interface IRespondRequest {
+export interface IPurchaseRespondRequest {
   action: string;
   response_message: string;
   inspection_period_days: number;
@@ -63,7 +63,7 @@ export const purchaseApi = {
     return response.data;
   },
 
-  respondToPurchaseRequest: async (id: number, data: IRespondRequest) => {
+  respondToPurchaseRequest: async (id: number, data: IPurchaseRespondRequest) => {
     const response = await axiosWithAuth.post(
       `${BASE_URL}/${id}/respond/`,
       data,

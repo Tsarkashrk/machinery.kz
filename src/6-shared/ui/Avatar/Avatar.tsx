@@ -40,10 +40,10 @@ const Avatar = ({
     onSuccess: (updatedData) => {
       queryClient.setQueryData(['profile'], updatedData);
       queryClient.invalidateQueries({ queryKey: ['profile'] });
-      toast.success('Successfully edited!');
+      toast.success('Успешно обновлено!');
     },
-    onError: () => {
-      toast.error('Invalid credentials', { description: 'Try again!' });
+    onError: (error) => {
+      toast.error(`Ошибка, ${error}`);
     },
   });
 
@@ -62,7 +62,7 @@ const Avatar = ({
       className={`avatar ${size && `avatar--${size}`} ${type && `avatar--${type}`}`}
     >
       <Link
-        href={type === 'profile' ? '' :  link}
+        href={type === 'profile' ? '' : link}
         className="avatar__link"
       >
         <div className={`avatar__wrapper avatar__wrapper--${size}`}>
@@ -81,7 +81,7 @@ const Avatar = ({
       </Link>
 
       {type === 'profile' && (
-        <div className='avatar__load'>
+        <div className="avatar__load">
           <div
             className="avatar__upload"
             onClick={handleUploadClick}
