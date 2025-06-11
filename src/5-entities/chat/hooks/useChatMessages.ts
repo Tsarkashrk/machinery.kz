@@ -4,16 +4,18 @@ import { IChatMessage } from '@/5-entities/chat';
 import { useWebSocket } from './useWebSocket';
 import { chatApi } from '@/6-shared/api/chats.api';
 import { toast } from 'sonner';
+import { useSendMessage } from './useSendMessage';
 
 export const useChatMessages = (chatId: number) => {
   const [messages, setMessages] = useState<IChatMessage[]>([]);
+  // const [typingUsers, setTypingUsers] = useState<Set<number>>(new Set());
   const [isSending, setIsSending] = useState(false);
   const queryClient = useQueryClient();
 
-  // Очищаем сообщения при смене чата
   useEffect(() => {
     console.log('Chat ID changed, clearing messages:', chatId);
     setMessages([]);
+    // setTypingUsers(new Set());
   }, [chatId]);
 
   const handleNewMessage = useCallback(
@@ -33,7 +35,6 @@ export const useChatMessages = (chatId: number) => {
         return;
       }
 
-      // Обновляем локальное состояние
       setMessages((prevMessages) => {
         const messageExists = prevMessages.some(
           (msg) => msg && msg.id && msg.id === message.id,
@@ -58,38 +59,7 @@ export const useChatMessages = (chatId: number) => {
         return newMessages;
       });
 
-      // КРИТИЧНО: Обновляем кэш React Query немедленно
-      queryClient.setQueryData([`chat-${chatId}`], (oldData: any) => {
-        if (!oldData) return oldData;
-
-        const existingMessages = oldData.messages || [];
-        const messageExists = existingMessages.some(
-          (msg: IChatMessage) => msg && msg.id === message.id,
-        );
-
-        if (!messageExists) {
-          const updatedMessages = [...existingMessages, message].sort(
-            (a, b) => {
-              if (a.created_at && b.created_at) {
-                return (
-                  new Date(a.created_at).getTime() -
-                  new Date(b.created_at).getTime()
-                );
-              }
-              return (a.id || 0) - (b.id || 0);
-            },
-          );
-
-          return {
-            ...oldData,
-            messages: updatedMessages,
-          };
-        }
-
-        return oldData;
-      });
-
-      // Инвалидируем другие связанные запросы
+      queryClient.invalidateQueries({ queryKey: [`chat-${chatId}`] });
       queryClient.invalidateQueries({ queryKey: ['chats'] });
     },
     [chatId, queryClient],
@@ -99,6 +69,8 @@ export const useChatMessages = (chatId: number) => {
     console.error('WebSocket error:', error);
     toast.error(`Chat error: ${error}`);
   }, []);
+
+  const sendMutation = useSendMessage();
 
   const {
     isConnected,
@@ -125,25 +97,33 @@ export const useChatMessages = (chatId: number) => {
         };
 
         console.log('Sending HTTP request to create message:', messageData);
-        const response = await chatApi.sendMessage(chatId, messageData);
-        console.log('Message created successfully:', response);
 
-        if (response) {
-          // Добавляем сообщение через обработчик
-          handleNewMessage(response);
-        }
+        sendMutation.mutate(
+          { chatId, messageData },
+          {
+            onSuccess: (response) => {
+              console.log('Message created successfully:', response);
 
-        // Отправляем уведомление через WebSocket
-        const wsNotification = {
-          type: 'message_sent',
-          data: {
-            chat_id: chatId,
-            message_id: response?.id,
+              // Обновляем UI новым сообщением
+              handleNewMessage(response);
+
+              // Отправляем уведомление по WebSocket
+              const wsNotification = {
+                type: 'message_sent',
+                data: {
+                  chat_id: chatId,
+                  message_id: response.id,
+                },
+              };
+
+              console.log('Sending WebSocket notification:', wsNotification);
+              wsSendMessage(wsNotification);
+            },
+            onError: (err) => {
+              console.error('Error sending message:', err);
+            },
           },
-        };
-
-        console.log('Sending WebSocket notification:', wsNotification);
-        wsSendMessage(wsNotification);
+        );
       } catch (error) {
         console.error('Failed to send message:', error);
         toast.error('Failed to send message');
@@ -154,7 +134,6 @@ export const useChatMessages = (chatId: number) => {
     [wsSendMessage, chatId, isSending, handleNewMessage],
   );
 
-  // Синхронизируем с кэшем React Query
   useEffect(() => {
     const cachedData = queryClient.getQueryData<any>([`chat-${chatId}`]);
     if (cachedData?.messages) {
@@ -165,12 +144,12 @@ export const useChatMessages = (chatId: number) => {
       setMessages(validMessages);
     } else {
       console.log('No cached messages found for chat:', chatId);
-      setMessages([]);
     }
   }, [chatId, queryClient]);
 
   return {
     messages,
+    // typingUsers,
     isConnected,
     isReconnecting,
     isSending,
