@@ -5,6 +5,8 @@ import { useTranslations } from 'next-intl';
 import { Input } from '../Input/Input';
 import Textarea from '../Textarea/Textarea';
 import Label from '../Label/Label';
+import InputFile from '../Input/InputFile';
+import { useForm } from 'react-hook-form';
 
 interface Props {
   isOwner: boolean;
@@ -22,11 +24,9 @@ export const PickupConfirmationModal = ({
   const [confirmationCode, setConfirmationCode] = useState('');
   const [conditionNotes, setConditionNotes] = useState('');
   const [photos, setPhotos] = useState<string[]>([]);
-  const t = useTranslations('Rental');
+  const t = useTranslations();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit = () => {
     const data = {
       confirmation_code: isOwner ? '' : confirmationCode,
       equipment_condition_notes: conditionNotes,
@@ -36,45 +36,42 @@ export const PickupConfirmationModal = ({
     onConfirm(data);
   };
 
+  const { register, handleSubmit } = useForm({ mode: 'onChange' });
+
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <Title size="h4">{t('confirmPickup')}</Title>
+        <div style={{ marginBottom: '2rem' }}>
+          <Title size="h2">Подтвердить получение</Title>
+        </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           {!isOwner && (
             <>
               <div className="form-group">
-                <Label>{t('confirmationCode')}</Label>
+                <Label>Код подтверждения</Label>
                 <Input
                   type="text"
                   value={confirmationCode}
                   onChange={(e) => setConfirmationCode(e.target.value)}
                   required
-                  placeholder={t('enterConfirmationCode')}
+                  placeholder="Введите код подтверждения"
                 />
               </div>
               <div className="form-group">
-                <Label>{t('equipmentCondition')}</Label>
+                <Label forElement="equipment_condition_notes">
+                  Заметки о состоянии
+                </Label>
                 <Textarea
-                  value={conditionNotes}
-                  onChange={(e) => setConditionNotes(e.target.value)}
-                  placeholder={t('equipmentConditionPlaceholder')}
-                  rows={4}
+                  id="equipment_condition_notes"
+                  placeholder={t('equipment-description-placeholder')}
+                  {...register('description')}
                 />
               </div>
 
               <div className="form-group">
-                <Label>{t('pickupPhotos')}</Label>
-                <Input
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  onChange={(e) => {
-                    // Handle file upload logic here
-                    // Convert files to URLs and set to photos state
-                  }}
-                />
+                <Label>Фото</Label>
+                <InputFile {...register('file')} />
               </div>
             </>
           )}
@@ -89,8 +86,9 @@ export const PickupConfirmationModal = ({
             <Button
               type="submit"
               disabled={isLoading}
+              isLoading={isLoading}
             >
-              {isLoading ? t('confirming') : t('confirm')}
+              {t('confirm')}
             </Button>
           </div>
         </form>

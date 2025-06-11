@@ -4,7 +4,7 @@ import { IUser } from '@/5-entities/user';
 export interface ILastMessage {
   content: string;
   sender_id: number;
-  timestamp: string;
+  created_at: string;
   is_read: boolean;
 }
 
@@ -21,7 +21,7 @@ export interface IChatMessage {
   chat: number;
   sender_details: IUser;
   content: string;
-  timestamp: string;
+  created_at: string;
   is_read: boolean;
   transaction_id: number | null;
   transaction_type: string | null;

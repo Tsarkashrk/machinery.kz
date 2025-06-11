@@ -4,6 +4,7 @@ import { TransactionsList } from '@/3-widgets/transactions-list';
 import { useMyTransactions } from '@/5-entities/rental';
 import { useProfile } from '@/5-entities/user';
 import Button from '@/6-shared/ui/Buttons/Button';
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 
 export const ProfileOrdersSection = () => {
@@ -22,6 +23,12 @@ export const ProfileOrdersSection = () => {
 
   const selectedTransactions =
     activeTab === 'listings' ? myListingsTransactions : myDealsTransactions;
+
+  const queryClient = useQueryClient();
+
+  const invalidateTransactions = () => {
+    queryClient.invalidateQueries({ queryKey: ['my-transactions'] });
+  };
 
   return (
     <section className="profile-deals">
@@ -49,6 +56,7 @@ export const ProfileOrdersSection = () => {
           <TransactionsList
             equipmentList={selectedTransactions}
             tab={activeTab}
+            onTransactionUpdate={invalidateTransactions} 
           />
         )}
       </div>

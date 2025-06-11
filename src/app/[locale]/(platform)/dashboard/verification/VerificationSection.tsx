@@ -92,8 +92,8 @@ export const VerificationSection = () => {
       label: "Состояние",
       render: (value: any) => {
         const conditionMap: { [key: string]: { label: string; color: any } } = {
-          new: { label: "Новое", color: "success" },
-          used: { label: "Б/У", color: "warning" },
+          new: { label: "Новое", color: "green" },
+          used: { label: "Б/У", color: "orange" },
         };
         const condition = conditionMap[value] || {
           label: value,

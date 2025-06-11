@@ -20,8 +20,6 @@ import { useState } from 'react';
 import { ICON_SIZE } from '@/6-shared/constants/constants';
 import { Eye, EyeOff } from 'lucide-react';
 import ErrorMessage from '@/6-shared/ui/ErrorMessage/ErrorMessage';
-import Link from 'next/link';
-import { useToast } from '@/5-entities/toast/hooks/useToast';
 
 const LoginSection = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,11 +32,8 @@ const LoginSection = () => {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm<IAuthLoginRequest>({ mode: 'onChange' });
-
-  const { showSuccess, showError } = useToast();
 
   const { push } = useRouter();
 

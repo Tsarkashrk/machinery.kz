@@ -67,9 +67,9 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
       }, [] as IChatMessage[])
       .sort((a, b) => {
         // Сортируем по timestamp или по id
-        if (a.timestamp && b.timestamp) {
+        if (a.created_at && b.created_at) {
           return (
-            new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+            new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
           );
         }
         return (a.id || 0) - (b.id || 0);
@@ -209,9 +209,6 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
     <div className="chat-content">
       <div className="chat-content__wrapper">
         <ChatHeader
-          timestamp={
-            chat && chat.last_message ? chat.last_message.timestamp : undefined
-          }
           chat={updatedChat}
           link={data.dealer_details.id}
           username={data.dealer_details.username}

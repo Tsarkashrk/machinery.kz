@@ -12,6 +12,12 @@ export interface IConfirmPurchasePickup {
   pickup_photos: string[];
 }
 
+export interface IRequestPurchase {
+  equipment: number;
+  amount: string;
+  purchase_terms: string;
+}
+
 export interface IReportIssue {
   issue_type: 'equipment_damage' | string;
   description: string;
@@ -71,6 +77,12 @@ export const purchaseApi = {
       `${BASE_URL}/${id}/respond/`,
       data,
     );
+    return response.data;
+  },
+
+  requestPurchase: async (data: IRequestPurchase) => {
+    const response = await axiosWithAuth.post(`${BASE_URL}/request/`, data);
+
     return response.data;
   },
 };

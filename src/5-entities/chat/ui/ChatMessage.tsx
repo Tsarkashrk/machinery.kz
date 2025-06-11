@@ -48,6 +48,8 @@ export const ChatMessage = ({ message }: Props) => {
   //   }
   // }, [profile?.id, buyer, dealer])
 
+  console.log(message)
+
   return (
     <div
       className={`chat-message ${isMyMessage ? "chat-message--my" : "chat-message--other"}`}
@@ -84,7 +86,7 @@ export const ChatMessage = ({ message }: Props) => {
                 <Description fontSize="1.6rem">{message?.content}</Description>
                 <div className="chat-message__footer-container">
                   <TextMuted>
-                    {message.timestamp && formatTime(message.timestamp)}
+                    {message.created_at && formatTime(message.created_at)}
                   </TextMuted>
                   {isMyMessage && <CheckCheck size={ICON_SIZE} />}
                 </div>

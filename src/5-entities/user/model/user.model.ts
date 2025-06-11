@@ -17,6 +17,12 @@ export interface IUser {
   address: string;
   phone_number: string;
   iin: any;
+  trust_score: number;
+  successful_rentals_as_renter: number;
+  successful_rentals_as_owner: number;
+  successful_purchases_as_buyer: number;
+  successful_purchases_as_seller: number;
+  total_transactions: string;
 }
 
 export interface IUserRequest {

@@ -120,6 +120,9 @@
 }
 
 .transaction-button {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
   width: 100%;
   margin-top: 1rem;
   height: 100%;

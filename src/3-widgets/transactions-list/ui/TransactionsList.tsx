@@ -7,6 +7,7 @@ import {
 } from '@/5-entities/equipment/model/equipment.model';
 import { Loading } from '@/6-shared/ui/Loading/Loading';
 import { TransactionCard } from '@/3-widgets/transaction-card/ui/TransactionCard';
+import { useQueryClient } from '@tanstack/react-query';
 
 type Props = {
   equipmentList: IEquipment[] | IEquipmentWithImage[] | undefined;
@@ -15,6 +16,7 @@ type Props = {
   size?: 'default' | 'small';
   isProfile?: boolean;
   tab: string;
+  onTransactionUpdate?: () => void;
 };
 
 export const TransactionsList = ({
@@ -24,6 +26,7 @@ export const TransactionsList = ({
   variant = 'vertical',
   tab,
   size = 'default',
+  onTransactionUpdate,
 }: Props) => {
   if (isLoading) return <Loading />;
 
@@ -46,6 +49,7 @@ export const TransactionsList = ({
             ownerId={equipment.equipment_details.owner}
             renter={equipment.renter_details}
             equipment={equipment.equipment_details}
+            onTransactionUpdate={onTransactionUpdate}
             image={
               equipment.equipment_details.images?.[0]?.image_url ??
               '/assets/profile-placeholder.png'

@@ -8,18 +8,22 @@
   padding: 0.5rem;
   border: 0;
   border-radius: 10rem;
-  color: $base-color;
-  background-color: $primary-color;
+  color: $zinc-400;
+  background-color: $base-color;
+  border: $border-primary;
   right: 0.7rem;
   cursor: pointer;
   transition: $transition;
+
+  &:hover {
+    background-color: $zinc-100;
+  }
 
   &__icon {
     transition: $transition;
 
     &:hover {
-      color: $primary-color;
-      fill: red;
+      fill: $zinc-400;
       transition: $transition;
     }
   }

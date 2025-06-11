@@ -30,7 +30,7 @@ export const ProfileStats = ({
       key: "equipment",
     },
     {
-      label: "Сделок",
+      label: "Успешных сделок",
       value: deals,
       key: "deals",
     },

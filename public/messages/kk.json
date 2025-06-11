@@ -118,5 +118,29 @@
   "Badge": {
     "rent": "Жалға алу",
     "sell": "Сату"
-  }
+  },
+  "confirmReturn": "Қайтаруды растау",
+  "equipmentCondition": "Жабдықтың күйі",
+  "equipmentConditionPlaceholder": "Жабдықтың қазіргі күйін сипаттаңыз...",
+  "returnPhotos": "Қайтару фотосуреттері",
+  "reportDamage": "Зақым туралы хабарлау",
+  "damageDescription": "Зақым сипаттамасы",
+  "describeDamage": "Зақымды сипаттаңыз...",
+  "cancel": "Болдырмау",
+  "confirm": "Растау",
+  "reportIssue": "Мәселе туралы хабарлау",
+  "issueType": "Мәселе түрі",
+  "chooseIssue": "Мәселені таңдаңыз",
+  "equipmentDamage": "Жабдықтың зақымдануы",
+  "equipmentMalfunction": "Жабдықтың ақауы",
+  "safetyConcern": "Қауіпсіздікке алаңдау",
+  "other": "Басқа...",
+  "description": "Сипаттама",
+  "descriptionPlaceholder": "Мәселені сипаттаңыз",
+  "photos": "Фотосуреттер",
+  "submit": "Жіберу",
+  "reviewConfirm": "Пікірді растау",
+  "rating": "Бағалау 1-ден 5-ке дейін",
+  "comment": "Пікір",
+  "reviewDescription": "Жалдау туралы пікіріңізді қалдырыңыз..."
 }

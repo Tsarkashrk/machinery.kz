@@ -5,6 +5,9 @@ import { useTranslations } from 'next-intl';
 import Label from '../Label/Label';
 import { Input } from '../Input/Input';
 import Textarea from '../Textarea/Textarea';
+import { useForm } from 'react-hook-form';
+import CustomDropdown from '../Dropdown/Dropdown';
+import InputFile from '../Input/InputFile';
 
 interface Props {
   onConfirm: (data: any) => void;
@@ -13,16 +16,43 @@ interface Props {
 }
 
 export const ReportIssueModal = ({ onConfirm, onClose, isLoading }: Props) => {
-  const [issueType, setIssueType] = useState('equipment_damage');
   const [description, setDescription] = useState('');
   const [evidenceUrls, setEvidenceUrls] = useState<string[]>([]);
-  const t = useTranslations('Rental');
+  const t = useTranslations();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const {
+    handleSubmit,
+    control,
+    register,
+    formState: { errors },
+  } = useForm({ mode: 'onChange' });
 
+  const issueTypes = [
+    {
+      id: 1,
+      title: t('equipmentDamage'),
+      value: 'equipment-damage',
+    },
+    {
+      id: 2,
+      title: t('equipmentMalfunction'),
+      value: 'equipment-malfunction',
+    },
+    {
+      id: 3,
+      title: t('safetyConcern'),
+      value: 'safety-concern',
+    },
+    {
+      id: 4,
+      title: t('other'),
+      value: 'other',
+    },
+  ];
+
+  const onSubmit = () => {
     const data = {
-      issue_type: issueType,
+      issue_type: '',
       description,
       evidence_urls: evidenceUrls,
     };
@@ -33,45 +63,38 @@ export const ReportIssueModal = ({ onConfirm, onClose, isLoading }: Props) => {
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <Title size="h4">Сообщить о проблеме</Title>
+        <Title
+          size="h3"
+          fontWeight="700"
+        >
+          {t('reportIssue')}
+        </Title>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <Label>Тип проблемы</Label>
-            <select
-              value={issueType}
-              onChange={(e) => setIssueType(e.target.value)}
-            >
-              <option value="equipment_damage">Повреждение оборудования</option>
-              <option value="equipment_malfunction">
-                {t('equipmentMalfunction')}
-              </option>
-              <option value="safety_concern">{t('safetyConcern')}</option>
-              <option value="other">{t('other')}</option>
-            </select>
+            <Label>{t('issueType')}</Label>
+            <CustomDropdown
+              name="issue_type"
+              control={control}
+              options={issueTypes}
+              rules={{ required: t('chooseIssue') }}
+            />
           </div>
 
           <div className="form-group">
-            <Label>{t('issueDescription')}</Label>
+            <Label>{t('description')}</Label>
             <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder={t('describeIssue')}
+              placeholder={t('descriptionPlaceholder')}
               rows={4}
               required
             />
           </div>
 
           <div className="form-group">
-            <Label>{t('evidencePhotos')}</Label>
-            <Input
-              type="file"
-              multiple
-              accept="image/*"
-              onChange={(e) => {
-                // Handle file upload logic here
-              }}
-            />
+            <Label>{t('photos')}</Label>
+            <InputFile {...register('file')} />
           </div>
 
           <div className="modal-actions">
@@ -85,8 +108,9 @@ export const ReportIssueModal = ({ onConfirm, onClose, isLoading }: Props) => {
             <Button
               type="submit"
               disabled={isLoading}
+              isLoading={isLoading}
             >
-              {isLoading ? t('reporting') : t('reportIssue')}
+              {t('submit')}
             </Button>
           </div>
         </form>

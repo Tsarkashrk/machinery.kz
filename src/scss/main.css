@@ -742,7 +742,7 @@ hr {
 
 .dealer-list__wrapper {
   display: grid;
-  column-gap: 2rem;
+  gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
 }
 
@@ -1104,6 +1104,9 @@ hr {
 }
 
 .transaction-button {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
   width: 100%;
   margin-top: 1rem;
   height: 100%;
@@ -1119,18 +1122,21 @@ hr {
   padding: 0.5rem;
   border: 0;
   border-radius: 10rem;
-  color: white;
-  background-color: #ffa600;
+  color: #a1a1aa;
+  background-color: white;
+  border: 1px solid rgba(41, 71, 163, 0.1294117647);
   right: 0.7rem;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
+}
+.favorite-button:hover {
+  background-color: #f4f4f5;
 }
 .favorite-button__icon {
   transition: all 0.1s ease-in-out;
 }
 .favorite-button__icon:hover {
-  color: #ffa600;
-  fill: red;
+  fill: #a1a1aa;
   transition: all 0.1s ease-in-out;
 }
 
@@ -2265,6 +2271,7 @@ h3 {
 }
 
 .label {
+  display: flex;
   font-family: var(--font-geist-sans);
   font-weight: 500;
   font-size: 1.4rem;
@@ -3327,19 +3334,25 @@ h5 {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
-  margin-top: 20px;
   padding-top: 15px;
   border-top: 1px solid #e5e5e5;
 }
 
-.form-group {
-  margin-bottom: 15px;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group--horizontal {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .form-group input,
@@ -3463,4 +3476,45 @@ h5 {
   margin-top: 12px;
   padding-top: 12px;
   border-top: 1px solid #e5e5e5;
+}
+
+.profile-card-small {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 1rem;
+  max-width: 300px;
+}
+.profile-card-small__header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.profile-card-small__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.profile-card-small__location {
+  color: #555;
+}
+.profile-card-small__body {
+  margin-top: 1rem;
+}
+.profile-card-small__rating, .profile-card-small__sales {
+  display: flex;
+  align-items: center;
+  gap: 0rem;
+  margin-top: 0rem;
+}
+.profile-card-small__rating .label, .profile-card-small__sales .label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.profile-card-small__star {
+  color: orange;
+}
+.profile-card-small .verified-badge {
+  font-size: 0.75rem;
+  color: green;
 }/*# sourceMappingURL=main.css.map */

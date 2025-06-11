@@ -24,7 +24,11 @@ import { PickupConfirmationModal } from '@/6-shared/ui/PickupConfirmationModal/P
 import { useConfirmReturn } from '@/5-entities/rental/hooks/useConfirmReturn';
 import { ReportIssueModal } from '@/6-shared/ui/ReportIssueModal/ReportIssueModal';
 import { CancelRentalModal } from '@/6-shared/ui/CancelRentalModal/CancelRentalModal';
-import { ReturnConfirmationModal } from '@/6-shared/ui/ReportConfirmationModal/ReportConfirmationModal';
+import { ReturnConfirmationModal } from '@/6-shared/ui/ReturnConfirmationModal/ReturnConfirmationModal';
+import { useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
+import { ReviewModal } from '@/6-shared/ui/ReviewModal/ReviewModal';
+import { useReview } from '@/5-entities/review/hooks/useReview';
 
 type Props = {
   available_for_rent: boolean;
@@ -43,6 +47,7 @@ type Props = {
   tab: string;
   equipment: any;
   transaction: any;
+  onTransactionUpdate?: () => void;
 };
 
 export const TransactionCard = ({
@@ -50,6 +55,7 @@ export const TransactionCard = ({
   daily_rental_rate,
   transactionProcess,
   purchase_price,
+  onTransactionUpdate,
   renter,
   name,
   id,
@@ -70,6 +76,7 @@ export const TransactionCard = ({
   const [showReturnModal, setShowReturnModal] = useState(false);
   const [showIssueModal, setShowIssueModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   const { profile } = useProfile();
 
@@ -103,7 +110,7 @@ export const TransactionCard = ({
     } else if (transactionProcess === 'completed') {
       setStatusState('Завершен');
       setColorState('green');
-    } else if (transactionProcess === 'cancelled ') {
+    } else if (transactionProcess === 'cancelled') {
       setStatusState('Отменен');
       setColorState('orange');
     } else if (transactionProcess === 'disputed') {
@@ -113,6 +120,7 @@ export const TransactionCard = ({
   }, [status]);
 
   const confirmPickupMutation = useConfirmPickup();
+  const confirmReviewMutation = useReview();
   const confirmReturnMutation = useConfirmReturn();
   const reportIssueMutation = useReportIssue();
   const cancelRentalMutation = useCancelRental();
@@ -121,9 +129,12 @@ export const TransactionCard = ({
     confirmPickupMutation.mutate(
       { id: transaction.id, data },
       {
-        onSuccess: () => {
-          setShowPickupModal(false);
-          window.location.reload();
+        onSuccess: (response) => {
+          toast.success('Успешно подтверждено');
+          onTransactionUpdate?.();
+        },
+        onError: (error) => {
+          console.error('Ошибка:', error);
         },
       },
     );
@@ -134,20 +145,31 @@ export const TransactionCard = ({
       { id: transaction.id, data },
       {
         onSuccess: () => {
-          setShowReturnModal(false);
-          window.location.reload();
+          toast.success('Успешно подтверждено');
+          onTransactionUpdate?.();
         },
       },
     );
   };
+
+  const handleReviewRental = (data: any) => {
+    confirmReviewMutation.mutate(data, {
+      onSuccess: () => {
+        toast.success('Успешно оценено');
+        onTransactionUpdate?.();
+      },
+    });
+  };
+
+  console.log(transaction);
 
   const handleReportIssue = (data: any) => {
     reportIssueMutation.mutate(
       { id: transaction.id, data },
       {
         onSuccess: () => {
-          setShowIssueModal(false);
-          window.location.reload();
+          toast.success('Успешно отправлено');
+          onTransactionUpdate?.();
         },
       },
     );
@@ -156,8 +178,9 @@ export const TransactionCard = ({
   const handleCancelRental = () => {
     cancelRentalMutation.mutate(transaction.id, {
       onSuccess: () => {
-        setShowCancelModal(false);
-        window.location.reload();
+        toast.success('Успешно отменено');
+        onTransactionUpdate?.();
+        setShowCancelModal(false)
       },
     });
   };
@@ -261,7 +284,7 @@ export const TransactionCard = ({
                   variant="secondary"
                   onClick={() => setShowIssueModal(true)}
                 >
-                  Report issue
+                  Сообщить о проблеме
                 </Button>
               )}
               {transactionProcess === 'disputed' && (
@@ -269,16 +292,21 @@ export const TransactionCard = ({
                   variant="secondary"
                   onClick={() => setShowIssueModal(true)}
                 >
-                  Report issue
+                  Сообщить о проблеме
                 </Button>
               )}
               {(transactionProcess === 'requested' ||
                 transactionProcess === 'approved') && (
                 <Button
                   variant="secondary"
-                  onClick={() => setShowIssueModal(true)}
+                  onClick={() => setShowCancelModal(true)}
                 >
-                  Report issue
+                  Отменить
+                </Button>
+              )}
+              {transactionProcess === 'completed' && (
+                <Button onClick={() => setShowReviewModal(true)}>
+                  Оценить
                 </Button>
               )}
             </div>
@@ -316,6 +344,17 @@ export const TransactionCard = ({
           onConfirm={handleCancelRental}
           onClose={() => setShowCancelModal(false)}
           isLoading={cancelRentalMutation.isPending}
+        />
+      )}
+
+      {showReviewModal && (
+        <ReviewModal
+          onConfirm={handleReviewRental}
+          onClose={() => setShowReviewModal(false)}
+          isLoading={confirmReviewMutation.isPending}
+          reviewerId={profile?.id || 0}
+          transactionId={null}
+          rentalTransactionId={transaction.id}
         />
       )}
     </div>

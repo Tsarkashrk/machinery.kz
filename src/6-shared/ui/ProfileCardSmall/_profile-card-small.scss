@@ -1,0 +1,49 @@
+.profile-card-small {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 1rem;
+  max-width: 300px;
+
+  &__header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__location {
+    color: #555;
+  }
+
+  &__body {
+    margin-top: 1rem;
+  }
+
+  &__rating,
+  &__sales {
+    display: flex;
+    align-items: center;
+    gap: 0rem;
+    margin-top: 0rem;
+
+    .label {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  }
+
+  &__star {
+    color: orange;
+  }
+
+  .verified-badge {
+    font-size: 0.75rem;
+    color: green;
+  }
+}

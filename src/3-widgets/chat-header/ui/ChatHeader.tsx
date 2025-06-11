@@ -7,6 +7,7 @@ import { formatTime } from '@/6-shared/lib/utils';
 import Avatar from '@/6-shared/ui/Avatar/Avatar';
 import Button from '@/6-shared/ui/Buttons/Button';
 import { Description } from '@/6-shared/ui/Description/Description';
+import { useQueryClient } from '@tanstack/react-query';
 import { Wifi, WifiOff } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -50,6 +51,7 @@ export const ChatHeader = ({
   const [transactionStatus, setTransactionStatus] = useState(
     rentalTransaction?.status,
   );
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (rentalTransaction?.status) {
@@ -104,7 +106,8 @@ export const ChatHeader = ({
       },
       {
         onSuccess: (data) => {
-          setTransactionStatus('approved');
+          queryClient.invalidateQueries({ queryKey: [`chat-${chat.id}`] });
+          queryClient.invalidateQueries({ queryKey: ['chats'] });
           console.log('Успешно подтвержден:', data);
         },
         onError: (error) => {
@@ -136,7 +139,7 @@ export const ChatHeader = ({
     });
   };
 
-  console.log(transactionStatus)
+  console.log(interlocutorChat);
 
   return (
     <div className="chat-header">
@@ -144,13 +147,21 @@ export const ChatHeader = ({
         <div className="chat-header__info">
           <Avatar
             size="big"
-            username={interlocutorChat?.username}
+            avatar={interlocutorChat.image_url}
             link={`${PLATFORM_PAGES.DEALERS}/${link}`}
           />
           <div className="chat-header__status">
             <h3 className="chat-header__username">
-              {interlocutorChat?.username}
+              {interlocutorChat?.first_name}{' '}
+              {interlocutorChat?.last_name || interlocutorChat.username}
             </h3>
+            <p>
+              {interlocutorChat.user_role === 'user'
+                ? 'Пользователь'
+                : interlocutorChat.user_role === 'admin'
+                  ? 'Админ'
+                  : 'Модератор'}
+            </p>
             <div className="chat-header__status">
               {isReconnecting && (
                 <span className="text-yellow-500 text-sm">

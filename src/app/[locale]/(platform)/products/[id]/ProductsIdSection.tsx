@@ -25,6 +25,8 @@ import { Title } from '@/6-shared/ui/Title/Title';
 import { TitleDescription } from '@/6-shared/ui/TitleDescription/TitleDescription';
 import { useCreateRental, useRequestRental } from '@/5-entities/rental';
 import { GoogleMaps } from '@/6-shared/ui/GoogleMaps/GoogleMaps';
+import { ProfileCardSmall } from '@/6-shared/ui/ProfileCardSmall/ProfileCardSmall';
+import { useRequestPurchase } from '@/5-entities/purchase/hooks/useRequestPurchase';
 
 export const ProductIdSection = () => {
   const { id } = useParams();
@@ -138,6 +140,48 @@ export const ProductIdSection = () => {
 
   const { mutate: createChatMutation } = useCreateChat();
   const { mutate: requestRentalTransaction } = useRequestRental();
+  const { mutate: requestPurchaseTransaction } = useRequestPurchase();
+
+  const handlePurchaseAction = (e: any) => {
+    e.preventDefault();
+
+    if (!equipmentData) {
+      return;
+    }
+
+    if (!profile) {
+      toast.error('Войдите в аккаунт!');
+      return;
+    }
+
+    createChatMutation(
+      {
+        dealer: equipmentData.owner,
+        buyer: profile.id,
+        equipment: equipmentData.id,
+      },
+      {
+        onSuccess: () => {
+          router.push(`${PLATFORM_PAGES.MESSAGES}`);
+        },
+        onError: (error) => {
+          console.log(error);
+          if (
+            error.response.data.non_field_errors[0] ===
+            'The fields dealer, buyer, equipment must make a unique set.'
+          ) {
+          }
+        },
+      },
+    );
+
+    requestPurchaseTransaction({
+      equipment: equipmentData.id,
+      amount: equipmentData.purchase_price,
+      purchase_terms:
+        'Действуют стандартные условия покупки. Возврат товара производится путем договора сторон.',
+    });
+  };
 
   const handleAction = (e: any) => {
     e.preventDefault();
@@ -165,6 +209,14 @@ export const ProductIdSection = () => {
       {
         onSuccess: () => {
           router.push(`${PLATFORM_PAGES.MESSAGES}`);
+        },
+        onError: (error) => {
+          console.log(error);
+          if (
+            error.response.data.non_field_errors[0] ===
+            'The fields dealer, buyer, equipment must make a unique set.'
+          ) {
+          }
         },
       },
     );
@@ -269,16 +321,18 @@ export const ProductIdSection = () => {
                         </div>
                       </TitleDescription>
                     </div>
-                    <div className="product-slug__tab">
-                      <Title size="h2">Условия аренды</Title>
-                      <TitleDescription
-                        color="gray"
-                        fontSize="14px"
-                      >
-                        Действуют стандартные условия аренды. Оборудование
-                        должно быть возвращено в прежнем состоянии
-                      </TitleDescription>
-                    </div>
+                    {equipmentData?.available_for_rent && (
+                      <div className="product-slug__tab">
+                        <Title size="h2">Условия аренды</Title>
+                        <TitleDescription
+                          color="gray"
+                          fontSize="14px"
+                        >
+                          Действуют стандартные условия аренды. Оборудование
+                          должно быть возвращено в прежнем состоянии
+                        </TitleDescription>
+                      </div>
+                    )}
                   </div>
                 </div>
               </Card>
@@ -311,20 +365,54 @@ export const ProductIdSection = () => {
                   </div>
                 )}
               </h1>
-              {equipmentData?.available_for_rent && (
-                <form>
-                  <DatePicker onSelectDates={setSelectedDates} />
-                  <div className="product-slug__button">
-                    <div className="product-slug__total">
-                      <h1>Итоговая цена</h1>
-                      <div className="product-slug__line" />
-                      <h2>{total} ₸</h2>
+              <div className="product-slug__buttons">
+                {equipmentData?.available_for_rent && (
+                  <form>
+                    <DatePicker onSelectDates={setSelectedDates} />
+                    <div className="product-slug__button">
+                      <div className="product-slug__total">
+                        <h1>Итоговая цена</h1>
+                        <div className="product-slug__line" />
+                        <h2>{total} ₸</h2>
+                      </div>
+                      <div className="product-slug__button-list"></div>
                     </div>
-                    <div className="product-slug__button-list"></div>
-                  </div>
-                  <div className="product-slug__buttons">
+                    <div className="product-slug__buttons">
+                      <Button
+                        onClick={(e) => handleAction(e)}
+                        width="100%"
+                      >
+                        Написать владельцу
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setShowNumber(!showNumber);
+                        }}
+                        width="100%"
+                      >
+                        {showNumber
+                          ? ownerData?.phone_number
+                          : 'Показать номер'}
+                      </Button>
+                    </div>
+                  </form>
+                )}
+                {equipmentData?.available_for_sale && (
+                  <>
+                    <ProfileCardSmall
+                      equipmentCount={0}
+                      dealsCount={Number(ownerData?.total_transactions)}
+                      location={ownerData?.address}
+                      trustScore={ownerData?.trust_score}
+                      firstName={ownerData?.first_name}
+                      lastName={ownerData?.last_name}
+                      avatar={ownerData?.image_url}
+                      link={`${PLATFORM_PAGES.DEALERS}/${ownerData?.id}`}
+                    />
                     <Button
-                      onClick={(e) => handleAction(e)}
+                      onClick={(e) => handlePurchaseAction(e)}
                       width="100%"
                     >
                       Написать владельцу
@@ -339,9 +427,16 @@ export const ProductIdSection = () => {
                     >
                       {showNumber ? ownerData?.phone_number : 'Показать номер'}
                     </Button>
-                  </div>
-                </form>
-              )}
+                  </>
+                )}
+                <Button
+                  variant="outlined"
+                  link={`${PLATFORM_PAGES.DEALERS}/${ownerData?.id}`}
+                  width="100%"
+                >
+                  Перейти в профиль
+                </Button>
+              </div>
             </div>
           </div>
 

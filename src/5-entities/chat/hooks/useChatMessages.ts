@@ -11,7 +11,6 @@ export const useChatMessages = (chatId: number) => {
   const [isSending, setIsSending] = useState(false);
   const queryClient = useQueryClient();
 
-  // Очищаем сообщения при изменении чата
   useEffect(() => {
     console.log('Chat ID changed, clearing messages:', chatId);
     setMessages([]);
@@ -30,14 +29,12 @@ export const useChatMessages = (chatId: number) => {
         chatId: message.chat,
       });
 
-      // Проверяем, что сообщение относится к текущему чату
       if (message.chat && message.chat !== chatId) {
         console.log('Message for different chat, ignoring:', message.chat);
         return;
       }
 
       setMessages((prevMessages) => {
-        // Проверяем, есть ли уже такое сообщение
         const messageExists = prevMessages.some(
           (msg) => msg && msg.id && msg.id === message.id,
         );
@@ -49,10 +46,9 @@ export const useChatMessages = (chatId: number) => {
 
         console.log('Adding new message to state:', message.id);
         const newMessages = [...prevMessages, message].sort((a, b) => {
-          // Сортируем по timestamp или по id
-          if (a.timestamp && b.timestamp) {
+          if (a.created_at && b.created_at) {
             return (
-              new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+              new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
             );
           }
           return (a.id || 0) - (b.id || 0);
@@ -61,7 +57,6 @@ export const useChatMessages = (chatId: number) => {
         return newMessages;
       });
 
-      // Инвалидируем кэш для обновления UI
       queryClient.invalidateQueries({ queryKey: [`chat-${chatId}`] });
       queryClient.invalidateQueries({ queryKey: ['chats'] });
     },
@@ -70,7 +65,6 @@ export const useChatMessages = (chatId: number) => {
 
   const handleTyping = useCallback(
     (data: { user_id: number; is_typing: boolean; chat_id?: number }) => {
-      // Проверяем, что индикатор печати для текущего чата
       if (data.chat_id && data.chat_id !== chatId) {
         console.log('Typing indicator for different chat, ignoring');
         return;
@@ -88,7 +82,6 @@ export const useChatMessages = (chatId: number) => {
         return newSet;
       });
 
-      // Автоматически убираем индикатор печати через 3 секунды
       if (data.is_typing) {
         setTimeout(() => {
           setTypingUsers((prev) => {
@@ -104,7 +97,6 @@ export const useChatMessages = (chatId: number) => {
 
   const handleMessageRead = useCallback(
     (data: { message_id: number; chat_id?: number }) => {
-      // Проверяем, что уведомление о прочтении для текущего чата
       if (data.chat_id && data.chat_id !== chatId) {
         console.log('Read notification for different chat, ignoring');
         return;
@@ -161,11 +153,8 @@ export const useChatMessages = (chatId: number) => {
         console.log('Message created successfully:', response);
 
         if (response) {
-          // Handle the new message only once
           handleNewMessage(response);
         }
-
-        // Send WebSocket notification only if the message was successfully created
         const wsNotification = {
           type: 'message_sent',
           data: {
@@ -186,7 +175,6 @@ export const useChatMessages = (chatId: number) => {
     [wsSendMessage, chatId, isSending, handleNewMessage],
   );
 
-  // Загружаем существующие сообщения из кэша при изменении chatId
   useEffect(() => {
     const cachedData = queryClient.getQueryData<any>([`chat-${chatId}`]);
     if (cachedData?.messages) {

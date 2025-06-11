@@ -10,26 +10,31 @@ interface Props {
 }
 
 export const CancelRentalModal = ({ onConfirm, onClose, isLoading }: Props) => {
-  const t = useTranslations('Rental');
+  // const t = useTranslations('Rental');
 
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <Title size="h4">{t('cancelRental')}</Title>
-        <Description>{t('cancelRentalConfirmation')}</Description>
+        <Title
+          size="h3"
+          fontWeight="700"
+        >
+          Отменить аренду
+        </Title>
 
         <div className="modal-actions">
           <Button
             variant="outlined"
             onClick={onClose}
           >
-            {t('keepRental')}
+            Продолжить аренду
           </Button>
           <Button
             onClick={onConfirm}
             disabled={isLoading}
+            isLoading={isLoading}
           >
-            {isLoading ? t('cancelling') : t('cancelRental')}
+            Отменить аренду
           </Button>
         </div>
       </div>

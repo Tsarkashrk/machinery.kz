@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo } from 'react';
 import {
   Table,
   TableBody,
@@ -19,7 +19,7 @@ import {
   IconButton,
   Tooltip,
   Skeleton,
-} from "@mui/material";
+} from '@mui/material';
 import {
   Check,
   ViewIcon,
@@ -27,11 +27,11 @@ import {
   SearchIcon,
   TrashIcon,
   PlusIcon,
-} from "lucide-react";
-import { Badge } from "../Badge/Badge";
-import { ICON_SIZE } from "@/6-shared/constants/constants";
-import { Input } from "../Input/Input";
-import Button from "../Buttons/Button";
+} from 'lucide-react';
+import { Badge } from '../Badge/Badge';
+import { ICON_SIZE } from '@/6-shared/constants/constants';
+import { Input } from '../Input/Input';
+import Button from '../Buttons/Button';
 
 export interface Column {
   key: string;
@@ -39,7 +39,7 @@ export interface Column {
   sortable?: boolean;
   searchable?: boolean;
   width?: string | number;
-  align?: "left" | "center" | "right";
+  align?: 'left' | 'center' | 'right';
   accessor?: (item: any) => React.ReactNode;
   render?: (value: any, item: any) => React.ReactNode;
 }
@@ -48,7 +48,7 @@ export interface Action {
   icon: React.ReactNode;
   tooltip: string;
   onClick: (item: any) => void;
-  color?: "primary" | "secondary" | "error" | "warning" | "info" | "success";
+  color?: 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success';
 }
 
 interface DataTableProps {
@@ -66,7 +66,7 @@ interface DataTableProps {
   buttonOnChange?: () => void;
 }
 
-type Order = "asc" | "desc";
+type Order = 'asc' | 'desc';
 
 export const DataTable: React.FC<DataTableProps> = ({
   data = [],
@@ -78,15 +78,15 @@ export const DataTable: React.FC<DataTableProps> = ({
   rowsPerPageOptions = [5, 10, 25, 50],
   actions,
   onRowClick,
-  emptyMessage = "Нет данных для отображения",
+  emptyMessage = 'Нет данных для отображения',
   title,
   buttonOnChange,
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageOptions[1] || 10);
-  const [orderBy, setOrderBy] = useState<string>("");
-  const [order, setOrder] = useState<Order>("asc");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [orderBy, setOrderBy] = useState<string>('');
+  const [order, setOrder] = useState<Order>('asc');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const filteredData = useMemo(() => {
     if (!searchTerm) return data;
@@ -95,17 +95,17 @@ export const DataTable: React.FC<DataTableProps> = ({
       columns.some((column) => {
         if (!column.searchable && column.searchable !== undefined) return false;
 
-        let value = "";
+        let value = '';
         if (column.accessor) {
           const result = column.accessor(item);
-          value = typeof result === "string" ? result : String(result);
+          value = typeof result === 'string' ? result : String(result);
         } else {
           const itemValue = item[column.key];
-          if (typeof itemValue === "object" && itemValue !== null) {
+          if (typeof itemValue === 'object' && itemValue !== null) {
             value =
               itemValue.name || itemValue.title || JSON.stringify(itemValue);
           } else {
-            value = String(itemValue || "");
+            value = String(itemValue || '');
           }
         }
 
@@ -129,17 +129,17 @@ export const DataTable: React.FC<DataTableProps> = ({
         bValue = b[orderBy];
       }
 
-      if (aValue == null) aValue = "";
-      if (bValue == null) bValue = "";
+      if (aValue == null) aValue = '';
+      if (bValue == null) bValue = '';
 
       aValue = String(aValue).toLowerCase();
       bValue = String(bValue).toLowerCase();
 
       if (aValue < bValue) {
-        return order === "asc" ? -1 : 1;
+        return order === 'asc' ? -1 : 1;
       }
       if (aValue > bValue) {
-        return order === "asc" ? 1 : -1;
+        return order === 'asc' ? 1 : -1;
       }
       return 0;
     });
@@ -154,8 +154,8 @@ export const DataTable: React.FC<DataTableProps> = ({
   }, [sortedData, page, rowsPerPage, pagination]);
 
   const handleSort = (columnKey: string) => {
-    const isAsc = orderBy === columnKey && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
+    const isAsc = orderBy === columnKey && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(columnKey);
   };
 
@@ -183,20 +183,18 @@ export const DataTable: React.FC<DataTableProps> = ({
     const value = item[column.key];
 
     if (value === null || value === undefined) {
-      return "-";
+      return '-';
     }
 
-    if (typeof value === "object") {
+    if (typeof value === 'object') {
       if (value.name) return value.name;
       if (value.title) return value.title;
       return JSON.stringify(value);
     }
 
-    if (typeof value === "boolean") {
+    if (typeof value === 'boolean') {
       return (
-        <Badge type={value ? "success" : "warning"}>
-          {value ? "Да" : "Нет"}
-        </Badge>
+        <Badge type={value ? 'green' : 'red'}>{value ? 'Да' : 'Нет'}</Badge>
       );
     }
 
@@ -214,7 +212,11 @@ export const DataTable: React.FC<DataTableProps> = ({
           ))}
           {actions && actions.length > 0 && (
             <TableCell>
-              <Skeleton variant="circular" width={24} height={24} />
+              <Skeleton
+                variant="circular"
+                width={24}
+                height={24}
+              />
             </TableCell>
           )}
         </TableRow>
@@ -225,10 +227,10 @@ export const DataTable: React.FC<DataTableProps> = ({
   return (
     <Paper
       sx={{
-        width: "100%",
-        overflow: "hidden",
-        border: "1px solid #2947a321",
-        borderRadius: "1.6rem",
+        width: '100%',
+        overflow: 'hidden',
+        border: '1px solid #2947a321',
+        borderRadius: '1.6rem',
         boxShadow: 0,
       }}
     >
@@ -236,13 +238,16 @@ export const DataTable: React.FC<DataTableProps> = ({
         <Box
           sx={{
             p: 2,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
           }}
         >
           {title && (
-            <Typography variant="h6" component="h2">
+            <Typography
+              variant="h6"
+              component="h2"
+            >
               {title}
             </Typography>
           )}
@@ -272,18 +277,18 @@ export const DataTable: React.FC<DataTableProps> = ({
                 <TableCell
                   className="font-geist table-cell"
                   key={column.key}
-                  align={column.align || "left"}
+                  align={column.align || 'left'}
                   style={{
                     width: column.width,
                     fontSize: 14,
-                    backgroundColor: "#363435",
-                    color: "white",
+                    backgroundColor: '#363435',
+                    color: 'white',
                   }}
                 >
                   {sortable && column.sortable !== false ? (
                     <TableSortLabel
                       active={orderBy === column.key}
-                      direction={orderBy === column.key ? order : "asc"}
+                      direction={orderBy === column.key ? order : 'asc'}
                       onClick={() => handleSort(column.key)}
                     >
                       {column.label}
@@ -299,8 +304,8 @@ export const DataTable: React.FC<DataTableProps> = ({
                   className="font-geist font-size-14"
                   style={{
                     fontSize: 14,
-                    backgroundColor: "#363435",
-                    color: "white",
+                    backgroundColor: '#363435',
+                    color: 'white',
                   }}
                 >
                   Действия
@@ -333,10 +338,10 @@ export const DataTable: React.FC<DataTableProps> = ({
                   hover
                   onClick={onRowClick ? () => onRowClick(item) : undefined}
                   sx={{
-                    cursor: onRowClick ? "pointer" : "default",
-                    backgroundColor: index % 2 === 0 ? "white" : "#f5f5f5",
-                    "&:hover": onRowClick
-                      ? { backgroundColor: "action.hover" }
+                    cursor: onRowClick ? 'pointer' : 'default',
+                    backgroundColor: index % 2 === 0 ? 'white' : '#f5f5f5',
+                    '&:hover': onRowClick
+                      ? { backgroundColor: 'action.hover' }
                       : {},
                   }}
                 >
@@ -344,7 +349,7 @@ export const DataTable: React.FC<DataTableProps> = ({
                     <TableCell
                       className="font-geist"
                       key={column.key}
-                      align={column.align || "left"}
+                      align={column.align || 'left'}
                       style={{ fontSize: 14 }}
                     >
                       {renderCellValue(item, column)}
@@ -354,16 +359,19 @@ export const DataTable: React.FC<DataTableProps> = ({
                     <TableCell align="center">
                       <Box
                         sx={{
-                          display: "flex",
+                          display: 'flex',
                           gap: 0.5,
-                          justifyContent: "center",
+                          justifyContent: 'center',
                         }}
                       >
                         {actions.map((action, actionIndex) => (
-                          <Tooltip key={actionIndex} title={action.tooltip}>
+                          <Tooltip
+                            key={actionIndex}
+                            title={action.tooltip}
+                          >
                             <IconButton
                               size="small"
-                              color={action.color || "primary"}
+                              color={action.color || 'primary'}
                               onClick={(e) => {
                                 e.stopPropagation();
                                 action.onClick(item);
@@ -386,24 +394,24 @@ export const DataTable: React.FC<DataTableProps> = ({
       {pagination && (
         <TablePagination
           sx={{
-            "& .MuiTablePagination-toolbar": {
-              fontSize: "14px",
-              fontFamily: "Geist, sans-serif",
+            '& .MuiTablePagination-toolbar': {
+              fontSize: '14px',
+              fontFamily: 'Geist, sans-serif',
             },
-            "& .MuiTablePagination-selectLabel": {
-              fontSize: "14px",
-              fontFamily: "Geist, sans-serif",
+            '& .MuiTablePagination-selectLabel': {
+              fontSize: '14px',
+              fontFamily: 'Geist, sans-serif',
             },
-            "& .MuiTablePagination-displayedRows": {
-              fontSize: "14px",
-              fontFamily: "Geist, sans-serif",
+            '& .MuiTablePagination-displayedRows': {
+              fontSize: '14px',
+              fontFamily: 'Geist, sans-serif',
             },
-            "& .MuiInputBase-root": {
-              fontSize: "14px",
-              fontFamily: "Geist, sans-serif",
+            '& .MuiInputBase-root': {
+              fontSize: '14px',
+              fontFamily: 'Geist, sans-serif',
             },
-            "& .MuiSelect-icon": {
-              fontSize: "20px",
+            '& .MuiSelect-icon': {
+              fontSize: '20px',
             },
           }}
           className="font-geist font-size-14"

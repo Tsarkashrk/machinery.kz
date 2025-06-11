@@ -30,10 +30,7 @@ export const DealerSlug = () => {
   const initialPage = Number(searchParams.get('page')) || 1;
   const [currentPage, setCurrentPage] = useState(initialPage);
 
-  const {
-    data: equipmentList,
-    isLoading,
-  } = useEquipmentList({
+  const { data: equipmentList, isLoading } = useEquipmentList({
     owner: ownerId,
     page: currentPage,
     page_size: PAGE_SIZE,
@@ -41,7 +38,9 @@ export const DealerSlug = () => {
 
   const { user } = useDealerById(ownerId);
 
-  const totalPages = equipmentList ? Math.ceil(equipmentList.count / PAGE_SIZE) : 0;
+  const totalPages = equipmentList
+    ? Math.ceil(equipmentList.count / PAGE_SIZE)
+    : 0;
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -81,8 +80,8 @@ export const DealerSlug = () => {
                   isPro: false,
                   stats: {
                     equipment: equipmentList.count,
-                    deals: 0,
-                    rating: 0,
+                    deals: Number(user.total_transactions),
+                    rating: user.trust_score,
                   },
                 }}
               />

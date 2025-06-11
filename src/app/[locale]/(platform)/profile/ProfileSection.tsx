@@ -80,8 +80,12 @@ const ProfileSection = () => {
               isPro: true,
               stats: {
                 equipment: equipmentList.count,
-                deals: 0,
-                rating: 0,
+                deals:
+                  profile.successful_purchases_as_buyer +
+                  profile.successful_purchases_as_seller +
+                  profile.successful_rentals_as_owner +
+                  profile.successful_rentals_as_renter,
+                rating: profile.trust_score,
               },
             }}
           />

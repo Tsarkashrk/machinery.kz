@@ -21,7 +21,7 @@ export const ReturnConfirmationModal = ({
   const [returnPhotos, setReturnPhotos] = useState<any[]>([]);
   const [damageReported, setDamageReported] = useState(false);
   const [damageDescription, setDamageDescription] = useState('');
-  const t = useTranslations('Rental');
+  const t = useTranslations();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +39,9 @@ export const ReturnConfirmationModal = ({
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <Title size="h4">{t('confirmReturn')}</Title>
+        <div style={{ marginBottom: '2rem' }}>
+          <Title size="h2">{t('confirmReturn')}</Title>
+        </div>
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -62,14 +64,16 @@ export const ReturnConfirmationModal = ({
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group--horizontal">
             <Label>
-              <Input
+              {t('reportDamage')}
+
+              <input
+                style={{ marginLeft: '1rem' }}
                 type="checkbox"
                 checked={damageReported}
                 onChange={(e) => setDamageReported(e.target.checked)}
               />
-              {t('reportDamage')}
             </Label>
           </div>
 
@@ -97,8 +101,9 @@ export const ReturnConfirmationModal = ({
             <Button
               type="submit"
               disabled={isLoading}
+              isLoading={isLoading}
             >
-              {isLoading ? t('confirming') : t('confirm')}
+              {t('confirm')}
             </Button>
           </div>
         </form>
