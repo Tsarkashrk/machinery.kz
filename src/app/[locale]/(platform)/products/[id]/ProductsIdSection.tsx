@@ -440,13 +440,15 @@ export const ProductIdSection = () => {
             </div>
           </div>
 
-          <Title>Похожие объявления</Title>
-
-          {equipmentList && (
-            <EquipmentList
-              equipmentList={equipmentList?.results}
-              isLoading={isLoading}
-            />
+          {isSuccess && equipmentList?.results && equipmentData?.id && (
+            <>
+              <Title>Похожие объявления</Title>
+              <EquipmentList
+                equipmentList={equipmentList.results.filter(
+                  (item) => item.id !== equipmentData.id,
+                )}
+              />
+            </>
           )}
         </SectionWithContent>
       </div>

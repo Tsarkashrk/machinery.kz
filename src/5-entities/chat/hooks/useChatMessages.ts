@@ -7,14 +7,13 @@ import { toast } from 'sonner';
 
 export const useChatMessages = (chatId: number) => {
   const [messages, setMessages] = useState<IChatMessage[]>([]);
-  const [typingUsers, setTypingUsers] = useState<Set<number>>(new Set());
   const [isSending, setIsSending] = useState(false);
   const queryClient = useQueryClient();
 
+  // Очищаем сообщения при смене чата
   useEffect(() => {
     console.log('Chat ID changed, clearing messages:', chatId);
     setMessages([]);
-    setTypingUsers(new Set());
   }, [chatId]);
 
   const handleNewMessage = useCallback(
@@ -34,6 +33,7 @@ export const useChatMessages = (chatId: number) => {
         return;
       }
 
+      // Обновляем локальное состояние
       setMessages((prevMessages) => {
         const messageExists = prevMessages.some(
           (msg) => msg && msg.id && msg.id === message.id,
@@ -48,7 +48,8 @@ export const useChatMessages = (chatId: number) => {
         const newMessages = [...prevMessages, message].sort((a, b) => {
           if (a.created_at && b.created_at) {
             return (
-              new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+              new Date(a.created_at).getTime() -
+              new Date(b.created_at).getTime()
             );
           }
           return (a.id || 0) - (b.id || 0);
@@ -57,62 +58,41 @@ export const useChatMessages = (chatId: number) => {
         return newMessages;
       });
 
-      queryClient.invalidateQueries({ queryKey: [`chat-${chatId}`] });
+      // КРИТИЧНО: Обновляем кэш React Query немедленно
+      queryClient.setQueryData([`chat-${chatId}`], (oldData: any) => {
+        if (!oldData) return oldData;
+
+        const existingMessages = oldData.messages || [];
+        const messageExists = existingMessages.some(
+          (msg: IChatMessage) => msg && msg.id === message.id,
+        );
+
+        if (!messageExists) {
+          const updatedMessages = [...existingMessages, message].sort(
+            (a, b) => {
+              if (a.created_at && b.created_at) {
+                return (
+                  new Date(a.created_at).getTime() -
+                  new Date(b.created_at).getTime()
+                );
+              }
+              return (a.id || 0) - (b.id || 0);
+            },
+          );
+
+          return {
+            ...oldData,
+            messages: updatedMessages,
+          };
+        }
+
+        return oldData;
+      });
+
+      // Инвалидируем другие связанные запросы
       queryClient.invalidateQueries({ queryKey: ['chats'] });
     },
     [chatId, queryClient],
-  );
-
-  const handleTyping = useCallback(
-    (data: { user_id: number; is_typing: boolean; chat_id?: number }) => {
-      if (data.chat_id && data.chat_id !== chatId) {
-        console.log('Typing indicator for different chat, ignoring');
-        return;
-      }
-
-      console.log('Typing indicator:', data);
-
-      setTypingUsers((prev) => {
-        const newSet = new Set(prev);
-        if (data.is_typing) {
-          newSet.add(data.user_id);
-        } else {
-          newSet.delete(data.user_id);
-        }
-        return newSet;
-      });
-
-      if (data.is_typing) {
-        setTimeout(() => {
-          setTypingUsers((prev) => {
-            const newSet = new Set(prev);
-            newSet.delete(data.user_id);
-            return newSet;
-          });
-        }, 3000);
-      }
-    },
-    [chatId],
-  );
-
-  const handleMessageRead = useCallback(
-    (data: { message_id: number; chat_id?: number }) => {
-      if (data.chat_id && data.chat_id !== chatId) {
-        console.log('Read notification for different chat, ignoring');
-        return;
-      }
-
-      console.log('Message read:', data.message_id);
-
-      setMessages((prevMessages) =>
-        prevMessages.map((msg) =>
-          msg && msg.id && msg.id === data.message_id
-            ? { ...msg, is_read: true }
-            : msg,
-        ),
-      );
-    },
-    [chatId],
   );
 
   const handleError = useCallback((error: string) => {
@@ -124,13 +104,9 @@ export const useChatMessages = (chatId: number) => {
     isConnected,
     isReconnecting,
     sendMessage: wsSendMessage,
-    sendTyping,
-    markMessageRead,
   } = useWebSocket({
     chatId,
     onMessage: handleNewMessage,
-    onTyping: handleTyping,
-    onMessageRead: handleMessageRead,
     onError: handleError,
   });
 
@@ -153,8 +129,11 @@ export const useChatMessages = (chatId: number) => {
         console.log('Message created successfully:', response);
 
         if (response) {
+          // Добавляем сообщение через обработчик
           handleNewMessage(response);
         }
+
+        // Отправляем уведомление через WebSocket
         const wsNotification = {
           type: 'message_sent',
           data: {
@@ -175,6 +154,7 @@ export const useChatMessages = (chatId: number) => {
     [wsSendMessage, chatId, isSending, handleNewMessage],
   );
 
+  // Синхронизируем с кэшем React Query
   useEffect(() => {
     const cachedData = queryClient.getQueryData<any>([`chat-${chatId}`]);
     if (cachedData?.messages) {
@@ -185,17 +165,15 @@ export const useChatMessages = (chatId: number) => {
       setMessages(validMessages);
     } else {
       console.log('No cached messages found for chat:', chatId);
+      setMessages([]);
     }
   }, [chatId, queryClient]);
 
   return {
     messages,
-    typingUsers,
     isConnected,
     isReconnecting,
     isSending,
     sendMessage,
-    sendTyping,
-    markMessageRead,
   };
 };

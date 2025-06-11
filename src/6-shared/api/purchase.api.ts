@@ -36,7 +36,9 @@ export const purchaseApi = {
     search?: string;
     ordering?: string;
   }) => {
-    const response = await axiosWithAuth.get(BASE_URL + '/', { params });
+    const response = await axiosWithAuth.get(`${BASE_URL}/my-transactions/`, {
+      params,
+    });
     return response.data;
   },
 

@@ -1,15 +1,15 @@
-import { Title } from "@/6-shared/ui/Title/Title";
-import { IChatMessage } from "../model/chat.model";
-import { Description } from "@/6-shared/ui/Description/Description";
-import Avatar from "@/6-shared/ui/Avatar/Avatar";
-import { PLATFORM_PAGES } from "@/6-shared/config/pages-url.config";
-import Link from "next/link";
-import TextMuted from "@/6-shared/ui/TextMuted/TextMuted";
-import { formatTime } from "@/6-shared/lib/utils";
-import { CheckCheck } from "lucide-react";
-import { ICON_SIZE } from "@/6-shared/constants/constants";
-import { useProfile } from "@/5-entities/user";
-import { useMemo } from "react";
+import { Title } from '@/6-shared/ui/Title/Title';
+import { IChatMessage } from '../model/chat.model';
+import { Description } from '@/6-shared/ui/Description/Description';
+import Avatar from '@/6-shared/ui/Avatar/Avatar';
+import { PLATFORM_PAGES } from '@/6-shared/config/pages-url.config';
+import Link from 'next/link';
+import TextMuted from '@/6-shared/ui/TextMuted/TextMuted';
+import { formatTime } from '@/6-shared/lib/utils';
+import { CheckCheck } from 'lucide-react';
+import { ICON_SIZE } from '@/6-shared/constants/constants';
+import { useProfile } from '@/5-entities/user';
+import { useMemo } from 'react';
 
 type Props = {
   message: IChatMessage;
@@ -19,7 +19,7 @@ export const ChatMessage = ({ message }: Props) => {
   const { profile } = useProfile();
 
   if (!message || !message.sender_details) {
-    console.warn("Invalid message or sender_details:", message);
+    console.warn('Invalid message or sender_details:', message);
     return null;
   }
 
@@ -29,30 +29,9 @@ export const ChatMessage = ({ message }: Props) => {
     return profile?.id === senderDetails.id;
   }, [profile?.id, senderDetails.id]);
 
-  // const buyer = chat.buyer_details
-  // const dealer = chat.dealer_details
-
-  console.log(message);
-
-  // const { myChat, interlocutorChat } = useMemo(() => {
-  //   if (profile?.id === buyer.id) {
-  //     return {
-  //       myChat: { ...buyer },
-  //       interlocutorChat: { ...dealer },
-  //     }
-  //   } else {
-  //     return {
-  //       myChat: { ...dealer },
-  //       interlocutorChat: { ...buyer },
-  //     }
-  //   }
-  // }, [profile?.id, buyer, dealer])
-
-  console.log(message)
-
   return (
     <div
-      className={`chat-message ${isMyMessage ? "chat-message--my" : "chat-message--other"}`}
+      className={`chat-message ${isMyMessage ? 'chat-message--my' : 'chat-message--other'}`}
     >
       <div className="chat-message__wrapper">
         <div className="chat-message__container">

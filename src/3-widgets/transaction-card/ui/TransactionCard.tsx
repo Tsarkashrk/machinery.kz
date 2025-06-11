@@ -34,6 +34,7 @@ type Props = {
   available_for_rent: boolean;
   daily_rental_rate: string;
   purchase_price: string;
+  transactionType: string;
   name: string;
   id: number;
   image?: string;
@@ -55,6 +56,7 @@ export const TransactionCard = ({
   daily_rental_rate,
   transactionProcess,
   purchase_price,
+  transactionType,
   onTransactionUpdate,
   renter,
   name,
@@ -89,6 +91,7 @@ export const TransactionCard = ({
 
   const interlocutorId = tab === 'listings' ? renter.id : equipment.owner;
   const isOwner = equipment.owner === profile?.id;
+  const isRenter = equipment.owner === profile?.id;
 
   console.log(isOwner);
 
@@ -161,8 +164,6 @@ export const TransactionCard = ({
     });
   };
 
-  console.log(transaction);
-
   const handleReportIssue = (data: any) => {
     reportIssueMutation.mutate(
       { id: transaction.id, data },
@@ -180,7 +181,7 @@ export const TransactionCard = ({
       onSuccess: () => {
         toast.success('Успешно отменено');
         onTransactionUpdate?.();
-        setShowCancelModal(false)
+        setShowCancelModal(false);
       },
     });
   };
@@ -304,11 +305,20 @@ export const TransactionCard = ({
                   Отменить
                 </Button>
               )}
-              {transactionProcess === 'completed' && (
-                <Button onClick={() => setShowReviewModal(true)}>
-                  Оценить
-                </Button>
-              )}
+              {isOwner &&
+                !transaction.owner_rated &&
+                transactionProcess === 'completed' && (
+                  <Button onClick={() => setShowReviewModal(true)}>
+                    Оценить
+                  </Button>
+                )}
+              {isRenter &&
+                !transaction.renter_rated &&
+                transactionProcess === 'completed' && (
+                  <Button onClick={() => setShowReviewModal(true)}>
+                    Оценить
+                  </Button>
+                )}
             </div>
           </div>
         </div>
@@ -352,9 +362,11 @@ export const TransactionCard = ({
           onConfirm={handleReviewRental}
           onClose={() => setShowReviewModal(false)}
           isLoading={confirmReviewMutation.isPending}
-          reviewerId={profile?.id || 0}
-          transactionId={null}
-          rentalTransactionId={transaction.id}
+          reviewerId={isOwner && transaction.owner_details.id}
+          transactionId={transactionType === 'sale' ? transaction.id : null}
+          rentalTransactionId={
+            transactionType === 'rent' ? transaction.id : null
+          }
         />
       )}
     </div>

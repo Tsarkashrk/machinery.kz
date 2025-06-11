@@ -19,8 +19,6 @@ interface UseWebSocketProps {
 export const useWebSocket = ({
   chatId,
   onMessage,
-  onTyping,
-  onMessageRead,
   onError,
 }: UseWebSocketProps) => {
   const [isConnected, setIsConnected] = useState(false);
@@ -31,14 +29,13 @@ export const useWebSocket = ({
   const maxReconnectAttempts = 5;
   const chatIdRef = useRef<number | undefined>(chatId);
 
-  // Обновляем ref при изменении chatId
   useEffect(() => {
     chatIdRef.current = chatId;
   }, [chatId]);
 
   const connect = useCallback(() => {
     const currentChatId = chatIdRef.current;
-    
+
     if (!currentChatId) {
       console.log('No chatId provided, skipping WebSocket connection');
       return;
@@ -74,9 +71,11 @@ export const useWebSocket = ({
           const message: WebSocketMessage = JSON.parse(event.data);
           console.log('WebSocket message received:', message);
 
-          // Проверяем, что сообщение относится к текущему чату
           if (message.chat_id && message.chat_id !== currentChatId) {
-            console.log('Message for different chat, ignoring:', message.chat_id);
+            console.log(
+              'Message for different chat, ignoring:',
+              message.chat_id,
+            );
             return;
           }
 
@@ -91,19 +90,6 @@ export const useWebSocket = ({
               break;
             case 'message_sent':
               console.log('Message sent confirmation:', message.data);
-              // Можно добавить дополнительную логику для подтверждения отправки
-              break;
-            case 'typing':
-              if (message.data) {
-                console.log('Typing indicator:', message.data);
-                onTyping?.(message.data);
-              }
-              break;
-            case 'read':
-              if (message.data && message.data.message_id) {
-                console.log('Message read:', message.data.message_id);
-                onMessageRead?.(message.data);
-              }
               break;
             case 'error':
               console.error('WebSocket error message:', message.data);
@@ -121,20 +107,24 @@ export const useWebSocket = ({
         console.log('WebSocket disconnected:', {
           code: event.code,
           reason: event.reason,
-          wasClean: event.wasClean
+          wasClean: event.wasClean,
         });
         setIsConnected(false);
 
-        // Переподключаемся только если соединение было закрыто не намеренно
         if (
           reconnectAttemptsRef.current < maxReconnectAttempts &&
           !event.wasClean &&
-          currentChatId === chatIdRef.current // Проверяем, что chatId не изменился
+          currentChatId === chatIdRef.current 
         ) {
           setIsReconnecting(true);
-          const delay = Math.min(Math.pow(2, reconnectAttemptsRef.current) * 1000, 30000);
-          console.log(`Reconnecting in ${delay}ms (attempt ${reconnectAttemptsRef.current + 1})`);
-          
+          const delay = Math.min(
+            Math.pow(2, reconnectAttemptsRef.current) * 1000,
+            30000,
+          );
+          console.log(
+            `Reconnecting in ${delay}ms (attempt ${reconnectAttemptsRef.current + 1})`,
+          );
+
           reconnectTimeoutRef.current = setTimeout(() => {
             reconnectAttemptsRef.current += 1;
             connect();
@@ -152,18 +142,17 @@ export const useWebSocket = ({
       console.error('Failed to create WebSocket connection:', error);
       onError?.('Failed to connect');
     }
-  }, [onMessage, onTyping, onMessageRead, onError]);
+  }, [onMessage, onError]);
 
   const disconnect = useCallback(() => {
     console.log('Disconnecting WebSocket');
-    
+
     if (reconnectTimeoutRef.current) {
       clearTimeout(reconnectTimeoutRef.current);
       reconnectTimeoutRef.current = undefined;
     }
 
     if (wsRef.current) {
-      // Устанавливаем флаг, чтобы не переподключаться
       wsRef.current.close(1000, 'User disconnected');
       wsRef.current = null;
     }
@@ -176,13 +165,16 @@ export const useWebSocket = ({
   const sendMessage = useCallback(
     (message: any) => {
       const currentChatId = chatIdRef.current;
-      console.log('WebSocket sendMessage called:', { message, chatId: currentChatId });
-      
+      console.log('WebSocket sendMessage called:', {
+        message,
+        chatId: currentChatId,
+      });
+
       if (wsRef.current?.readyState === WebSocket.OPEN) {
         try {
           const messageToSend = {
             ...message,
-            chat_id: currentChatId, // Убеждаемся, что chat_id включен
+            chat_id: currentChatId, 
           };
           const messageString = JSON.stringify(messageToSend);
           console.log('Sending to WebSocket:', messageString);
@@ -192,42 +184,21 @@ export const useWebSocket = ({
           onError?.('Failed to send message');
         }
       } else {
-        console.warn('WebSocket is not connected, state:', wsRef.current?.readyState);
+        console.warn(
+          'WebSocket is not connected, state:',
+          wsRef.current?.readyState,
+        );
         onError?.('Connection not available');
       }
     },
     [onError],
   );
 
-  const sendTyping = useCallback(
-    (isTyping: boolean) => {
-      const currentChatId = chatIdRef.current;
-      sendMessage({
-        type: 'typing',
-        data: { is_typing: isTyping, chat_id: currentChatId },
-      });
-    },
-    [sendMessage],
-  );
-
-  const markMessageRead = useCallback(
-    (messageId: number) => {
-      const currentChatId = chatIdRef.current;
-      sendMessage({
-        type: 'read',
-        data: { message_id: messageId, chat_id: currentChatId },
-      });
-    },
-    [sendMessage],
-  );
-
-  // Переподключаемся при изменении chatId
   useEffect(() => {
     if (chatId) {
       console.log('ChatId changed, reconnecting WebSocket:', chatId);
-      disconnect(); // Сначала отключаемся от предыдущего чата
-      
-      // Небольшая задержка для полного отключения
+      disconnect(); 
+
       const timer = setTimeout(() => {
         connect();
       }, 100);
@@ -241,7 +212,6 @@ export const useWebSocket = ({
     }
   }, [chatId, connect, disconnect]);
 
-  // Очистка при размонтировании
   useEffect(() => {
     return () => {
       disconnect();
@@ -252,8 +222,6 @@ export const useWebSocket = ({
     isConnected,
     isReconnecting,
     sendMessage,
-    sendTyping,
-    markMessageRead,
     connect,
     disconnect,
   };

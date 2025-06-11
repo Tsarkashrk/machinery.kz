@@ -39,6 +39,9 @@ export const TransactionsList = ({
           <TransactionCard
             tab={tab}
             transaction={equipment}
+            transactionType={
+              equipment.equipment_details.available_for_rent ? 'rent' : 'sale'
+            }
             transactionProcess={equipment.status}
             status={isProfile ? equipment.equipment_details.status : undefined}
             key={equipment.id}

@@ -1,7 +1,7 @@
-import { IChatRequest } from "@/5-entities/chat";
-import { axiosWithAuth } from "./interceptors";
+import { IChatRequest } from '@/5-entities/chat';
+import { axiosWithAuth } from './interceptors';
 
-const BASE_URL = "/chats";
+const BASE_URL = '/chats';
 
 export const chatApi = {
   getChats: async () => {
@@ -10,7 +10,7 @@ export const chatApi = {
   },
 
   createChat: async (data: IChatRequest) => {
-    const response = await axiosWithAuth.post("/chats/", data);
+    const response = await axiosWithAuth.post('/chats/', data);
     return response.data;
   },
 
@@ -29,11 +29,6 @@ export const chatApi = {
 
   getChatById: async (id: number) => {
     const response = await axiosWithAuth.get(`${BASE_URL}/${id}/`);
-    return response.data;
-  },
-
-  markMessageRead: async (id: number) => {
-    const response = await axiosWithAuth.post(`${BASE_URL}/${id}/mark-read/`);
     return response.data;
   },
 };
