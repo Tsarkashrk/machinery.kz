@@ -260,13 +260,16 @@ export const ProductIdSection = () => {
                   />
                   <div className="product-slug__images">
                     {equipmentData?.images.map((image) => (
-                      <img
-                        key={image.id}
-                        className="product-slug__img--small"
-                        src={image.image_url}
-                        alt=""
-                        onClick={() => setSelectedImage(image.image_url)}
-                      />
+                      <>
+                        {console.log(image.image_url)}
+                        <img
+                          key={image.id}
+                          className="product-slug__img--small"
+                          src={image.image_url}
+                          alt=""
+                          onClick={() => setSelectedImage(image.image_url)}
+                        />
+                      </>
                     ))}
                   </div>
                   <div className="product-slug__titles">
