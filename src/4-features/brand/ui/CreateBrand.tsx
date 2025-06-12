@@ -1,15 +1,17 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import {
   Modal,
   ModalHeader,
   ModalContent,
   ModalFooter,
-} from "@/6-shared/ui/Modal/Modal";
-import { ICompanyPostRequest, ICompanyResponse } from "@/5-entities/company";
-import { useEffect } from "react";
-import { IBrand, IBrandRequest } from "@/5-entities/brand";
+} from '@/6-shared/ui/Modal/Modal';
+import { ICompanyPostRequest, ICompanyResponse } from '@/5-entities/company';
+import { useEffect } from 'react';
+import { IBrand, IBrandRequest } from '@/5-entities/brand';
+import { Input } from '@/6-shared/ui/Input/Input';
+import Label from '@/6-shared/ui/Label/Label';
 
 interface CreateBrandModalProps {
   isOpen: boolean;
@@ -36,10 +38,10 @@ export const CreateBrandModal = ({
   useEffect(() => {
     if (item) {
       reset({
-        name: item.name || "",
-        description: item.description || "",
-        file: item.file || "",
-        website: item.website || "",
+        name: item.name || '',
+        description: item.description || '',
+        file: item.file || '',
+        website: item.website || '',
         founded_year: item.founded_year || new Date().getFullYear(),
       });
     }
@@ -65,7 +67,7 @@ export const CreateBrandModal = ({
       closeOnOverlayClick={!isLoading}
     >
       <ModalHeader>
-        <h2>{item ? "Редактировать бренд" : "Создать бренд"}</h2>
+        <h2>{item ? 'Редактировать бренд' : 'Создать бренд'}</h2>
       </ModalHeader>
 
       <ModalContent>
@@ -76,12 +78,9 @@ export const CreateBrandModal = ({
         >
           <div className="form-grid form-grid--cols-2">
             <div className="form-group">
-              <label className="form-label form-label--required">
-                Название бренда
-              </label>
-              <input
-                {...register("name", { required: "Название обязательно" })}
-                className={`form-input ${errors.name ? "form-input--error" : ""}`}
+              <Label>Название бренда</Label>
+              <Input
+                {...register('name', { required: 'Название обязательно' })}
                 disabled={isLoading}
                 placeholder="Введите название компании"
               />
@@ -91,30 +90,26 @@ export const CreateBrandModal = ({
             </div>
 
             <div className="form-group">
-              <label className="form-label">Описание</label>
-              <input
-                {...register("description")}
-                className="form-input"
+              <Label>Описание</Label>
+              <Input
+                {...register('description')}
                 disabled={isLoading}
                 placeholder="Введите адрес"
               />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Изображение</label>
-              <input
-                {...register("file")}
-                className="form-input"
+              <Label>Изображение</Label>
+              <Input
+                {...register('file')}
                 disabled={isLoading}
-                placeholder="+7 (xxx) xxx-xx-xx"
               />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Веб-сайт</label>
-              <input
-                {...register("website")}
-                className="form-input"
+              <Label>Веб-сайт</Label>
+              <Input
+                {...register('website')}
                 disabled={isLoading}
                 placeholder="https://company.com"
               />
@@ -122,16 +117,15 @@ export const CreateBrandModal = ({
           </div>
 
           <div className="form-group">
-            <label className="form-label">Год основания</label>
-            <input
+            <Label>Год основания</Label>
+            <Input
               type="number"
-              {...register("founded_year", {
+              {...register('founded_year', {
                 max: {
                   value: new Date().getFullYear(),
-                  message: "Год не может быть в будущем",
+                  message: 'Год не может быть в будущем',
                 },
               })}
-              className={`form-input ${errors.founded_year ? "form-input--error" : ""}`}
               disabled={isLoading}
               placeholder="2023"
             />
@@ -157,7 +151,7 @@ export const CreateBrandModal = ({
           disabled={isLoading}
           className="modal-btn modal-btn--primary"
         >
-          {isLoading ? "Создание..." : "Создать"}
+          {isLoading ? 'Создание...' : 'Создать'}
         </button>
       </ModalFooter>
     </Modal>

@@ -80,7 +80,7 @@
   &__block {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   &__info {
@@ -167,13 +167,8 @@
     gap: 1rem;
   }
 
-  &__button {
-    margin-top: 2rem;
-  }
-
   &__total {
     padding: 1.2rem;
-    margin-bottom: 2rem;
     border: $border;
     border-radius: $border-radius-ui;
     background-color: $base-color;

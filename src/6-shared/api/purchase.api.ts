@@ -87,4 +87,10 @@ export const purchaseApi = {
 
     return response.data;
   },
+
+  cancelPurchase: async (id: number) => {
+    const response = await axiosWithAuth.post(`${BASE_URL}/${id}/cancel/`);
+
+    return response.data;
+  },
 };

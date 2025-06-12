@@ -38,7 +38,7 @@ export const ReturnConfirmationModal = ({
 
   return (
     <div className="modal-overlay">
-      <div className="modal">
+      <div className="modal" style={{maxWidth: '400px'}}>
         <div style={{ marginBottom: '2rem' }}>
           <Title size="h2">{t('confirmReturn')}</Title>
         </div>
@@ -51,16 +51,6 @@ export const ReturnConfirmationModal = ({
               onChange={(e) => setConditionNotes(e.target.value)}
               placeholder={t('equipmentConditionPlaceholder')}
               rows={4}
-            />
-          </div>
-
-          <div className="form-group">
-            <Label>{t('returnPhotos')}</Label>
-            <Input
-              type="file"
-              multiple
-              accept="image/*"
-              onChange={(e) => {}}
             />
           </div>
 

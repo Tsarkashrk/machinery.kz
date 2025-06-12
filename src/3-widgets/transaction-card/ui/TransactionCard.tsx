@@ -29,6 +29,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { ReviewModal } from '@/6-shared/ui/ReviewModal/ReviewModal';
 import { useReview } from '@/5-entities/review/hooks/useReview';
+import { useConfirmPickupPurchase } from '@/5-entities/purchase/hooks/useConfirmPickup';
+import { useComplete } from '@/5-entities/purchase';
+import { CompleteModal } from '@/6-shared/ui/CompleteModal/CompleteModal';
 
 type Props = {
   available_for_rent: boolean;
@@ -44,7 +47,9 @@ type Props = {
   city: string;
   transactionProcess: string;
   address: string;
-  renter: IUser;
+  renter?: IUser;
+  seller?: any;
+  buyer?: any;
   tab: string;
   equipment: any;
   transaction: any;
@@ -59,10 +64,12 @@ export const TransactionCard = ({
   transactionType,
   onTransactionUpdate,
   renter,
+  buyer,
   name,
   id,
   image,
   tab,
+  seller,
   city,
   equipment,
   transaction,
@@ -79,6 +86,9 @@ export const TransactionCard = ({
   const [showIssueModal, setShowIssueModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const [showPurchasePickupModal, setShowPurchasePickupModal] = useState(false);
+  const [showPurchaseCompleteModal, setShowPurchaseCompleteModal] =
+    useState(false);
 
   const { profile } = useProfile();
 
@@ -89,11 +99,34 @@ export const TransactionCard = ({
   const transactionPrice =
     listingType === 'rent' ? daily_rental_rate : purchase_price;
 
-  const interlocutorId = tab === 'listings' ? renter.id : equipment.owner;
-  const isOwner = equipment.owner === profile?.id;
-  const isRenter = equipment.owner === profile?.id;
+  const getInterlocutorId = () => {
+    if (transactionType === 'rent') {
+      if (tab === 'listings') {
+        return transaction.renter_details?.id;
+      } else {
+        return transaction.owner_details?.id;
+      }
+    } else {
+      if (tab === 'listings') {
+        return transaction.buyer_details?.id;
+      } else {
+        return transaction.seller_details?.id;
+      }
+    }
+  };
 
-  console.log(isOwner);
+  const interlocutorId = getInterlocutorId();
+
+  const isOwner =
+    transactionType === 'rent'
+      ? equipment.owner === profile?.id
+      : transaction.seller_details?.id === profile?.id;
+
+  const isRenter =
+    transactionType === 'rent' &&
+    transaction.renter_details?.id === profile?.id;
+  const isBuyer =
+    transactionType === 'sale' && transaction.buyer_details?.id === profile?.id;
 
   const { user } = useUserById(interlocutorId);
 
@@ -120,20 +153,60 @@ export const TransactionCard = ({
       setStatusState('Оспорен');
       setColorState('gray');
     }
-  }, [status]);
+  }, [transactionProcess]);
 
   const confirmPickupMutation = useConfirmPickup();
   const confirmReviewMutation = useReview();
   const confirmReturnMutation = useConfirmReturn();
   const reportIssueMutation = useReportIssue();
   const cancelRentalMutation = useCancelRental();
+  const completePurchaseMutation = useComplete();
 
+  const confirmPurchasePickup = useConfirmPickupPurchase();
+
+  const handleCompletePurchaseConfirm = () => {
+    completePurchaseMutation.mutate(
+      {
+        id: transaction.id,
+        data: {
+          final_condition_notes: 'ok',
+          satisfaction_rating: 5,
+        },
+      },
+      {
+        onSuccess: (response) => {
+          toast.success('Успешно завершено');
+          onTransactionUpdate?.();
+        },
+        onError: (error) => {
+          console.error('Ошибка:', error);
+        },
+      },
+    );
+  };
+
+  const handlePickupPurchaseConfirmation = (data: any) => {
+    confirmPurchasePickup.mutate(
+      { id: transaction.id, data },
+      {
+        onSuccess: (response) => {
+          toast.success('Успешно подтверждено');
+          onTransactionUpdate?.();
+          setShowPurchasePickupModal(false);
+        },
+        onError: (error) => {
+          console.error('Ошибка:', error);
+        },
+      },
+    );
+  };
   const handlePickupConfirmation = (data: any) => {
     confirmPickupMutation.mutate(
       { id: transaction.id, data },
       {
         onSuccess: (response) => {
           toast.success('Успешно подтверждено');
+          setShowPickupModal(false);
           onTransactionUpdate?.();
         },
         onError: (error) => {
@@ -148,6 +221,7 @@ export const TransactionCard = ({
       { id: transaction.id, data },
       {
         onSuccess: () => {
+          setShowReturnModal(false);
           toast.success('Успешно подтверждено');
           onTransactionUpdate?.();
         },
@@ -159,6 +233,7 @@ export const TransactionCard = ({
     confirmReviewMutation.mutate(data, {
       onSuccess: () => {
         toast.success('Успешно оценено');
+        setShowReviewModal(false);
         onTransactionUpdate?.();
       },
     });
@@ -169,6 +244,7 @@ export const TransactionCard = ({
       { id: transaction.id, data },
       {
         onSuccess: () => {
+          setShowIssueModal(false);
           toast.success('Успешно отправлено');
           onTransactionUpdate?.();
         },
@@ -184,6 +260,39 @@ export const TransactionCard = ({
         setShowCancelModal(false);
       },
     });
+  };
+
+  const renderTransactionDates = () => {
+    if (transactionType === 'rent') {
+      return (
+        <>
+          <p className="start">
+            Начало аренды:{' '}
+            {new Date(transaction.start_date).toLocaleDateString('ru-RU')}
+          </p>
+          <p className="end">
+            Конец аренды:{' '}
+            {new Date(transaction.end_date).toLocaleDateString('ru-RU')}
+          </p>
+        </>
+      );
+    }
+  };
+
+  const canRate = () => {
+    if (transactionType === 'rent') {
+      return transaction.user_can_rate && transactionProcess === 'completed';
+    } else {
+      return transaction.can_rate && transactionProcess === 'completed';
+    }
+  };
+
+  const hasUserRated = () => {
+    if (transactionType === 'rent') {
+      return isOwner ? transaction.owner_rated : transaction.renter_rated;
+    } else {
+      return isOwner ? transaction.owner_rated : transaction.buyer_rated;
+    }
   };
 
   return (
@@ -255,47 +364,67 @@ export const TransactionCard = ({
                 </Link>
               </div>
             </div>
-            <p className="start">
-              Начало аренды:{' '}
-              {new Date(transaction.start_date).toLocaleDateString('ru-RU')}
-            </p>
-            <p className="end">
-              Конец аренды:{' '}
-              {new Date(transaction.end_date).toLocaleDateString('ru-RU')}
-            </p>
+
+            {renderTransactionDates()}
+
             <div className="transaction-button">
-              {transactionProcess === 'approved' && (
-                <Button
-                  variant="secondary"
-                  onClick={() => setShowPickupModal(true)}
-                >
-                  Подтвердить получение
-                </Button>
+              {transactionType === 'rent' && (
+                <>
+                  {transactionProcess === 'approved' &&
+                    transaction.can_confirm_pickup && (
+                      <Button
+                        variant="secondary"
+                        onClick={() => setShowPickupModal(true)}
+                      >
+                        Подтвердить получение
+                      </Button>
+                    )}
+                  {transactionProcess === 'in_progress' &&
+                    transaction.can_confirm_return && (
+                      <Button
+                        variant="secondary"
+                        onClick={() => setShowReturnModal(true)}
+                      >
+                        Подтвердить возврат
+                      </Button>
+                    )}
+                  {(transactionProcess === 'in_progress' ||
+                    transactionProcess === 'disputed') && (
+                    <Button
+                      variant="secondary"
+                      onClick={() => setShowIssueModal(true)}
+                    >
+                      Сообщить о проблеме
+                    </Button>
+                  )}
+                </>
               )}
-              {transactionProcess === 'in_progress' && (
-                <Button
-                  variant="secondary"
-                  onClick={() => setShowReturnModal(true)}
-                >
-                  Подтвердить получение
-                </Button>
+
+              {/* Кнопки для покупки */}
+              {transactionType === 'sale' && (
+                <>
+                  {transactionProcess === 'approved' &&
+                    transaction.can_confirm_pickup && (
+                      <Button
+                        variant="secondary"
+                        onClick={() => setShowPurchasePickupModal(true)}
+                      >
+                        Подтвердить выдачу
+                      </Button>
+                    )}
+
+                  {isBuyer && transactionProcess === 'in_progress' && (
+                    <Button
+                      variant="secondary"
+                      onClick={() => setShowPurchaseCompleteModal(true)}
+                    >
+                      Подтвердить получение
+                    </Button>
+                  )}
+                </>
               )}
-              {transactionProcess === 'in_progress' && (
-                <Button
-                  variant="secondary"
-                  onClick={() => setShowIssueModal(true)}
-                >
-                  Сообщить о проблеме
-                </Button>
-              )}
-              {transactionProcess === 'disputed' && (
-                <Button
-                  variant="secondary"
-                  onClick={() => setShowIssueModal(true)}
-                >
-                  Сообщить о проблеме
-                </Button>
-              )}
+
+              {/* Общие кнопки */}
               {(transactionProcess === 'requested' ||
                 transactionProcess === 'approved') && (
                 <Button
@@ -305,20 +434,12 @@ export const TransactionCard = ({
                   Отменить
                 </Button>
               )}
-              {isOwner &&
-                !transaction.owner_rated &&
-                transactionProcess === 'completed' && (
-                  <Button onClick={() => setShowReviewModal(true)}>
-                    Оценить
-                  </Button>
-                )}
-              {isRenter &&
-                !transaction.renter_rated &&
-                transactionProcess === 'completed' && (
-                  <Button onClick={() => setShowReviewModal(true)}>
-                    Оценить
-                  </Button>
-                )}
+
+              {canRate() && !hasUserRated() && (
+                <Button onClick={() => setShowReviewModal(true)}>
+                  Оценить
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -330,6 +451,24 @@ export const TransactionCard = ({
           onConfirm={handlePickupConfirmation}
           onClose={() => setShowPickupModal(false)}
           isLoading={confirmPickupMutation.isPending}
+        />
+      )}
+
+      {showPurchaseCompleteModal && (
+        <CompleteModal
+          isOwner={isBuyer}
+          onConfirm={handleCompletePurchaseConfirm}
+          onClose={() => setShowPurchaseCompleteModal(false)}
+          isLoading={completePurchaseMutation.isPending}
+        />
+      )}
+
+      {showPurchasePickupModal && (
+        <PickupConfirmationModal
+          isOwner={isOwner}
+          onConfirm={handlePickupPurchaseConfirmation}
+          onClose={() => setShowPurchasePickupModal(false)}
+          isLoading={confirmPurchasePickup.isPending}
         />
       )}
 
@@ -362,7 +501,13 @@ export const TransactionCard = ({
           onConfirm={handleReviewRental}
           onClose={() => setShowReviewModal(false)}
           isLoading={confirmReviewMutation.isPending}
-          reviewerId={isOwner && transaction.owner_details.id}
+          reviewerId={
+            isOwner
+              ? transaction.owner_details?.id
+              : isRenter
+                ? transaction.renter_details?.id
+                : isBuyer && transaction.buyer_details?.id
+          }
           transactionId={transactionType === 'sale' ? transaction.id : null}
           rentalTransactionId={
             transactionType === 'rent' ? transaction.id : null

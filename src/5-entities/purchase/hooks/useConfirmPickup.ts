@@ -6,7 +6,7 @@ type Props = {
   data: IConfirmPurchasePickup;
 };
 
-export const useConfirmPickup = () => {
+export const useConfirmPickupPurchase = () => {
   const { mutate, isPending, error } = useMutation({
     mutationFn: ({ id, data }: Props) => purchaseApi.confirmPickup(id, data),
   });

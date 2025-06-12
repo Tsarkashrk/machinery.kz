@@ -1,6 +1,7 @@
 'use client';
 
 import { TransactionsList } from '@/3-widgets/transactions-list';
+import { useGetPurchaseList } from '@/5-entities/purchase';
 import { useMyTransactions } from '@/5-entities/rental';
 import { useProfile } from '@/5-entities/user';
 import Button from '@/6-shared/ui/Buttons/Button';
@@ -11,23 +12,36 @@ export const ProfileOrdersSection = () => {
   const { profile } = useProfile();
   const [activeTab, setActiveTab] = useState<'listings' | 'deals'>('listings');
 
-  const { data: allTransactions, isLoading } = useMyTransactions();
+  const { data: allTransactions, isLoading: isLoadingRental } = useMyTransactions();
+  const { purchaseList, isLoading: isLoadingPurchase } = useGetPurchaseList();
 
-  const myListingsTransactions = allTransactions?.filter(
-    (t: any) => t.equipment_details.owner === profile?.id,
-  );
+  const isLoading = isLoadingRental || isLoadingPurchase;
 
-  const myDealsTransactions = allTransactions?.filter(
-    (t: any) => t.equipment_details.owner !== profile?.id,
-  );
+  const myRentalListings = allTransactions?.filter(
+    (t: any) => t.equipment_details?.owner === profile?.id,
+  ) || [];
 
-  const selectedTransactions =
-    activeTab === 'listings' ? myListingsTransactions : myDealsTransactions;
+  const myRentalDeals = allTransactions?.filter(
+    (t: any) => t.equipment_details?.owner !== profile?.id,
+  ) || [];
+
+  const myPurchaseListings = purchaseList?.filter(
+    (t: any) => t.seller_details?.id === profile?.id,
+  ) || [];
+
+  const myPurchaseDeals = purchaseList?.filter(
+    (t: any) => t.buyer_details?.id === profile?.id,
+  ) || [];
+
+  const selectedTransactions = activeTab === 'listings'
+    ? [...myRentalListings, ...myPurchaseListings]
+    : [...myRentalDeals, ...myPurchaseDeals];
 
   const queryClient = useQueryClient();
 
   const invalidateTransactions = () => {
     queryClient.invalidateQueries({ queryKey: ['my-transactions'] });
+    queryClient.invalidateQueries({ queryKey: ['purchase-list'] });
   };
 
   return (
@@ -38,25 +52,25 @@ export const ProfileOrdersSection = () => {
             variant={activeTab === 'listings' ? 'secondary' : 'outlined'}
             onClick={() => setActiveTab('listings')}
           >
-            Полученные заявки
+            Полученные заявки ({myRentalListings.length + myPurchaseListings.length})
           </Button>
           <Button
             variant={activeTab === 'deals' ? 'secondary' : 'outlined'}
             onClick={() => setActiveTab('deals')}
           >
-            Отправленные заявки
+            Отправленные заявки ({myRentalDeals.length + myPurchaseDeals.length})
           </Button>
         </div>
 
         {isLoading ? (
           <p>Загрузка...</p>
-        ) : selectedTransactions?.length === 0 ? (
+        ) : selectedTransactions.length === 0 ? (
           <p>Нет транзакций</p>
         ) : (
           <TransactionsList
             equipmentList={selectedTransactions}
             tab={activeTab}
-            onTransactionUpdate={invalidateTransactions} 
+            onTransactionUpdate={invalidateTransactions}
           />
         )}
       </div>

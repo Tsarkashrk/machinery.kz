@@ -24,9 +24,6 @@ export const AdminSidebar = () => {
 
   const t = useTranslations('DashboardPage');
 
-  const mainManagement = [
-    { name: 'Главная', path: '/dashboard', icon: <Home size={ICON_SIZE} /> },
-  ];
 
   const userManagement = [
     {
@@ -62,23 +59,22 @@ export const AdminSidebar = () => {
     },
   ];
 
-  const feedbackManagement = [
-    {
-      name: t('reviews'),
-      path: `${DASHBOARD_PAGES.REVIEWS}`,
-      icon: <Star size={ICON_SIZE} />,
-    },
-    {
-      name: t('complaints'),
-      path: `${DASHBOARD_PAGES.COMPLAINTS}`,
-      icon: <OctagonAlert size={ICON_SIZE} />,
-    },
-  ];
+  // const feedbackManagement = [
+  //   {
+  //     name: t('reviews'),
+  //     path: `${DASHBOARD_PAGES.REVIEWS}`,
+  //     icon: <Star size={ICON_SIZE} />,
+  //   },
+  //   {
+  //     name: t('complaints'),
+  //     path: `${DASHBOARD_PAGES.COMPLAINTS}`,
+  //     icon: <OctagonAlert size={ICON_SIZE} />,
+  //   },
+  // ];
 
   return (
     <div className="admin-sidebar">
       <div className="admin-sidebar__wrapper">
-        <AdminSidebarList routes={mainManagement} />
         <AdminSidebarList
           title={t('platform-management')}
           routes={platformManagement}
@@ -91,10 +87,10 @@ export const AdminSidebar = () => {
           title={t('publication-management')}
           routes={publicationManagement}
         />
-        <AdminSidebarList
+        {/* <AdminSidebarList
           title={t('feedback-management')}
           routes={feedbackManagement}
-        />
+        /> */}
       </div>
     </div>
   );

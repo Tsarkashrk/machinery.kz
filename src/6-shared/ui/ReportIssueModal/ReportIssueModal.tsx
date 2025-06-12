@@ -62,7 +62,7 @@ export const ReportIssueModal = ({ onConfirm, onClose, isLoading }: Props) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal">
+      <div className="modal" style={{maxWidth: '400px'}}>
         <Title
           size="h3"
           fontWeight="700"

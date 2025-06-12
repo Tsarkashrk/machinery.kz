@@ -142,6 +142,10 @@ export const ProductIdSection = () => {
   const { mutate: requestRentalTransaction } = useRequestRental();
   const { mutate: requestPurchaseTransaction } = useRequestPurchase();
 
+  const { data: equipments } = useEquipmentList({
+    owner: equipmentData?.owner,
+  });
+
   const handlePurchaseAction = (e: any) => {
     e.preventDefault();
 
@@ -367,7 +371,7 @@ export const ProductIdSection = () => {
               </h1>
               <div className="product-slug__buttons">
                 {equipmentData?.available_for_rent && (
-                  <form>
+                  <form style={{ gap: '1rem' }}>
                     <DatePicker onSelectDates={setSelectedDates} />
                     <div className="product-slug__button">
                       <div className="product-slug__total">
@@ -377,58 +381,50 @@ export const ProductIdSection = () => {
                       </div>
                       <div className="product-slug__button-list"></div>
                     </div>
-                    <div className="product-slug__buttons">
-                      <Button
-                        onClick={(e) => handleAction(e)}
-                        width="100%"
-                      >
-                        Написать владельцу
-                      </Button>
-                      <Button
-                        variant="secondary"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setShowNumber(!showNumber);
-                        }}
-                        width="100%"
-                      >
-                        {showNumber
-                          ? ownerData?.phone_number
-                          : 'Показать номер'}
-                      </Button>
-                    </div>
                   </form>
                 )}
+                <ProfileCardSmall
+                  equipmentCount={equipments?.count}
+                  dealsCount={Number(ownerData?.total_transactions)}
+                  location={ownerData?.address}
+                  trustScore={ownerData?.trust_score}
+                  firstName={ownerData?.first_name}
+                  lastName={ownerData?.last_name}
+                  avatar={ownerData?.image_url}
+                  link={`${PLATFORM_PAGES.DEALERS}/${ownerData?.id}`}
+                />
                 {equipmentData?.available_for_sale && (
                   <>
-                    <ProfileCardSmall
-                      equipmentCount={0}
-                      dealsCount={Number(ownerData?.total_transactions)}
-                      location={ownerData?.address}
-                      trustScore={ownerData?.trust_score}
-                      firstName={ownerData?.first_name}
-                      lastName={ownerData?.last_name}
-                      avatar={ownerData?.image_url}
-                      link={`${PLATFORM_PAGES.DEALERS}/${ownerData?.id}`}
-                    />
                     <Button
                       onClick={(e) => handlePurchaseAction(e)}
                       width="100%"
                     >
                       Написать владельцу
                     </Button>
+                  </>
+                )}
+                {equipmentData?.available_for_rent && (
+                  <>
                     <Button
-                      variant="secondary"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setShowNumber(!showNumber);
-                      }}
+                      onClick={(e) => handleAction(e)}
                       width="100%"
                     >
-                      {showNumber ? ownerData?.phone_number : 'Показать номер'}
+                      Написать владельцу
                     </Button>
                   </>
                 )}
+                <Button
+                  variant="secondary"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowNumber(!showNumber);
+                  }}
+                  width="100%"
+                >
+                  {showNumber
+                    ? ownerData?.phone_number || 'Нет номера'
+                    : 'Показать номер'}
+                </Button>
                 <Button
                   variant="outlined"
                   link={`${PLATFORM_PAGES.DEALERS}/${ownerData?.id}`}

@@ -13,19 +13,28 @@ export const getAccessToken = () => {
 export const saveTokenStorage = (accessToken: string, refreshToken: string) => {
   const isLocalhost = window.location.hostname === 'localhost';
 
-  Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
-    ...(isLocalhost ? {} : { domain: 'machinery-kz.vercel.app' }),
-    sameSite: 'strict',
+  const domain = isLocalhost ? undefined : '.mchnry.kz';
+
+  const cookieOptions = {
+    sameSite: 'lax' as const,
     expires: 1,
-  });
-  Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
-    ...(isLocalhost ? {} : { domain: 'machinery-kz.vercel.app' }),
-    sameSite: 'strict',
-    expires: 1,
-  });
+    secure: !isLocalhost,
+    ...(domain && { domain }),
+  };
+
+  Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, cookieOptions);
+  Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, cookieOptions);
 };
 
 export const removeFromStorage = () => {
-  Cookies.remove(EnumTokens.ACCESS_TOKEN);
-  Cookies.remove(EnumTokens.REFRESH_TOKEN);
+  const isLocalhost = window.location.hostname === 'localhost';
+  const domain = isLocalhost ? undefined : '.mchnry.kz';
+
+  const cookieOptions = {
+    ...(domain && { domain }),
+    secure: !isLocalhost,
+  };
+
+  Cookies.remove(EnumTokens.ACCESS_TOKEN, cookieOptions);
+  Cookies.remove(EnumTokens.REFRESH_TOKEN, cookieOptions);
 };

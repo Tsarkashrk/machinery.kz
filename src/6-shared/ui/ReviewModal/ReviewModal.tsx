@@ -4,7 +4,7 @@ import { Title } from '@/6-shared/ui/Title/Title';
 import { useTranslations } from 'next-intl';
 import Label from '../Label/Label';
 import Textarea from '../Textarea/Textarea';
-import { Input } from '../Input/Input';
+import { Star, StarOff } from 'lucide-react'; // Lucide icons
 
 interface Props {
   onConfirm: (data: any) => void;
@@ -24,11 +24,14 @@ export const ReviewModal = ({
   reviewerId,
 }: Props) => {
   const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
   const [comment, setComment] = useState('');
   const t = useTranslations();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    console.log(reviewerId)
 
     const data = {
       transaction: transactionId,
@@ -41,9 +44,37 @@ export const ReviewModal = ({
     onConfirm(data);
   };
 
+  const renderStars = () => {
+    const stars = [];
+
+    for (let i = 1; i <= 5; i++) {
+      const isFilled = i <= (hoverRating || rating);
+      stars.push(
+        <div
+          key={i}
+          onClick={() => setRating(i)}
+          onMouseEnter={() => setHoverRating(i)}
+          onMouseLeave={() => setHoverRating(0)}
+          style={{ cursor: 'pointer' }}
+        >
+          <Star
+            size={50}
+            color={isFilled ? '#facc15' : '#d1d5db'} 
+            fill={isFilled ? '#facc15' : 'none'}
+          />
+        </div>,
+      );
+    }
+
+    return stars;
+  };
+
   return (
     <div className="modal-overlay">
-      <div className="modal">
+      <div
+        className="modal"
+        style={{ maxWidth: '400px' }}
+      >
         <div style={{ marginBottom: '2rem' }}>
           <Title size="h2">{t('reviewConfirm')}</Title>
         </div>
@@ -51,11 +82,9 @@ export const ReviewModal = ({
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <Label>{t('rating')}</Label>
-            <Input
-              type="number"
-              onChange={(e) => setRating(Number(e.target.value))}
-            />
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>{renderStars()}</div>
           </div>
+
           <div className="form-group">
             <Label>{t('comment')}</Label>
             <Textarea

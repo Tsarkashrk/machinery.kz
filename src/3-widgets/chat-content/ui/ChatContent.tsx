@@ -47,8 +47,6 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
 
   const messageContent = watch('content');
 
-  // Используем данные из React Query как основной источник
-  // WebSocket сообщения автоматически попадают в кэш через handleNewMessage
   const allMessages = useMemo(() => {
     if (!data?.messages) return [];
 
@@ -64,11 +62,9 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
       });
   }, [data?.messages]);
 
-  // Автоскролл при новых сообщениях
   useEffect(() => {
     const currentLength = allMessages.length;
     
-    // Скроллим только если добавились новые сообщения
     if (currentLength > prevMessagesLengthRef.current && messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
@@ -76,7 +72,6 @@ export const ChatContent = ({ activeChat, chatList }: Props) => {
     prevMessagesLengthRef.current = currentLength;
   }, [allMessages.length]);
 
-  // Скроллим при первой загрузке сообщений
   useEffect(() => {
     if (allMessages.length > 0 && messagesEndRef.current && !isChatLoading) {
       setTimeout(() => {

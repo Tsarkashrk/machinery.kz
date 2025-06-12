@@ -15,7 +15,7 @@ interface Props {
   isLoading: boolean;
 }
 
-export const PickupConfirmationModal = ({
+export const CompleteModal = ({
   isOwner,
   onConfirm,
   onClose,
@@ -40,9 +40,9 @@ export const PickupConfirmationModal = ({
 
   return (
     <div className="modal-overlay">
-      <div className="modal modal--pickup">
+      <div className="modal" style={{maxWidth: '40rem'}}>
         <div style={{ marginBottom: '2rem' }}>
-          <Title size="h2">Подтвердить получение</Title>
+          <Title size="h2">Подтвердить продажу</Title>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>

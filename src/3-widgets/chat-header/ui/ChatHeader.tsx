@@ -1,4 +1,6 @@
 import { IChatMessage, IChatResponse } from '@/5-entities/chat';
+import { useGetPurchase, useRespondPurchase } from '@/5-entities/purchase';
+import { useCancelPurchase } from '@/5-entities/purchase/hooks/useCancelPurchase';
 import { useGetRental, useRespondRental } from '@/5-entities/rental';
 import { useCancelRental } from '@/5-entities/rental/hooks/useCancelRental';
 import { useProfile } from '@/5-entities/user';
@@ -17,7 +19,7 @@ type Props = {
   isReconnecting?: boolean;
   avatar: string;
   link: number;
-  chat: IChatResponse;
+  chat: any;
   timestamp?: string;
 };
 
@@ -32,25 +34,35 @@ export const ChatHeader = ({
 }: Props) => {
   const { profile } = useProfile();
 
-  const buyer = chat.buyer_details;
-  const dealer = chat.dealer_details;
+  const buyer = chat?.buyer_details;
+  const dealer = chat?.dealer_details;
 
   const messages = chat?.messages;
   const transactionMessage = messages?.[0];
 
   const transactionId = transactionMessage?.transaction_id;
   const isOwner = profile?.id === dealer?.id;
+  const isPurchaseOwner = profile?.id === dealer?.id;
 
-  const { mutate, isPending, error } = useRespondRental();
+  const { mutate: mutateRental, isPending: isPendingRental, error: errorRental } = useRespondRental();
+  const { mutate: respondPurchase, isPending: isPendingPurchase, error: errorPurchase } = useRespondPurchase();
+  
   const {
     rentalTransaction,
-    isLoading,
+    isLoading: isLoadingRental,
     error: rentalError,
   } = useGetRental(transactionId ?? 0);
+  
+  const { 
+    purchaseTransaction, 
+    isLoading: isLoadingPurchase, 
+    error: purchaseError 
+  } = useGetPurchase(transactionId ?? 0);
 
   const [transactionStatus, setTransactionStatus] = useState(
-    rentalTransaction?.status,
+    rentalTransaction?.status || purchaseTransaction?.status,
   );
+  
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -59,17 +71,32 @@ export const ChatHeader = ({
     }
   }, [rentalTransaction?.status]);
 
+  useEffect(() => {
+    if (purchaseTransaction?.status) {
+      setTransactionStatus(purchaseTransaction.status);
+    }
+  }, [purchaseTransaction?.status]);
+
   const {
-    mutate: rejectMutate,
-    isPending: isRejectPending,
-    error: rejectError,
+    mutate: rejectRentalMutate,
+    isPending: isRejectRentalPending,
+    error: rejectRentalError,
   } = useCancelRental();
 
-  console.log(rentalTransaction);
+  const { 
+    mutate: rejectPurchase, 
+    isPending: isRejectPurchasePending, 
+    error: rejectPurchaseError 
+  } = useCancelPurchase();
 
-  if (error) {
-    console.error('useRespondRental error:', error);
+  if (errorRental || errorPurchase) {
+    console.error('Transaction error:', errorRental || errorPurchase);
   }
+
+  const equipmentType =
+    chat.equipment_details.available_for_rent ? 'rent' : 'sale';
+  
+  console.log(equipmentType)
 
   const { myChat, interlocutorChat } = useMemo(() => {
     if (profile?.id === buyer?.id) {
@@ -96,25 +123,52 @@ export const ChatHeader = ({
       return;
     }
 
-    mutate(
-      {
-        id: transactionId,
-        data: {
-          action: 'approve',
-          response_message: '',
+    if (equipmentType === 'rent') {
+      mutateRental(
+        {
+          id: transactionId,
+          data: {
+            action: 'approve',
+            response_message: '',
+          },
         },
-      },
-      {
-        onSuccess: (data) => {
-          queryClient.invalidateQueries({ queryKey: [`chat-${chat.id}`] });
-          queryClient.invalidateQueries({ queryKey: ['chats'] });
-          console.log('Успешно подтвержден:', data);
+        {
+          onSuccess: (data) => {
+            queryClient.invalidateQueries({
+              queryKey: [`chat-${chat.id}`],
+            });
+            queryClient.invalidateQueries({ queryKey: ['chats'] });
+            console.log('Успешно подтвержден:', data);
+          },
+          onError: (error) => {
+            console.error('Approve error:', error);
+          },
         },
-        onError: (error) => {
-          console.error('Approve error:', error);
+      );
+    } else {
+      respondPurchase(
+        {
+          id: transactionId,
+          data: {
+            action: 'approve',
+            inspection_period_days: 7,
+            response_message: 'approved',
+          },
         },
-      },
-    );
+        {
+          onSuccess: (data) => {
+            queryClient.invalidateQueries({
+              queryKey: [`chat-${chat.id}`],
+            });
+            queryClient.invalidateQueries({ queryKey: ['chats'] });
+            console.log('Успешно подтвержден:', data);
+          },
+          onError: (error) => {
+            console.error('Approve error:', error);
+          },
+        },
+      );
+    }
   };
 
   const handleReject = () => {
@@ -128,18 +182,46 @@ export const ChatHeader = ({
       return;
     }
 
-    rejectMutate(transactionId, {
-      onSuccess: (data) => {
-        setTransactionStatus('rejected');
-        console.log('Успешно отклонен:', data);
-      },
-      onError: (error) => {
-        console.error('Approve error:', error);
-      },
-    });
+    if (equipmentType === 'rent') {
+      rejectRentalMutate(transactionId, {
+        onSuccess: (data) => {
+          setTransactionStatus('rejected');
+          queryClient.invalidateQueries({
+            queryKey: [`chat-${chat.id}`],
+          });
+          queryClient.invalidateQueries({ queryKey: ['chats'] });
+          console.log('Успешно отклонен:', data);
+        },
+        onError: (error) => {
+          console.error('Reject error:', error);
+        },
+      });
+    } else {
+      rejectPurchase(transactionId, {
+        onSuccess: (data) => {
+          setTransactionStatus('rejected');
+          queryClient.invalidateQueries({
+            queryKey: [`chat-${chat.id}`],
+          });
+          queryClient.invalidateQueries({ queryKey: ['chats'] });
+          console.log('Успешно отклонен:', data);
+        },
+        onError: (error) => {
+          console.error('Reject error:', error);
+        },
+      });
+    }
   };
 
-  console.log(interlocutorChat);
+  // Определяем, нужно ли показывать кнопки транзакции
+  const shouldShowTransactionButtons = 
+    isOwner && 
+    transactionId && 
+    transactionStatus === 'requested' && 
+    (rentalTransaction || purchaseTransaction);
+
+  const isLoading = isPendingRental || isPendingPurchase;
+  const isRejectLoading = isRejectRentalPending || isRejectPurchasePending;
 
   return (
     <div className="chat-header">
@@ -147,18 +229,18 @@ export const ChatHeader = ({
         <div className="chat-header__info">
           <Avatar
             size="big"
-            avatar={interlocutorChat.image_url}
+            avatar={interlocutorChat?.image_url}
             link={`${PLATFORM_PAGES.DEALERS}/${link}`}
           />
           <div className="chat-header__status">
             <h3 className="chat-header__username">
               {interlocutorChat?.first_name}{' '}
-              {interlocutorChat?.last_name || interlocutorChat.username}
+              {interlocutorChat?.last_name || interlocutorChat?.username}
             </h3>
             <p>
-              {interlocutorChat.user_role === 'user'
+              {interlocutorChat?.user_role === 'user'
                 ? 'Пользователь'
-                : interlocutorChat.user_role === 'admin'
+                : interlocutorChat?.user_role === 'admin'
                   ? 'Админ'
                   : 'Модератор'}
             </p>
@@ -172,29 +254,27 @@ export const ChatHeader = ({
             </div>
           </div>
         </div>
-        {isOwner &&
-          transactionId &&
-          rentalTransaction &&
-          transactionStatus === 'requested' && (
-            <div className="chat-header__actions">
-              Подтвердить транзакцию?
-              <Button
-                onClick={handleApprove}
-                isLoading={isPending}
-                disabled={!transactionId}
-              >
-                Подтвердить
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={handleReject}
-                isLoading={isRejectPending}
-                disabled={!transactionId}
-              >
-                Отклонить
-              </Button>
-            </div>
-          )}
+        
+        {shouldShowTransactionButtons && (
+          <div className="chat-header__actions">
+            Подтвердить транзакцию?
+            <Button
+              onClick={handleApprove}
+              isLoading={isLoading}
+              disabled={!transactionId || isLoading}
+            >
+              Подтвердить
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={handleReject}
+              isLoading={isRejectLoading}
+              disabled={!transactionId || isRejectLoading}
+            >
+              Отклонить
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

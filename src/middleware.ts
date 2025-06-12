@@ -3,7 +3,6 @@ import createIntlMiddleware from "next-intl/middleware";
 import { EnumTokens } from "@/6-shared/api";
 import { PLATFORM_PAGES } from "@/6-shared/config/pages-url.config";
 import { routing } from "./i18n/routing";
-import { hasAccess } from "./6-shared/lib/check-role";
 
 const intlMiddleware = createIntlMiddleware(routing);
 

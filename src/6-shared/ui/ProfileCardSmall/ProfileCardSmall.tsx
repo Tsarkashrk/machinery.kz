@@ -55,11 +55,17 @@ export const ProfileCardSmall = ({
           {stars && <div className="profile-card-small__rating">{stars}</div>}
         </div>
       </div>
-      <div className="profile-card-small__items">
-        {equipmentCount} публикаций | {dealsCount} сделок 
+      <div
+        className="profile-card-small__items"
+        style={{ marginTop: '1rem' }}
+      >
+        {equipmentCount} публикаций | {dealsCount} сделок
       </div>
       {location && (
-        <p className="profile-card-small__location">
+        <p
+          className="profile-card-small__location"
+          style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}
+        >
           <MapPin
             fill="true"
             size={ICON_SIZE}
@@ -67,14 +73,6 @@ export const ProfileCardSmall = ({
           {location}
         </p>
       )}
-
-      <div className="profile-card-small__body">
-        {typeof salesCount === 'number' && (
-          <div className="profile-card-small__sales">
-            <span className="label">Продаж:</span> {salesCount}
-          </div>
-        )}
-      </div>
     </div>
   );
 };
